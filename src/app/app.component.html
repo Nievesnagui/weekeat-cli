@@ -1,6 +1,19 @@
 
- <app-menu-unrouted></app-menu-unrouted>  
+ 
 
-<router-outlet></router-outlet>
+
 
 <!--<app-footer-unrouted></app-footer-unrouted> -->
+
+
+<nb-layout>
+    <nb-layout-header fixed>
+        <app-menu-unrouted></app-menu-unrouted>  
+    </nb-layout-header>
+
+    <nb-sidebar>Sidebar Content</nb-sidebar>
+    
+    <nb-layout-column>
+        <router-outlet></router-outlet>
+    </nb-layout-column>
+  </nb-layout>
