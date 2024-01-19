@@ -5,7 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeRoutedComponent } from './components/shared/home-routed/home-routed.component';
 import { MenuUnroutedComponent } from './components/shared/menu-unrouted/menu-unrouted.component';
-
+//Nebular
+import { NbThemeModule } from '@nebular/theme';
 @NgModule({
   declarations: [
     AppComponent,
@@ -14,7 +15,9 @@ import { MenuUnroutedComponent } from './components/shared/menu-unrouted/menu-un
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NbThemeModule.forRoot(),
+
   ],
   providers: [],
   bootstrap: [AppComponent]
