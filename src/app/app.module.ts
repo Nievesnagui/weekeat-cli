@@ -16,7 +16,7 @@ import { UserService } from './service/user.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RecipeListRoutedComponent } from './components/recipe/recipe-list-routed/recipe-list-routed.component';
 import { RecipeListUnroutedComponent } from './components/recipe/recipe-list-unrouted/recipe-list-unrouted.component';
-import { RecipeDetailUnroutedComponent } from './components/recipe/recipe-detail-unrouted/recipe-detail-unrouted.component';
+import { RecipeDetailRoutedComponent } from './components/recipe/recipe-detail-routed/recipe-detail-routed.component';
 import { RecipeService } from './service/recipe.service';
 import { PaginatorModule } from 'primeng/paginator';
 
@@ -35,7 +35,7 @@ import { PaginatorModule } from 'primeng/paginator';
     //Recipe
     RecipeListRoutedComponent,
     RecipeListUnroutedComponent,
-    RecipeDetailUnroutedComponent,
+    RecipeDetailRoutedComponent,
 
   ],
   imports: [

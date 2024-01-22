@@ -5,6 +5,7 @@ import { LoginRoutedComponent } from './components/shared/login-routed/login-rou
 import { RegistrerRoutedComponent } from './components/shared/registrer-routed/registrer-routed.component';
 import { LogoutRoutedComponent } from './components/shared/logout-routed/logout-routed.component';
 import { RecipeListRoutedComponent } from './components/recipe/recipe-list-routed/recipe-list-routed.component';
+import { RecipeDetailRoutedComponent } from './components/recipe/recipe-detail-routed/recipe-detail-routed.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeRoutedComponent },
@@ -12,7 +13,7 @@ const routes: Routes = [
   { path: 'registrer', component: RegistrerRoutedComponent },
   { path: 'logout', component: LogoutRoutedComponent },
   { path: 'recipe/list', component: RecipeListRoutedComponent},
-  
+  { path: 'recipe/:id', component: RecipeDetailRoutedComponent},
 
 ];
 

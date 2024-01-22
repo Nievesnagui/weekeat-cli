@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { API_URL } from '../environment/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IRecipePage } from '../model/model.interface';
+import { IRecipe, IRecipePage } from '../model/model.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +16,9 @@ export class RecipeService {
     private oHttpClient: HttpClient
   ) { }
 
-  getOne(id_recipe: number): Observable<IRecipePage> {
-    return this.oHttpClient.get<IRecipePage>(this.sUrl + "/" + id_recipe);
+  getOne(id: number): Observable<IRecipe> {
+    console.log('RecipeService.getOne called');
+    return this.oHttpClient.get<IRecipe>(this.sUrl + "/" + id);
   }
 
   getPage(size: number | undefined, page: number | undefined, orderField: string, orderDirection: string, id_user: number, strFilter?: string): Observable<IRecipePage> {
