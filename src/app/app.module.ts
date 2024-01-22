@@ -6,11 +6,15 @@ import { AppComponent } from './app.component';
 import { HomeRoutedComponent } from './components/shared/home-routed/home-routed.component';
 import { MenuUnroutedComponent } from './components/shared/menu-unrouted/menu-unrouted.component';
 import { RouterModule } from '@angular/router';
+import { LoginRoutedComponent } from './components/shared/login-routed/login-routed.component';
+import { FooterUnroutedComponent } from './components/shared/footer-unrouted/footer-unrouted.component';
 @NgModule({
   declarations: [
     AppComponent,
     HomeRoutedComponent,
     MenuUnroutedComponent,
+    LoginRoutedComponent,
+    FooterUnroutedComponent,
   ],
   imports: [
     RouterModule,

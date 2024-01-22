@@ -1,0 +1,70 @@
+body, html {
+    height: 100%;
+    margin: 0;
+  }
+  
+  .container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .form-control {
+    box-shadow: 0 15px 25px hsla(141, 56%, 40%, 0.452);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 25px;
+    border-radius: 8px;
+  }
+  
+  .title {
+    font-size: 28px;
+    font-weight: 800;
+  }
+  
+  .field {
+    margin-top: 15px;
+  }
+  
+  .input {
+    width: 100%;
+    outline: none;
+    border-radius: 8px;
+    height: 45px;
+    border: 1.5px solid #ecedec;
+    background: transparent;
+    padding-left: 10px;
+  }
+  
+  .label {
+    color: #ccc;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    z-index: 2;
+  }
+  
+  .input-field .label.is-focused,
+  .input-field .input:valid ~ .label.is-active {
+    top: 5px;
+    left: 5px;
+    font-size: 12px;
+    background-color: #ffffff;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  
+  .submit-btn {
+    margin-top: 30px;
+    height: 55px;
+    border-radius: 11px;
+    font-size: 18px;
+    font-weight: 700;
+    transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
+  }
+  
+  .submit-btn:hover {
+    box-shadow: 0px 0px 0px 2px #ffffff, 0px 0px 0px 4px #0000003a;
+  }
+  
