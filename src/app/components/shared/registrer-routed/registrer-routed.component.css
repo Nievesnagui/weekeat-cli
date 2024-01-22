@@ -1,0 +1,25 @@
+
+  .custom-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .form-control {
+    box-shadow: 0 15px 25px hsla(141, 56%, 40%, 0.452);
+    padding: 25px;
+  }
+  
+  .input {
+    height: 45px;
+    border: 1.5px solid #ecedec;
+  }
+  
+  .submit-btn {
+    margin-top: 15px;
+    height: 55px;
+    border-radius: 11px;
+    font-size: 18px;
+    font-weight: 700;
+    transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
+  }
+  

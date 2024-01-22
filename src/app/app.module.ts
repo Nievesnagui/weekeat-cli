@@ -8,6 +8,7 @@ import { MenuUnroutedComponent } from './components/shared/menu-unrouted/menu-un
 import { RouterModule } from '@angular/router';
 import { LoginRoutedComponent } from './components/shared/login-routed/login-routed.component';
 import { FooterUnroutedComponent } from './components/shared/footer-unrouted/footer-unrouted.component';
+import { RegistrerRoutedComponent } from './components/shared/registrer-routed/registrer-routed.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -15,12 +16,13 @@ import { FooterUnroutedComponent } from './components/shared/footer-unrouted/foo
     MenuUnroutedComponent,
     LoginRoutedComponent,
     FooterUnroutedComponent,
+    RegistrerRoutedComponent,
+
   ],
   imports: [
     RouterModule,
     BrowserModule,
     AppRoutingModule,
-    
 
   ],
   providers: [],
