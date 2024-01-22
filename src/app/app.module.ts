@@ -14,15 +14,29 @@ import { LogoutRoutedComponent } from './components/shared/logout-routed/logout-
 import { HttpClientModule } from '@angular/common/http';
 import { UserService } from './service/user.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RecipeListRoutedComponent } from './components/recipe/recipe-list-routed/recipe-list-routed.component';
+import { RecipeListUnroutedComponent } from './components/recipe/recipe-list-unrouted/recipe-list-unrouted.component';
+import { RecipeDetailUnroutedComponent } from './components/recipe/recipe-detail-unrouted/recipe-detail-unrouted.component';
+import { RecipeService } from './service/recipe.service';
+import { PaginatorModule } from 'primeng/paginator';
+
 @NgModule({
   declarations: [
     AppComponent,
     HomeRoutedComponent,
     MenuUnroutedComponent,
-    LoginRoutedComponent,
     FooterUnroutedComponent,
+
+    //Logs
     RegistrerRoutedComponent,
     LogoutRoutedComponent,
+    LoginRoutedComponent,
+
+    //Recipe
+    RecipeListRoutedComponent,
+    RecipeListUnroutedComponent,
+    RecipeDetailUnroutedComponent,
+
   ],
   imports: [
     RouterModule,
@@ -31,10 +45,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    PaginatorModule,
+
   ],
   providers: [
     SessionService,
     UserService,
+    RecipeService,
   ],
   bootstrap: [AppComponent]
 })
