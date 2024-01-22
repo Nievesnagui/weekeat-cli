@@ -9,6 +9,11 @@ import { RouterModule } from '@angular/router';
 import { LoginRoutedComponent } from './components/shared/login-routed/login-routed.component';
 import { FooterUnroutedComponent } from './components/shared/footer-unrouted/footer-unrouted.component';
 import { RegistrerRoutedComponent } from './components/shared/registrer-routed/registrer-routed.component';
+import { SessionService } from './service/session.service';
+import { LogoutRoutedComponent } from './components/shared/logout-routed/logout-routed.component';
+import { HttpClientModule } from '@angular/common/http';
+import { UserService } from './service/user.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,18 +22,23 @@ import { RegistrerRoutedComponent } from './components/shared/registrer-routed/r
     LoginRoutedComponent,
     FooterUnroutedComponent,
     RegistrerRoutedComponent,
-
+    LogoutRoutedComponent,
   ],
   imports: [
     RouterModule,
     BrowserModule,
     AppRoutingModule,
-
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    SessionService,
+    UserService,
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { 
+export class AppModule {
   constructor() {
   }
 }
