@@ -1,4 +1,8 @@
  <p >{{oRecipe?.name}}</p>
+ <p *ngIf="oRecipe?.recipe_image">Imagen</p>
+ <p>Ingredientes: {{oRecipe?.content}}</p>
+ <p>Descripción: {{oRecipe?.description}}</p>
+ <p>Autor: {{oRecipe?.id_user}}</p>
  <div *ngIf="status !== null">
     <p>Error: {{ status.message }}</p>
   </div>

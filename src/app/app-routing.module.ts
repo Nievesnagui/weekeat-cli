@@ -6,6 +6,7 @@ import { RegistrerRoutedComponent } from './components/shared/registrer-routed/r
 import { LogoutRoutedComponent } from './components/shared/logout-routed/logout-routed.component';
 import { RecipeListRoutedComponent } from './components/recipe/recipe-list-routed/recipe-list-routed.component';
 import { RecipeDetailRoutedComponent } from './components/recipe/recipe-detail-routed/recipe-detail-routed.component';
+import { UserProfileDetailsComponent } from './components/user/user-profile-details/user-profile-details.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeRoutedComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'logout', component: LogoutRoutedComponent },
   { path: 'recipe/list', component: RecipeListRoutedComponent},
   { path: 'recipe/:id', component: RecipeDetailRoutedComponent},
+  { path: 'user/myprofile', component: UserProfileDetailsComponent },
 
 ];
 

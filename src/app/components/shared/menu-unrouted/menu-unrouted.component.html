@@ -17,18 +17,58 @@
                 Home
             </a>
 
-            <a class="navbar-item" routerLink="/recipe/list">
-                All Recipes
-            </a>
-
             <a class="navbar-item">
                 Funciona aún hay que editarlo todo
             </a>
+
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                    Recipes
+                </a>
+
+                <div class="navbar-dropdown">
+                    <a class="navbar-item" routerLink="/recipe/list">
+                        All Recipes
+                    </a>
+                    <a class="navbar-item">
+                        Your Recipes
+                    </a>
+                    <a class="navbar-item">
+                        Favourite Recipes
+                    </a>
+                    <hr class="navbar-divider">
+                    <a class="navbar-item">
+                        Search
+                    </a>
+                </div>
+            </div>
+
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                    Weekly
+                </a>
+
+                <div class="navbar-dropdown">
+                    <a class="navbar-item" >
+                        Create
+                    </a>
+                    <a class="navbar-item">
+                        Actual
+                    </a>
+                    <a class="navbar-item">
+                        Lasts
+                    </a>
+                </div>
+            </div>
+
 
         </div>
 
         <div class="navbar-end">
             <div class="navbar-item">
+                <a class="navbar-item" routerLink="/user/myprofile">
+                    Profile
+                </a>
                 <div class="buttons">
                     <a class="nav-link button is-light" routerLink="/registrer" href="#">Sing up</a>
                     <a class="nav-link button is-light" routerLink="/login" href="#">Login</a>

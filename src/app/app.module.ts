@@ -19,6 +19,7 @@ import { RecipeListUnroutedComponent } from './components/recipe/recipe-list-unr
 import { RecipeDetailRoutedComponent } from './components/recipe/recipe-detail-routed/recipe-detail-routed.component';
 import { RecipeService } from './service/recipe.service';
 import { PaginatorModule } from 'primeng/paginator';
+import { UserProfileDetailsComponent } from './components/user/user-profile-details/user-profile-details.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,9 @@ import { PaginatorModule } from 'primeng/paginator';
     RecipeListRoutedComponent,
     RecipeListUnroutedComponent,
     RecipeDetailRoutedComponent,
+
+    //User
+    UserProfileDetailsComponent,
 
   ],
   imports: [

@@ -41,7 +41,7 @@ export class RecipeListUnroutedComponent implements OnInit {
   }
 
   getPage(): void {
-    this.oRecipeService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.orderDirection, 1).subscribe({
+    this.oRecipeService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.orderDirection).subscribe({
       next: (data: IRecipePage) => {
         this.oPage = data;
         this.oPaginatorState.pageCount = data.totalPages;
@@ -54,6 +54,16 @@ export class RecipeListUnroutedComponent implements OnInit {
 
   getValue(event: any): string {
     return event.target.value;
+  }
+
+  getRecipeImageUrl(recipeImage: string | null | undefined): string {
+    if (recipeImage) {
+      // Si hay una imagen en la base de datos, devuelve la URL de esa imagen
+      return `URL_DE_TU_API_PARA_OBTENER_IMAGEN/${recipeImage}`;
+    } else {
+      // Si no hay imagen en la base de datos, devuelve la URL predeterminada
+      return 'https://images.unsplash.com/photo-1586511925558-a4c6376fe65f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=60';
+    }
   }
 
 }
