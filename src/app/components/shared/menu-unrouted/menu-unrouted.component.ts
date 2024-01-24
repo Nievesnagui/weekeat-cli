@@ -18,11 +18,11 @@ export class MenuUnroutedComponent implements OnInit {
   strUrl: string = "";
 
   constructor(
-   /* private oSessionService: SessionService,
-    private oUserService: UserService,*/
+    private oSessionService: SessionService,
+    private oUserService: UserService,
     private oRouter: Router
   ) {
-   /* this.oRouter.events.subscribe((ev) => {
+    this.oRouter.events.subscribe((ev) => {
       if (ev instanceof NavigationEnd) {
         this.strUrl = ev.url;
       }
@@ -36,11 +36,11 @@ export class MenuUnroutedComponent implements OnInit {
       error: (error: HttpErrorResponse) => {
         console.log(error);
       }
-    });*/
+    });
   }
 
   ngOnInit() {
-   /* this.oSessionService.on().subscribe({
+    this.oSessionService.on().subscribe({
       next: (data: SessionEvent) => {
         if (data.type == 'login') {
           this.strUserName = this.oSessionService.getUsername();
@@ -57,7 +57,7 @@ export class MenuUnroutedComponent implements OnInit {
           this.strUserName = "";
         }
       }
-    });*/
+    });
   }
 
   toggleNavbar() {

@@ -52,6 +52,7 @@ export interface IUser extends IEntity {
     favs: number;
     weeks: number;
     recipes: number;
+    role:number;
 }
 
 export interface IUserPage extends IPage<IUser> {

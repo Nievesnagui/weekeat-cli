@@ -14,7 +14,7 @@ export class SessionService {
 
   constructor(
       private oHttpClient: HttpClient,
-      private oUserAjaxService: UserService
+      private oUserService: UserService
   ) { }
 
   private parseJwt(token: string): IToken {
@@ -88,7 +88,7 @@ export class SessionService {
 
   getSessionUser(): Observable<IUser> | null {
       if (this.isSessionActive()) {
-          return this.oUserAjaxService.getByUsername(this.getUsername())
+          return this.oUserService.getByUsername(this.getUsername())
       } else {
           return null;
       }

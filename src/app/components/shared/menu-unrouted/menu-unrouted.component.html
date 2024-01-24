@@ -36,6 +36,9 @@
                     <a class="navbar-item">
                         Favourite Recipes
                     </a>
+                    <a class="navbar-item">
+                        Create Recipe
+                    </a>
                     <hr class="navbar-divider">
                     <a class="navbar-item">
                         Search
@@ -70,9 +73,11 @@
                     Profile
                 </a>
                 <div class="buttons">
-                    <a class="nav-link button is-light" routerLink="/registrer" href="#">Sing up</a>
-                    <a class="nav-link button is-light" routerLink="/login" href="#">Login</a>
-                    <a class="nav-link button is-light" routerLink="/logout" href="#">Logout</a>
+                    <a class="nav-link button is-light" routerLink="/registrer" href="#" *ngIf="!strUserName">Sing up</a>
+                    <a class="nav-link button is-light" routerLink="/login" href="#" *ngIf="!strUserName"
+                    [class.active]="strUrl.startsWith('/login')">Login</a>
+                    <a class="nav-link button is-light" routerLink="/logout" href="#" *ngIf="strUserName"
+                    [class.active]="strUrl.startsWith('/logout')">Logout</a>
                 </div>
             </div>
         </div>
