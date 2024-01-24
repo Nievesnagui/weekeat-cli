@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SessionService } from 'src/app/service/session.service';
+import { CryptoService } from 'src/app/service/crypto.service';
 
 @Component({
   selector: 'app-login-routed',
@@ -18,6 +19,7 @@ export class LoginRoutedComponent implements OnInit {
     private fb: FormBuilder,
     private oSessionService: SessionService,
     private oRouter: Router,
+    private oCryptoService: CryptoService,
   ) {
    this.loginForm = this.fb.group({
       username: ['', [Validators.required]],
@@ -31,10 +33,10 @@ export class LoginRoutedComponent implements OnInit {
   onSubmit() {
     if (this.loginForm.valid) {
       const username = this.loginForm.value.username;
-      const password = this.loginForm.value.password;
+      const hashedPassword = this.oCryptoService.getSHA256(this.loginForm.value.password);
 
 
-      this.oSessionService.login(username, password).subscribe({
+      this.oSessionService.login(username, hashedPassword).subscribe({
         next: (data: string) => {
           this.oSessionService.setToken(data);
           this.oSessionService.emit({ type: 'login' });

@@ -20,6 +20,7 @@ import { RecipeDetailRoutedComponent } from './components/recipe/recipe-detail-r
 import { RecipeService } from './service/recipe.service';
 import { PaginatorModule } from 'primeng/paginator';
 import { UserProfileDetailsComponent } from './components/user/user-profile-details/user-profile-details.component';
+import { CryptoService } from './service/crypto.service';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { UserProfileDetailsComponent } from './components/user/user-profile-deta
     SessionService,
     UserService,
     RecipeService,
+    CryptoService,
   ],
   bootstrap: [AppComponent]
 })

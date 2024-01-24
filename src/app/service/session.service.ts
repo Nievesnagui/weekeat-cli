@@ -8,7 +8,7 @@ import { UserService } from './user.service';
 @Injectable()
 export class SessionService {
   
-  sUrl: string = API_URL + "/session";
+  sUrl: string = API_URL + "/session/login";
 
   subjectSession = new Subject<SessionEvent>();
 
