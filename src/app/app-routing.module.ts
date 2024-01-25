@@ -7,6 +7,7 @@ import { LogoutRoutedComponent } from './components/shared/logout-routed/logout-
 import { RecipeListRoutedComponent } from './components/recipe/recipe-list-routed/recipe-list-routed.component';
 import { RecipeDetailRoutedComponent } from './components/recipe/recipe-detail-routed/recipe-detail-routed.component';
 import { UserProfileDetailsComponent } from './components/user/user-profile-details/user-profile-details.component';
+import { RecipeListOwnRoutedComponent } from './components/recipe/recipe-list-own-routed/recipe-list-own-routed.component';
 
 const routes: Routes = [
   { path: '', component: HomeRoutedComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'recipe/list', component: RecipeListRoutedComponent},
   { path: 'recipe/:id', component: RecipeDetailRoutedComponent},
   { path: 'user/myprofile', component: UserProfileDetailsComponent },
+  { path: 'recipe/list/own', component: RecipeListOwnRoutedComponent}
 
 ];
 

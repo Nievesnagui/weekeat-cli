@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { CarouselModule } from 'primeng/carousel';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeRoutedComponent } from './components/shared/home-routed/home-routed.component';
@@ -21,6 +21,8 @@ import { RecipeService } from './service/recipe.service';
 import { PaginatorModule } from 'primeng/paginator';
 import { UserProfileDetailsComponent } from './components/user/user-profile-details/user-profile-details.component';
 import { CryptoService } from './service/crypto.service';
+import { RecipeListOwnRoutedComponent } from './components/recipe/recipe-list-own-routed/recipe-list-own-routed.component';
+import { RecipeListOwnUnroutedComponent } from './components/recipe/recipe-list-own-unrouted/recipe-list-own-unrouted.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { CryptoService } from './service/crypto.service';
     RecipeListRoutedComponent,
     RecipeListUnroutedComponent,
     RecipeDetailRoutedComponent,
+    RecipeListOwnRoutedComponent,
+    RecipeListOwnUnroutedComponent,
 
     //User
     UserProfileDetailsComponent,
@@ -51,7 +55,7 @@ import { CryptoService } from './service/crypto.service';
     FormsModule,
     ReactiveFormsModule,
     PaginatorModule,
-
+    CarouselModule,
   ],
   providers: [
     SessionService,

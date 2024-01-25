@@ -55,6 +55,8 @@ body {
   position: relative;
   overflow: hidden;
   box-shadow: 0 0 32px -10px rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  margin-bottom: 20px;
 }
 .card-hover:has(.card-hover__link:hover) .card-hover__extra {
   transform: translateY(0);

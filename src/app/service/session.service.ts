@@ -8,7 +8,7 @@ import { UserService } from './user.service';
 @Injectable()
 export class SessionService {
   
-  sUrl: string = API_URL + "/session/login";
+  sUrl: string = API_URL + "/session";
 
   subjectSession = new Subject<SessionEvent>();
 
@@ -28,7 +28,7 @@ export class SessionService {
   }
 
   login(sUsername: string, sPassword: string): Observable<string> {
-      return this.oHttpClient.post<string>(this.sUrl, { username: sUsername, password: sPassword });        
+      return this.oHttpClient.post<string>(`${this.sUrl}/login`, { username: sUsername, password: sPassword });        
   }
 
   prelogin(): Observable<IPrelogin> {
