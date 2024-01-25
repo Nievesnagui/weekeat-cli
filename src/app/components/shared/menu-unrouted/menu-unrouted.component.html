@@ -13,15 +13,32 @@
 
     <div id="navbarBasicExample" class="navbar-menu" [ngClass]="{ 'is-active': isNavbarActive }">
         <div class="navbar-start">
-            <a class="navbar-item nav-link" routerLink="/home" href="#">
+            <a class="navbar-item nav-link" routerLink="" href="#">
                 Home
             </a>
 
-            <a class="navbar-item">
-                Funciona aún hay que editarlo todo
-            </a>
+            <div class="navbar-item has-dropdown is-hoverable" *ngIf="strUserName && oSessionUser?.role==0">
+                <a class="navbar-link">
+                    Admin Utilities
+                </a>
 
-            <div class="navbar-item has-dropdown is-hoverable">
+                <div class="navbar-dropdown">
+                    <a class="navbar-item" routerLink="/recipe/list">
+                        Users
+                    </a>
+                    <a class="navbar-item">
+                        Ingredients
+                    </a>
+                    <a class="navbar-item">
+                        Types
+                    </a>
+                    <a class="navbar-item">
+                        Recipes
+                    </a>
+                </div>
+            </div>
+
+            <div class="navbar-item has-dropdown is-hoverable" *ngIf="strUserName">
                 <a class="navbar-link">
                     Recipes
                 </a>
@@ -46,7 +63,7 @@
                 </div>
             </div>
 
-            <div class="navbar-item has-dropdown is-hoverable">
+            <div class="navbar-item has-dropdown is-hoverable" *ngIf="strUserName">
                 <a class="navbar-link">
                     Weekly
                 </a>
@@ -69,7 +86,7 @@
 
         <div class="navbar-end">
             <div class="navbar-item">
-                <a class="navbar-item" routerLink="/user/myprofile">
+                <a class="navbar-item" routerLink="/user/myprofile" *ngIf="strUserName">
                     Profile
                 </a>
                 <div class="buttons">

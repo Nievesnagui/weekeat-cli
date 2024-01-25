@@ -9,7 +9,7 @@ import { RecipeDetailRoutedComponent } from './components/recipe/recipe-detail-r
 import { UserProfileDetailsComponent } from './components/user/user-profile-details/user-profile-details.component';
 
 const routes: Routes = [
-  { path: 'home', component: HomeRoutedComponent },
+  { path: '', component: HomeRoutedComponent },
   { path: 'login', component: LoginRoutedComponent },
   { path: 'registrer', component: RegistrerRoutedComponent },
   { path: 'logout', component: LogoutRoutedComponent },

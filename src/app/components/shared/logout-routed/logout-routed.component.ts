@@ -25,11 +25,11 @@ export class LogoutRoutedComponent implements OnInit {
    logout() {
     this.oSessionService.logout();
      this.oSessionService.emit({ type: 'logout' });
-     this.oRouter.navigate(['/home']);
+     this.oRouter.navigate(['/']);
    }
  
    cancel() {
-     this.oRouter.navigate(['/home']);
+     this.oRouter.navigate(['/']);
    }
 
 }
