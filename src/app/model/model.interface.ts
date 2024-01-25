@@ -36,12 +36,10 @@ export interface IPage<T> {
     nRecords: number;
 }
 
-export interface IEntity {
-    id: number,
-}
 
 //User 
-export interface IUser extends IEntity {
+export interface IUser{
+    id: number;
     username: string;
     name: string;
     surname: string;
@@ -59,7 +57,8 @@ export interface IUserPage extends IPage<IUser> {
 }
 
 //Recipe
-export interface IRecipe extends IEntity {
+export interface IRecipe {
+    id_recipe: number;
     id_user: IUser;
     name: string;
     description: string;
@@ -73,7 +72,8 @@ export interface IRecipePage extends IPage<IRecipe> {
 }
 
 //Schedule
-export interface ISchedule extends IEntity {
+export interface ISchedule {
+    id_schedule: number;
     id_recipe: IRecipe;
     id_weekly: IWeekly;
     type: string;
@@ -84,7 +84,8 @@ export interface ISchedulePage extends IPage<ISchedule> {
 }
 
 //Weekly
-export interface IWeekly extends IEntity {
+export interface IWeekly {
+    id_weekly: number;
     id_user: IUser;
     init_date: Date;
     end_date: Date;
@@ -95,7 +96,8 @@ export interface IWeeklyPage extends IPage<IWeekly> {
 }
 
 //Ingredient
-export interface IIngredient extends IEntity {
+export interface IIngredient  {
+    id_ingredient: number;
    id_type: IType;
    name: string;
    ingredient_image: string; //imagen
@@ -106,7 +108,8 @@ export interface IIngredientPage extends IPage<IIngredient> {
 }
 
 //Type
-export interface IType extends IEntity {
+export interface IType {
+    id_type: number;
     name: string;//imagen
     ingredients: number;
 }
@@ -115,7 +118,8 @@ export interface ITypePage extends IPage<IType> {
 }
 
 //Content
-export interface IContent extends IEntity {
+export interface IContent {
+    id_content: number;
     id_recipe: IRecipe;
     id_ingredient: IIngredient;
 }
@@ -124,7 +128,8 @@ export interface IContentPage extends IPage<IContent> {
 }
 
 //Favourite Recipe
-export interface IFavRecipe extends IEntity {
+export interface IFavRecipe {
+    id_fav: number;
     id_user: IUser;
     id_recipe: IRecipe;
 }
@@ -147,12 +152,14 @@ export interface IToken {
     name: string;
 }
 
-export interface ICaptcha extends IEntity {
+export interface ICaptcha{
+    id: number,
     text: string,
     image: string
 }
 
-export interface IPrelogin extends IEntity {
+export interface IPrelogin {
+    id: number,
     token: string,
     captchaImage: string
 }

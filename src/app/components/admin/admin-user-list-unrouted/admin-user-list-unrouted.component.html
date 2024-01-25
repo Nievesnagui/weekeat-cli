@@ -1,0 +1,70 @@
+<div *ngIf="status!=null">
+  <div class="d-flex justify-content-center my-3">
+    <div class="alert alert-danger" role="alert">
+      {{status!.error.message}} - {{status!.message}}
+    </div>
+  </div>
+</div>
+
+<div *ngIf="status==null">
+  <div class="d-flex justify-content-end my-3">
+    <h4>Showing {{oPage?.numberOfElements}} of total {{oPage?.totalElements}} users.</h4>
+  </div>
+  <div class="flex justify-content-center mb-3">
+    <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
+      [totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+  </div>
+
+
+
+  <div class="container">
+    <h2>Users List</h2>
+
+    <div class="table-wrapper">
+      <table class="fl-table">
+        <thead>
+          <tr>
+            <th (click)="doOrder('id')">ID</th>
+            <th class="col col-2" (click)="doOrder('name')">Name</th>
+            <th (click)="doOrder('surname')">Surname</th>
+            <th (click)="doOrder('email')">Email</th>
+            <th (click)="doOrder('username')">Username</th>
+            <th (click)="doOrder('phone')">Phone</th>
+            <th>Role</th>
+            <th>Recipes</th>
+            <th>Weekly</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table-row" *ngFor="let u of oPage?.content" class="align-middle">
+            <td>{{u.id}}</td>
+            <td>{{u.name}}</td>
+            <td>{{u.surname}}</td>
+            <td>{{u.email}}</td>
+            <td>{{u.username}}</td>
+            <td>{{u.phone}}</td>
+            <td>
+              <span *ngIf="u.role==0">Admin</span>
+              <span *ngIf="u.role==1">User</span>
+            </td>
+            <td>
+              <a class="text-center"  *ngIf="u.recipes>0">{{u.recipes}} </a>
+              <span *ngIf="u.recipes==0">0</span>
+            </td>
+            <td>
+              <a class="text-center" *ngIf="u.weeks>0">{{u.weeks}} </a>
+              <span *ngIf="u.weeks==0">0</span>
+            </td>
+            <td>
+              <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                <button class="btn btn-primary" [routerLink]="['/veterinario','view',u.id]">Vw</button>
+                <button class="btn btn-primary" (click)="doView(u)">Vw</button>
+                <button class="btn btn-warning" [routerLink]="['/veterinario','edit',u.id]">Ed</button>
+                <button *ngIf="u.recipes==0" class="btn btn-danger" (click)="doRemove(u)">Rm</button>
+              </div>
+            </td>
+          </tr>
+        <tbody>
+      </table>
+    </div>
+  </div>

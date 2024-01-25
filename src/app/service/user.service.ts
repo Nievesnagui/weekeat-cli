@@ -23,16 +23,11 @@ export class UserService {
   }
 
 
-  getPage(size: number | undefined, page: number | undefined, orderField: string, orderDirection: string, strFilter?: string): Observable<IUserPage> {
+  getPage(size: number | undefined, page: number | undefined, orderField: string): Observable<IUserPage> {
       let sUrl_filter: string;
       if (!size) size = 10;
-      if (!page) page = 0;    
-      if (strFilter && strFilter.trim().length > 0) {
-          sUrl_filter = `&filter=${strFilter}`;
-      } else {
-          sUrl_filter = "";
-      }
-      return this.oHttpClient.get<IUserPage>(this.sUrl + "?size=" + size + "&page=" + page + "&sort=" + orderField + "," + orderDirection + sUrl_filter);
+      if (!page) page = 0;  
+      return this.oHttpClient.get<IUserPage>(this.sUrl + "?size=" + size + "&page=" + page + "&sort=" + orderField );
   }
 
   removeOne(id: number | undefined): Observable<number> {

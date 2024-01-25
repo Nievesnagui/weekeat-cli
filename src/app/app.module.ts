@@ -23,6 +23,12 @@ import { UserProfileDetailsComponent } from './components/user/user-profile-deta
 import { CryptoService } from './service/crypto.service';
 import { RecipeListOwnRoutedComponent } from './components/recipe/recipe-list-own-routed/recipe-list-own-routed.component';
 import { RecipeListOwnUnroutedComponent } from './components/recipe/recipe-list-own-unrouted/recipe-list-own-unrouted.component';
+import { AdminUserDetailUnroutedComponent } from './components/admin/admin-user-detail-unrouted/admin-user-detail-unrouted.component';
+import { AdminUserDetailRoutedComponent } from './components/admin/admin-user-detail-routed/admin-user-detail-routed.component';
+import { AdminUserListRoutedComponent } from './components/admin/admin-user-list-routed/admin-user-list-routed.component';
+import { AdminUserListUnroutedComponent } from './components/admin/admin-user-list-unrouted/admin-user-list-unrouted.component';
+import { ConfirmationService } from 'primeng/api';
+import { DialogService } from 'primeng/dynamicdialog';
 
 @NgModule({
   declarations: [
@@ -46,6 +52,12 @@ import { RecipeListOwnUnroutedComponent } from './components/recipe/recipe-list-
     //User
     UserProfileDetailsComponent,
 
+    //Admin Utilities
+    AdminUserDetailUnroutedComponent,
+    AdminUserDetailRoutedComponent,
+    AdminUserListRoutedComponent,
+    AdminUserListUnroutedComponent,
+
   ],
   imports: [
     RouterModule,
@@ -62,6 +74,8 @@ import { RecipeListOwnUnroutedComponent } from './components/recipe/recipe-list-
     UserService,
     RecipeService,
     CryptoService,
+    ConfirmationService,
+    DialogService,
   ],
   bootstrap: [AppComponent]
 })

@@ -19,16 +19,16 @@ export class RecipeListOwnUnroutedComponent implements OnInit {
   @Output() recipeDropped = new EventEmitter<CdkDragDrop<IRecipe[]>>();
 
   @Input()
-  set id_user(value: number) {
+  set id(value: number) {
     if (value) {
-      this.id_user_filter = value;
+      this.id_filter = value;
     } else {
-      this.id_user_filter = 0;
+      this.id_filter = 0;
     }
     this.getPage();
   }
-  get id_user(): number {
-    return this.id_user_filter;
+  get id(): number {
+    return this.id_filter;
   }
 
   @Input()
@@ -45,7 +45,7 @@ export class RecipeListOwnUnroutedComponent implements OnInit {
   @Output() recipe_change = new EventEmitter<Boolean>();
 
   id_recipe_filter: number = 0;
-  id_user_filter: number = 0;
+  id_filter: number = 0;
 
   oPage: IRecipePage | undefined;
   oUser: IUser | null = null;
@@ -65,7 +65,7 @@ export class RecipeListOwnUnroutedComponent implements OnInit {
 
   ngOnInit() {
     this.getPage();
-    if (this.id_user > 0) {
+    if (this.id > 0) {
       this.getUser();
     }
     if (this.id_recipe > 0) {
@@ -100,7 +100,7 @@ export class RecipeListOwnUnroutedComponent implements OnInit {
   }
 
   getUser(): void {
-    this.oUserService.getOne(this.id_user).subscribe({
+    this.oUserService.getOne(this.id).subscribe({
       next: (data: IUser) => {
         this.oUser = data;
       },
