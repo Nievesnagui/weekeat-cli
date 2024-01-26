@@ -10,18 +10,24 @@ import { UserProfileDetailsComponent } from './components/user/user-profile-deta
 import { RecipeListOwnRoutedComponent } from './components/recipe/recipe-list-own-routed/recipe-list-own-routed.component';
 import { AdminUserDetailRoutedComponent } from './components/admin/admin-user-detail-routed/admin-user-detail-routed.component';
 import { AdminUserListRoutedComponent } from './components/admin/admin-user-list-routed/admin-user-list-routed.component';
+import { AdminUserNewRoutedComponent } from './components/admin/admin-user-new-routed/admin-user-new-routed.component';
 
 const routes: Routes = [
   { path: '', component: HomeRoutedComponent },
+  //Login
   { path: 'login', component: LoginRoutedComponent },
   { path: 'registrer', component: RegistrerRoutedComponent },
   { path: 'logout', component: LogoutRoutedComponent },
+  //Recipe
   { path: 'recipe/list', component: RecipeListRoutedComponent},
   { path: 'recipe/:id', component: RecipeDetailRoutedComponent},
-  { path: 'user/myprofile', component: UserProfileDetailsComponent },
   { path: 'recipe/list/own', component: RecipeListOwnRoutedComponent},
+  //User
+  { path: 'user/myprofile', component: UserProfileDetailsComponent },
+  //Admin Utilities
   { path: 'admin/user/detail/:id', component: AdminUserDetailRoutedComponent},
-  { path: 'admin/user/list', component: AdminUserListRoutedComponent}
+  { path: 'admin/user/list', component: AdminUserListRoutedComponent},
+  { path: 'admin/user/new', component: AdminUserNewRoutedComponent},
 ];
 
 @NgModule({

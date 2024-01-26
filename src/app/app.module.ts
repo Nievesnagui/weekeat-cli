@@ -11,7 +11,7 @@ import { FooterUnroutedComponent } from './components/shared/footer-unrouted/foo
 import { RegistrerRoutedComponent } from './components/shared/registrer-routed/registrer-routed.component';
 import { SessionService } from './service/session.service';
 import { LogoutRoutedComponent } from './components/shared/logout-routed/logout-routed.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { UserService } from './service/user.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RecipeListRoutedComponent } from './components/recipe/recipe-list-routed/recipe-list-routed.component';
@@ -29,6 +29,9 @@ import { AdminUserListRoutedComponent } from './components/admin/admin-user-list
 import { AdminUserListUnroutedComponent } from './components/admin/admin-user-list-unrouted/admin-user-list-unrouted.component';
 import { ConfirmationService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
+import { AdminUserNewRoutedComponent } from './components/admin/admin-user-new-routed/admin-user-new-routed.component';
+import { AdminUserFormUnroutedComponent } from './components/admin/admin-user-form-unrouted/admin-user-form-unrouted.component';
+import { AuthInterceptor } from './interceptor/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -57,6 +60,8 @@ import { DialogService } from 'primeng/dynamicdialog';
     AdminUserDetailRoutedComponent,
     AdminUserListRoutedComponent,
     AdminUserListUnroutedComponent,
+    AdminUserNewRoutedComponent,
+    AdminUserFormUnroutedComponent,
 
   ],
   imports: [
@@ -76,6 +81,8 @@ import { DialogService } from 'primeng/dynamicdialog';
     CryptoService,
     ConfirmationService,
     DialogService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+
   ],
   bootstrap: [AppComponent]
 })
