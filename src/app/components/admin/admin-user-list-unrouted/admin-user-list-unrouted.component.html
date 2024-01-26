@@ -1,31 +1,34 @@
-<div *ngIf="status!=null">
-  <div class="d-flex justify-content-center my-3">
-    <div class="alert alert-danger" role="alert">
-      {{status!.error.message}} - {{status!.message}}
+<div *ngIf="status !== null">
+  <div class="columns is-centered my-3">
+    <div class="column is-half">
+      <div class="notification is-danger">
+        {{ status!.error.message }} - {{ status!.message }}
+      </div>
     </div>
   </div>
 </div>
 
-<div *ngIf="status==null">
-  <div class="d-flex justify-content-end my-3">
-    <h4>Showing {{oPage?.numberOfElements}} of total {{oPage?.totalElements}} users.</h4>
+<div *ngIf="status == null">
+  <div class="columns is-vcentered is-justify-content-space-between my-3">
+    <div class="column is-narrow">
+      <h4>Showing {{ oPage?.numberOfElements }} of total {{ oPage?.totalElements }} users.</h4>
+    </div>
+    <div class="column is-narrow">
+      <!--Aqui tengo el pagination de primeng hasta que lo cambie por el de bulma-->
+      <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
+        [totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+    </div>
   </div>
-  <div class="flex justify-content-center mb-3">
-    <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
-      [totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
-  </div>
-
-
 
   <div class="container">
-    <h2>Users List</h2>
+    <h2 class="title">Users List</h2>
 
-    <div class="table-wrapper">
-      <table class="fl-table">
+    <div class="table-container">
+      <table class="table is-fullwidth">
         <thead>
           <tr>
             <th (click)="doOrder('id')">ID</th>
-            <th class="col col-2" (click)="doOrder('name')">Name</th>
+            <th class="is-2" (click)="doOrder('name')">Name</th>
             <th (click)="doOrder('surname')">Surname</th>
             <th (click)="doOrder('email')">Email</th>
             <th (click)="doOrder('username')">Username</th>
@@ -33,38 +36,40 @@
             <th>Role</th>
             <th>Recipes</th>
             <th>Weekly</th>
+            <th>Utilities</th>
+
           </tr>
         </thead>
         <tbody>
-          <tr class="table-row" *ngFor="let u of oPage?.content" class="align-middle">
-            <td>{{u.id}}</td>
-            <td>{{u.name}}</td>
-            <td>{{u.surname}}</td>
-            <td>{{u.email}}</td>
-            <td>{{u.username}}</td>
-            <td>{{u.phone}}</td>
+          <tr *ngFor="let u of oPage?.content" class="is-vcentered">
+            <td>{{ u.id }}</td>
+            <td>{{ u.name }}</td>
+            <td>{{ u.surname }}</td>
+            <td>{{ u.email }}</td>
+            <td>{{ u.username }}</td>
+            <td>{{ u.phone }}</td>
             <td>
-              <span *ngIf="u.role==0">Admin</span>
-              <span *ngIf="u.role==1">User</span>
+              <span *ngIf="u.role == 0" class="tag is-primary">Admin</span>
+              <span *ngIf="u.role == 1" class="tag is-info">User</span>
             </td>
             <td>
-              <a class="text-center"  *ngIf="u.recipes>0">{{u.recipes}} </a>
-              <span *ngIf="u.recipes==0">0</span>
+              <a *ngIf="u.recipes > 0" class="tag is-link">{{ u.recipes }}</a>
+              <span *ngIf="u.recipes === 0" class="tag is-light">0</span>
             </td>
             <td>
-              <a class="text-center" *ngIf="u.weeks>0">{{u.weeks}} </a>
-              <span *ngIf="u.weeks==0">0</span>
+              <a *ngIf="u.weeks > 0" class="tag is-link">{{ u.weeks }}</a>
+              <span *ngIf="u.weeks === 0" class="tag is-light">0</span>
             </td>
             <td>
-              <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                <button class="btn btn-primary" [routerLink]="['/veterinario','view',u.id]">Vw</button>
-                <button class="btn btn-primary" (click)="doView(u)">Vw</button>
-                <button class="btn btn-warning" [routerLink]="['/veterinario','edit',u.id]">Ed</button>
-                <button *ngIf="u.recipes==0" class="btn btn-danger" (click)="doRemove(u)">Rm</button>
+              <div class="buttons">
+                <button class="button is-primary" [routerLink]="['/admin','user','detail',u.id]">View</button>
+                <button class="button is-warning" [routerLink]="['/admin','user','edit',u.id]">Edit</button>
+                <button *ngIf="u.recipes === 0" class="button is-danger" (click)="doRemove(u)">Remove</button>
               </div>
             </td>
           </tr>
-        <tbody>
+        </tbody>
       </table>
     </div>
   </div>
+</div>

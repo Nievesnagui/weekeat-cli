@@ -29,9 +29,9 @@ export class RecipeDetailRoutedComponent implements OnInit {
       this.oRecipeService.getOne(this.id).subscribe({
         next: (data: IRecipe) => {
           this.oRecipe = data;
-          console.log(data.id_recipe);
+          console.log(data.id);
           console.log(this.id);
-          console.log("Recipe: "+data.id_recipe);
+          console.log("Recipe: "+data.id);
         },
         error: (error: HttpErrorResponse) => {
           this.status = error;

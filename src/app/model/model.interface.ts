@@ -58,7 +58,7 @@ export interface IUserPage extends IPage<IUser> {
 
 //Recipe
 export interface IRecipe {
-    id_recipe: number;
+    id: number;
     id_user: IUser;
     name: string;
     description: string;
@@ -73,7 +73,7 @@ export interface IRecipePage extends IPage<IRecipe> {
 
 //Schedule
 export interface ISchedule {
-    id_schedule: number;
+    id: number;
     id_recipe: IRecipe;
     id_weekly: IWeekly;
     type: string;
@@ -85,7 +85,7 @@ export interface ISchedulePage extends IPage<ISchedule> {
 
 //Weekly
 export interface IWeekly {
-    id_weekly: number;
+    id: number;
     id_user: IUser;
     init_date: Date;
     end_date: Date;
@@ -97,7 +97,7 @@ export interface IWeeklyPage extends IPage<IWeekly> {
 
 //Ingredient
 export interface IIngredient  {
-    id_ingredient: number;
+    id: number;
    id_type: IType;
    name: string;
    ingredient_image: string; //imagen
@@ -109,7 +109,7 @@ export interface IIngredientPage extends IPage<IIngredient> {
 
 //Type
 export interface IType {
-    id_type: number;
+    id: number;
     name: string;//imagen
     ingredients: number;
 }
@@ -119,7 +119,7 @@ export interface ITypePage extends IPage<IType> {
 
 //Content
 export interface IContent {
-    id_content: number;
+    id: number;
     id_recipe: IRecipe;
     id_ingredient: IIngredient;
 }
@@ -129,7 +129,7 @@ export interface IContentPage extends IPage<IContent> {
 
 //Favourite Recipe
 export interface IFavRecipe {
-    id_fav: number;
+    id: number;
     id_user: IUser;
     id_recipe: IRecipe;
 }

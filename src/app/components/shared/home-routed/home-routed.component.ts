@@ -15,7 +15,7 @@ export class HomeRoutedComponent implements OnInit {
 
 
   oPage: IRecipePage | undefined;
-  orderField: string = "id_recipe";
+  orderField: string = "id";
   orderDirection: string = "asc";
 
   oRecipe: IRecipe | null = null;

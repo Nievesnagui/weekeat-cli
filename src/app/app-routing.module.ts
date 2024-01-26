@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'registrer', component: RegistrerRoutedComponent },
   { path: 'logout', component: LogoutRoutedComponent },
   { path: 'recipe/list', component: RecipeListRoutedComponent},
-  { path: 'recipe/:id_recipe', component: RecipeDetailRoutedComponent},
+  { path: 'recipe/:id', component: RecipeDetailRoutedComponent},
   { path: 'user/myprofile', component: UserProfileDetailsComponent },
   { path: 'recipe/list/own', component: RecipeListOwnRoutedComponent},
   { path: 'admin/user/detail/:id', component: AdminUserDetailRoutedComponent},
