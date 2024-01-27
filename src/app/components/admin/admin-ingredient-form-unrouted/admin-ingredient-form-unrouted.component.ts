@@ -28,7 +28,7 @@ export class AdminIngredientFormUnroutedComponent implements OnInit {
     this.ingredientForm = this.oFormBuilder.group({
       id: [oIngredient.id],
       name: [oIngredient.name, [Validators.required, Validators.minLength(3), Validators.maxLength(255)]],
-      content: [oIngredient.content, [Validators.required]],
+      id_type: [oIngredient.id_type, [Validators.required]],
     });
   }
 
