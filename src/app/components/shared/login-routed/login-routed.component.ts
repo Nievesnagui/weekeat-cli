@@ -41,7 +41,6 @@ export class LoginRoutedComponent implements OnInit {
           this.oSessionService.setToken(data);
           this.oSessionService.emit({ type: 'login' });
           this.oRouter.navigate(['']);
-          console.log("bien: ", data);
         },
         error: (error: HttpErrorResponse) => {
           console.log("error: ", error);

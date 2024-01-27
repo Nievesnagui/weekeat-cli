@@ -49,7 +49,7 @@ export class UserService {
   updateOne(oUser: IUser): Observable<IUser> {
       return this.oHttpClient.put<IUser>(this.sUrl, oUser);
   }
-
+/*
   generateRandom(amount: number): Observable<number> {
       return this.oHttpClient.post<number>(this.sUrl + "/populate/" + amount, null);
   }
@@ -59,7 +59,7 @@ export class UserService {
       if (!page) page = 0;
       return this.oHttpClient.get<IUserPage>(this.sUrl + "/byRepliesNumberDesc?size=" + size + "&page=" + page);
   }
-
+*/
   empty(): Observable<number> {
       return this.oHttpClient.delete<number>(this.sUrl + "/empty");
   }

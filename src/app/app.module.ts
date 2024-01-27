@@ -33,6 +33,9 @@ import { AdminUserNewRoutedComponent } from './components/admin/admin-user-new-r
 import { AdminUserFormUnroutedComponent } from './components/admin/admin-user-form-unrouted/admin-user-form-unrouted.component';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { AdminUserEditRoutedComponent } from './components/admin/admin-user-edit-routed/admin-user-edit-routed.component';
+import { AdminIngredientListRoutedComponent } from './components/admin/admin-ingredient-list-routed/admin-ingredient-list-routed.component';
+import { AdminIngredientListUnroutedComponent } from './components/admin/admin-ingredient-list-unrouted/admin-ingredient-list-unrouted.component';
+import { IngredientService } from './service/ingredient.service';
 
 @NgModule({
   declarations: [
@@ -64,6 +67,8 @@ import { AdminUserEditRoutedComponent } from './components/admin/admin-user-edit
     AdminUserNewRoutedComponent,
     AdminUserFormUnroutedComponent,
     AdminUserEditRoutedComponent,
+    AdminIngredientListRoutedComponent,
+    AdminIngredientListUnroutedComponent,
 
   ],
   imports: [
@@ -78,6 +83,7 @@ import { AdminUserEditRoutedComponent } from './components/admin/admin-user-edit
   ],
   providers: [
     SessionService,
+    IngredientService,
     UserService,
     RecipeService,
     CryptoService,

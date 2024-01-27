@@ -12,6 +12,7 @@ import { AdminUserDetailRoutedComponent } from './components/admin/admin-user-de
 import { AdminUserListRoutedComponent } from './components/admin/admin-user-list-routed/admin-user-list-routed.component';
 import { AdminUserNewRoutedComponent } from './components/admin/admin-user-new-routed/admin-user-new-routed.component';
 import { AdminUserEditRoutedComponent } from './components/admin/admin-user-edit-routed/admin-user-edit-routed.component';
+import { AdminIngredientListRoutedComponent } from './components/admin/admin-ingredient-list-routed/admin-ingredient-list-routed.component';
 
 const routes: Routes = [
   { path: '', component: HomeRoutedComponent },
@@ -20,16 +21,17 @@ const routes: Routes = [
   { path: 'registrer', component: RegistrerRoutedComponent },
   { path: 'logout', component: LogoutRoutedComponent },
   //Recipe
-  { path: 'recipe/list', component: RecipeListRoutedComponent},
-  { path: 'recipe/:id', component: RecipeDetailRoutedComponent},
-  { path: 'recipe/list/own', component: RecipeListOwnRoutedComponent},
+  { path: 'recipe/list', component: RecipeListRoutedComponent },
+  { path: 'recipe/:id', component: RecipeDetailRoutedComponent },
+  { path: 'recipe/list/own', component: RecipeListOwnRoutedComponent },
   //User
   { path: 'user/myprofile', component: UserProfileDetailsComponent },
   //Admin Utilities
-  { path: 'admin/user/detail/:id', component: AdminUserDetailRoutedComponent},
-  { path: 'admin/user/list', component: AdminUserListRoutedComponent},
-  { path: 'admin/user/new', component: AdminUserNewRoutedComponent},
-  { path: 'admin/user/edit/:id', component: AdminUserEditRoutedComponent},
+  { path: 'admin/user/detail/:id', component: AdminUserDetailRoutedComponent },
+  { path: 'admin/user/list', component: AdminUserListRoutedComponent },
+  { path: 'admin/user/new', component: AdminUserNewRoutedComponent },
+  { path: 'admin/user/edit/:id', component: AdminUserEditRoutedComponent },
+  { path: 'admin/ingredient/list', component: AdminIngredientListRoutedComponent },
 ];
 
 @NgModule({

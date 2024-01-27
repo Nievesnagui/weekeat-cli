@@ -30,7 +30,6 @@ export class RecipeListOwnUnroutedComponent implements OnInit {
   get id(): number {
     return this.id_filter;
   }
-
   @Input()
   set id_recipe(value: number) {
     if (value) {
@@ -102,6 +101,7 @@ export class RecipeListOwnUnroutedComponent implements OnInit {
   getUser(): void {
     this.oUserService.getOne(this.id).subscribe({
       next: (data: IUser) => {
+         console.log(this.id);
         this.oUser = data;
       },
       error: (error: HttpErrorResponse) => {

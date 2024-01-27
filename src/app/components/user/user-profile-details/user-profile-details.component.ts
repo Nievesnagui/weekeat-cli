@@ -22,7 +22,6 @@ export class UserProfileDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.oSessionUser.subscribe(user => {
-      console.log('Role:', user?.role);
     });
   }
 }

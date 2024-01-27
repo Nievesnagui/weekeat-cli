@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="columns  mt-5">
+      <div class="column is-half">
+                  <h1 class="title is-2 my-3">List of ingredients</h1>
+
+                  <div class="card m-5" *ngIf="bLoading">
+                      <div class="card-content">
+                          <h3 class="has-text-danger">Processing... Please wait</h3>
+                          <div class="spinner-grow text-primary my-5" role="status">
+                              <span class="sr-only"></span>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div *ngIf="!bLoading" class="field is-grouped is-justify-content-center">
+                      <p class="control">
+                          <a class="button is-primary" [routerLink]="['/admin','user','new']">New User</a>
+                      </p>
+                  </div>
+      </div>
+  </div>
+
+  <div class="row justify-content-center mt-3">
+      <div class="col">
+          <app-admin-ingredient-list-unrouted></app-admin-ingredient-list-unrouted>
+      </div>
+  </div>
+</div>
