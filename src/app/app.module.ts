@@ -36,6 +36,8 @@ import { AdminUserEditRoutedComponent } from './components/admin/admin-user-edit
 import { AdminIngredientListRoutedComponent } from './components/admin/admin-ingredient-list-routed/admin-ingredient-list-routed.component';
 import { AdminIngredientListUnroutedComponent } from './components/admin/admin-ingredient-list-unrouted/admin-ingredient-list-unrouted.component';
 import { IngredientService } from './service/ingredient.service';
+import { AdminIngredientDetailRoutedComponent } from './components/admin/admin-ingredient-detail-routed/admin-ingredient-detail-routed.component';
+import { AdminIngredientDetailUnroutedComponent } from './components/admin/admin-ingredient-detail-unrouted/admin-ingredient-detail-unrouted.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +71,8 @@ import { IngredientService } from './service/ingredient.service';
     AdminUserEditRoutedComponent,
     AdminIngredientListRoutedComponent,
     AdminIngredientListUnroutedComponent,
+    AdminIngredientDetailRoutedComponent,
+    AdminIngredientDetailUnroutedComponent,
 
   ],
   imports: [

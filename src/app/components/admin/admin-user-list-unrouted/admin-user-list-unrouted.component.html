@@ -62,7 +62,7 @@
             </td>
             <td>
               <div class="buttons">
-                <button class="button is-primary" [routerLink]="['/admin','user','detail',u.id]">View</button>
+                <button class="button is-primary" [routerLink]="['/admin','ingredient','detail',u.id]">View</button>
                 <button class="button is-warning" [routerLink]="['/admin','user','edit',u.id]">Edit</button>
                 <button *ngIf="u.recipes === 0" class="button is-danger" (click)="doRemove(u)">Remove</button>
               </div>
