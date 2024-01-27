@@ -87,8 +87,12 @@ export class AdminUserListUnroutedComponent implements OnInit {
 
   doRemove(u: IUser) {
     this.oUserToRemove = u;
-    this.oConfirmationService.confirm({
-      accept: () => {
+    console.log('User to remove:', this.oUserToRemove);
+  
+    if (this.oUserToRemove?.id !== undefined) {
+      const userConfirmed = window.confirm('Are you sure you want to remove this user?');
+      if (userConfirmed) {
+        console.log('Removing user');
         this.oUserService.removeOne(this.oUserToRemove?.id).subscribe({
           next: () => {
             this.getPage();
@@ -97,11 +101,13 @@ export class AdminUserListUnroutedComponent implements OnInit {
             this.status = error;
           }
         });
-      },
-      reject: (type: ConfirmEventType) => {
-        console.log("User not removed");
+      } else {
+        console.log('User not removed');
       }
-    });
+    } else {
+      console.error('User ID is undefined or null');
+    }
   }
-
+  
+  
 }
