@@ -8,16 +8,15 @@
 <div *ngIf="status == null">
   <div class="column is-12">
     <div class="columns is-centered my-3">
-      <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="column is-half">
-        <div class="field">
+      <form *ngIf="userForm" [formGroup]="userForm" (ngSubmit)="onSubmit()" class="column is-half">
+
+        <div class="field" *ngIf="operation=='EDIT'">
           <label class="label">Id</label>
           <div class="control">
             <input class="input" formControlName="id" [placeholder]="" readonly>
           </div>
-          <p class="help is-danger" *ngIf="hasError('id', 'required')">Required</p>
-          <p class="help is-danger" *ngIf="hasError('id', 'readonly')">??</p>
         </div>
-        <!-- Repite el mismo formato para otros campos del formulario -->
+
         <div class="field">
           <label class="label">Username</label>
           <div class="control">
@@ -76,8 +75,8 @@
         <div class="field is-grouped is-grouped-centered mt-5">
           <div class="control">
             <!--Añadir que mande al usuario al crearlos-->
-            <button class="button is-primary" type="submit">
-             New
+            <button class="button is-primary" type="submit" >
+             Save
             </button>
           </div>
         </div>

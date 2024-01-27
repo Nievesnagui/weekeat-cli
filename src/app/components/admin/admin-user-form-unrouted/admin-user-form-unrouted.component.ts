@@ -31,10 +31,6 @@ export class AdminUserFormUnroutedComponent implements OnInit {
       surname: [oUser.surname, [Validators.required, Validators.minLength(3), Validators.maxLength(255)]],
       email: [oUser.email, [Validators.required, Validators.email]],
       phone: [oUser.phone, [Validators.required]],
-      profile_picture: [oUser.profile_picture],
-      favs: [oUser.favs],
-      weeks: [oUser.weeks],
-      recipes: [oUser.recipes],
       role: [oUser.role, [Validators.required]],
     });
   }
@@ -43,6 +39,7 @@ export class AdminUserFormUnroutedComponent implements OnInit {
     if (this.operation == 'EDIT') {
       this.oUserService.getOne(this.id).subscribe({
         next: (data: IUser) => {
+          console.log('User data: ',data);
           this.oUser = data;
           this.initializeForm(this.oUser);
         },
@@ -66,7 +63,7 @@ export class AdminUserFormUnroutedComponent implements OnInit {
           next: (data: IUser) => {
             this.oUser = data;
             this.initializeForm(this.oUser);
-            this.oRouter.navigate(['/admin', 'user', 'details', this.oUser.id]);
+            this.oRouter.navigate(['/admin', 'user', 'list']);
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
@@ -77,7 +74,7 @@ export class AdminUserFormUnroutedComponent implements OnInit {
           next: (data: IUser) => {
             this.oUser = data;
             this.initializeForm(this.oUser);
-            this.oRouter.navigate(['/admin', 'user', 'details', this.oUser.id]);
+            this.oRouter.navigate(['/admin', 'user', 'list']);
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;

@@ -32,6 +32,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { AdminUserNewRoutedComponent } from './components/admin/admin-user-new-routed/admin-user-new-routed.component';
 import { AdminUserFormUnroutedComponent } from './components/admin/admin-user-form-unrouted/admin-user-form-unrouted.component';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
+import { AdminUserEditRoutedComponent } from './components/admin/admin-user-edit-routed/admin-user-edit-routed.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { AuthInterceptor } from './interceptor/auth.interceptor';
     AdminUserListUnroutedComponent,
     AdminUserNewRoutedComponent,
     AdminUserFormUnroutedComponent,
+    AdminUserEditRoutedComponent,
 
   ],
   imports: [
