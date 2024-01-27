@@ -38,6 +38,8 @@ import { AdminIngredientListUnroutedComponent } from './components/admin/admin-i
 import { IngredientService } from './service/ingredient.service';
 import { AdminIngredientDetailRoutedComponent } from './components/admin/admin-ingredient-detail-routed/admin-ingredient-detail-routed.component';
 import { AdminIngredientDetailUnroutedComponent } from './components/admin/admin-ingredient-detail-unrouted/admin-ingredient-detail-unrouted.component';
+import { AdminIngredientNewRoutedComponent } from './components/admin/admin-ingredient-new-routed/admin-ingredient-new-routed.component';
+import { AdminIngredientFormUnroutedComponent } from './components/admin/admin-ingredient-form-unrouted/admin-ingredient-form-unrouted.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +75,8 @@ import { AdminIngredientDetailUnroutedComponent } from './components/admin/admin
     AdminIngredientListUnroutedComponent,
     AdminIngredientDetailRoutedComponent,
     AdminIngredientDetailUnroutedComponent,
+    AdminIngredientNewRoutedComponent,
+    AdminIngredientFormUnroutedComponent,
 
   ],
   imports: [
