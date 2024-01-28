@@ -38,16 +38,16 @@ export class IngredientService {
       }
   }
    
-  newOne(oUser: IIngredient): Observable<IIngredient> {
-      return this.oHttpClient.post<IIngredient>(this.sUrl, oUser);
+  newOne(oIngredient: IIngredient): Observable<IIngredient> {
+      return this.oHttpClient.post<IIngredient>(this.sUrl, oIngredient);
   }
 
-  newOneForUsers(oUser: IIngredient): Observable<IIngredient> {
-      return this.oHttpClient.post<IIngredient>(this.sUrl + "/forusers", oUser);
+  newOneForUsers(oIngredient: IIngredient): Observable<IIngredient> {
+      return this.oHttpClient.post<IIngredient>(this.sUrl + "/forusers", oIngredient);
   }
 
-  updateOne(oUser: IIngredient): Observable<IIngredient> {
-      return this.oHttpClient.put<IIngredient>(this.sUrl, oUser);
+  updateOne(oIngredient: IIngredient): Observable<IIngredient> {
+      return this.oHttpClient.put<IIngredient>(this.sUrl, oIngredient);
   }
 /*
   generateRandom(amount: number): Observable<number> {

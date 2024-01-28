@@ -40,6 +40,11 @@ import { AdminIngredientDetailRoutedComponent } from './components/admin/admin-i
 import { AdminIngredientDetailUnroutedComponent } from './components/admin/admin-ingredient-detail-unrouted/admin-ingredient-detail-unrouted.component';
 import { AdminIngredientNewRoutedComponent } from './components/admin/admin-ingredient-new-routed/admin-ingredient-new-routed.component';
 import { AdminIngredientFormUnroutedComponent } from './components/admin/admin-ingredient-form-unrouted/admin-ingredient-form-unrouted.component';
+import { AdminTypeListRoutedComponent } from './components/admin/admin-type-list-routed/admin-type-list-routed.component';
+import { AdminTypeListUnroutedComponent } from './components/admin/admin-type-list-unrouted/admin-type-list-unrouted.component';
+import { TypeService } from './service/type.service';
+import { AdminTypeDetailUnroutedComponent } from './components/admin/admin-type-detail-unrouted/admin-type-detail-unrouted.component';
+import { AdminTypeDetailRoutedComponent } from './components/admin/admin-type-detail-routed/admin-type-detail-routed.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +82,10 @@ import { AdminIngredientFormUnroutedComponent } from './components/admin/admin-i
     AdminIngredientDetailUnroutedComponent,
     AdminIngredientNewRoutedComponent,
     AdminIngredientFormUnroutedComponent,
+    AdminTypeListRoutedComponent,
+    AdminTypeListUnroutedComponent,
+    AdminTypeDetailUnroutedComponent,
+    AdminTypeDetailRoutedComponent,
 
   ],
   imports: [
@@ -92,6 +101,7 @@ import { AdminIngredientFormUnroutedComponent } from './components/admin/admin-i
   providers: [
     SessionService,
     IngredientService,
+    TypeService,
     UserService,
     RecipeService,
     CryptoService,

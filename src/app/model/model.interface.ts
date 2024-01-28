@@ -110,7 +110,7 @@ export interface IIngredientPage extends IPage<IIngredient> {
 //Type
 export interface IType {
     id: number;
-    name: string;//imagen
+    name: string;
     ingredients: number;
 }
 
