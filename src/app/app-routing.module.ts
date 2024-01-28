@@ -17,6 +17,8 @@ import { AdminIngredientDetailRoutedComponent } from './components/admin/admin-i
 import { AdminIngredientNewRoutedComponent } from './components/admin/admin-ingredient-new-routed/admin-ingredient-new-routed.component';
 import { AdminTypeListRoutedComponent } from './components/admin/admin-type-list-routed/admin-type-list-routed.component';
 import { AdminTypeDetailRoutedComponent } from './components/admin/admin-type-detail-routed/admin-type-detail-routed.component';
+import { AdminTypeNewRoutedComponent } from './components/admin/admin-type-new-routed/admin-type-new-routed.component';
+import { AdminTypeEditRoutedComponent } from './components/admin/admin-type-edit-routed/admin-type-edit-routed.component';
 
 const routes: Routes = [
   { path: '', component: HomeRoutedComponent },
@@ -39,7 +41,9 @@ const routes: Routes = [
   { path: 'admin/ingredient/detail/:id', component: AdminIngredientDetailRoutedComponent},
   { path: 'admin/ingredient/new', component: AdminIngredientNewRoutedComponent },
   { path: 'admin/type/list', component: AdminTypeListRoutedComponent },
-  { path: 'admin/type/detail/:id', component: AdminTypeDetailRoutedComponent}
+  { path: 'admin/type/detail/:id', component: AdminTypeDetailRoutedComponent },
+  { path: 'admin/type/new', component: AdminTypeNewRoutedComponent },
+  { path: 'admin/type/edit/:id', component: AdminTypeEditRoutedComponent },
 ];
 
 @NgModule({

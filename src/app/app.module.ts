@@ -45,6 +45,9 @@ import { AdminTypeListUnroutedComponent } from './components/admin/admin-type-li
 import { TypeService } from './service/type.service';
 import { AdminTypeDetailUnroutedComponent } from './components/admin/admin-type-detail-unrouted/admin-type-detail-unrouted.component';
 import { AdminTypeDetailRoutedComponent } from './components/admin/admin-type-detail-routed/admin-type-detail-routed.component';
+import { AdminTypeNewRoutedComponent } from './components/admin/admin-type-new-routed/admin-type-new-routed.component';
+import { AdminTypeFormUnroutedComponent } from './components/admin/admin-type-form-unrouted/admin-type-form-unrouted.component';
+import { AdminTypeEditRoutedComponent } from './components/admin/admin-type-edit-routed/admin-type-edit-routed.component';
 
 @NgModule({
   declarations: [
@@ -86,6 +89,9 @@ import { AdminTypeDetailRoutedComponent } from './components/admin/admin-type-de
     AdminTypeListUnroutedComponent,
     AdminTypeDetailUnroutedComponent,
     AdminTypeDetailRoutedComponent,
+    AdminTypeNewRoutedComponent,
+    AdminTypeFormUnroutedComponent,
+    AdminTypeEditRoutedComponent,
 
   ],
   imports: [
