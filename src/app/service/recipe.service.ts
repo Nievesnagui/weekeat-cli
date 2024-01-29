@@ -17,20 +17,44 @@ export class RecipeService {
   ) { }
 
   getOne(id: number): Observable<IRecipe> {
-    console.log('RecipeService.getOne called');
     return this.oHttpClient.get<IRecipe>(this.sUrl + "/" + id);
   }
 
-  getPage(size: number | undefined, page: number | undefined, orderField: string, orderDirection: string, strFilter?: string): Observable<IRecipePage> {
+  getByName(name: string): Observable<IRecipe> {
+    return this.oHttpClient.get<IRecipe>(this.sUrl + "/byName/" + name);
+  }
+
+  getPage(size: number | undefined, page: number | undefined, orderField: string): Observable<IRecipePage> {
     let sUrl_filter: string;
     if (!size) size = 10;
     if (!page) page = 0;
-    if (strFilter && strFilter.trim().length > 0) {
-      sUrl_filter = `&filter=${strFilter}`;
-    } else {
-      sUrl_filter = "";
-    }
-    return this.oHttpClient.get<IRecipePage>(this.sUrl + "?size=" + size + "&page=" + page );
+ 
+    return this.oHttpClient.get<IRecipePage>(this.sUrl + "?size=" + size + "&page=" + page);
   }
+
+  removeOne(id: number | undefined): Observable<number> {
+    if (id) {
+      return this.oHttpClient.delete<number>(this.sUrl + "/" + id);
+    } else {
+      return new Observable<number>();
+    }
+  }
+
+  newOne(oRecipe: IRecipe): Observable<IRecipe> {
+    return this.oHttpClient.post<IRecipe>(this.sUrl, oRecipe);
+  }
+
+  newOneForUsers(oRecipe: IRecipe): Observable<IRecipe> {
+    return this.oHttpClient.post<IRecipe>(this.sUrl + "/forusers", oRecipe);
+  }
+
+  updateOne(oRecipe: IRecipe): Observable<IRecipe> {
+    return this.oHttpClient.put<IRecipe>(this.sUrl, oRecipe);
+  }
+
+  empty(): Observable<number> {
+    return this.oHttpClient.delete<number>(this.sUrl + "/empty");
+  }
+
 
 }

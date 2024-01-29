@@ -51,6 +51,8 @@ import { AdminTypeEditRoutedComponent } from './components/admin/admin-type-edit
 import { TypeSelectionUnroutedComponent } from './components/type/type-selection-unrouted/type-selection-unrouted.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminIngredientEditRoutedComponent } from './components/admin/admin-ingredient-edit-routed/admin-ingredient-edit-routed.component';
+import { AdminRecipeListRoutedComponent } from './components/admin/admin-recipe-list-routed/admin-recipe-list-routed.component';
+import { AdminRecipeListUnroutedComponent } from './components/admin/admin-recipe-list-unrouted/admin-recipe-list-unrouted.component';
 
 @NgModule({
   declarations: [
@@ -78,6 +80,7 @@ import { AdminIngredientEditRoutedComponent } from './components/admin/admin-ing
     TypeSelectionUnroutedComponent,
 
     //Admin Utilities
+            //User
     AdminUserDetailUnroutedComponent,
     AdminUserDetailRoutedComponent,
     AdminUserListRoutedComponent,
@@ -85,12 +88,15 @@ import { AdminIngredientEditRoutedComponent } from './components/admin/admin-ing
     AdminUserNewRoutedComponent,
     AdminUserFormUnroutedComponent,
     AdminUserEditRoutedComponent,
+            //Ingredient
     AdminIngredientListRoutedComponent,
     AdminIngredientListUnroutedComponent,
     AdminIngredientDetailRoutedComponent,
     AdminIngredientDetailUnroutedComponent,
     AdminIngredientNewRoutedComponent,
     AdminIngredientFormUnroutedComponent,
+    AdminIngredientEditRoutedComponent,
+            //Type
     AdminTypeListRoutedComponent,
     AdminTypeListUnroutedComponent,
     AdminTypeDetailUnroutedComponent,
@@ -98,7 +104,9 @@ import { AdminIngredientEditRoutedComponent } from './components/admin/admin-ing
     AdminTypeNewRoutedComponent,
     AdminTypeFormUnroutedComponent,
     AdminTypeEditRoutedComponent,
-    AdminIngredientEditRoutedComponent,
+            //Recipe
+    AdminRecipeListRoutedComponent,
+    AdminRecipeListUnroutedComponent,
 
   ],
   imports: [

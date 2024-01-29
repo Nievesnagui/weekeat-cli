@@ -1,0 +1,59 @@
+<div *ngIf="status !== null">
+  <div class="columns is-centered my-3">
+    <div class="column is-half">
+      <div class="notification is-danger">
+        {{ status!.error.message }} - {{ status!.message }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="status == null">
+  <div class="columns is-vcentered is-justify-content-space-between my-3">
+    <div class="column is-narrow">
+      <h4>Showing {{ oPage?.numberOfElements }} of total {{ oPage?.totalElements }} recipes.</h4>
+    </div>
+    <div class="column is-narrow">
+      <!--Aqui tengo el pagination de primeng hasta que lo cambie por el de bulma-->
+      <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
+        [totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2 class="title">Recipes List</h2>
+
+    <div class="table-container">
+      <table class="table is-fullwidth">
+        <thead>
+          <tr>
+            <th (click)="doOrder('id')">ID</th>
+            <th class="is-2" (click)="doOrder('name')">Name</th>
+            <th class="is-2" (click)="doOrder('description')">Description</th>
+            <!--<th>User</th>-->
+            <th>Utilities</th>
+            <!--Tengo que ver como meto los ingredientes-->
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let u of oPage?.content" class="is-vcentered">
+            <td>{{ u.id }}</td>
+            <td>{{ u.name }}</td>
+            <td>{{ u.description }}</td>
+            <!--<td>{{ u.id_user.username }}</td>-->
+
+            
+            <td>
+              <div class="buttons">
+                <button class="button is-primary" [routerLink]="['/admin','recipe','detail',u.id]">View</button>
+                <button class="button is-warning" [routerLink]="['/admin','recipe','edit',u.id]">Edit</button>
+                <button  class="button is-danger" (click)="doRemove(u)">Remove</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

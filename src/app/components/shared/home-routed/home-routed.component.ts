@@ -38,7 +38,7 @@ export class HomeRoutedComponent implements OnInit {
     });
   }
   getPage(): void {
-    this.oRecipeService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.orderDirection).subscribe({
+    this.oRecipeService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField).subscribe({
       next: (data: IRecipePage) => {
         this.oPage = data;
         this.oPaginatorState.pageCount = data.totalPages;

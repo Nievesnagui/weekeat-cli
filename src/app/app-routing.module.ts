@@ -20,32 +20,42 @@ import { AdminTypeDetailRoutedComponent } from './components/admin/admin-type-de
 import { AdminTypeNewRoutedComponent } from './components/admin/admin-type-new-routed/admin-type-new-routed.component';
 import { AdminTypeEditRoutedComponent } from './components/admin/admin-type-edit-routed/admin-type-edit-routed.component';
 import { AdminIngredientEditRoutedComponent } from './components/admin/admin-ingredient-edit-routed/admin-ingredient-edit-routed.component';
+import { AdminRecipeListRoutedComponent } from './components/admin/admin-recipe-list-routed/admin-recipe-list-routed.component';
 
 const routes: Routes = [
   { path: '', component: HomeRoutedComponent },
+  
   //Login
   { path: 'login', component: LoginRoutedComponent },
   { path: 'registrer', component: RegistrerRoutedComponent },
   { path: 'logout', component: LogoutRoutedComponent },
+
   //Recipe
   { path: 'recipe/list', component: RecipeListRoutedComponent },
   { path: 'recipe/:id', component: RecipeDetailRoutedComponent },
   { path: 'recipe/list/own', component: RecipeListOwnRoutedComponent },
+
   //User
   { path: 'user/myprofile', component: UserProfileDetailsComponent },
+
   //Admin Utilities
+          //User
   { path: 'admin/user/detail/:id', component: AdminUserDetailRoutedComponent },
   { path: 'admin/user/list', component: AdminUserListRoutedComponent },
   { path: 'admin/user/new', component: AdminUserNewRoutedComponent },
   { path: 'admin/user/edit/:id', component: AdminUserEditRoutedComponent },
+          //Ingredient
   { path: 'admin/ingredient/list', component: AdminIngredientListRoutedComponent },
   { path: 'admin/ingredient/detail/:id', component: AdminIngredientDetailRoutedComponent},
   { path: 'admin/ingredient/new', component: AdminIngredientNewRoutedComponent },
+  { path: 'admin/ingredient/edit/:id', component: AdminIngredientEditRoutedComponent },
+          //Type
   { path: 'admin/type/list', component: AdminTypeListRoutedComponent },
   { path: 'admin/type/detail/:id', component: AdminTypeDetailRoutedComponent },
   { path: 'admin/type/new', component: AdminTypeNewRoutedComponent },
   { path: 'admin/type/edit/:id', component: AdminTypeEditRoutedComponent },
-  { path: 'admin/ingredient/edit/:id', component: AdminIngredientEditRoutedComponent },
+          //Recipe
+  { path: 'admin/recipe/list', component: AdminRecipeListRoutedComponent },
 ];
 
 @NgModule({
