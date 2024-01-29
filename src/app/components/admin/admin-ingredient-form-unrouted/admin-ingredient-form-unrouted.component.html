@@ -21,23 +21,39 @@
         <div class="field">
           <label class="label">Name</label>
           <div class="control">
-            <input class="input" formControlName="name" [placeholder]="" >
+            <input class="input" formControlName="name" [placeholder]="">
           </div>
           <p class="help is-danger" *ngIf="hasError('name', 'required')">Required</p>
         </div>
-
-        <div class="field">
+        <!--
+       <div class="field">
           <label class="label">Type</label>
           <div class="control">
             <input class="input" formControlName="id_type" [placeholder]="" >
           </div>
           <p class="help is-danger" *ngIf="hasError('id_type', 'required')">Required</p>
+        </div> 
+-->
+        <div formGroupName="id_type">
+          <div class="field is-grouped">
+            <label class="label">Type:</label>
+            <div class="control is-expanded">
+              <input class="input" formControlName="id" placeholder="Type" required readonly>
+            </div>
+            <div class="control">
+              <button class="button is-primary" type="button" (click)="onShowTypesSelection()">
+                <span>Find a type</span>
+              </button>
+            </div>
+            <p class="help">{{ oIngredient.id_type.id }}</p>
+          </div>
         </div>
-     
+
+
         <div class="field is-grouped is-grouped-centered mt-5">
           <div class="control">
-            <button class="button is-primary" type="submit" >
-             Save
+            <button class="button is-primary" type="submit">
+              Save
             </button>
           </div>
         </div>

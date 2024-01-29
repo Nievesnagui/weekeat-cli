@@ -2,8 +2,10 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { IIngredient, formOperation } from 'src/app/model/model.interface';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { IIngredient, IType, formOperation } from 'src/app/model/model.interface';
 import { IngredientService } from 'src/app/service/ingredient.service';
+import { TypeSelectionUnroutedComponent } from '../../type/type-selection-unrouted/type-selection-unrouted.component';
 
 @Component({
   selector: 'app-admin-ingredient-form-unrouted',
@@ -15,20 +17,25 @@ export class AdminIngredientFormUnroutedComponent implements OnInit {
   @Input() operation: formOperation = 'NEW'; 
 
   ingredientForm!: FormGroup;
-  oIngredient: IIngredient = {} as IIngredient;
+  oIngredient: IIngredient = { id_type: {}} as IIngredient;
   status: HttpErrorResponse | null = null;
+
+  oDynamicDialogRef: DynamicDialogRef | undefined;
   
   constructor(
     private oFormBuilder: FormBuilder,
     private oIngredientService: IngredientService,
     private oRouter: Router,
+    public oDialogService: DialogService,
   ) { }
 
   initializeForm(oIngredient: IIngredient) {
     this.ingredientForm = this.oFormBuilder.group({
       id: [oIngredient.id],
       name: [oIngredient.name, [Validators.required, Validators.minLength(3), Validators.maxLength(255)]],
-      id_type: [oIngredient.id_type, [Validators.required]],
+      id_type: this.oFormBuilder.group({
+        id: [oIngredient.id_type?.id || null, Validators.required]
+      })
     });
   }
 
@@ -67,6 +74,11 @@ export class AdminIngredientFormUnroutedComponent implements OnInit {
           }
         })
       } else {
+        const id_type = this.oIngredient.id_type ? this.oIngredient.id_type.id : null;
+
+        // Handle oIngredient.id_type being undefined
+        this.ingredientForm.get('id_type')?.patchValue({ id_type: id_type });
+  
         this.oIngredientService.updateOne(this.ingredientForm.value).subscribe({
           next: (data: IIngredient) => {
             this.oIngredient = data;
@@ -79,6 +91,23 @@ export class AdminIngredientFormUnroutedComponent implements OnInit {
         })
       }
     }
+  }
+
+  onShowTypesSelection(){
+    this.oDynamicDialogRef = this.oDialogService.open(TypeSelectionUnroutedComponent, {
+      header: 'Select a Type',
+      width: '80%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      maximizable: true
+    });
+
+    this.oDynamicDialogRef.onClose.subscribe((oType: IType) => {
+      if (oType) {
+        this.oIngredient.id_type = oType;
+        this.ingredientForm.controls['id_type'].patchValue({ id: oType.id })
+      }
+    });
   }
 
 }

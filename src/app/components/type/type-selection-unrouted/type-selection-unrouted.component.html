@@ -1,0 +1,55 @@
+<div *ngIf="status !== null">
+  <div class="columns is-centered my-3">
+    <div class="column is-half">
+      <div class="notification is-danger">
+        {{ status!.error.message }} - {{ status!.message }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="status == null" class="card">
+  <div class="columns is-vcentered is-justify-content-space-between my-3">
+    <div class="column is-narrow">
+      <h4>Showing {{ oPage?.numberOfElements }} of total {{ oPage?.totalElements }} types.</h4>
+    </div>
+    <div class="column is-narrow">
+      <!--Aqui tengo el pagination de primeng hasta que lo cambie por el de bulma-->
+      <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
+        [totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2 class="title">Types List</h2>
+
+    <div class="table-container">
+      <table class="table is-fullwidth">
+        <thead>
+          <tr>
+            <th (click)="doOrder('id')">ID</th>
+            <th class="is-2" (click)="doOrder('name')">Name</th>
+            <th>Ingredients</th>
+            <th>Utilities</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let u of oPage?.content" class="is-vcentered">
+            <td>{{ u.id }}</td>
+            <td>{{ u.name }}</td>
+            <td>
+              <a *ngIf="u.ingredients > 0" class="tag is-link">{{ u.ingredients }}</a>
+              <span *ngIf="u.ingredients === 0" class="tag is-light">0</span>
+            </td>
+            <td>
+              <div class="buttons">
+              <button class="btn btn-primary" (click)="onSelectType(u)">Add</button>
+                  </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -48,6 +48,8 @@ import { AdminTypeDetailRoutedComponent } from './components/admin/admin-type-de
 import { AdminTypeNewRoutedComponent } from './components/admin/admin-type-new-routed/admin-type-new-routed.component';
 import { AdminTypeFormUnroutedComponent } from './components/admin/admin-type-form-unrouted/admin-type-form-unrouted.component';
 import { AdminTypeEditRoutedComponent } from './components/admin/admin-type-edit-routed/admin-type-edit-routed.component';
+import { TypeSelectionUnroutedComponent } from './components/type/type-selection-unrouted/type-selection-unrouted.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -70,6 +72,9 @@ import { AdminTypeEditRoutedComponent } from './components/admin/admin-type-edit
 
     //User
     UserProfileDetailsComponent,
+
+    //Type
+    TypeSelectionUnroutedComponent,
 
     //Admin Utilities
     AdminUserDetailUnroutedComponent,
@@ -103,6 +108,7 @@ import { AdminTypeEditRoutedComponent } from './components/admin/admin-type-edit
     ReactiveFormsModule,
     PaginatorModule,
     CarouselModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     SessionService,
