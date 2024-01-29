@@ -50,6 +50,7 @@ import { AdminTypeFormUnroutedComponent } from './components/admin/admin-type-fo
 import { AdminTypeEditRoutedComponent } from './components/admin/admin-type-edit-routed/admin-type-edit-routed.component';
 import { TypeSelectionUnroutedComponent } from './components/type/type-selection-unrouted/type-selection-unrouted.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AdminIngredientEditRoutedComponent } from './components/admin/admin-ingredient-edit-routed/admin-ingredient-edit-routed.component';
 
 @NgModule({
   declarations: [
@@ -97,6 +98,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AdminTypeNewRoutedComponent,
     AdminTypeFormUnroutedComponent,
     AdminTypeEditRoutedComponent,
+    AdminIngredientEditRoutedComponent,
 
   ],
   imports: [

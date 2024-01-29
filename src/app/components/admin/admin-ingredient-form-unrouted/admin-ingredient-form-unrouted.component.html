@@ -34,6 +34,7 @@
           <p class="help is-danger" *ngIf="hasError('id_type', 'required')">Required</p>
         </div> 
 -->
+
         <div formGroupName="id_type">
           <div class="field is-grouped">
             <label class="label">Type:</label>
@@ -45,7 +46,7 @@
                 <span>Find a type</span>
               </button>
             </div>
-            <p class="help">{{ oIngredient.id_type.id }}</p>
+            <p class="help" *ngIf="oIngredient?.id_type?.id">{{ oIngredient.id_type.id }}</p>
           </div>
         </div>
 

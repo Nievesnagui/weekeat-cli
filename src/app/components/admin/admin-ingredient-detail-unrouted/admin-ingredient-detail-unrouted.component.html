@@ -19,21 +19,25 @@
                 <th>Property</th>
                 <th>Value</th>
               </tr>
-      <tr>
-        <th>id</th>
-        <td>{{ oIngredient.id }}</td>
-      </tr>
-      <tr>
-        <th>name</th>
-        <td>{{ oIngredient.name }}</td>
-      </tr>
-      <tr>
-        <th>content</th>
-        <td>
-          <a *ngIf="oIngredient.content > 0" class="tag is-link">{{ oIngredient.content }}</a>
-          <span *ngIf="oIngredient.content === 0" class="tag is-light">0</span>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+              <tr>
+                <th>id</th>
+                <td>{{ oIngredient.id }}</td>
+              </tr>
+              <tr>
+                <th>name</th>
+                <td>{{ oIngredient.name }}</td>
+              </tr>
+              <tr>
+                <th>type</th>
+                <td>{{ oIngredient.id_type.name }}</td>
+              </tr>
+              <tr>
+                <th>content</th>
+                <td>
+                  <a *ngIf="oIngredient.content > 0" class="tag is-link">{{ oIngredient.content }}</a>
+                  <span *ngIf="oIngredient.content === 0" class="tag is-light">0</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
