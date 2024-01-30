@@ -53,6 +53,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminIngredientEditRoutedComponent } from './components/admin/admin-ingredient-edit-routed/admin-ingredient-edit-routed.component';
 import { AdminRecipeListRoutedComponent } from './components/admin/admin-recipe-list-routed/admin-recipe-list-routed.component';
 import { AdminRecipeListUnroutedComponent } from './components/admin/admin-recipe-list-unrouted/admin-recipe-list-unrouted.component';
+import { AdminRecipeDetailRoutedComponent } from './components/admin/admin-recipe-detail-routed/admin-recipe-detail-routed.component';
+import { AdminRecipeDetailUnroutedComponent } from './components/admin/admin-recipe-detail-unrouted/admin-recipe-detail-unrouted.component';
 
 @NgModule({
   declarations: [
@@ -107,6 +109,8 @@ import { AdminRecipeListUnroutedComponent } from './components/admin/admin-recip
             //Recipe
     AdminRecipeListRoutedComponent,
     AdminRecipeListUnroutedComponent,
+    AdminRecipeDetailRoutedComponent,
+    AdminRecipeDetailUnroutedComponent,
 
   ],
   imports: [

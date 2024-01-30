@@ -43,6 +43,7 @@ export class AdminRecipeListUnroutedComponent implements OnInit {
   getPage(): void {
     this.oRecipeService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField).subscribe({
       next: (data: IRecipePage) => {
+        console.log(data);
         this.oPage = data;
         this.oPaginatorState.pageCount = data.totalPages;
       },

@@ -28,7 +28,8 @@
         <thead>
           <tr>
             <th (click)="doOrder('id')">ID</th>
-            <th class="is-2" (click)="doOrder('name')">Name</th>
+            <th (click)="doOrder('name')">Name</th>
+            <th >Type</th>
             <th>Content</th>
             <th>Utilities</th>
 
@@ -38,6 +39,7 @@
           <tr *ngFor="let u of oPage?.content" class="is-vcentered">
             <td>{{ u.id }}</td>
             <td>{{ u.name }}</td>
+            <td>{{ u.id_type.name }}</td>
             <td>
               <a *ngIf="u.content > 0" class="tag is-link">{{ u.content }}</a>
               <span *ngIf="u.content === 0" class="tag is-light">0</span>

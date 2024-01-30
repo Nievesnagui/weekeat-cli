@@ -1,5 +1,5 @@
 <div class="card-container" *ngFor="let t of oPage?.content">
-  <div class="card-hover m-3" *ngIf="oUser && (t?.id_user === oUser?.id)">
+  <div class="card-hover m-3" *ngIf="oUser && (t?.user === oUser?.id)">
         <div class="card-hover__content">
       <h3 class="card-hover__title">
         {{ t.name }}

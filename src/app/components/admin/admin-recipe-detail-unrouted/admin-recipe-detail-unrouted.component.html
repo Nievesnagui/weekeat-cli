@@ -1,0 +1,51 @@
+<div class="columns is-centered my-3">
+  <div class="column is-half">
+    <div *ngIf="status !== null" class="card">
+      <div class="card-content">
+        <div class="content">
+          <p class="notification is-danger">
+            {{ status!.error.message }} - {{ status!.message }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="status == null" class="card">
+      <div class="card-content">
+        <div class="content">
+          <table class="table is-striped is-hoverable is-fullwidth">
+            <tbody>
+              <tr>
+                <th>Property</th>
+                <th>Value</th>
+              </tr>
+      <tr>
+        <th>id</th>
+        <td>{{ oRecipe.id }}</td>
+      </tr>
+      <tr>
+        <th>name</th>
+        <td>{{ oRecipe.name }}</td>
+      </tr>
+      <tr>
+        <th>description</th>
+        <td>{{ oRecipe.description }}</td>
+      </tr>
+     <!-- <tr>
+        <th>ingredients</th>
+        <td>
+          <ng-container *ngIf="oRecipe.content && oRecipe.content.length > 0; else noIngredients">
+            <div *ngFor="let ingredient of oRecipe.content" class="tag is-link">{{ ingredient.id_ingredient.name }}</div>
+          </ng-container>
+          <ng-template #noIngredients>
+            <span class="tag is-light">No ingredients</span>
+          </ng-template>
+        </td>
+      </tr> -->
+      <tr>
+        <th>author</th>
+        <td>{{ oRecipe.user.name }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
