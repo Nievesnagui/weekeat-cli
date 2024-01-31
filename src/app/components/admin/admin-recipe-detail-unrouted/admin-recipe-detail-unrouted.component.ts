@@ -14,7 +14,7 @@ export class AdminRecipeDetailUnroutedComponent implements OnInit {
 
   @Input() id: number = 1;
 
-  oRecipe: IRecipe = { user: {} } as IRecipe;
+  oRecipe: IRecipe = { id_user: {} } as IRecipe;
   status: HttpErrorResponse | null = null;
 
   constructor(
@@ -32,11 +32,11 @@ export class AdminRecipeDetailUnroutedComponent implements OnInit {
       next: (data: IRecipe) => {
         this.oRecipe = data;
 
-        if (this.oRecipe && this.oRecipe.user) {
+        if (this.oRecipe && this.oRecipe.id_user) {
           console.log('oRecipe after assignment: ', this.oRecipe);
-          console.log('oRecipe.user: ', this.oRecipe.user);
+          console.log('oRecipe.id_user: ', this.oRecipe.id_user);
         } else {
-          console.error('oIngredient or oRecipe.user is undefined.');
+          console.error('oIngredient or oRecipe.id_user is undefined.');
         }
       },
       error: (error: HttpErrorResponse) => {

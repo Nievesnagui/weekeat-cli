@@ -59,7 +59,7 @@ export interface IUserPage extends IPage<IUser> {
 //Recipe
 export interface IRecipe {
     id: number;
-    user: IUser;
+    id_user: IUser;
     name: string;
     description: string;
     recipe_image: string; //imagen

@@ -17,7 +17,7 @@
           </div>
         </div>
       
-        <div formGroupName="user">
+        <div formGroupName="id_user">
           <div class="field is-grouped">
             <label class="label">User:</label>
             <div class="control is-expanded">
@@ -28,7 +28,7 @@
                 <span>Find a user</span>
               </button>
             </div>
-            <p class="help" *ngIf="oRecipe?.user?.id">{{ oRecipe.user.id }}</p>
+            <p class="help" *ngIf="oRecipe?.id_user?.id">{{ oRecipe.id_user.id }}</p>
           </div>
         </div>
 
@@ -53,7 +53,6 @@
           <div class="control">
             <input class="input" formControlName="content" [placeholder]="" >
           </div>
-          <p class="help is-danger" *ngIf="hasError('content', 'required')">Required</p>
         </div>
         
         <div class="field is-grouped is-grouped-centered mt-5">

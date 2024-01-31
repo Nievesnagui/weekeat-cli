@@ -17,7 +17,7 @@ export class AdminRecipeFormUnroutedComponent implements OnInit {
   @Input() operation: formOperation = 'NEW';
 
   recipeForm!: FormGroup;
-  oRecipe: IRecipe= {user: {}} as IRecipe;
+  oRecipe: IRecipe= {id_user: {}} as IRecipe;
   status: HttpErrorResponse | null = null;
 
   oDynamicDialogRef: DynamicDialogRef | undefined;
@@ -32,8 +32,8 @@ export class AdminRecipeFormUnroutedComponent implements OnInit {
   initializeForm(oRecipe: IRecipe){
     this.recipeForm = this.oFormBuilder.group({
     id: [oRecipe.id],
-    user: this.oFormBuilder.group({
-      id:[oRecipe.user?.id || null, Validators.required],
+    id_user: this.oFormBuilder.group({
+      id:[oRecipe.id_user?.id || null, Validators.required],
     }),
     name: [oRecipe.name, [Validators.required]],
     description: [oRecipe.description, [Validators.required]],
@@ -101,8 +101,8 @@ export class AdminRecipeFormUnroutedComponent implements OnInit {
 
     this.oDynamicDialogRef.onClose.subscribe((oUser: IUser) => {
       if (oUser) {
-        this.oRecipe.user = oUser;
-        this.recipeForm.controls['user'].patchValue({ id: oUser.id })
+        this.oRecipe.id_user = oUser;
+        this.recipeForm.controls['id_user'].patchValue({ id: oUser.id })
       }
     });
   }
