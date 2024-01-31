@@ -70,28 +70,40 @@ export class AdminTypeListUnroutedComponent implements OnInit {
 
   ref: DynamicDialogRef | undefined;
 
+
+  showConfirmationModal = false;
   doRemove(u: IType) {
     this.oTypeToRemove = u;
-    console.log('Type to remove: ', this.oTypeToRemove);
-
+    console.log('Type to remove:', this.oTypeToRemove);
+  
     if (this.oTypeToRemove?.id !== undefined) {
-      const ingredientConfirmed = window.confirm('Are you sure you want to remove this type?');
-      if (ingredientConfirmed) {
-        console.log('Removing type');
-        this.oTypeService.removeOne(this.oTypeToRemove?.id).subscribe({
-          next: () => {
-            this.getPage();
-          },
-          error: (error: HttpErrorResponse) => {
-            this.status = error;
-          }
-        });
-      } else {
-        console.log('Type not removed');
-      }
+      // Mostrar el modal de confirmación
+      this.showConfirmationModal = true;
     } else {
       console.error('Type ID is undefined or null');
     }
   }
-
+  
+  confirmRemove() {
+    // Lógica de eliminación aquí
+    console.log('Removing type');
+    this.oTypeService.removeOne(this.oTypeToRemove?.id).subscribe({
+      next: () => {
+        this.getPage();
+      },
+      error: (error: HttpErrorResponse) => {
+        this.status = error;
+      }
+    });
+  
+    // Cerrar el modal de confirmación después de confirmar
+    this.showConfirmationModal = false;
+  }
+  
+  cancelRemove() {
+    // Cancelar la eliminación y cerrar el modal de confirmación
+    console.log('Type not removed');
+    this.showConfirmationModal = false;
+  }
+  
 }

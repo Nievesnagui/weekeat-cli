@@ -73,3 +73,17 @@
     </div>
   </div>
 </div>
+
+<div class="modal" [class.is-active]="showConfirmationModal">
+  <div class="modal-background" (click)="cancelRemove()"></div>
+  <div class="modal-content">
+    <div class="box">
+      <p>Are you sure you want to remove this user?</p>
+      <div class="buttons">
+        <button class="button is-danger" (click)="confirmRemove()">Yes</button>
+        <button class="button" (click)="cancelRemove()">No</button>
+      </div>
+    </div>
+  </div>
+  <button class="modal-close is-large" aria-label="close" (click)="cancelRemove()"></button>
+</div>

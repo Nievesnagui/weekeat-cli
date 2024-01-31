@@ -70,29 +70,40 @@ export class AdminRecipeListUnroutedComponent implements OnInit {
   }
 
   ref: DynamicDialogRef | undefined;
-
+  showConfirmationModal = false;
   doRemove(u: IRecipe) {
     this.oRecipeToRemove = u;
-    console.log('recipe to remove:', this.oRecipeToRemove);
+    console.log('Recipe to remove:', this.oRecipeToRemove);
   
     if (this.oRecipeToRemove?.id !== undefined) {
-      const recipeConfirmed = window.confirm('Are you sure you want to remove this recipe?');
-      if (recipeConfirmed) {
-        console.log('Removing recipe');
-        this.oRecipeService.removeOne(this.oRecipeToRemove?.id).subscribe({
-          next: () => {
-            this.getPage();
-          },
-          error: (error: HttpErrorResponse) => {
-            this.status = error;
-          }
-        });
-      } else {
-        console.log('Recipe not removed');
-      }
+      // Mostrar el modal de confirmación
+      this.showConfirmationModal = true;
     } else {
       console.error('Recipe ID is undefined or null');
     }
   }
+  
+  confirmRemove() {
+    // Lógica de eliminación aquí
+    console.log('Removing recipe');
+    this.oRecipeService.removeOne(this.oRecipeToRemove?.id).subscribe({
+      next: () => {
+        this.getPage();
+      },
+      error: (error: HttpErrorResponse) => {
+        this.status = error;
+      }
+    });
+  
+    // Cerrar el modal de confirmación después de confirmar
+    this.showConfirmationModal = false;
+  }
+  
+  cancelRemove() {
+    // Cancelar la eliminación y cerrar el modal de confirmación
+    console.log('Recipe not removed');
+    this.showConfirmationModal = false;
+  }
+  
 
 }

@@ -22,6 +22,8 @@ import { AdminTypeEditRoutedComponent } from './components/admin/admin-type-edit
 import { AdminIngredientEditRoutedComponent } from './components/admin/admin-ingredient-edit-routed/admin-ingredient-edit-routed.component';
 import { AdminRecipeListRoutedComponent } from './components/admin/admin-recipe-list-routed/admin-recipe-list-routed.component';
 import { AdminRecipeDetailRoutedComponent } from './components/admin/admin-recipe-detail-routed/admin-recipe-detail-routed.component';
+import { AdminRecipeEditRoutedComponent } from './components/admin/admin-recipe-edit-routed/admin-recipe-edit-routed.component';
+import { AdminRecipeNewRoutedComponent } from './components/admin/admin-recipe-new-routed/admin-recipe-new-routed.component';
 
 const routes: Routes = [
   { path: '', component: HomeRoutedComponent },
@@ -58,6 +60,8 @@ const routes: Routes = [
           //Recipe
   { path: 'admin/recipe/list', component: AdminRecipeListRoutedComponent },
   { path: 'admin/recipe/detail/:id', component: AdminRecipeDetailRoutedComponent },
+  { path: 'admin/recipe/new', component: AdminRecipeNewRoutedComponent },
+  { path: 'admin/recipe/edit/:id', component: AdminRecipeEditRoutedComponent },
 ];
 
 @NgModule({

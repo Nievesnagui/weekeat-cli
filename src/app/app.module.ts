@@ -55,6 +55,10 @@ import { AdminRecipeListRoutedComponent } from './components/admin/admin-recipe-
 import { AdminRecipeListUnroutedComponent } from './components/admin/admin-recipe-list-unrouted/admin-recipe-list-unrouted.component';
 import { AdminRecipeDetailRoutedComponent } from './components/admin/admin-recipe-detail-routed/admin-recipe-detail-routed.component';
 import { AdminRecipeDetailUnroutedComponent } from './components/admin/admin-recipe-detail-unrouted/admin-recipe-detail-unrouted.component';
+import { AdminRecipeEditRoutedComponent } from './components/admin/admin-recipe-edit-routed/admin-recipe-edit-routed.component';
+import { AdminRecipeFormUnroutedComponent } from './components/admin/admin-recipe-form-unrouted/admin-recipe-form-unrouted.component';
+import { AdminRecipeNewRoutedComponent } from './components/admin/admin-recipe-new-routed/admin-recipe-new-routed.component';
+import { UserSelectionUnroutedComponent } from './components/user/user-selection-unrouted/user-selection-unrouted.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +80,7 @@ import { AdminRecipeDetailUnroutedComponent } from './components/admin/admin-rec
     RecipeListOwnUnroutedComponent,
 
     //User
+    UserSelectionUnroutedComponent,
     UserProfileDetailsComponent,
 
     //Type
@@ -111,6 +116,9 @@ import { AdminRecipeDetailUnroutedComponent } from './components/admin/admin-rec
     AdminRecipeListUnroutedComponent,
     AdminRecipeDetailRoutedComponent,
     AdminRecipeDetailUnroutedComponent,
+    AdminRecipeEditRoutedComponent,
+    AdminRecipeFormUnroutedComponent,
+    AdminRecipeNewRoutedComponent,
 
   ],
   imports: [

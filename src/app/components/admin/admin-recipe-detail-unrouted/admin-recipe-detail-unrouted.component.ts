@@ -34,9 +34,9 @@ export class AdminRecipeDetailUnroutedComponent implements OnInit {
 
         if (this.oRecipe && this.oRecipe.user) {
           console.log('oRecipe after assignment: ', this.oRecipe);
-          console.log('oRecipe.id_user: ', this.oRecipe.user);
+          console.log('oRecipe.user: ', this.oRecipe.user);
         } else {
-          console.error('oIngredient or oRecipe.id_user is undefined.');
+          console.error('oIngredient or oRecipe.user is undefined.');
         }
       },
       error: (error: HttpErrorResponse) => {

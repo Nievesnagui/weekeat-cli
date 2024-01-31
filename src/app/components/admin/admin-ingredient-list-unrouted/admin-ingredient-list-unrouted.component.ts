@@ -83,28 +83,41 @@ export class AdminIngredientListUnroutedComponent implements OnInit {
     });
   }
 */
-  doRemove(u: IIngredient) {
-    this.oIngredientToRemove = u;
-    console.log('Ingredient to remove:', this.oIngredientToRemove);
-  
-    if (this.oIngredientToRemove?.id !== undefined) {
-      const ingredientConfirmed = window.confirm('Are you sure you want to remove this ingredient?');
-      if (ingredientConfirmed) {
-        console.log('Removing ingredient');
-        this.oIngredientService.removeOne(this.oIngredientToRemove?.id).subscribe({
-          next: () => {
-            this.getPage();
-          },
-          error: (error: HttpErrorResponse) => {
-            this.status = error;
-          }
-        });
-      } else {
-        console.log('Ingredient not removed');
-      }
-    } else {
-      console.error('Ingredient ID is undefined or null');
-    }
+
+showConfirmationModal = false;
+
+doRemove(u: IIngredient) {
+  this.oIngredientToRemove = u;
+  console.log('Ingredient to remove:', this.oIngredientToRemove);
+
+  if (this.oIngredientToRemove?.id !== undefined) {
+    // Mostrar el modal de confirmación
+    this.showConfirmationModal = true;
+  } else {
+    console.error('Ingredient ID is undefined or null');
   }
+}
+
+confirmRemove() {
+  // Lógica de eliminación aquí
+  console.log('Removing ingredient');
+  this.oIngredientService.removeOne(this.oIngredientToRemove?.id).subscribe({
+    next: () => {
+      this.getPage();
+    },
+    error: (error: HttpErrorResponse) => {
+      this.status = error;
+    }
+  });
+
+  // Cerrar el modal de confirmación después de confirmar
+  this.showConfirmationModal = false;
+}
+
+cancelRemove() {
+  // Cancelar la eliminación y cerrar el modal de confirmación
+  console.log('Ingredient not removed');
+  this.showConfirmationModal = false;
+}
 
 }

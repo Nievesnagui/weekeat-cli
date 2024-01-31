@@ -84,29 +84,39 @@ export class AdminUserListUnroutedComponent implements OnInit {
       maximizable: false
     });
   }
-
+  showConfirmationModal = false;
   doRemove(u: IUser) {
     this.oUserToRemove = u;
     console.log('User to remove:', this.oUserToRemove);
   
     if (this.oUserToRemove?.id !== undefined) {
-      const userConfirmed = window.confirm('Are you sure you want to remove this user?');
-      if (userConfirmed) {
-        console.log('Removing user');
-        this.oUserService.removeOne(this.oUserToRemove?.id).subscribe({
-          next: () => {
-            this.getPage();
-          },
-          error: (error: HttpErrorResponse) => {
-            this.status = error;
-          }
-        });
-      } else {
-        console.log('User not removed');
-      }
+      // Mostrar el modal de confirmación
+      this.showConfirmationModal = true;
     } else {
       console.error('User ID is undefined or null');
     }
+  }
+  
+  confirmRemove() {
+    // Lógica de eliminación aquí
+    console.log('Removing user');
+    this.oUserService.removeOne(this.oUserToRemove?.id).subscribe({
+      next: () => {
+        this.getPage();
+      },
+      error: (error: HttpErrorResponse) => {
+        this.status = error;
+      }
+    });
+  
+    // Cerrar el modal de confirmación después de confirmar
+    this.showConfirmationModal = false;
+  }
+  
+  cancelRemove() {
+    // Cancelar la eliminación y cerrar el modal de confirmación
+    console.log('User not removed');
+    this.showConfirmationModal = false;
   }
   
   

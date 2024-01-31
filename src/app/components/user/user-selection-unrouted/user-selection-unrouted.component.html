@@ -8,10 +8,10 @@
   </div>
 </div>
 
-<div *ngIf="status == null">
+<div *ngIf="status == null" class="card">
   <div class="columns is-vcentered is-justify-content-space-between my-3">
     <div class="column is-narrow">
-      <h4>Showing {{ oPage?.numberOfElements }} of total {{ oPage?.totalElements }} recipes.</h4>
+      <h4>Showing {{ oPage?.numberOfElements }} of total {{ oPage?.totalElements }} users.</h4>
     </div>
     <div class="column is-narrow">
       <!--Aqui tengo el pagination de primeng hasta que lo cambie por el de bulma-->
@@ -21,7 +21,7 @@
   </div>
 
   <div class="container">
-    <h2 class="title">Recipes List</h2>
+    <h2 class="title">Users List</h2>
 
     <div class="table-container">
       <table class="table is-fullwidth">
@@ -29,45 +29,44 @@
           <tr>
             <th (click)="doOrder('id')">ID</th>
             <th class="is-2" (click)="doOrder('name')">Name</th>
-            <th class="is-2" (click)="doOrder('description')">Description</th>
-            <th>User</th>
+            <th (click)="doOrder('surname')">Surname</th>
+            <th (click)="doOrder('email')">Email</th>
+            <th (click)="doOrder('username')">Username</th>
+            <th (click)="doOrder('phone')">Phone</th>
+            <th>Role</th>
+            <th>Recipes</th>
+            <th>Weekly</th>
             <th>Utilities</th>
-            <!--Tengo que ver como meto los ingredientes-->
-
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let u of oPage?.content" class="is-vcentered">
             <td>{{ u.id }}</td>
             <td>{{ u.name }}</td>
-            <td>{{ u.description }}</td>
-            <td>{{ u.user.username }}</td>
-
-            
+            <td>{{ u.surname }}</td>
+            <td>{{ u.email }}</td>
+            <td>{{ u.username }}</td>
+            <td>{{ u.phone }}</td>
+            <td>
+              <span *ngIf="u.role == 0" class="tag is-primary">Admin</span>
+              <span *ngIf="u.role == 1" class="tag is-info">User</span>
+            </td>
+            <td>
+              <a *ngIf="u.recipes > 0" class="tag is-link">{{ u.recipes }}</a>
+              <span *ngIf="u.recipes === 0" class="tag is-light">0</span>
+            </td>
+            <td>
+              <a *ngIf="u.weeks > 0" class="tag is-link">{{ u.weeks }}</a>
+              <span *ngIf="u.weeks === 0" class="tag is-light">0</span>
+            </td>
             <td>
               <div class="buttons">
-                <button class="button is-primary" [routerLink]="['/admin','recipe','detail',u.id]">View</button>
-                <button class="button is-warning" [routerLink]="['/admin','recipe','edit',u.id]">Edit</button>
-                <button  class="button is-danger" (click)="doRemove(u)">Remove</button>
-              </div>
+              <button class="btn btn-primary" (click)="onSelectUser(u)">Add</button>
+                  </div>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
-</div>
-
-<div class="modal" [class.is-active]="showConfirmationModal">
-  <div class="modal-background" (click)="cancelRemove()"></div>
-  <div class="modal-content">
-    <div class="box">
-      <p>Are you sure you want to remove this recipe?</p>
-      <div class="buttons">
-        <button class="button is-danger" (click)="confirmRemove()">Yes</button>
-        <button class="button" (click)="cancelRemove()">No</button>
-      </div>
-    </div>
-  </div>
-  <button class="modal-close is-large" aria-label="close" (click)="cancelRemove()"></button>
 </div>
