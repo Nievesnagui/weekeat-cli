@@ -69,7 +69,7 @@ export class AdminRecipeFormUnroutedComponent implements OnInit {
           next: (data: IRecipe) => {
             this.oRecipe = data;
             this.initializeForm(this.oRecipe);
-            this.oRouter.navigate(['/admin', 'recipe', 'list']);
+            this.oRouter.navigate(['/admin', 'content', 'new']);
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;

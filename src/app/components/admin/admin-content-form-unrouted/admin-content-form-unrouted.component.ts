@@ -29,7 +29,7 @@ export class AdminContentFormUnroutedComponent implements OnInit {
   oIngredientToRemove: IIngredient | null = null;
 
   sourceIngredients!: IIngredient[];
-  targetIngredients!: IIngredient[];
+  targetIngredients: IIngredient[] = [];
 
 
   constructor(
@@ -46,19 +46,6 @@ export class AdminContentFormUnroutedComponent implements OnInit {
       next: (v) => {
         if (v) {
           this.getPage();
-          this.oIngredientService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField).subscribe({
-            next: (data: IIngredientPage) => {
-              this.sourceIngredients = data.content;
-              console.log(data);
-              this.cdr.markForCheck();
-
-              // Asigna el objeto a sourceIngredients
-              this.targetIngredients = [];
-            },
-            error: (error: HttpErrorResponse) => {
-              this.status = error;
-            }
-          });
         }
       }
     });
@@ -68,19 +55,22 @@ export class AdminContentFormUnroutedComponent implements OnInit {
     this.oIngredientService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField).subscribe({
       next: (data: IIngredientPage) => {
         this.oPage = data;
-        console.log(data);
-        this.sourceIngredients = data.content;
-        console.log(data);
+  
+        if (this.targetIngredients.length === 0) {
+          this.targetIngredients = [];
+        }
+        this.sourceIngredients = data.content.filter(ingredient => {
+          const isInTarget = this.targetIngredients.some(target => target.id === ingredient.id);
+          return !isInTarget;
+        });
+  
         this.cdr.markForCheck();
-
-        // Asigna el objeto a sourceIngredients
-        this.targetIngredients = [];
         this.oPaginatorState.pageCount = data.totalPages;
       },
       error: (error: HttpErrorResponse) => {
         this.status = error;
       }
-    })
+    });
   }
 
   onPageChang(event: PaginatorState) {
@@ -88,6 +78,10 @@ export class AdminContentFormUnroutedComponent implements OnInit {
     this.oPaginatorState.page = event.page;
 
     this.getPage();
+  }
+
+  onDrop(event: any) {
+    this.targetIngredients.push(event.target);
   }
 
   doOrder(fieldorder: string) {
@@ -103,7 +97,11 @@ export class AdminContentFormUnroutedComponent implements OnInit {
   ref: DynamicDialogRef | undefined;
 
   onSubmit() {
-
+    console.log("entra");
+    this.targetIngredients.forEach(ingredient => {
+      const ingredientName = ingredient.name;
+      console.log(ingredient);
+    });
   }
 
 

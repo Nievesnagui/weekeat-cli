@@ -14,7 +14,7 @@
   <p-pickList [source]="sourceIngredients" [target]="targetIngredients" sourceHeader="Available" targetHeader="Selected"
     [dragdrop]="true" [responsive]="true" [sourceStyle]="{ height: '20rem' }" [targetStyle]="{ height: '20rem' }"
     filterBy="name" sourceFilterPlaceholder="Search by name" targetFilterPlaceholder="Search by name"
-    breakpoint="1400px">
+    breakpoint="1400px" >
     <ng-template let-ingredient pTemplate="item">
       <div class="flex flex-wrap p-2 align-items-center gap-3">
         <!-- <img class="w-4rem shadow-2 flex-shrink-0 border-round" src="https://primefaces.org/cdn/primeng/images/demo/ingredient/{{ ingredient.image }}"  />-->
@@ -29,4 +29,13 @@
       </div>
     </ng-template>
   </p-pickList>
+  <form (ngSubmit)="onSubmit()" class="mt-2">
+    <div class="columns is-centered is-vcentered">
+      <div class="column is-narrow">
+        <button class="button is-primary" type="submit">Submit</button>
+      </div>
+    </div>
+  </form>
+  
 </div>
+

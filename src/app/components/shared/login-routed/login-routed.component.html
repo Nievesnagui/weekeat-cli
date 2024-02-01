@@ -1,18 +1,18 @@
 <div class="container  login-form">
   <form class="form-control" (ngSubmit)="onSubmit()"  [formGroup]="loginForm">
     <div class="field">
-      <label class="label has-text-success">Enter Username</label>
+      <label class="label has-text-primary">Enter Username</label>
       <div class="control">
         <input class="input is-primary" type="text" placeholder="Username123" formControlName="username">
       </div>
     </div>
     <div class="field">
-      <label class="label has-text-success">Enter Password</label>
+      <label class="label has-text-primary">Enter Password</label>
       <div class="control">
         <input class="input is-primary" type="password" placeholder="Your password" formControlName="password">
       </div>
     </div>
-    <a href="#" class="has-text-success">Forgot your password?</a>
+    <a href="#" class="has-text-primary">Forgot your password?</a>
     <div class="control has-text-centered">
       <button class="button is-primary submit-btn mr-1" type="submit">Sign In</button>
       <button class="button is-danger ml-1 submit-btn" (click)="onReset()">Reset</button>
