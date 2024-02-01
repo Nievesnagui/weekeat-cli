@@ -24,6 +24,8 @@ import { AdminRecipeListRoutedComponent } from './components/admin/admin-recipe-
 import { AdminRecipeDetailRoutedComponent } from './components/admin/admin-recipe-detail-routed/admin-recipe-detail-routed.component';
 import { AdminRecipeEditRoutedComponent } from './components/admin/admin-recipe-edit-routed/admin-recipe-edit-routed.component';
 import { AdminRecipeNewRoutedComponent } from './components/admin/admin-recipe-new-routed/admin-recipe-new-routed.component';
+import { WeeklyNewRoutedComponent } from './components/weekly/weekly-new-routed/weekly-new-routed.component';
+import { AdminContentNewRoutedComponent } from './components/admin/admin-content-new-routed/admin-content-new-routed.component';
 
 const routes: Routes = [
   { path: '', component: HomeRoutedComponent },
@@ -37,6 +39,9 @@ const routes: Routes = [
   { path: 'recipe/list', component: RecipeListRoutedComponent },
   { path: 'recipe/:id', component: RecipeDetailRoutedComponent },
   { path: 'recipe/list/own', component: RecipeListOwnRoutedComponent },
+
+  //Weekly
+  { path: 'weekly/new', component: WeeklyNewRoutedComponent },
 
   //User
   { path: 'user/myprofile', component: UserProfileDetailsComponent },
@@ -62,6 +67,7 @@ const routes: Routes = [
   { path: 'admin/recipe/detail/:id', component: AdminRecipeDetailRoutedComponent },
   { path: 'admin/recipe/new', component: AdminRecipeNewRoutedComponent },
   { path: 'admin/recipe/edit/:id', component: AdminRecipeEditRoutedComponent },
+  { path: 'admin/content/new', component: AdminContentNewRoutedComponent },
 ];
 
 @NgModule({

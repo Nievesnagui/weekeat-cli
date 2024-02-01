@@ -59,6 +59,12 @@ import { AdminRecipeEditRoutedComponent } from './components/admin/admin-recipe-
 import { AdminRecipeFormUnroutedComponent } from './components/admin/admin-recipe-form-unrouted/admin-recipe-form-unrouted.component';
 import { AdminRecipeNewRoutedComponent } from './components/admin/admin-recipe-new-routed/admin-recipe-new-routed.component';
 import { UserSelectionUnroutedComponent } from './components/user/user-selection-unrouted/user-selection-unrouted.component';
+import { WeeklyNewRoutedComponent } from './components/weekly/weekly-new-routed/weekly-new-routed.component';
+import { WeeklyNewUnroutedComponent } from './components/weekly/weekly-new-unrouted/weekly-new-unrouted.component';
+import { AdminContentFormUnroutedComponent } from './components/admin/admin-content-form-unrouted/admin-content-form-unrouted.component';
+import { AdminContentNewRoutedComponent } from './components/admin/admin-content-new-routed/admin-content-new-routed.component';
+import {PickListModule} from 'primeng/picklist';
+
 
 @NgModule({
   declarations: [
@@ -85,6 +91,10 @@ import { UserSelectionUnroutedComponent } from './components/user/user-selection
 
     //Type
     TypeSelectionUnroutedComponent,
+
+    //Weekly
+    WeeklyNewRoutedComponent,
+    WeeklyNewUnroutedComponent,
 
     //Admin Utilities
             //User
@@ -119,6 +129,9 @@ import { UserSelectionUnroutedComponent } from './components/user/user-selection
     AdminRecipeEditRoutedComponent,
     AdminRecipeFormUnroutedComponent,
     AdminRecipeNewRoutedComponent,
+            //Content
+    AdminContentFormUnroutedComponent,
+    AdminContentNewRoutedComponent,
 
   ],
   imports: [
@@ -131,6 +144,7 @@ import { UserSelectionUnroutedComponent } from './components/user/user-selection
     PaginatorModule,
     CarouselModule,
     BrowserAnimationsModule,
+    PickListModule,
   ],
   providers: [
     SessionService,
