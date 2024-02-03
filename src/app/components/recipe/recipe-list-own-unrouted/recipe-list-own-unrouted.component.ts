@@ -25,7 +25,7 @@ export class RecipeListOwnUnroutedComponent implements OnInit {
     } else {
       this.id_filter = 0;
     }
-    this.getPage();
+    this.getPageByUser(this.id_filter);
   }
   get id(): number {
     return this.id_filter;
@@ -38,7 +38,7 @@ export class RecipeListOwnUnroutedComponent implements OnInit {
     } else {
       this.id_recipe_filter = 0;
     }
-    this.getPage();
+    this.getPageByUser(this.id_filter);
   }
 
   @Output() recipe_change = new EventEmitter<Boolean>();
@@ -55,15 +55,19 @@ export class RecipeListOwnUnroutedComponent implements OnInit {
   status: HttpErrorResponse | null = null;
   oPaginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
 
-
   constructor(
     private oRecipeService: RecipeService,
     private oUserService: UserService,
     public oSessionService: SessionService
-  ) { }
+  ) {
+    this.oUserService.getByUsername(this.oSessionService.getUsername()).subscribe(user => {
+      this.id_filter = user.id;
+      this.getPageByUser(this.id_filter); // Llama a getPage con el ID del usuario
+    });
+  }
 
   ngOnInit() {
-    this.getPage();
+    this.getPageByUser(this.id_filter);
     if (this.id > 0) {
       this.getUser();
     }
@@ -72,8 +76,13 @@ export class RecipeListOwnUnroutedComponent implements OnInit {
     }
   }
 
-  getPage(): void {
-    this.oRecipeService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField).subscribe({
+  getPageByUser(userId: number): void {
+    this.oRecipeService.getPageByUser(
+      this.oPaginatorState.rows,
+      this.oPaginatorState.page,
+      this.orderField,
+      userId // Agrega el ID del usuario como filtro
+    ).subscribe({
       next: (data: IRecipePage) => {
         this.oPage = data;
         this.oPaginatorState.pageCount = data.totalPages;
@@ -83,6 +92,7 @@ export class RecipeListOwnUnroutedComponent implements OnInit {
       }
     })
   }
+  
 
   getValue(event: any): string {
     return event.target.value;
@@ -101,7 +111,7 @@ export class RecipeListOwnUnroutedComponent implements OnInit {
   getUser(): void {
     this.oUserService.getOne(this.id).subscribe({
       next: (data: IUser) => {
-         console.log(this.id);
+        console.log(this.id);
         this.oUser = data;
       },
       error: (error: HttpErrorResponse) => {

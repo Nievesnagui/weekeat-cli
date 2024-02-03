@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { IRecipe } from 'src/app/model/model.interface';
 import { RecipeService } from 'src/app/service/recipe.service';
 
@@ -9,37 +10,16 @@ import { RecipeService } from 'src/app/service/recipe.service';
   styleUrls: ['./recipe-detail-routed.component.css']
 })
 export class RecipeDetailRoutedComponent implements OnInit {
+  id: number = 1;
 
-  @Input() id: number = 1;
-  oRecipe: IRecipe = {} as IRecipe;
-  status: HttpErrorResponse | null = null;
-
-  constructor(private oRecipeService: RecipeService) { }
+  constructor(
+    private oActivatedRoute: ActivatedRoute
+  ) {
+    this.id = parseInt(this.oActivatedRoute.snapshot.paramMap.get("id") || "1");
+   }
 
   ngOnInit() {
-    console.log(this.id);
-    this.getOne();
   }
 
-  getOne(): void {
-    console.log('Before HTTP request');
-    console.log('Recipe ID:', this.id);
-
-    if (this.id) {
-      this.oRecipeService.getOne(this.id).subscribe({
-        next: (data: IRecipe) => {
-          this.oRecipe = data;
-          console.log(data.id);
-          console.log(this.id);
-          console.log("Recipe: "+data.id);
-        },
-        error: (error: HttpErrorResponse) => {
-          this.status = error;
-        }
-      });
-    } else {
-      console.error('Recipe ID is not provided.');
-    }
-  }
 
 }

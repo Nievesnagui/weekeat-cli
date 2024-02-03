@@ -64,6 +64,7 @@ import { WeeklyNewUnroutedComponent } from './components/weekly/weekly-new-unrou
 import { AdminContentFormUnroutedComponent } from './components/admin/admin-content-form-unrouted/admin-content-form-unrouted.component';
 import { AdminContentNewRoutedComponent } from './components/admin/admin-content-new-routed/admin-content-new-routed.component';
 import {PickListModule} from 'primeng/picklist';
+import { RecipeDetailOwnUnroutedComponent } from './components/recipe/recipe-detail-own-unrouted/recipe-detail-own-unrouted.component';
 
 
 @NgModule({
@@ -84,6 +85,7 @@ import {PickListModule} from 'primeng/picklist';
     RecipeDetailRoutedComponent,
     RecipeListOwnRoutedComponent,
     RecipeListOwnUnroutedComponent,
+    RecipeDetailOwnUnroutedComponent,
 
     //User
     UserSelectionUnroutedComponent,

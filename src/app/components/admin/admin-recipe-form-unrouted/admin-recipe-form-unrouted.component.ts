@@ -69,7 +69,7 @@ export class AdminRecipeFormUnroutedComponent implements OnInit {
           next: (data: IRecipe) => {
             this.oRecipe = data;
             this.initializeForm(this.oRecipe);
-            this.oRouter.navigate(['/admin', 'content', 'new']);
+            this.oRouter.navigate(['/admin', 'content', 'new', data.id]);
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
@@ -80,7 +80,7 @@ export class AdminRecipeFormUnroutedComponent implements OnInit {
           next: (data: IRecipe) => {
             this.oRecipe = data;
             this.initializeForm(this.oRecipe);
-            this.oRouter.navigate(['/admin', 'content', 'new']);
+            this.oRouter.navigate(['/admin', 'content', 'new', data.id]);
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
@@ -106,4 +106,5 @@ export class AdminRecipeFormUnroutedComponent implements OnInit {
       }
     });
   }
+  
 }

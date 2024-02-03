@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { API_URL } from '../environment/environment';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { IRecipe, IRecipePage } from '../model/model.interface';
 
 @Injectable({
@@ -31,6 +31,13 @@ export class RecipeService {
  
     return this.oHttpClient.get<IRecipePage>(this.sUrl + "?size=" + size + "&page=" + page);
   }
+  getPageByUser(size: number | undefined, page: number | undefined, orderField: string, userId:number|undefined): Observable<IRecipePage> {
+    let sUrl_filter: string;
+    if (!size) size = 10;
+    if (!page) page = 0;
+ 
+    return this.oHttpClient.get<IRecipePage>(this.sUrl + "?size=" + size + "&page=" + page+ "&id_user=" + userId);
+  }
 
   removeOne(id: number | undefined): Observable<number> {
     if (id) {
@@ -54,6 +61,14 @@ export class RecipeService {
 
   empty(): Observable<number> {
     return this.oHttpClient.delete<number>(this.sUrl + "/empty");
+  }
+
+  //Prueba para coger la receta
+  private createdRecipeSubject = new BehaviorSubject<number>(0);
+  createdRecipe$ = this.createdRecipeSubject.asObservable();
+
+  setCreatedRecipe(recipeId: number) {
+    this.createdRecipeSubject.next(recipeId);
   }
 
 

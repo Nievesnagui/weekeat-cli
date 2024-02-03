@@ -1,9 +1,12 @@
- <p >{{oRecipe.name}}</p>
- <p>id: {{oRecipe.id}}</p>
- <p *ngIf="oRecipe.recipe_image">Imagen</p>
- <p>Ingredientes: {{oRecipe.content}}</p>
- <p>Descripción: {{oRecipe.description}}</p>
- <p>Autor: {{oRecipe.id_user}}</p>
- <div *ngIf="status !== null">
-    <p>Error: {{ status.message }}</p>
-  </div>
+<div class="container">
+  <div class="row justify-content-center">
+      <div class="col-auto">
+          <div class="d-flex justify-content-center mb-3">
+            <h1 class="subtitle is-2 my-3">View of recipe</h1>
+
+          </div>
+      </div>
+  
+     <app-recipe-detail-own-unrouted [id]="id"></app-recipe-detail-own-unrouted> 
+      </div>
+</div>

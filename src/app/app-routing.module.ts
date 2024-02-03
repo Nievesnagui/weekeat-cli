@@ -64,10 +64,11 @@ const routes: Routes = [
   { path: 'admin/type/edit/:id', component: AdminTypeEditRoutedComponent },
           //Recipe
   { path: 'admin/recipe/list', component: AdminRecipeListRoutedComponent },
+  { path: 'admin/recipe/list/own', component: AdminRecipeListRoutedComponent },
   { path: 'admin/recipe/detail/:id', component: AdminRecipeDetailRoutedComponent },
   { path: 'admin/recipe/new', component: AdminRecipeNewRoutedComponent },
   { path: 'admin/recipe/edit/:id', component: AdminRecipeEditRoutedComponent },
-  { path: 'admin/content/new', component: AdminContentNewRoutedComponent },
+  { path: 'admin/content/new/:id', component: AdminContentNewRoutedComponent },
 ];
 
 @NgModule({

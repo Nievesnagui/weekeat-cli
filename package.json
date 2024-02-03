@@ -6,7 +6,10 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "css-build": "node-sass --omit-source-map-url src/sass/styles.scss src/bulma.css",
+    "css-watch": "npm run css-build -- --watch",
+    "start_bulma": "npm run css-watch"
   },
   "private": true,
   "dependencies": {
@@ -19,8 +22,6 @@
     "@angular/platform-browser": "^16.0.0",
     "@angular/platform-browser-dynamic": "^16.0.0",
     "@angular/router": "^16.0.0",
-    "bulma": "^0.9.4",
-    "bulma-carousel": "^4.0.24",
     "crypto-js": "^4.2.0",
     "primeng": "^16.9.1",
     "rxjs": "~7.8.0",
@@ -34,6 +35,7 @@
     "@schematics/angular": "~16.0.0",
     "@types/crypto-js": "^4.2.1",
     "@types/jasmine": "~4.3.0",
+    "bulma": "^0.9.4",
     "jasmine-core": "~4.6.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
@@ -41,6 +43,7 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
     "node-sass": "^9.0.0",
+    "schematics-scss-migrate": "^2.3.17",
     "typescript": "~5.0.2"
   }
 }
