@@ -26,6 +26,7 @@ import { AdminRecipeEditRoutedComponent } from './components/admin/admin-recipe-
 import { AdminRecipeNewRoutedComponent } from './components/admin/admin-recipe-new-routed/admin-recipe-new-routed.component';
 import { WeeklyNewRoutedComponent } from './components/weekly/weekly-new-routed/weekly-new-routed.component';
 import { AdminContentNewRoutedComponent } from './components/admin/admin-content-new-routed/admin-content-new-routed.component';
+import { AdminContentRemoveRoutedComponent } from './components/admin/admin-content-remove-routed/admin-content-remove-routed.component';
 
 const routes: Routes = [
   { path: '', component: HomeRoutedComponent },
@@ -69,6 +70,7 @@ const routes: Routes = [
   { path: 'admin/recipe/new', component: AdminRecipeNewRoutedComponent },
   { path: 'admin/recipe/edit/:id', component: AdminRecipeEditRoutedComponent },
   { path: 'admin/content/new/:id', component: AdminContentNewRoutedComponent },
+  { path: 'admin/content/remove/:id', component: AdminContentRemoveRoutedComponent },
 ];
 
 @NgModule({

@@ -65,6 +65,9 @@ import { AdminContentFormUnroutedComponent } from './components/admin/admin-cont
 import { AdminContentNewRoutedComponent } from './components/admin/admin-content-new-routed/admin-content-new-routed.component';
 import {PickListModule} from 'primeng/picklist';
 import { RecipeDetailOwnUnroutedComponent } from './components/recipe/recipe-detail-own-unrouted/recipe-detail-own-unrouted.component';
+import { ContentService } from './service/content.service';
+import { AdminContentRemoveUnroutedComponent } from './components/admin/admin-content-remove-unrouted/admin-content-remove-unrouted.component';
+import { AdminContentRemoveRoutedComponent } from './components/admin/admin-content-remove-routed/admin-content-remove-routed.component';
 
 
 @NgModule({
@@ -134,6 +137,9 @@ import { RecipeDetailOwnUnroutedComponent } from './components/recipe/recipe-det
             //Content
     AdminContentFormUnroutedComponent,
     AdminContentNewRoutedComponent,
+    AdminContentRemoveRoutedComponent,
+    AdminContentRemoveUnroutedComponent,
+
 
   ],
   imports: [
@@ -157,6 +163,7 @@ import { RecipeDetailOwnUnroutedComponent } from './components/recipe/recipe-det
     CryptoService,
     ConfirmationService,
     DialogService,
+    ContentService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
 
   ],

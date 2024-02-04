@@ -52,10 +52,16 @@
           <div class="control">
             <!--Añadir que mande al tipo al crearlo-->
             <button class="button is-primary" type="submit" >
-             Next
+             Add Ingredients
             </button>
+            <button class="button is-warning" type="button" *ngIf="operation=='EDIT'" (click)="quit()">
+              Quit ingredients
+            </button>
+            
           </div>
         </div>
+
+
       </form>
     </div>
   </div>

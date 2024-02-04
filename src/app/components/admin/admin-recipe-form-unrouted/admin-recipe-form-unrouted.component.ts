@@ -17,7 +17,7 @@ export class AdminRecipeFormUnroutedComponent implements OnInit {
   @Input() operation: formOperation = 'NEW';
 
   recipeForm!: FormGroup;
-  oRecipe: IRecipe= {id_user: {}} as IRecipe;
+  oRecipe: IRecipe = { id_user: {} } as IRecipe;
   status: HttpErrorResponse | null = null;
 
   oDynamicDialogRef: DynamicDialogRef | undefined;
@@ -29,22 +29,22 @@ export class AdminRecipeFormUnroutedComponent implements OnInit {
     public oDialogService: DialogService,
   ) { }
 
-  initializeForm(oRecipe: IRecipe){
+  initializeForm(oRecipe: IRecipe) {
     this.recipeForm = this.oFormBuilder.group({
-    id: [oRecipe.id],
-    id_user: this.oFormBuilder.group({
-      id:[oRecipe.id_user?.id || null, Validators.required],
-    }),
-    name: [oRecipe.name, [Validators.required]],
-    description: [oRecipe.description, [Validators.required]],
-    content: [oRecipe.content]
+      id: [oRecipe.id],
+      id_user: this.oFormBuilder.group({
+        id: [oRecipe.id_user?.id || null, Validators.required],
+      }),
+      name: [oRecipe.name, [Validators.required]],
+      description: [oRecipe.description, [Validators.required]],
+      content: [oRecipe.content]
     })
   }
 
-  ngOnInit(){
-    if(this.operation == 'EDIT'){
+  ngOnInit() {
+    if (this.operation == 'EDIT') {
       this.oRecipeService.getOne(this.id).subscribe({
-        next: (data:IRecipe) => {
+        next: (data: IRecipe) => {
           console.log('Type data: ', data);
           this.oRecipe = data;
           this.initializeForm(this.oRecipe);
@@ -90,7 +90,21 @@ export class AdminRecipeFormUnroutedComponent implements OnInit {
     }
   }
 
-  onShowUsersSelection(){
+  quit() {
+      this.oRecipeService.updateOne(this.recipeForm.value).subscribe({
+        next: (data: IRecipe) => {
+          this.oRecipe = data;
+          this.initializeForm(this.oRecipe);
+          this.oRouter.navigate(['/admin', 'content', 'remove', data.id]);
+        },
+        error: (error: HttpErrorResponse) => {
+          this.status = error;
+        }
+      });
+  }
+  
+
+  onShowUsersSelection() {
     this.oDynamicDialogRef = this.oDialogService.open(UserSelectionUnroutedComponent, {
       header: 'Select an User',
       width: '80%',
@@ -106,5 +120,5 @@ export class AdminRecipeFormUnroutedComponent implements OnInit {
       }
     });
   }
-  
+
 }

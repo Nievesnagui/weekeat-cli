@@ -11,12 +11,13 @@ import { ContentService } from 'src/app/service/content.service';
 import { IngredientService } from 'src/app/service/ingredient.service';
 import { RecipeService } from 'src/app/service/recipe.service';
 
+
 @Component({
-  selector: 'app-admin-content-form-unrouted',
-  templateUrl: './admin-content-form-unrouted.component.html',
-  styleUrls: ['./admin-content-form-unrouted.component.css']
+  selector: 'app-admin-content-remove-unrouted',
+  templateUrl: './admin-content-remove-unrouted.component.html',
+  styleUrls: ['./admin-content-remove-unrouted.component.css']
 })
-export class AdminContentFormUnroutedComponent implements OnInit {
+export class AdminContentRemoveUnroutedComponent implements OnInit {
 
   @Input() id: number = 1;
 
@@ -138,6 +139,4 @@ export class AdminContentFormUnroutedComponent implements OnInit {
       })
     });
   }
-
-
 }
