@@ -36,7 +36,7 @@ export class AdminContentFormUnroutedComponent implements OnInit {
 
   id_recipe: number = 0;
 
-  recipe!: IRecipe ;
+  recipe!: IRecipe;
 
 
   constructor(
@@ -53,7 +53,7 @@ export class AdminContentFormUnroutedComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.id_recipe = +(params.get('id') || 0);
-       
+
       this.getPage();
     });
     this.forceReload.subscribe({
@@ -114,29 +114,55 @@ export class AdminContentFormUnroutedComponent implements OnInit {
     console.log("entra");
     this.oRecipeService.getOne(this.id_recipe).subscribe((recipe: IRecipe) => {
       this.recipe = recipe;
-    });    
-    this.targetIngredients.forEach(ingredient => {
-      const ingredientName = ingredient.name;
-      console.log(ingredient);
 
-      const content: IContent = {
-        id:0,
-        id_ingredient: ingredient,
-        id_recipe: this.recipe,
-      };
+      this.targetIngredients.forEach(ingredient => {
 
-      console.log(content);
+        /*const content: IContent = {
+          id: 0,
+          id_ingredient: ingredient,
+          id_recipe: this.recipe,
+        };*/
 
-      this.oContentService.newOne(content).subscribe({
-        next: (data: IContent) => {
-          console.log(data);
-          this.oRouter.navigate(['/admin', 'recipe', 'detail', data.id]);
-        },
-        error: (error: HttpErrorResponse) => {
-          this.status = error;
-        }
-      })
+
+        const id_ingredient: IIngredient = {
+          id: ingredient.id,
+          id_type: null,
+          name: ingredient.name,
+          ingredient_image: ingredient.ingredient_image,
+          content: null,
+        };
+
+         const id_recipe: IRecipe = { 
+           id: recipe.id,
+           id_user: null,
+           name: recipe.name,
+           description: recipe.description,
+           recipe_image: recipe.recipe_image,
+           content: [],
+           favs: [],
+           schedules: [],
+         };
+        
+        const content: IContent = {
+          id: 0,
+          id_ingredient: id_ingredient,
+          id_recipe: id_recipe,
+        };
+        console.log("Content:");
+        console.log(content);
+        this.oContentService.newOne(content).subscribe({
+          next: (data: IContent) => {
+            this.oContent = data;
+            console.log("Data: " + data);
+            this.oRouter.navigate(['/admin', 'recipe', 'detail', id_recipe.id]);
+          },
+          error: (error: HttpErrorResponse) => {
+            this.status = error;
+          }
+        })
+      });
     });
+
   }
 
 

@@ -29,12 +29,12 @@
               </tr>
               <tr>
                 <th>type</th>
-                <td>{{ oIngredient.id_type.name }}</td>
+                <td>{{ oIngredient.id_type!.name }}</td>
               </tr>
               <tr>
                 <th>content</th>
                 <td>
-                  <a *ngIf="oIngredient.content > 0" class="tag is-link">{{ oIngredient.content }}</a>
+                  <a *ngIf="oIngredient.content! > 0" class="tag is-link">{{ oIngredient.content }}</a>
                   <span *ngIf="oIngredient.content === 0" class="tag is-light">0</span>
                 </td>
               </tr>

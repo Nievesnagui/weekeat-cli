@@ -47,9 +47,9 @@ export interface IUser{
     phone: string;
     password: string;
     profile_picture: string; //imagen
-    favs: number;
+    favs: number ;
     weeks: number;
-    recipes: number;
+    recipes: number ;
     role:number;
 }
 
@@ -59,13 +59,13 @@ export interface IUserPage extends IPage<IUser> {
 //Recipe
 export interface IRecipe {
     id: number;
-    id_user: IUser;
+    id_user: IUser |null;
     name: string;
     description: string;
     recipe_image: string; //imagen
-    content: Array<IContent>;
-    favs: Array<IFavRecipe>;
-    schedules: Array<ISchedule>;
+    content: Array<IContent> ;
+    favs: Array<IFavRecipe> ;
+    schedules: Array<ISchedule> ;
 }
 
 export interface IRecipePage extends IPage<IRecipe> {
@@ -98,10 +98,10 @@ export interface IWeeklyPage extends IPage<IWeekly> {
 //Ingredient
 export interface IIngredient  {
     id: number;
-   id_type: IType;
-   name: string;
+   id_type: IType | null;
+   name: string ;
    ingredient_image: string | null; //imagen
-   content: number;
+   content: number | null;
 }
 
 export interface IIngredientPage extends IPage<IIngredient> {
@@ -123,6 +123,7 @@ export interface IContent {
     id_recipe: IRecipe;
     id_ingredient: IIngredient;
 }
+
 
 export interface IContentPage extends IPage<IContent> {
 }
