@@ -28,6 +28,7 @@ import { WeeklyNewRoutedComponent } from './components/weekly/weekly-new-routed/
 import { AdminContentNewRoutedComponent } from './components/admin/admin-content-new-routed/admin-content-new-routed.component';
 import { AdminContentRemoveRoutedComponent } from './components/admin/admin-content-remove-routed/admin-content-remove-routed.component';
 import { RecipeNewRoutedComponent } from './components/recipe/recipe-new-routed/recipe-new-routed.component';
+import { RecipeEditRoutedComponent } from './components/recipe/recipe-edit-routed/recipe-edit-routed.component';
 
 const routes: Routes = [
   { path: '', component: HomeRoutedComponent },
@@ -39,9 +40,10 @@ const routes: Routes = [
 
   //Recipe
   { path: 'recipe/list', component: RecipeListRoutedComponent },
+  { path: 'recipe/new', component: RecipeNewRoutedComponent},
   { path: 'recipe/:id', component: RecipeDetailRoutedComponent },
   { path: 'recipe/list/own', component: RecipeListOwnRoutedComponent },
-  { path: 'recipe/new', component: RecipeNewRoutedComponent},
+  { path: 'recipe/edit/:id', component: RecipeEditRoutedComponent },
 
   //Weekly
   { path: 'weekly/new', component: WeeklyNewRoutedComponent },
