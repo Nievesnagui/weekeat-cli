@@ -47,5 +47,7 @@
         <td>{{ oRecipe.id_user!.name }}</td>
       </tr>
     </tbody>
+
+    <button class="button is-warning" *ngIf="strUserName === oRecipe.id_user!.username " [routerLink]="['/admin','recipe','edit',oRecipe.id]">Edit</button>
   </table>
 </div>
