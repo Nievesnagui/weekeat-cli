@@ -6,7 +6,7 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PaginatorState } from 'primeng/paginator';
 import { PickListFilterOptions } from 'primeng/picklist';
 import { Subject } from 'rxjs';
-import { IContent, IIngredient, IIngredientPage, IRecipe } from 'src/app/model/model.interface';
+import { IContent, IContentPage, IContentPruebaPage, IIngredient, IIngredientPage, IRecipe } from 'src/app/model/model.interface';
 import { ContentService } from 'src/app/service/content.service';
 import { IngredientService } from 'src/app/service/ingredient.service';
 import { RecipeService } from 'src/app/service/recipe.service';
@@ -26,6 +26,7 @@ export class AdminContentRemoveUnroutedComponent implements OnInit {
   oContent: IContent = { id_ingredient: {}, id_recipe: {} } as IContent;
 
   oPage: IIngredientPage | undefined;
+  oPageContent: IContentPage | undefined;
   orderField: string = "id";
   orderDirection: string = "asc";
   oPaginatorState: PaginatorState = { first: 0, rows: 20, page: 0, pageCount: 0 };
@@ -37,14 +38,13 @@ export class AdminContentRemoveUnroutedComponent implements OnInit {
 
   id_recipe: number = 0;
 
-  recipe!: IRecipe ;
+  recipe!: IRecipe;
 
 
   constructor(
     private oContentService: ContentService,
     private oRecipeService: RecipeService,
     private oIngredientService: IngredientService,
-    private oConfirmationService: ConfirmationService,
     public oDialogService: DialogService,
     private cdr: ChangeDetectorRef,
     private oRouter: Router,
@@ -54,7 +54,7 @@ export class AdminContentRemoveUnroutedComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.id_recipe = +(params.get('id') || 0);
-       
+
       this.getPage();
     });
     this.forceReload.subscribe({
@@ -67,17 +67,15 @@ export class AdminContentRemoveUnroutedComponent implements OnInit {
   }
 
   getPage(): void {
-    this.oIngredientService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField).subscribe({
+    this.oIngredientService.getPageByContentFilter(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.id_recipe).subscribe({
       next: (data: IIngredientPage) => {
         this.oPage = data;
 
         if (this.targetIngredients.length === 0) {
           this.targetIngredients = [];
         }
-        this.sourceIngredients = data.content.filter(ingredient => {
-          const isInTarget = this.targetIngredients.some(target => target.id === ingredient.id);
-          return !isInTarget;
-        });
+
+        this.sourceIngredients = data.content.filter(ingredient => ingredient.isInContent);
 
         this.cdr.markForCheck();
         this.oPaginatorState.pageCount = data.totalPages;
@@ -87,6 +85,7 @@ export class AdminContentRemoveUnroutedComponent implements OnInit {
       }
     });
   }
+
 
   onPageChang(event: PaginatorState) {
     this.oPaginatorState.rows = event.rows;
@@ -115,28 +114,33 @@ export class AdminContentRemoveUnroutedComponent implements OnInit {
     console.log("entra");
     this.oRecipeService.getOne(this.id_recipe).subscribe((recipe: IRecipe) => {
       this.recipe = recipe;
-    });    
-    this.targetIngredients.forEach(ingredient => {
-      const ingredientName = ingredient.name;
-      console.log(ingredient);
 
-      const content: IContent = {
-        id:0,
-        id_ingredient: ingredient,
-        id_recipe: this.recipe,
-      };
-
-      console.log(content);
-
-      this.oContentService.newOne(content).subscribe({
-        next: (data: IContent) => {
+      this.oContentService.getPageByRecipe(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, recipe.id).subscribe({
+        next: (data: IContentPruebaPage) => {
           console.log(data);
-          this.oRouter.navigate(['/admin', 'recipe', 'detail', data.id]);
+
+          this.targetIngredients.forEach(ig => {
+            var content = data.content.find(cnt => cnt.ingredient.id === ig.id);
+            console.log("Content");
+            console.log(content?.id);
+            this.oContentService.removeOne(content?.id).subscribe({
+              next: () => {
+                this.getPage();
+                this.oRouter.navigate(['/admin', 'recipe', 'detail', recipe.id]);
+              },
+              error: (error: HttpErrorResponse) => {
+                this.status = error;
+              }
+            });
+          });
+
         },
         error: (error: HttpErrorResponse) => {
           this.status = error;
-        }
+         }
       })
+
     });
+
   }
 }

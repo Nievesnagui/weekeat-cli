@@ -68,6 +68,7 @@ import { RecipeDetailOwnUnroutedComponent } from './components/recipe/recipe-det
 import { ContentService } from './service/content.service';
 import { AdminContentRemoveUnroutedComponent } from './components/admin/admin-content-remove-unrouted/admin-content-remove-unrouted.component';
 import { AdminContentRemoveRoutedComponent } from './components/admin/admin-content-remove-routed/admin-content-remove-routed.component';
+import { RecipeNewRoutedComponent } from './components/recipe/recipe-new-routed/recipe-new-routed.component';
 
 
 @NgModule({
@@ -89,6 +90,7 @@ import { AdminContentRemoveRoutedComponent } from './components/admin/admin-cont
     RecipeListOwnRoutedComponent,
     RecipeListOwnUnroutedComponent,
     RecipeDetailOwnUnroutedComponent,
+    RecipeNewRoutedComponent,
 
     //User
     UserSelectionUnroutedComponent,

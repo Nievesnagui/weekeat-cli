@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { API_URL } from "../environment/environment";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { IContent } from "../model/model.interface";
+import { IContent, IContentPage, IContentPruebaPage, IIngredient } from "../model/model.interface";
 
 
 @Injectable()
@@ -21,17 +21,24 @@ export class ContentService {
         return this.oHttpClient.get<IContent>(this.sUrl + '/byName/' + name);
     }
 
-    getPage(size: number | undefined, page: number | undefined, orderField: string): Observable<IContent> {
-    let sUrl_filter: string;
-        if(!size) size = 10;
-        if(!page) page = 0;
-        return this.oHttpClient.get<IContent>(this.sUrl + '?size=' + size + '&page=' + page + '&sort=' + orderField);
+    getPage(size: number | undefined, page: number | undefined, orderField: string): Observable<IContentPage> {
+        let sUrl_filter: string;
+        if (!size) size = 10;
+        if (!page) page = 0;
+        return this.oHttpClient.get<IContentPage>(this.sUrl + '?size=' + size + '&page=' + page + '&sort=' + orderField);
+    }
+
+    getPageByRecipe(size: number | undefined, page: number | undefined, orderField: string, id_recipe: number): Observable<IContentPruebaPage> {
+        let sUrl_filter: string;
+        if (!size) size = 10;
+        if (!page) page = 0;
+        return this.oHttpClient.get<IContentPruebaPage>(this.sUrl + '?size=' + size + '&page=' + page + '&sort=' + orderField + '&id_recipe=' + id_recipe);
     }
 
     removeOne(id: number | undefined): Observable<number> {
-        if(id){
+        if (id) {
             return this.oHttpClient.delete<number>(this.sUrl + "/" + id);
-        } else{
+        } else {
             return new Observable<number>();
         }
     }
@@ -48,8 +55,9 @@ export class ContentService {
         return this.oHttpClient.delete<number>(this.sUrl + '/empty');
     }
 
-  /*  newOneForUsers(oContent: IContent): Observable<IContent> {
-        return this.oHttpClient.post<IContent>(this.sUrl + "/forusers" + oContent);
-    }*/
-    
+
+    /*  newOneForUsers(oContent: IContent): Observable<IContent> {
+          return this.oHttpClient.post<IContent>(this.sUrl + "/forusers" + oContent);
+      }*/
+
 }

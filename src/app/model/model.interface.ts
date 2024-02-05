@@ -102,6 +102,7 @@ export interface IIngredient  {
    name: string ;
    ingredient_image: string | null; //imagen
    content: number | null;
+   isInContent: boolean;
 }
 
 export interface IIngredientPage extends IPage<IIngredient> {
@@ -124,6 +125,14 @@ export interface IContent {
     id_ingredient: IIngredient;
 }
 
+export interface IContentPrueba {
+    id: number;
+    ingredient: IIngredient;
+    recipe: IRecipe;
+}
+
+export interface IContentPruebaPage extends IPage<IContentPrueba> {
+}
 
 export interface IContentPage extends IPage<IContent> {
 }

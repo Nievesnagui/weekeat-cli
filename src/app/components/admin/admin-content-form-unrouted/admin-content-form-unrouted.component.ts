@@ -66,17 +66,16 @@ export class AdminContentFormUnroutedComponent implements OnInit {
   }
 
   getPage(): void {
-    this.oIngredientService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField).subscribe({
+    this.oIngredientService.getPageByContentFilter(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.id_recipe).subscribe({
       next: (data: IIngredientPage) => {
         this.oPage = data;
 
         if (this.targetIngredients.length === 0) {
           this.targetIngredients = [];
         }
-        this.sourceIngredients = data.content.filter(ingredient => {
-          const isInTarget = this.targetIngredients.some(target => target.id === ingredient.id);
-          return !isInTarget;
-        });
+
+        this.sourceIngredients = data.content.filter(ingredient => !ingredient.isInContent);
+
 
         this.cdr.markForCheck();
         this.oPaginatorState.pageCount = data.totalPages;
@@ -130,6 +129,7 @@ export class AdminContentFormUnroutedComponent implements OnInit {
           name: ingredient.name,
           ingredient_image: ingredient.ingredient_image,
           content: null,
+          isInContent: false,
         };
 
          const id_recipe: IRecipe = { 
