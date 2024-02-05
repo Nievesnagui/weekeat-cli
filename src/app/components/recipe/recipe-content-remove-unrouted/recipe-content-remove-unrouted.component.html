@@ -1,0 +1,41 @@
+<div *ngIf="status == null">
+  <div class="columns is-vcentered is-justify-content-space-between my-3">
+    <div class="column is-narrow">
+      <h4>Showing {{ oPage?.numberOfElements }} of total {{ oPage?.totalElements }} ingredients.</h4>
+    </div>
+    <div class="column is-narrow">
+      <!--Aqui tengo el pagination de primeng hasta que lo cambie por el de bulma-->
+      <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
+        [totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+    </div>
+  </div>
+
+<div class="card">
+  <p-pickList [source]="sourceIngredients" [target]="targetIngredients" sourceHeader="Available" targetHeader="Selected"
+    [dragdrop]="true" [responsive]="true" [sourceStyle]="{ height: '20rem' }" [targetStyle]="{ height: '20rem' }"
+    filterBy="name" sourceFilterPlaceholder="Search by name" targetFilterPlaceholder="Search by name"
+    breakpoint="1400px" >
+    <ng-template let-ingredient pTemplate="item">
+      <div class="flex flex-wrap p-2 align-items-center gap-3">
+        <!-- <img class="w-4rem shadow-2 flex-shrink-0 border-round" src="https://primefaces.org/cdn/primeng/images/demo/ingredient/{{ ingredient.image }}"  />-->
+        <div class="flex-1 flex flex-column gap-2">
+          <span class="font-bold">{{ ingredient.name }}</span>
+          <div class="flex align-ingredients-center gap-2">
+            <i class="pi pi-tag text-sm"></i>
+            <span>{{ ingredient.category }}</span>
+          </div>
+        </div>
+        <span class="font-bold text-900">{{ ingredient.id_type.name }}</span>
+      </div>
+    </ng-template>
+  </p-pickList>
+  <form (ngSubmit)="onSubmit()" class="mt-2">
+    <div class="columns is-centered is-vcentered">
+      <div class="column is-narrow">
+        <button class="button is-primary" type="submit">Submit</button>
+      </div>
+    </div>
+  </form>
+  
+</div>
+
