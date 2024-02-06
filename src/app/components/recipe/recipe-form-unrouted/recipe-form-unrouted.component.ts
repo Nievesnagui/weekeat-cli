@@ -108,7 +108,6 @@ export class RecipeFormUnroutedComponent implements OnInit {
           next: (data: IRecipe) => {
             this.oRecipe = data;
             this.initializeForm(this.oRecipe);
-            console.log("Id de data: "+data.id);
 
             this.oRouter.navigate(['/recipe', 'content', 'new', data.id]);
           },

@@ -23,6 +23,15 @@
           <th>id</th>
           <td>{{ oUser.id }}</td>
         </tr>
+        <th>profile picture</th>
+        <td>
+        <img *ngIf="oUser.profile_picture === null"
+        src="https://images.ecestaticos.com/JN07Vdy4YqEbbl2JtMkUg3lG7Fk=/438x12:2121x1274/1200x899/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2Faea%2F9ee%2F335%2Faea9ee33581d1061b7a1c9fea6fa1226.jpg"
+        class="thumbnail">
+        <!--Poner cuando la imagen no sea null la del propio usuario-->
+        <img *ngIf="oUser.profile_picture != null"
+        [src]="oUser.profile_picture"
+        class="thumbnail"></td>
         <tr>
           <th>name</th>
           <td>{{ oUser.name }}</td>

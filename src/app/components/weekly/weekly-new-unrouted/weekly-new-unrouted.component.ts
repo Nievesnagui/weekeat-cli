@@ -103,7 +103,6 @@ export class WeeklyNewUnroutedComponent implements OnInit {
           next: (data: IWeekly) => {
             this.oWeekly = data;
             this.initializeForm(this.oWeekly);
-            console.log("Id de data: " + data.id);
 
             // this.oRouter.navigate(['/recipe', 'content', 'new', data.id]);
           },

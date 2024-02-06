@@ -20,7 +20,7 @@
         <div class="field">
           <label class="label">Username</label>
           <div class="control">
-            <input class="input" formControlName="username" [placeholder]="" >
+            <input class="input" formControlName="username" [placeholder]="">
           </div>
           <p class="help is-danger" *ngIf="hasError('username', 'required')">Required</p>
         </div>
@@ -28,7 +28,7 @@
         <div class="field">
           <label class="label">Name</label>
           <div class="control">
-            <input class="input" formControlName="name" [placeholder]="" >
+            <input class="input" formControlName="name" [placeholder]="">
           </div>
           <p class="help is-danger" *ngIf="hasError('name', 'required')">Required</p>
         </div>
@@ -36,7 +36,7 @@
         <div class="field">
           <label class="label">Surname</label>
           <div class="control">
-            <input class="input" formControlName="surname" [placeholder]="" >
+            <input class="input" formControlName="surname" [placeholder]="">
           </div>
           <p class="help is-danger" *ngIf="hasError('surname', 'required')">Required</p>
         </div>
@@ -44,7 +44,7 @@
         <div class="field">
           <label class="label">Email</label>
           <div class="control">
-            <input class="input" formControlName="email" [placeholder]="" >
+            <input class="input" formControlName="email" [placeholder]="">
           </div>
           <p class="help is-danger" *ngIf="hasError('email', 'required')">Required</p>
         </div>
@@ -52,17 +52,24 @@
         <div class="field">
           <label class="label">Phone</label>
           <div class="control">
-            <input class="input" formControlName="phone" [placeholder]="" >
+            <input class="input" formControlName="phone" [placeholder]="">
           </div>
           <p class="help is-danger" *ngIf="hasError('phone', 'required')">Required</p>
         </div>
 
+
+        <div class="field">
+          <label class="label">Profile Picture</label>
+          <div class="control">
+          <input class="input" type="file" formControlName="profile_picture" (change)="onFileSelected($event)">
+          </div>
+        </div>
         <div class="field">
           <label class="label">Role</label>
           <div class="control">
             <label class="radio">
               <input type="radio" formControlName="role" [value]="true">
-             Admin
+              Admin
             </label>
             <label class="radio">
               <input type="radio" formControlName="role" [value]="false">
@@ -75,8 +82,8 @@
         <div class="field is-grouped is-grouped-centered mt-5">
           <div class="control">
             <!--Añadir que mande al usuario al crearlos-->
-            <button class="button is-primary" type="submit" >
-             Save
+            <button class="button is-primary" type="submit">
+              Save
             </button>
           </div>
         </div>

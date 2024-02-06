@@ -43,7 +43,6 @@ export class AdminContentFormUnroutedComponent implements OnInit {
     private oContentService: ContentService,
     private oRecipeService: RecipeService,
     private oIngredientService: IngredientService,
-    private oConfirmationService: ConfirmationService,
     public oDialogService: DialogService,
     private cdr: ChangeDetectorRef,
     private oRouter: Router,
@@ -64,6 +63,7 @@ export class AdminContentFormUnroutedComponent implements OnInit {
       }
     });
   }
+ 
 
   getPage(): void {
     this.oIngredientService.getPageByContentFilter(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.id_recipe).subscribe({
@@ -112,6 +112,7 @@ export class AdminContentFormUnroutedComponent implements OnInit {
   onSubmit() {
     console.log("entra");
     this.oRecipeService.getOne(this.id_recipe).subscribe((recipe: IRecipe) => {
+      console.log("Llega a 116");
       this.recipe = recipe;
 
       this.targetIngredients.forEach(ingredient => {

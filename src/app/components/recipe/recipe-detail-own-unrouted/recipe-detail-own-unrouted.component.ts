@@ -47,8 +47,7 @@ export class RecipeDetailOwnUnroutedComponent implements OnInit {
         this.oRecipe = data;
 
         if (this.oRecipe && this.oRecipe.id_user) {
-          console.log('oRecipe after assignment: ', this.oRecipe);
-          console.log('oRecipe.id_user: ', this.oRecipe.id_user);
+          console.log('oRecipe.id_user: ', this.oRecipe.id_user.id);
         } else {
           console.error('oIngredient or oRecipe.id_user is undefined.');
         }
