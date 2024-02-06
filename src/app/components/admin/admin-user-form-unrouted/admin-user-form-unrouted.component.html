@@ -57,13 +57,13 @@
           <p class="help is-danger" *ngIf="hasError('phone', 'required')">Required</p>
         </div>
 
-
         <div class="field">
           <label class="label">Profile Picture</label>
           <div class="control">
           <input class="input" type="file" formControlName="profile_picture" (change)="onFileSelected($event)">
           </div>
         </div>
+
         <div class="field">
           <label class="label">Role</label>
           <div class="control">

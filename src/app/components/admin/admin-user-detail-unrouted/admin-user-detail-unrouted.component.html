@@ -1,79 +1,79 @@
 <div class="columns is-centered my-3">
-    <div class="column is-half">
-      <div *ngIf="status !== null" class="card">
-        <div class="card-content">
-          <div class="content">
-            <p class="notification is-danger">
-              {{ status!.error.message }} - {{ status!.message }}
-            </p>
-          </div>
+  <div class="column is-half">
+    <div *ngIf="status !== null" class="card">
+      <div class="card-content">
+        <div class="content">
+          <p class="notification is-danger">
+            {{ status!.error.message }} - {{ status!.message }}
+          </p>
         </div>
       </div>
-  
-      <div *ngIf="status == null" class="card">
-        <div class="card-content">
-          <div class="content">
-            <table class="table is-striped is-hoverable is-fullwidth">
-              <tbody>
-                <tr>
-                  <th>Property</th>
-                  <th>Value</th>
-                </tr>
-        <tr>
-          <th>id</th>
-          <td>{{ oUser.id }}</td>
-        </tr>
-        <th>profile picture</th>
-        <td>
-        <img *ngIf="oUser.profile_picture === null"
-        src="https://images.ecestaticos.com/JN07Vdy4YqEbbl2JtMkUg3lG7Fk=/438x12:2121x1274/1200x899/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2Faea%2F9ee%2F335%2Faea9ee33581d1061b7a1c9fea6fa1226.jpg"
-        class="thumbnail">
-        <!--Poner cuando la imagen no sea null la del propio usuario-->
-        <img *ngIf="oUser.profile_picture != null"
-        [src]="oUser.profile_picture"
-        class="thumbnail"></td>
-        <tr>
-          <th>name</th>
-          <td>{{ oUser.name }}</td>
-        </tr>
-        <tr>
-          <th>surname</th>
-          <td>{{ oUser.surname }}</td>
-        </tr>
-        <tr>
-          <th>email</th>
-          <td>{{ oUser.email }}</td>
-        </tr>
-        <tr>
-          <th>username</th>
-          <td>{{ oUser.username }}</td>
-        </tr>
-        <tr>
-          <th>phone</th>
-          <td>{{ oUser.phone }}</td>
-        </tr>
-        <tr>
-          <th>role</th>
-          <td>
-            <span *ngIf="oUser.role == 0" class="tag is-primary">Admin</span>
-            <span *ngIf="oUser.role == 1" class="tag is-info">User</span>
-          </td>
-        </tr>
-        <tr>
-          <th>recipes</th>
-          <td>
-            <a *ngIf="oUser.recipes > 0" class="tag is-link">{{ oUser.recipes }}</a>
-            <span *ngIf="oUser.recipes === 0" class="tag is-light">0</span>
-          </td>
-        </tr>
-        <tr>
-          <th>weekly</th>
-          <td>
-            <a *ngIf="oUser.weeks > 0" class="tag is-link">{{ oUser.weeks }}</a>
-            <span *ngIf="oUser.weeks === 0" class="tag is-light">0</span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  
+    </div>
+
+    <div *ngIf="status == null" class="card">
+      <div class="card-content">
+        <div class="content">
+          <table class="table is-striped is-hoverable is-fullwidth">
+            <tbody>
+              <tr>
+                <th>Property</th>
+                <th>Value</th>
+              </tr>
+              <tr>
+                <th>id</th>
+                <td>{{ oUser.id }}</td>
+              </tr>
+              <tr>
+                <th>profile picture</th>
+                <td>
+                  <img *ngIf="oUser.profile_picture === null"
+                    src="https://images.ecestaticos.com/JN07Vdy4YqEbbl2JtMkUg3lG7Fk=/438x12:2121x1274/1200x899/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2Faea%2F9ee%2F335%2Faea9ee33581d1061b7a1c9fea6fa1226.jpg"
+                    class="thumbnail">
+                  <!--Poner cuando la imagen no sea null la del propio usuario-->
+                  <img *ngIf="oUser.profile_picture != null" [src]="oUser.profile_picture" class="thumbnail">
+                </td>
+              </tr>
+              <tr>
+                <th>name</th>
+                <td>{{ oUser.name }}</td>
+              </tr>
+              <tr>
+                <th>surname</th>
+                <td>{{ oUser.surname }}</td>
+              </tr>
+              <tr>
+                <th>email</th>
+                <td>{{ oUser.email }}</td>
+              </tr>
+              <tr>
+                <th>username</th>
+                <td>{{ oUser.username }}</td>
+              </tr>
+              <tr>
+                <th>phone</th>
+                <td>{{ oUser.phone }}</td>
+              </tr>
+              <tr>
+                <th>role</th>
+                <td>
+                  <span *ngIf="oUser.role == 0" class="tag is-primary">Admin</span>
+                  <span *ngIf="oUser.role == 1" class="tag is-info">User</span>
+                </td>
+              </tr>
+              <tr>
+                <th>recipes</th>
+                <td>
+                  <a *ngIf="oUser.recipes > 0" class="tag is-link">{{ oUser.recipes }}</a>
+                  <span *ngIf="oUser.recipes === 0" class="tag is-light">0</span>
+                </td>
+              </tr>
+              <tr>
+                <th>weekly</th>
+                <td>
+                  <a *ngIf="oUser.weeks > 0" class="tag is-link">{{ oUser.weeks }}</a>
+                  <span *ngIf="oUser.weeks === 0" class="tag is-light">0</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>

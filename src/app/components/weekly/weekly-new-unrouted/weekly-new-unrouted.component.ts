@@ -81,10 +81,15 @@ export class WeeklyNewUnroutedComponent implements OnInit {
   public hasError = (controlName: string, errorName: string) => {
     return this.weeklyForm.controls[controlName].hasError(errorName);
   }
-
+  formatDate(date: Date): string {
+    return date.toISOString().split('T')[0];
+  }
   onSubmit() {
     let idRecipe: number = 0;
     if (this.weeklyForm.valid) {
+      this.weeklyForm.value.init_date = this.formatDate(this.weeklyForm.value.init_date);
+    this.weeklyForm.value.end_date = this.formatDate(this.weeklyForm.value.end_date);
+
       if (this.operation == 'NEW') {
         this.oWeeklyService.newOne(this.weeklyForm.value).subscribe({
           next: (data: IWeekly) => {

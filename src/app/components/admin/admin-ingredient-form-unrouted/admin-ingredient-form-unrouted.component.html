@@ -25,15 +25,13 @@
           </div>
           <p class="help is-danger" *ngIf="hasError('name', 'required')">Required</p>
         </div>
-        <!--
-       <div class="field">
-          <label class="label">Type</label>
+
+        <div class="field">
+          <label class="label">Picture</label>
           <div class="control">
-            <input class="input" formControlName="id_type" [placeholder]="" >
+          <input class="input" type="file" formControlName="ingredient_image" (change)="onFileSelected($event)">
           </div>
-          <p class="help is-danger" *ngIf="hasError('id_type', 'required')">Required</p>
-        </div> 
--->
+        </div>
 
         <div formGroupName="id_type">
           <div class="field is-grouped">

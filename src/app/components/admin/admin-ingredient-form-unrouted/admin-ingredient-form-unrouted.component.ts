@@ -6,6 +6,7 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { IIngredient, IType, formOperation } from 'src/app/model/model.interface';
 import { IngredientService } from 'src/app/service/ingredient.service';
 import { TypeSelectionUnroutedComponent } from '../../type/type-selection-unrouted/type-selection-unrouted.component';
+import { MediaService } from 'src/app/service/media.service';
 
 @Component({
   selector: 'app-admin-ingredient-form-unrouted',
@@ -19,6 +20,8 @@ export class AdminIngredientFormUnroutedComponent implements OnInit {
   ingredientForm!: FormGroup;
   oIngredient: IIngredient = { id_type: {}} as IIngredient;
   status: HttpErrorResponse | null = null;
+  oSelectedImageUrl: string | undefined = '';
+
 
   oDynamicDialogRef: DynamicDialogRef | undefined;
   
@@ -27,6 +30,7 @@ export class AdminIngredientFormUnroutedComponent implements OnInit {
     private oIngredientService: IngredientService,
     private oRouter: Router,
     public oDialogService: DialogService,
+    private oMediaService: MediaService,
   ) { }
 
   initializeForm(oIngredient: IIngredient) {
@@ -35,7 +39,8 @@ export class AdminIngredientFormUnroutedComponent implements OnInit {
       name: [oIngredient.name, [Validators.required, Validators.minLength(3), Validators.maxLength(255)]],
       id_type: this.oFormBuilder.group({
         id: [oIngredient.id_type?.id || null, Validators.required]
-      })
+      }),
+      ingredient_image: [oIngredient.ingredient_image]
     });
   }
 
@@ -43,7 +48,6 @@ export class AdminIngredientFormUnroutedComponent implements OnInit {
     if (this.operation == 'EDIT') {
       this.oIngredientService.getOne(this.id).subscribe({
         next: (data: IIngredient) => {
-          console.log('Ingredient data: ',data);
           this.oIngredient = data;
           this.initializeForm(this.oIngredient);
         },
@@ -60,6 +64,24 @@ export class AdminIngredientFormUnroutedComponent implements OnInit {
     return this.ingredientForm.controls[controlName].hasError(errorName);
   }
 
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      const oFormData = new FormData();
+      oFormData.append('file', file);
+
+      this.oMediaService.uploadFile(oFormData).subscribe({
+        next: (response) => {
+          this.oSelectedImageUrl = response.url;
+          this.oIngredient.ingredient_image = response.url;
+          this.ingredientForm.controls['ingredient_image'].patchValue(response.url);
+        },
+        error: (error) => {
+         console.log(error);
+        }
+       });
+    }
+  }
   onSubmit() {
     if (this.ingredientForm.valid) {
       if (this.operation == 'NEW') {

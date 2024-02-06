@@ -21,7 +21,7 @@
           <label class="label">Init date</label>
           <div class="control">
             <p-calendar formControlName="init_date" [locale]="es" dateFormat="dd/mm/yy" inputId="spanish"
-            [showIcon]="true" [showTime]="true" [showSeconds]="true"></p-calendar>
+            [showIcon]="true" [showTime]="false" [showSeconds]="true"></p-calendar>
           
           </div>
           <p class="help is-danger" *ngIf="hasError('init_date', 'required')">Required</p>
@@ -31,7 +31,7 @@
           <label class="label">End date</label>
           <div class="control">
             <p-calendar formControlName="end_date" [locale]="es" dateFormat="dd/mm/yy" inputId="spanish"
-            [showIcon]="true" [showTime]="true" [showSeconds]="true"></p-calendar>
+            [showIcon]="true" [showTime]="false" [showSeconds]="true"></p-calendar>
           
           </div>
         </div>

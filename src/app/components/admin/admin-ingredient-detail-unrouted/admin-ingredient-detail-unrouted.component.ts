@@ -32,14 +32,8 @@ export class AdminIngredientDetailUnroutedComponent implements OnInit {
   getOne(): void {
     this.oIngredientService.getOne(this.id).subscribe({    
       next: (data: IIngredient) => {
-        console.log('Ingredient data: ', data);
         this.oIngredient = data;
-        if (this.oIngredient && this.oIngredient.id_type) {
-          console.log('oIngredient after assignment: ', this.oIngredient);
-          console.log('oIngredient.id_type: ', this.oIngredient.id_type);
-        } else {
-          console.error('oIngredient or oIngredient.id_type is undefined.');
-        }
+     
       },
       error: (error: HttpErrorResponse) => {
         this.status = error;
