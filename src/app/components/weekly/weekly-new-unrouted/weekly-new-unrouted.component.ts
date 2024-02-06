@@ -96,7 +96,7 @@ export class WeeklyNewUnroutedComponent implements OnInit {
 
             this.oWeekly = data;
             this.initializeForm(this.oWeekly);
-            // this.oRouter.navigate(['/recipe', 'content', 'new', data]);
+            this.oRouter.navigate(['/weekly', 'schedule', 'new', data]);
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
@@ -109,7 +109,8 @@ export class WeeklyNewUnroutedComponent implements OnInit {
             this.oWeekly = data;
             this.initializeForm(this.oWeekly);
 
-            // this.oRouter.navigate(['/recipe', 'content', 'new', data.id]);
+            this.oRouter.navigate(['/weekly', 'schedule', 'new', data.id]);
+
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
