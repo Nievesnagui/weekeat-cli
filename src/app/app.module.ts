@@ -76,6 +76,8 @@ import { RecipeContentNewRoutedComponent } from './components/recipe/recipe-cont
 import { RecipeContentRemoveRoutedComponent } from './components/recipe/recipe-content-remove-routed/recipe-content-remove-routed.component';
 import { RecipeContentRemoveUnroutedComponent } from './components/recipe/recipe-content-remove-unrouted/recipe-content-remove-unrouted.component';
 import { CalendarModule } from 'primeng/calendar';
+import { WeeklyScheduleNewRoutedComponent } from './components/weekly/weekly-schedule-new-routed/weekly-schedule-new-routed.component';
+import { WeeklyScheduleFormUnroutedComponent } from './components/weekly/weekly-schedule-form-unrouted/weekly-schedule-form-unrouted.component';
 
 @NgModule({
   declarations: [
@@ -112,6 +114,10 @@ import { CalendarModule } from 'primeng/calendar';
 
     //Type
     TypeSelectionUnroutedComponent,
+
+    //Schedule
+    WeeklyScheduleNewRoutedComponent,
+    WeeklyScheduleFormUnroutedComponent,
 
     //Weekly
     WeeklyNewRoutedComponent,
