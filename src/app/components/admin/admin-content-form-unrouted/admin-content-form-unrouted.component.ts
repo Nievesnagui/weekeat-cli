@@ -138,6 +138,7 @@ export class AdminContentFormUnroutedComponent implements OnInit {
            name: recipe.name,
            description: recipe.description,
            recipe_image: recipe.recipe_image,
+           process: recipe.process,
            content: [],
            favs: [],
            schedules: [],

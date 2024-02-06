@@ -44,7 +44,6 @@ export class RecipeFormUnroutedComponent implements OnInit {
   }
 
   initializeForm(oRecipe: IRecipe) {
-    console.log("initialize");
     this.strUserName = this.oSessionService.getUsername();
     this.oUserService.getByUsername(this.oSessionService.getUsername()).subscribe({
       next: (oUser: IUser) => {
@@ -57,9 +56,9 @@ export class RecipeFormUnroutedComponent implements OnInit {
           }),
           name: [oRecipe.name, [Validators.required]],
           description: [oRecipe.description, [Validators.required]],
+          process: [oRecipe.process, [Validators.required]],
           content: [oRecipe.content]
         })
-        console.log(this.userId);
       },
       error: (error: HttpErrorResponse) => {
         console.log(error);
@@ -72,7 +71,6 @@ export class RecipeFormUnroutedComponent implements OnInit {
     if (this.operation == 'EDIT') {
       this.oRecipeService.getOne(this.id).subscribe({
         next: (data: IRecipe) => {
-          console.log('Type data: ', data);
           this.oRecipe = data;
           this.initializeForm(this.oRecipe);
         },
@@ -138,5 +136,20 @@ export class RecipeFormUnroutedComponent implements OnInit {
     });
   }
 
+  editWithoutIngredients() {
+    if (this.recipeForm.valid) {
+      this.oRecipeService.updateOne(this.recipeForm.value).subscribe({
+        next: (data: IRecipe) => {
+          this.oRecipe = data;
+          this.initializeForm(this.oRecipe);
+          console.log("Recipe updated without changing ingredients. ID: " + data.id);
+          this.oRouter.navigate(['/recipe', data.id]);
+        },
+        error: (error: HttpErrorResponse) => {
+          this.status = error;
+        }
+      });
+    }
+  }  
 
 }

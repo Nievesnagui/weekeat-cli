@@ -37,6 +37,7 @@ export class AdminRecipeFormUnroutedComponent implements OnInit {
       }),
       name: [oRecipe.name, [Validators.required]],
       description: [oRecipe.description, [Validators.required]],
+      process: [oRecipe.process, [Validators.required]],
       content: [oRecipe.content]
     })
   }
@@ -45,7 +46,6 @@ export class AdminRecipeFormUnroutedComponent implements OnInit {
     if (this.operation == 'EDIT') {
       this.oRecipeService.getOne(this.id).subscribe({
         next: (data: IRecipe) => {
-          console.log('Type data: ', data);
           this.oRecipe = data;
           this.initializeForm(this.oRecipe);
         },

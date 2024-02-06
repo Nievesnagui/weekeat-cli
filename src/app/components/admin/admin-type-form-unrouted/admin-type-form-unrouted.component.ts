@@ -35,7 +35,6 @@ export class AdminTypeFormUnroutedComponent implements OnInit {
     if(this.operation == 'EDIT'){
       this.oTypeService.getOne(this.id).subscribe({
         next: (data:IType) => {
-          console.log('Type data: ', data);
           this.oType = data;
           this.initializeForm(this.oType);
         },

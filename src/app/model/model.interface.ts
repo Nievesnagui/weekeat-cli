@@ -63,6 +63,7 @@ export interface IRecipe {
     name: string;
     description: string;
     recipe_image: string; //imagen
+    process: string;
     content: Array<IContent> ;
     favs: Array<IFavRecipe> ;
     schedules: Array<ISchedule> ;

@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { IRecipe, IUser } from 'src/app/model/model.interface';
 import { RecipeService } from 'src/app/service/recipe.service';
 import { SessionService } from 'src/app/service/session.service';
@@ -15,7 +16,7 @@ export class RecipeDetailOwnUnroutedComponent implements OnInit {
   @Input() id: number = 1;
   strUserName: string = "";
   oSessionUser: IUser | null = null;
-
+  oRecipeToRemove: IRecipe | null = null;
 
   oRecipe: IRecipe = { id_user: {} } as IRecipe;
   status: HttpErrorResponse | null = null;
@@ -56,6 +57,44 @@ export class RecipeDetailOwnUnroutedComponent implements OnInit {
         this.status = error;
       }
     })
+  }
+
+
+  ref: DynamicDialogRef | undefined;
+  showConfirmationModal = false;
+  doRemove(u: IRecipe) {
+    this.oRecipeToRemove = u;
+    console.log('Recipe to remove:', this.oRecipeToRemove);
+  
+    if (this.oRecipeToRemove?.id !== undefined) {
+      // Mostrar el modal de confirmación
+      this.showConfirmationModal = true;
+    } else {
+      console.error('Recipe ID is undefined or null');
+    }
+  }
+  
+  confirmRemove() {
+    // Lógica de eliminación aquí
+    console.log('Removing recipe');
+    this.oRecipeService.removeOne(this.oRecipeToRemove?.id).subscribe({
+      next: () => {
+           this.getOne();
+
+      },
+      error: (error: HttpErrorResponse) => {
+        this.status = error;
+      }
+    });
+  
+    // Cerrar el modal de confirmación después de confirmar
+    this.showConfirmationModal = false;
+  }
+  
+  cancelRemove() {
+    // Cancelar la eliminación y cerrar el modal de confirmación
+    console.log('Recipe not removed');
+    this.showConfirmationModal = false;
   }
 
 }

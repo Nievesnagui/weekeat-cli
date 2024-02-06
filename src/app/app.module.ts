@@ -75,7 +75,7 @@ import { RecipeContentFormUnroutedComponent } from './components/recipe/recipe-c
 import { RecipeContentNewRoutedComponent } from './components/recipe/recipe-content-new-routed/recipe-content-new-routed.component';
 import { RecipeContentRemoveRoutedComponent } from './components/recipe/recipe-content-remove-routed/recipe-content-remove-routed.component';
 import { RecipeContentRemoveUnroutedComponent } from './components/recipe/recipe-content-remove-unrouted/recipe-content-remove-unrouted.component';
-
+import { CalendarModule } from 'primeng/calendar';
 
 @NgModule({
   declarations: [
@@ -169,6 +169,7 @@ import { RecipeContentRemoveUnroutedComponent } from './components/recipe/recipe
     CarouselModule,
     BrowserAnimationsModule,
     PickListModule,
+    CalendarModule,
   ],
   providers: [
     SessionService,
