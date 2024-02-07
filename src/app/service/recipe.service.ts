@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { API_URL } from '../environment/environment';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, of } from 'rxjs';
 import { IRecipe, IRecipePage } from '../model/model.interface';
 
 @Injectable({
@@ -15,6 +15,14 @@ export class RecipeService {
   constructor(
     private oHttpClient: HttpClient
   ) { }
+  getAllRecipes(): Observable<IRecipe[]> {
+    return this.oHttpClient.get<IRecipe[]>(this.sUrl).pipe(
+      catchError(error => {
+        console.error('Error al obtener las recetas:', error);
+        return of([]); // Devuelve un array vacío en caso de error
+      })
+    );
+  }
 
   getOne(id: number): Observable<IRecipe> {
     return this.oHttpClient.get<IRecipe>(this.sUrl + "/" + id);

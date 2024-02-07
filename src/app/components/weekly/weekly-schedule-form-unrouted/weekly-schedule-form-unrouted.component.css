@@ -1,0 +1,66 @@
+:host ::ng-deep .drag-column {
+    padding-right: 0.5em;
+}
+:host ::ng-deep .drop-column {
+    border: 1px solid transparent;
+    transition: border-color 0.2s;
+}
+:host ::ng-deep .drop-column.p-draggable-enter {
+    border-color: var(--primary-color);
+}
+:host ::ng-deep .product-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    width: 100%;
+    border-bottom: 1px solid var(--surface-d);
+}
+:host ::ng-deep .product-item img {
+    width: 75px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    margin-right: 1rem;
+}
+:host ::ng-deep .product-item .product-list-detail {
+    flex: 1 1 0;
+}
+:host ::ng-deep .product-item .product-list-action {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+:host ::ng-deep .product-item .product-category-icon {
+    vertical-align: middle;
+    margin-right: 0.5rem;
+}
+:host ::ng-deep .product-item .product-category {
+    vertical-align: middle;
+    line-height: 1;
+}
+:host ::ng-deep [pDraggable] {
+    cursor: move;
+}
+@media screen and (max-width: 576px) {
+    :host ::ng-deep .product-item {
+        flex-wrap: wrap;
+   }
+    :host ::ng-deep .product-item .image-container {
+        width: 100%;
+        text-align: center;
+   }
+    :host ::ng-deep .product-item img {
+        margin: 0 0 1rem 0;
+        width: 100px;
+   }
+}
+
+:host ::ng-deep .drop-column {
+    border: 1px solid transparent;
+    transition: border-color 0.2s;
+}
+:host ::ng-deep .drop-column.p-draggable-enter {
+    border-color: var(--primary-color);
+}
+:host ::ng-deep [pDraggable] {
+    cursor: move;
+}
+

@@ -9,9 +9,9 @@ import { RecipeService } from 'src/app/service/recipe.service';
 })
 export class WeeklyScheduleFormUnroutedComponent implements OnInit {
 
-  availableProducts: IRecipe[] | undefined;
+  availableProducts: IRecipe[] = [];
 
-  selectedProducts: IRecipe[] | undefined;
+  selectedProducts: IRecipe[] = [];
 
   draggedProduct: IRecipe | undefined | null;
 
@@ -21,8 +21,27 @@ export class WeeklyScheduleFormUnroutedComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.selectedProducts = [];
-    this.availableProducts = []
+    this.loadRecipes();
+  }
+
+  loadRecipes() {
+    this.oRecipeService.getAllRecipes().subscribe({
+      next: (response: any) => {
+        console.log("Recipe");
+        console.log(response);
+  
+        // Verificar si la respuesta contiene una propiedad 'content' que es un array
+        if (response && response.content && Array.isArray(response.content)) {
+          // Asignar el array de recetas a availableProducts
+          this.availableProducts = response.content;
+        } else {
+          console.error('La respuesta del servicio no contiene un array de recetas válido:', response);
+        }
+      },
+      error: (error: any) => {
+        console.error('Error al obtener las recetas:', error);
+      }
+    });
   }
 
   dragStart(product: IRecipe) {
@@ -31,9 +50,8 @@ export class WeeklyScheduleFormUnroutedComponent implements OnInit {
 
   drop() {
     if (this.draggedProduct) {
-      let draggedProductIndex = this.findIndex(this.draggedProduct);
-      this.selectedProducts = [...(this.selectedProducts as IRecipe[]), this.draggedProduct];
-      this.availableProducts = this.availableProducts?.filter((val, i) => i != draggedProductIndex);
+      this.selectedProducts.push(this.draggedProduct);
+      this.availableProducts = this.availableProducts.filter(product => product.id !== this.draggedProduct!.id);
       this.draggedProduct = null;
     }
   }
@@ -42,15 +60,5 @@ export class WeeklyScheduleFormUnroutedComponent implements OnInit {
     this.draggedProduct = null;
   }
 
-  findIndex(product: IRecipe) {
-    let index = -1;
-    for (let i = 0; i < (this.availableProducts as IRecipe[]).length; i++) {
-      if (product.id === (this.availableProducts as IRecipe[])[i].id) {
-        index = i;
-        break;
-      }
-    }
-    return index;
-  }
 
 }

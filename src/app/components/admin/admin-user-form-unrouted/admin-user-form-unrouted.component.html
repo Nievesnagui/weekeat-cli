@@ -60,7 +60,7 @@
         <div class="field">
           <label class="label">Profile Picture</label>
           <div class="control">
-          <input class="input" type="file" formControlName="profile_picture" (change)="onFileSelected($event)">
+          <input class="input" type="file" (change)="onFileSelected($event)" accept="profile_picture/*">
           </div>
         </div>
 

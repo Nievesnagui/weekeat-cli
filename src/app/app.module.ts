@@ -78,6 +78,8 @@ import { RecipeContentRemoveUnroutedComponent } from './components/recipe/recipe
 import { CalendarModule } from 'primeng/calendar';
 import { WeeklyScheduleNewRoutedComponent } from './components/weekly/weekly-schedule-new-routed/weekly-schedule-new-routed.component';
 import { WeeklyScheduleFormUnroutedComponent } from './components/weekly/weekly-schedule-form-unrouted/weekly-schedule-form-unrouted.component';
+import { DragDropModule } from 'primeng/dragdrop';
+import { PanelModule } from 'primeng/panel';
 
 @NgModule({
   declarations: [
@@ -176,6 +178,8 @@ import { WeeklyScheduleFormUnroutedComponent } from './components/weekly/weekly-
     BrowserAnimationsModule,
     PickListModule,
     CalendarModule,
+    DragDropModule,
+    PanelModule,
   ],
   providers: [
     SessionService,

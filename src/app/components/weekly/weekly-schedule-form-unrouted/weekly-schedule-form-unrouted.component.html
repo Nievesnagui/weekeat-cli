@@ -1,18 +1,32 @@
-<div class="card flex flex-wrap gap-3">
-  <div class="p-2 border-1 surface-border border-round w-15rem h-10rem">
-      <ul class="list-none flex flex-column gap-2 p-0 m-0">
-          <li *ngFor="let product of availableProducts" class="p-2 border-round shadow-1" pDraggable (onDragStart)="dragStart(product)" (onDragEnd)="dragEnd()">
-              {{product.name}}
-          </li>
-      </ul>
-  </div>
-  <div class="p-2 w-15rem h-10rem drop-column" pDroppable (onDrop)="drop()">
-      <p class="text-center surface-border border-bottom-1">Drop Zone</p>
-      <ul class="list-none flex flex-column gap-2 p-0 m-0" *ngIf="selectedProducts" >
-          <li *ngFor="let product of selectedProducts" class="p-2 border-round shadow-1">
-              {{product.name}}
-          </li>
-      </ul>
-  </div>
-</div>
+<div class="card flex flex-wrap gap-3 columns">
+    <div class="p-2 border-1 surface-border border-round w-15rem h-10rem ">
+        <ul class="list-none flex flex-column gap-2 p-0 m-0">
+            <li *ngFor="let product of availableProducts" class="p-2 border-round shadow-1" pDraggable
+                (onDragStart)="dragStart(product)" (onDragEnd)="dragEnd()">
 
+                <div class="card">
+                    <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
+                        <p-panel header="{{product.name}}">
+                            Imagen
+                        </p-panel>
+                    </div>
+                </div>
+
+            </li>
+        </ul>
+    </div>
+    <div class="p-2 w-15rem h-10rem drop-column column" pDroppable (onDrop)="drop()">
+        <p class="text-center surface-border border-bottom-1">Drop Zone</p>
+        <ul class="list-none flex flex-column gap-2 p-0 m-0" *ngIf="availableProducts && availableProducts.length > 0">
+            <li *ngFor="let product of selectedProducts" class="p-2 border-round shadow-1">
+                 <div class="card">
+                    <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
+                        <p-panel header="{{product.name}}">
+                            Imagen
+                        </p-panel>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
