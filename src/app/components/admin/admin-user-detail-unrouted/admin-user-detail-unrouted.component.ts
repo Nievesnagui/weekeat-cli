@@ -18,7 +18,6 @@ export class AdminUserDetailUnroutedComponent implements OnInit {
 
   constructor(
     private oUserService: UserService,
-    private oSessionService: SessionService
   ) { }
 
   ngOnInit() {

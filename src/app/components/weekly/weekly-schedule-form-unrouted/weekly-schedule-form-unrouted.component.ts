@@ -56,6 +56,7 @@ export class WeeklyScheduleFormUnroutedComponent implements OnInit {
     }
   }
 
+  
   dragEnd() {
     this.draggedProduct = null;
   }

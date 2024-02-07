@@ -80,6 +80,7 @@ import { WeeklyScheduleNewRoutedComponent } from './components/weekly/weekly-sch
 import { WeeklyScheduleFormUnroutedComponent } from './components/weekly/weekly-schedule-form-unrouted/weekly-schedule-form-unrouted.component';
 import { DragDropModule } from 'primeng/dragdrop';
 import { PanelModule } from 'primeng/panel';
+import { SplitterModule } from 'primeng/splitter';
 
 @NgModule({
   declarations: [
@@ -180,6 +181,7 @@ import { PanelModule } from 'primeng/panel';
     CalendarModule,
     DragDropModule,
     PanelModule,
+    SplitterModule,
   ],
   providers: [
     SessionService,

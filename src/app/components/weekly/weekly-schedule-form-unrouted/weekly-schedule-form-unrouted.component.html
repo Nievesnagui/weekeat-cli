@@ -1,32 +1,259 @@
-<div class="card flex flex-wrap gap-3 columns">
-    <div class="p-2 border-1 surface-border border-round w-15rem h-10rem ">
-        <ul class="list-none flex flex-column gap-2 p-0 m-0">
-            <li *ngFor="let product of availableProducts" class="p-2 border-round shadow-1" pDraggable
-                (onDragStart)="dragStart(product)" (onDragEnd)="dragEnd()">
+<div class="card">
+    <p-splitter [style]="{ height: '500px' }" [panelSizes]="[25, 75]">
+        <ng-template pTemplate>
+            <div style="overflow-y: auto;">
+                <div class="p-2 border-1 surface-border border-round w-15rem h-10rem ">
+                    <ul class="list-none flex flex-column gap-2 p-0 m-0">
+                        <li *ngFor="let product of availableProducts" class="p-2 border-round shadow-1" pDraggable
+                            (onDragStart)="dragStart(product)" (onDragEnd)="dragEnd()">
 
-                <div class="card">
-                    <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
-                        <p-panel header="{{product.name}}">
-                            Imagen
-                        </p-panel>
+                            <div class="card">
+                                <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
+                                    <p-panel header="{{product.name}}">
+                                        Imagen
+                                    </p-panel>
+                                </div>
+                            </div>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </ng-template>
+
+        <ng-template pTemplate>
+            <div class=" columns ">
+                <div class="column tile is-parent is-vertical">
+                    <div class="tile is-child day-height" pDroppable (onDrop)="drop()">
+                        <p class="text-center surface-border border-bottom-1 ">Monday Lunch</p>
+                        <ul class="list-none flex flex-column gap-2 p-0 m-0"
+                            *ngIf="availableProducts && availableProducts.length > 0">
+                            <li *ngFor="let product of selectedProducts" class="p-2 border-round shadow-1">
+                                <div class="card">
+                                    <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
+                                        <p-panel header="{{product.name}}">
+                                            Imagen
+                                        </p-panel>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tile is-child " pDroppable (onDrop)="drop()">
+                        <p class="text-center surface-border border-bottom-1">Monday Dinner</p>
+                        <ul class="list-none flex flex-column gap-2 p-0 m-0"
+                            *ngIf="availableProducts && availableProducts.length > 0">
+                            <li *ngFor="let product of selectedProducts" class="p-2 border-round shadow-1">
+                                <div class="card">
+                                    <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
+                                        <p-panel header="{{product.name}}">
+                                            Imagen
+                                        </p-panel>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
 
-            </li>
-        </ul>
-    </div>
-    <div class="p-2 w-15rem h-10rem drop-column column" pDroppable (onDrop)="drop()">
-        <p class="text-center surface-border border-bottom-1">Drop Zone</p>
-        <ul class="list-none flex flex-column gap-2 p-0 m-0" *ngIf="availableProducts && availableProducts.length > 0">
-            <li *ngFor="let product of selectedProducts" class="p-2 border-round shadow-1">
-                 <div class="card">
-                    <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
-                        <p-panel header="{{product.name}}">
-                            Imagen
-                        </p-panel>
+                <div class="column tile is-parent is-vertical">
+                    <div class="tile is-child " pDroppable (onDrop)="drop()">
+                        <p class="text-center surface-border border-bottom-1">Tuesday Lunch</p>
+                        <ul class="list-none flex flex-column gap-2 p-0 m-0"
+                            *ngIf="availableProducts && availableProducts.length > 0">
+                            <li *ngFor="let product of selectedProducts" class="p-2 border-round shadow-1">
+                                <div class="card">
+                                    <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
+                                        <p-panel header="{{product.name}}">
+                                            Imagen
+                                        </p-panel>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tile is-child " pDroppable (onDrop)="drop()">
+                        <p class="text-center surface-border border-bottom-1">Tuesday Dinner</p>
+                        <ul class="list-none flex flex-column gap-2 p-0 m-0"
+                            *ngIf="availableProducts && availableProducts.length > 0">
+                            <li *ngFor="let product of selectedProducts" class="p-2 border-round shadow-1">
+                                <div class="card">
+                                    <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
+                                        <p-panel header="{{product.name}}">
+                                            Imagen
+                                        </p-panel>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-            </li>
-        </ul>
-    </div>
+
+                <div class="column tile is-parent is-vertical">
+                    <div class="tile is-child " pDroppable (onDrop)="drop()">
+                        <p class="text-center surface-border border-bottom-1">Wednesday Lunch</p>
+                        <ul class="list-none flex flex-column gap-2 p-0 m-0"
+                            *ngIf="availableProducts && availableProducts.length > 0">
+                            <li *ngFor="let product of selectedProducts" class="p-2 border-round shadow-1">
+                                <div class="card">
+                                    <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
+                                        <p-panel header="{{product.name}}">
+                                            Imagen
+                                        </p-panel>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tile is-child " pDroppable (onDrop)="drop()">
+                        <p class="text-center surface-border border-bottom-1">Wednesday Dinner</p>
+                        <ul class="list-none flex flex-column gap-2 p-0 m-0"
+                            *ngIf="availableProducts && availableProducts.length > 0">
+                            <li *ngFor="let product of selectedProducts" class="p-2 border-round shadow-1">
+                                <div class="card">
+                                    <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
+                                        <p-panel header="{{product.name}}">
+                                            Imagen
+                                        </p-panel>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="column tile is-parent is-vertical">
+                    <div class="tile is-child " pDroppable (onDrop)="drop()">
+                        <p class="text-center surface-border border-bottom-1">Thursday Lunch</p>
+                        <ul class="list-none flex flex-column gap-2 p-0 m-0"
+                            *ngIf="availableProducts && availableProducts.length > 0">
+                            <li *ngFor="let product of selectedProducts" class="p-2 border-round shadow-1">
+                                <div class="card">
+                                    <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
+                                        <p-panel header="{{product.name}}">
+                                            Imagen
+                                        </p-panel>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tile is-child " pDroppable (onDrop)="drop()">
+                        <p class="text-center surface-border border-bottom-1">Thursday Dinner</p>
+                        <ul class="list-none flex flex-column gap-2 p-0 m-0"
+                            *ngIf="availableProducts && availableProducts.length > 0">
+                            <li *ngFor="let product of selectedProducts" class="p-2 border-round shadow-1">
+                                <div class="card">
+                                    <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
+                                        <p-panel header="{{product.name}}">
+                                            Imagen
+                                        </p-panel>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="column tile is-parent is-vertical">
+                    <div class="tile is-child " pDroppable (onDrop)="drop()">
+                        <p class="text-center surface-border border-bottom-1">Friday Lunch</p>
+                        <ul class="list-none flex flex-column gap-2 p-0 m-0"
+                            *ngIf="availableProducts && availableProducts.length > 0">
+                            <li *ngFor="let product of selectedProducts" class="p-2 border-round shadow-1">
+                                <div class="card">
+                                    <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
+                                        <p-panel header="{{product.name}}">
+                                            Imagen
+                                        </p-panel>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tile is-child " pDroppable (onDrop)="drop()">
+                        <p class="text-center surface-border border-bottom-1">Friday Dinner</p>
+                        <ul class="list-none flex flex-column gap-2 p-0 m-0"
+                            *ngIf="availableProducts && availableProducts.length > 0">
+                            <li *ngFor="let product of selectedProducts" class="p-2 border-round shadow-1">
+                                <div class="card">
+                                    <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
+                                        <p-panel header="{{product.name}}">
+                                            Imagen
+                                        </p-panel>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="column tile is-parent is-vertical">
+                    <div class="tile is-child " pDroppable (onDrop)="drop()">
+                        <p class="text-center surface-border border-bottom-1">Saturday Lunch</p>
+                        <ul class="list-none flex flex-column gap-2 p-0 m-0"
+                            *ngIf="availableProducts && availableProducts.length > 0">
+                            <li *ngFor="let product of selectedProducts" class="p-2 border-round shadow-1">
+                                <div class="card">
+                                    <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
+                                        <p-panel header="{{product.name}}">
+                                            Imagen
+                                        </p-panel>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tile is-child " pDroppable (onDrop)="drop()">
+                        <p class="text-center surface-border border-bottom-1">Saturday Dinner</p>
+                        <ul class="list-none flex flex-column gap-2 p-0 m-0"
+                            *ngIf="availableProducts && availableProducts.length > 0">
+                            <li *ngFor="let product of selectedProducts" class="p-2 border-round shadow-1">
+                                <div class="card">
+                                    <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
+                                        <p-panel header="{{product.name}}">
+                                            Imagen
+                                        </p-panel>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="column tile is-parent is-vertical">
+                    <div class="tile is-child " pDroppable (onDrop)="drop()">
+                        <p class="text-center surface-border border-bottom-1">Sunday Lunch</p>
+                        <ul class="list-none flex flex-column gap-2 p-0 m-0"
+                            *ngIf="availableProducts && availableProducts.length > 0">
+                            <li *ngFor="let product of selectedProducts" class="p-2 border-round shadow-1">
+                                <div class="card">
+                                    <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
+                                        <p-panel header="{{product.name}}">
+                                            Imagen
+                                        </p-panel>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tile is-child " pDroppable (onDrop)="drop()">
+                        <p class="text-center surface-border border-bottom-1">Sunday Dinner</p>
+                        <ul class="list-none flex flex-column gap-2 p-0 m-0"
+                            *ngIf="availableProducts && availableProducts.length > 0">
+                            <li *ngFor="let product of selectedProducts" class="p-2 border-round shadow-1">
+                                <div class="card">
+                                    <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
+                                        <p-panel header="{{product.name}}">
+                                            Imagen
+                                        </p-panel>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </ng-template>
+    </p-splitter>
 </div>

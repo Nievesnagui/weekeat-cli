@@ -2,8 +2,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { IIngredient } from 'src/app/model/model.interface';
 import { IngredientService } from 'src/app/service/ingredient.service';
-import { SessionService } from 'src/app/service/session.service';
-import { TypeService } from 'src/app/service/type.service';
 
 @Component({
   selector: 'app-admin-ingredient-detail-unrouted',
@@ -18,9 +16,7 @@ export class AdminIngredientDetailUnroutedComponent implements OnInit {
   status: HttpErrorResponse | null = null;
 
   constructor(
-    private oIngredientService: IngredientService,
-    private oSessionService: SessionService,
-    private oTypeService: TypeService
+    private oIngredientService: IngredientService
   ) {
     
    }

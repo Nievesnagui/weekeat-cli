@@ -1,3 +1,7 @@
+.day-height{
+    height: 200px !important;
+}
+
 :host ::ng-deep .drag-column {
     padding-right: 0.5em;
 }
@@ -23,34 +27,12 @@
 :host ::ng-deep .product-item .product-list-detail {
     flex: 1 1 0;
 }
-:host ::ng-deep .product-item .product-list-action {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-}
 :host ::ng-deep .product-item .product-category-icon {
     vertical-align: middle;
     margin-right: 0.5rem;
 }
-:host ::ng-deep .product-item .product-category {
-    vertical-align: middle;
-    line-height: 1;
-}
 :host ::ng-deep [pDraggable] {
     cursor: move;
-}
-@media screen and (max-width: 576px) {
-    :host ::ng-deep .product-item {
-        flex-wrap: wrap;
-   }
-    :host ::ng-deep .product-item .image-container {
-        width: 100%;
-        text-align: center;
-   }
-    :host ::ng-deep .product-item img {
-        margin: 0 0 1rem 0;
-        width: 100px;
-   }
 }
 
 :host ::ng-deep .drop-column {
@@ -63,4 +45,5 @@
 :host ::ng-deep [pDraggable] {
     cursor: move;
 }
+
 
