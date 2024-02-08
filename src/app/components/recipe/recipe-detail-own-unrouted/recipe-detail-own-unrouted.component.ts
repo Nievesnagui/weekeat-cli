@@ -55,9 +55,6 @@ export class RecipeDetailOwnUnroutedComponent implements OnInit {
     this.oRecipeService.getOne(this.id).subscribe({
       next: (data: IRecipe) => {
         this.oRecipe = data;
-
-        //Solucionar cómo rellenar esto
-
         this.oIngredientService.getPageByContentFilter(this.oPaginatorState.rows, this.oPaginatorState.page, "id", this.oRecipe.id).subscribe({
           next: (data: IIngredientPage) => {
             this.oPage = data;
@@ -69,27 +66,6 @@ export class RecipeDetailOwnUnroutedComponent implements OnInit {
             this.status = error;
           }
         })
-        /* if (this.oRecipe.content) {
-           this.oRecipe.content.forEach((content: IContent) => {
-             // Verificar que 'id_ingredient' esté definido y no sea nulo
-             console.log(content);
-             if (content.id_ingredient) {
-               this.oIngredientService.getOne(content.id_ingredient.id).subscribe({
-                 next: (ingredient: IIngredient) => {
-                   this.oIngredients.push(ingredient);
-                 },
-                 error: (error: HttpErrorResponse) => {
-                   console.error('Error fetching ingredient:', error);
-                 }
-               });
-             }
-           });
-         }
-         if (this.oRecipe && this.oRecipe.id_user) {
-           console.log('oRecipe.id_user: ', this.oRecipe.id_user.id);
-         } else {
-           console.error('oIngredient or oRecipe.id_user is undefined.');
-         }*/
       },
       error: (error: HttpErrorResponse) => {
         this.status = error;
