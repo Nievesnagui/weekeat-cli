@@ -110,7 +110,6 @@ export class RecipeContentFormUnroutedComponent implements OnInit {
   ref: DynamicDialogRef | undefined;
 
   onSubmit() {
-    console.log("entra");
     this.oRecipeService.getOne(this.id_recipe).subscribe((recipe: IRecipe) => {
       this.recipe = recipe;
 
@@ -149,12 +148,9 @@ export class RecipeContentFormUnroutedComponent implements OnInit {
           id_ingredient: id_ingredient,
           id_recipe: id_recipe,
         };
-        console.log("Content:");
-        console.log(content);
         this.oContentService.newOne(content).subscribe({
           next: (data: IContent) => {
             this.oContent = data;
-            console.log("Data: " + data);
             this.oRouter.navigate(['/recipe',  id_recipe.id]);
           },
           error: (error: HttpErrorResponse) => {

@@ -43,6 +43,20 @@
         <td>{{ oRecipe.description }}</td>
       </tr>
       <tr>
+        <th>ingredients</th>
+        <td>
+          <ul>
+            <li *ngFor="let ingredient of oIngredients">
+              {{ ingredient.name  }}
+            </li>
+          </ul>
+          <ng-template #noIngredients>
+            <span class="tag is-light">No ingredients</span>
+          </ng-template>
+        </td>
+      </tr>
+
+      <tr>
         <th>process</th>
         <td>{{ oRecipe.process }}</td>
       </tr>

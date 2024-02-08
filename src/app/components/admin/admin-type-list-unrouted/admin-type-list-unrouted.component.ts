@@ -74,7 +74,6 @@ export class AdminTypeListUnroutedComponent implements OnInit {
   showConfirmationModal = false;
   doRemove(u: IType) {
     this.oTypeToRemove = u;
-    console.log('Type to remove:', this.oTypeToRemove);
   
     if (this.oTypeToRemove?.id !== undefined) {
       // Mostrar el modal de confirmación
@@ -86,7 +85,6 @@ export class AdminTypeListUnroutedComponent implements OnInit {
   
   confirmRemove() {
     // Lógica de eliminación aquí
-    console.log('Removing type');
     this.oTypeService.removeOne(this.oTypeToRemove?.id).subscribe({
       next: () => {
         this.getPage();

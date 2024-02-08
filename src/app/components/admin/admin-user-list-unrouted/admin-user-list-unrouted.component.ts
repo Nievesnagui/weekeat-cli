@@ -87,7 +87,6 @@ export class AdminUserListUnroutedComponent implements OnInit {
   showConfirmationModal = false;
   doRemove(u: IUser) {
     this.oUserToRemove = u;
-    console.log('User to remove:', this.oUserToRemove);
   
     if (this.oUserToRemove?.id !== undefined) {
       // Mostrar el modal de confirmación
@@ -99,7 +98,6 @@ export class AdminUserListUnroutedComponent implements OnInit {
   
   confirmRemove() {
     // Lógica de eliminación aquí
-    console.log('Removing user');
     this.oUserService.removeOne(this.oUserToRemove?.id).subscribe({
       next: () => {
         this.getPage();

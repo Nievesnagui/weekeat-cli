@@ -88,7 +88,6 @@ showConfirmationModal = false;
 
 doRemove(u: IIngredient) {
   this.oIngredientToRemove = u;
-  console.log('Ingredient to remove:', this.oIngredientToRemove);
 
   if (this.oIngredientToRemove?.id !== undefined) {
     // Mostrar el modal de confirmación
@@ -100,7 +99,6 @@ doRemove(u: IIngredient) {
 
 confirmRemove() {
   // Lógica de eliminación aquí
-  console.log('Removing ingredient');
   this.oIngredientService.removeOne(this.oIngredientToRemove?.id).subscribe({
     next: () => {
       this.getPage();

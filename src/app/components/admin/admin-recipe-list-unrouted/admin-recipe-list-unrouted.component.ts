@@ -50,7 +50,6 @@ export class AdminRecipeListUnroutedComponent implements OnInit {
     } else {
       this.oRecipeService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField).subscribe({
         next: (data: IRecipePage) => {
-          console.log(data);
           this.oPage = data;
           this.oPaginatorState.pageCount = data.totalPages;
         },
@@ -98,7 +97,6 @@ export class AdminRecipeListUnroutedComponent implements OnInit {
   showConfirmationModal = false;
   doRemove(u: IRecipe) {
     this.oRecipeToRemove = u;
-    console.log('Recipe to remove:', this.oRecipeToRemove);
 
     if (this.oRecipeToRemove?.id !== undefined) {
       // Mostrar el modal de confirmación
@@ -110,7 +108,6 @@ export class AdminRecipeListUnroutedComponent implements OnInit {
 
   confirmRemove() {
     // Lógica de eliminación aquí
-    console.log('Removing recipe');
     this.oRecipeService.removeOne(this.oRecipeToRemove?.id).subscribe({
       next: () => {
         this.getPage();

@@ -43,7 +43,6 @@ export class AdminUserFormUnroutedComponent implements OnInit {
     if (this.operation == 'EDIT') {
       this.oUserService.getOne(this.id).subscribe({
         next: (data: IUser) => {
-          console.log('User data: ',data);
           this.oUser = data;
           this.initializeForm(this.oUser);
         },

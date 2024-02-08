@@ -19,34 +19,48 @@
                 <th>Property</th>
                 <th>Value</th>
               </tr>
-      <tr>
-        <th>id</th>
-        <td>{{ oRecipe.id }}</td>
-      </tr>
-      <tr>
-        <th>picture</th>
-        <td>
-          <img *ngIf="oRecipe.recipe_image === null"
-            src="https://images.ecestaticos.com/JN07Vdy4YqEbbl2JtMkUg3lG7Fk=/438x12:2121x1274/1200x899/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2Faea%2F9ee%2F335%2Faea9ee33581d1061b7a1c9fea6fa1226.jpg"
-            class="thumbnail">
-          <!--Poner cuando la imagen no sea null la del propio usuario-->
-          <img *ngIf="oRecipe.recipe_image != null" [src]="oRecipe.recipe_image"
-            class="thumbnail">
-        </td>
-      </tr>
-      <tr>
-        <th>name</th>
-        <td>{{ oRecipe.name }}</td>
-      </tr>
-      <tr>
-        <th>description</th>
-        <td>{{ oRecipe.description }}</td>
-      </tr>
-      <tr>
-        <th>process</th>
-        <td>{{ oRecipe.process }}</td>
-      </tr>
-     <!-- <tr>
+              <tr>
+                <th>id</th>
+                <td>{{ oRecipe.id }}</td>
+              </tr>
+              <tr>
+                <th>picture</th>
+                <td>
+                  <img *ngIf="oRecipe.recipe_image === null"
+                    src="https://images.ecestaticos.com/JN07Vdy4YqEbbl2JtMkUg3lG7Fk=/438x12:2121x1274/1200x899/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2Faea%2F9ee%2F335%2Faea9ee33581d1061b7a1c9fea6fa1226.jpg"
+                    class="thumbnail">
+                  <!--Poner cuando la imagen no sea null la del propio usuario-->
+                  <img *ngIf="oRecipe.recipe_image != null" [src]="oRecipe.recipe_image" class="thumbnail">
+                </td>
+              </tr>
+              <tr>
+                <th>name</th>
+                <td>{{ oRecipe.name }}</td>
+              </tr>
+              <tr>
+                <th>description</th>
+                <td>{{ oRecipe.description }}</td>
+              </tr>
+              <!--Ingredients-->
+              <tr>
+                <th>ingredients</th>
+                <td>
+                  <ul>
+                    <li *ngFor="let ingredient of oIngredients">
+                      {{ ingredient.name  }}
+                    </li>
+                  </ul>
+                  <ng-template #noIngredients>
+                    <span class="tag is-light">No ingredients</span>
+                  </ng-template>
+                </td>
+              </tr>
+
+              <tr>
+                <th>process</th>
+                <td>{{ oRecipe.process }}</td>
+              </tr>
+              <!-- <tr>
         <th>ingredients</th>
         <td>
           <ng-container *ngIf="oRecipe.content && oRecipe.content.length > 0; else noIngredients">
@@ -57,10 +71,10 @@
           </ng-template>
         </td>
       </tr> -->
-      <tr>
-        <th>author</th>
-        <td>{{ oRecipe.id_user!.name }}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+              <tr>
+                <th>author</th>
+                <td>{{ oRecipe.id_user!.name }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>

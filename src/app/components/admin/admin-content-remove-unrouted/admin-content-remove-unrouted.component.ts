@@ -111,18 +111,14 @@ export class AdminContentRemoveUnroutedComponent implements OnInit {
   ref: DynamicDialogRef | undefined;
 
   onSubmit() {
-    console.log("entra");
     this.oRecipeService.getOne(this.id_recipe).subscribe((recipe: IRecipe) => {
       this.recipe = recipe;
 
       this.oContentService.getPageByRecipe(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, recipe.id).subscribe({
         next: (data: IContentPruebaPage) => {
-          console.log(data);
 
           this.targetIngredients.forEach(ig => {
             var content = data.content.find(cnt => cnt.ingredient.id === ig.id);
-            console.log("Content");
-            console.log(content?.id);
             this.oContentService.removeOne(content?.id).subscribe({
               next: () => {
                 this.getPage();
