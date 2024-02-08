@@ -8,26 +8,24 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
 
 // Set your brand colors
-$purple: #8A4D76;
-$pink: #FA7C91;
-$brown: #757763;
-$beige-light: #D0D1CD;
+$primary-green: #86B971;
+$dark-green: #285318;
+$brown: #5f7456;
+$beige-light: #e1f0b6;
 $beige-lighter: #EFF0EB;
 
 // Update Bulma's global variables
 $family-sans-serif: "Nunito", sans-serif;
 $grey-dark: $brown;
 $grey-light: $beige-light;
-$primary: $purple;
-$link: $pink;
-$widescreen-enabled: false;
-$fullhd-enabled: false;
+$primary: $primary-green;
+$link: $dark-green;
 
 // Update some of Bulma's component variables
 $body-background-color: $beige-lighter;
 $control-border-width: 2px;
 $input-border-color: transparent;
-$input-shadow: none;
+$input-shadow: $beige-lighter;
 
 // Import only what you need from Bulma
 @import "../node_modules/bulma/sass/utilities/_all.sass";
@@ -37,6 +35,8 @@ $input-shadow: none;
 @import "../node_modules/bulma/sass/components/_all.sass";
 @import "../node_modules/bulma/sass/layout/_all.sass";
 @import "../node_modules/bulma/sass/helpers/_all.sass";
+@import "../node_modules/bulma/sass/grid/_all.sass";
+
 
 
 @import 'primeng/resources/themes/saga-blue/theme.css';
