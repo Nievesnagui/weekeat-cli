@@ -8,6 +8,7 @@ import { RecipeService } from 'src/app/service/recipe.service';
 import { UserSelectionUnroutedComponent } from '../../user/user-selection-unrouted/user-selection-unrouted.component';
 import { SessionService } from 'src/app/service/session.service';
 import { UserService } from 'src/app/service/user.service';
+import { MediaService } from 'src/app/service/media.service';
 
 @Component({
   selector: 'app-recipe-form-unrouted',
@@ -20,7 +21,7 @@ export class RecipeFormUnroutedComponent implements OnInit {
 
 
   recipeForm!: FormGroup;
-  oRecipe: IRecipe = { id_user: {} } as IRecipe;
+  oRecipe: IRecipe = { recipe_image:'', id_user: {} } as IRecipe;
   status: HttpErrorResponse | null = null;
 
   strUserName: string = "";
@@ -28,6 +29,7 @@ export class RecipeFormUnroutedComponent implements OnInit {
   userId: number = 0;
 
   oDynamicDialogRef: DynamicDialogRef | undefined;
+  oSelectedImageUrl: string | undefined = '';
 
   constructor(
     private oFormBuilder: FormBuilder,
@@ -36,6 +38,7 @@ export class RecipeFormUnroutedComponent implements OnInit {
     private oUserService: UserService,
     private oRouter: Router,
     public oDialogService: DialogService,
+    private oMediaService: MediaService,
   ) {
 
 
@@ -57,7 +60,8 @@ export class RecipeFormUnroutedComponent implements OnInit {
           name: [oRecipe.name, [Validators.required]],
           description: [oRecipe.description, [Validators.required]],
           process: [oRecipe.process, [Validators.required]],
-          content: [oRecipe.content]
+          content: [oRecipe.content],
+          recipe_image: [oRecipe.recipe_image]
         })
       },
       error: (error: HttpErrorResponse) => {
@@ -65,6 +69,25 @@ export class RecipeFormUnroutedComponent implements OnInit {
       }
     });
 
+  }
+
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      const oFormData = new FormData();
+      oFormData.append('file', file);
+
+      this.oMediaService.uploadFile(oFormData).subscribe({
+        next: (response) => {
+          this.oSelectedImageUrl = response.url;
+          this.oRecipe.recipe_image = response.url;
+          this.recipeForm.controls['recipe_image'].patchValue(response.url);
+        },
+        error: (error) => {
+          console.log(error);
+        }
+      });
+    }
   }
 
   ngOnInit() {
@@ -93,7 +116,7 @@ export class RecipeFormUnroutedComponent implements OnInit {
       if (this.operation == 'NEW') {
         this.oRecipeService.newOne(this.recipeForm.value).subscribe({
           next: (data: IRecipe) => {
-            
+
             this.oRecipe = data;
             this.initializeForm(this.oRecipe);
             this.oRouter.navigate(['/recipe', 'content', 'new', data]);
@@ -101,7 +124,7 @@ export class RecipeFormUnroutedComponent implements OnInit {
           error: (error: HttpErrorResponse) => {
             this.status = error;
           }
-          
+
         });
       } else {
         this.oRecipeService.updateOne(this.recipeForm.value).subscribe({
@@ -116,8 +139,21 @@ export class RecipeFormUnroutedComponent implements OnInit {
           }
         })
       }
-     
+    }
+  }
 
+  edit() {
+    if (this.recipeForm.valid) {
+      this.oRecipeService.updateOne(this.recipeForm.value).subscribe({
+        next: (data: IRecipe) => {
+          this.oRecipe = data;
+          this.initializeForm(this.oRecipe);
+          this.oRouter.navigate(['/recipe', data.id]);
+        },
+        error: (error: HttpErrorResponse) => {
+          this.status = error;
+        }
+      })
 
     }
   }
@@ -149,6 +185,6 @@ export class RecipeFormUnroutedComponent implements OnInit {
         }
       });
     }
-  }  
+  }
 
 }

@@ -18,7 +18,7 @@ export class AdminIngredientFormUnroutedComponent implements OnInit {
   @Input() operation: formOperation = 'NEW'; 
 
   ingredientForm!: FormGroup;
-  oIngredient: IIngredient = { id_type: {}} as IIngredient;
+  oIngredient: IIngredient = { ingredient_image: '', id_type: {}} as IIngredient;
   status: HttpErrorResponse | null = null;
   oSelectedImageUrl: string | undefined = '';
 

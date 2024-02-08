@@ -101,7 +101,7 @@ export interface IIngredient  {
     id: number;
    id_type: IType | null;
    name: string ;
-   ingredient_image: string | null; //imagen
+   ingredient_image: string; //imagen
    content: number | null;
    isInContent: boolean;
 }

@@ -3,33 +3,26 @@
     <div class="column has-background-primary m-4 is-8">
       <p class="bd-notification">Info y cosas para que se registre el usuario</p>
     </div>
-    <div class="column has-background-primary">
-
-
-      
-   Intento de carousel
-        <p-carousel  [numVisible]="3" [numScroll]="1" orientation="vertical" verticalViewPortHeight="360px" [responsiveOptions]="">
-            <ng-template let-product pTemplate="item">
-                <div class="product-item">
-                    <div class="product-item-content">
-                        <div class="mb-3">
-                            <img src="https://www.productospelayo.com/wp-content/uploads/2019/02/pelayo_magdalena_casera_wb.jpg"[alt]="" class="" />
-                        </div>
-                        <div>
-                          Prueba 1
-                      <!--     <h4 class="mb-1">{{product.name}}</h4>
-                            <h6 class="mt-0 mb-3">{{product.price}}</h6>--> 
-                            <div class="mt-5 flex align-items-center justify-content-center gap-2">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </ng-template>
-        </p-carousel>
-
-
-
-
+    <div class="column ">
+      <p-carousel [value]="oPage?.content ?? []" orientation="vertical" verticalViewPortHeight="360px"
+        >
+        <ng-template let-recipe pTemplate="item">
+          <div class="product-item">
+            <div class="product-item-content">
+              <div class="mb-3" style="height: 60px; ">
+                <img
+                  [src]="recipe.recipe_image ? recipe.recipe_image : 'https://images.unsplash.com/photo-1586511925558-a4c6376fe65f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=60'"
+                  [alt]="recipe.name" class="" />
+              </div>
+              <div>
+                <h4 class="mb-1">{{ recipe.name }}</h4>
+                <h6 class="mt-0 mb-3">{{ recipe.description }}</h6>
+                <!-- Otros detalles de la receta si es necesario -->
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </p-carousel>
     </div>
   </div>
 </div>
