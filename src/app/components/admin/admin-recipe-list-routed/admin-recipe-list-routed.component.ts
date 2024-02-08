@@ -14,7 +14,9 @@ export class AdminRecipeListRoutedComponent implements OnInit {
   constructor(
     private oConfirmationService: ConfirmationService,
     private oRecipeService: RecipeService
-  ) { }
+  ) { 
+    
+  }
 
   ngOnInit() {
   }

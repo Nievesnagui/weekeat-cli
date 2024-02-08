@@ -22,13 +22,13 @@ export class AdminRecipeListUnroutedComponent implements OnInit {
   oPaginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
   status: HttpErrorResponse | null = null;
   oRecipeToRemove: IRecipe | null = null;
-  id_user: number ;
+  id_user: number = 0;
 
   constructor(
     private oActivatedRoute: ActivatedRoute,
     private oRecipeService: RecipeService,
     public oDialogService: DialogService
-  ) { 
+  ) {
     this.id_user = parseInt(this.oActivatedRoute.snapshot.params['id_user'] ?? "0");
   }
 
@@ -44,9 +44,31 @@ export class AdminRecipeListUnroutedComponent implements OnInit {
   }
 
   getPage(): void {
-    this.oRecipeService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField).subscribe({
+
+    if (this.id_user > 0) {
+      this.getPageByUser(this.id_user);
+    } else {
+      this.oRecipeService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField).subscribe({
+        next: (data: IRecipePage) => {
+          console.log(data);
+          this.oPage = data;
+          this.oPaginatorState.pageCount = data.totalPages;
+        },
+        error: (error: HttpErrorResponse) => {
+          this.status = error;
+        }
+      })
+    }
+  }
+
+  getPageByUser(userId: number): void {
+    this.oRecipeService.getPageByUser(
+      this.oPaginatorState.rows,
+      this.oPaginatorState.page,
+      this.orderField,
+      userId // Agrega el ID del usuario como filtro
+    ).subscribe({
       next: (data: IRecipePage) => {
-        console.log(data);
         this.oPage = data;
         this.oPaginatorState.pageCount = data.totalPages;
       },
@@ -77,7 +99,7 @@ export class AdminRecipeListUnroutedComponent implements OnInit {
   doRemove(u: IRecipe) {
     this.oRecipeToRemove = u;
     console.log('Recipe to remove:', this.oRecipeToRemove);
-  
+
     if (this.oRecipeToRemove?.id !== undefined) {
       // Mostrar el modal de confirmación
       this.showConfirmationModal = true;
@@ -85,7 +107,7 @@ export class AdminRecipeListUnroutedComponent implements OnInit {
       console.error('Recipe ID is undefined or null');
     }
   }
-  
+
   confirmRemove() {
     // Lógica de eliminación aquí
     console.log('Removing recipe');
@@ -97,16 +119,16 @@ export class AdminRecipeListUnroutedComponent implements OnInit {
         this.status = error;
       }
     });
-  
+
     // Cerrar el modal de confirmación después de confirmar
     this.showConfirmationModal = false;
   }
-  
+
   cancelRemove() {
     // Cancelar la eliminación y cerrar el modal de confirmación
     console.log('Recipe not removed');
     this.showConfirmationModal = false;
   }
-  
+
 
 }
