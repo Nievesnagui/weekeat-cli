@@ -53,7 +53,7 @@
               <span *ngIf="u.role == 1" class="tag is-info">User</span>
             </td>
             <td>
-              <a *ngIf="u.recipes > 0" class="tag is-link">{{ u.recipes }}</a>
+              <a *ngIf="u.recipes > 0" class="tag is-link" [routerLink]="['/admin','recipe','list','own',u.id]">{{ u.recipes }}</a>
               <span *ngIf="u.recipes === 0" class="tag is-light">0</span>
             </td>
             <td>

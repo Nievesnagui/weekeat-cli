@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
-import { ConfirmationService } from 'primeng/api';
+import { ActivatedRoute } from '@angular/router';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PaginatorState } from 'primeng/paginator';
 import { Subject } from 'rxjs';
@@ -22,12 +22,15 @@ export class AdminRecipeListUnroutedComponent implements OnInit {
   oPaginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
   status: HttpErrorResponse | null = null;
   oRecipeToRemove: IRecipe | null = null;
+  id_user: number ;
 
   constructor(
+    private oActivatedRoute: ActivatedRoute,
     private oRecipeService: RecipeService,
-    private oConfirmationService: ConfirmationService,
     public oDialogService: DialogService
-  ) { }
+  ) { 
+    this.id_user = parseInt(this.oActivatedRoute.snapshot.params['id_user'] ?? "0");
+  }
 
   ngOnInit() {
     this.getPage();

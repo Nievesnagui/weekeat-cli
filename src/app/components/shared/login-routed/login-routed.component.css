@@ -12,7 +12,7 @@ body, html {
   }
   
   .form-control {
-    box-shadow: 0 15px 25px hsla(141, 56%, 40%, 0.452);
+    box-shadow: 0 15px 25px #2853188c;
     display: flex;
     flex-direction: column;
     gap: 10px;
