@@ -1,98 +1,52 @@
-<div class="columns is-centered my-3">
-  <div class="column is-half">
-    <div *ngIf="status !== null" class="card">
-      <div class="card-content">
-        <div class="content">
-          <p class="notification is-danger">
-            {{ status!.error.message }} - {{ status!.message }}
-          </p>
+<div *ngIf="status == null" class="card">
+  <div class="card-content">
+    <div class="content">
+      <div class="prueba">
+        <div class="wrapper m-6">
+          <div class="top-icons">
+            <i class="fas fa-long-arrow-alt-left"></i>
+            <i class="fas fa-ellipsis-v"></i>
+            <i class="far fa-heart"></i>
+          </div>
+
+          <div class="profile m-6">
+            <img *ngIf="oRecipe.recipe_image === null"
+              src="https://images.ecestaticos.com/JN07Vdy4YqEbbl2JtMkUg3lG7Fk=/438x12:2121x1274/1200x899/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2Faea%2F9ee%2F335%2Faea9ee33581d1061b7a1c9fea6fa1226.jpg"
+              class="thumbnail">
+            <!--Poner cuando la imagen no sea null la del propio usuario-->
+            <img *ngIf="oRecipe.recipe_image != null" [src]="oRecipe.recipe_image" class="thumbnail">
+            <div class="check"><i class="fas fa-check"></i></div>
+            <h3 class="name">{{oRecipe.name}}</h3>
+            <p class="title">{{oRecipe.id_user!.name}}</p>
+
+            <p class="description">{{oRecipe.description}}</p>
+            <p class="list">Ingredients:</p>
+            <ul class="list">
+              <li *ngFor="let ingredient of oIngredients">
+                {{ ingredient.name  }}
+              </li>
+            </ul>
+            <p class="description">{{oRecipe.process}}</p>
+            <button class="button btn my-6 is-warning" *ngIf="strUserName === oRecipe.id_user!.username " [routerLink]="['/recipe','edit',oRecipe.id]">Edit</button>
+            <button class="button btn my-6 is-danger" *ngIf="strUserName === oRecipe.id_user!.username " (click)="doRemove(oRecipe)">Delete</button>
+        
+          </div>
+
         </div>
-      </div>
-    </div>
 
-    <div *ngIf="status == null" class="card">
-      <div class="card-content">
-        <div class="content">
-          <table class="table is-striped is-hoverable is-fullwidth">
-            <tbody>
-              <tr>
-                <th>Property</th>
-                <th>Value</th>
-              </tr>
-      <tr>
-        <th>id</th>
-        <td>{{ oRecipe.id }}</td>
-      </tr>
-      <tr>
-        <th>picture</th>
-        <td>
-          <img *ngIf="oRecipe.recipe_image === null"
-            src="https://images.ecestaticos.com/JN07Vdy4YqEbbl2JtMkUg3lG7Fk=/438x12:2121x1274/1200x899/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2Faea%2F9ee%2F335%2Faea9ee33581d1061b7a1c9fea6fa1226.jpg"
-            class="thumbnail">
-          <!--Poner cuando la imagen no sea null la del propio usuario-->
-          <img *ngIf="oRecipe.recipe_image != null" [src]="oRecipe.recipe_image"
-            class="thumbnail">
-        </td>
-      </tr>
-      <tr>
-        <th>name</th>
-        <td>{{ oRecipe.name }}</td>
-      </tr>
-      <tr>
-        <th>description</th>
-        <td>{{ oRecipe.description }}</td>
-      </tr>
-      <tr>
-        <th>ingredients</th>
-        <td>
-          <ul>
-            <li *ngFor="let ingredient of oIngredients">
-              {{ ingredient.name  }}
-            </li>
-          </ul>
-          <ng-template #noIngredients>
-            <span class="tag is-light">No ingredients</span>
-          </ng-template>
-        </td>
-      </tr>
-
-      <tr>
-        <th>process</th>
-        <td>{{ oRecipe.process }}</td>
-      </tr>
-     <!-- <tr>
-        <th>ingredients</th>
-        <td>
-          <ng-container *ngIf="oRecipe.content && oRecipe.content.length > 0; else noIngredients">
-            <div *ngFor="let ingredient of oRecipe.content" class="tag is-link">{{ ingredient.id_ingredient.name }}</div>
-          </ng-container>
-          <ng-template #noIngredients>
-            <span class="tag is-light">No ingredients</span>
-          </ng-template>
-        </td>
-      </tr> -->
-      <tr>
-        <th>author</th>
-        <td>{{ oRecipe.id_user!.name }}</td>
-      </tr>
-    </tbody>
-
-    <button class="button is-warning" *ngIf="strUserName === oRecipe.id_user!.username " [routerLink]="['/recipe','edit',oRecipe.id]">Edit</button>
-    <button class="button is-danger" *ngIf="strUserName === oRecipe.id_user!.username " (click)="doRemove(oRecipe)">Delete</button>
-
-  </table>
-</div>
-
-<div class="modal" [class.is-active]="showConfirmationModal">
-  <div class="modal-background" (click)="cancelRemove()"></div>
-  <div class="modal-content">
-    <div class="box">
-      <p>Are you sure you want to remove this recipe?</p>
-      <div class="buttons">
-        <button class="button is-danger" (click)="confirmRemove()" routerLink="/recipe/list/own" >Yes</button>
-        <button class="button" (click)="cancelRemove()">No</button>
       </div>
     </div>
   </div>
-  <button class="modal-close is-large" aria-label="close" (click)="cancelRemove()"></button>
-</div>
+  <div class="modal" [class.is-active]="showConfirmationModal">
+    <div class="modal-background" (click)="cancelRemove()"></div>
+    <div class="modal-content">
+      <div class="box">
+        <p>Are you sure you want to remove this recipe?</p>
+        <div class="buttons">
+          <button class="button is-danger" (click)="confirmRemove()" routerLink="/recipe/list/own">Yes</button>
+          <button class="button" (click)="cancelRemove()">No</button>
+        </div>
+      </div>
+    </div>
+    <button class="modal-close is-large" aria-label="close" (click)="cancelRemove()"></button>
+  </div>

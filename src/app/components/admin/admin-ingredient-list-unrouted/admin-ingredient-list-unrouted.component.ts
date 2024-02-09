@@ -1,6 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
-import { ConfirmationService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PaginatorState } from 'primeng/paginator';
 import { Subject } from 'rxjs';
@@ -25,7 +24,6 @@ export class AdminIngredientListUnroutedComponent implements OnInit {
   
   constructor(
     private oIngredientService: IngredientService,
-    private oConfirmationService: ConfirmationService,
     public oDialogService: DialogService
   ) { }
 

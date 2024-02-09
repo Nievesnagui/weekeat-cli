@@ -41,7 +41,7 @@
             <td>{{ u.name }}</td>
             <td>{{ u.id_type!.name }}</td>
             <td>
-              <a *ngIf="u.content! > 0" class="tag is-link">{{ u.content }}</a>
+              <a *ngIf="u.content! > 0" class="tag is-link" [routerLink]="['/admin','recipe','list','byIngredient',u.id]">{{ u.content }}</a>
               <span *ngIf="u.content === 0" class="tag is-light">0</span>
             </td>
             <td>

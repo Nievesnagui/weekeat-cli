@@ -79,6 +79,8 @@ const routes: Routes = [
   { path: 'admin/type/edit/:id', component: AdminTypeEditRoutedComponent },
           //Recipe
   { path: 'admin/recipe/list', component: AdminRecipeListRoutedComponent },
+  { path: 'admin/recipe/list/byIngredient/:id_ingredient', component: AdminRecipeListRoutedComponent },
+
   { path: 'admin/recipe/list/own/:id_user', component: AdminRecipeListRoutedComponent },
   { path: 'admin/recipe/detail/:id', component: AdminRecipeDetailRoutedComponent },
   { path: 'admin/recipe/new', component: AdminRecipeNewRoutedComponent },

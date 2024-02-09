@@ -23,6 +23,8 @@ export class AdminRecipeListUnroutedComponent implements OnInit {
   status: HttpErrorResponse | null = null;
   oRecipeToRemove: IRecipe | null = null;
   id_user: number = 0;
+  id_ingredient: number = 0;
+
 
   constructor(
     private oActivatedRoute: ActivatedRoute,
@@ -30,6 +32,8 @@ export class AdminRecipeListUnroutedComponent implements OnInit {
     public oDialogService: DialogService
   ) {
     this.id_user = parseInt(this.oActivatedRoute.snapshot.params['id_user'] ?? "0");
+    this.id_ingredient = parseInt(this.oActivatedRoute.snapshot.params['id_ingredient'] ?? "0");
+
   }
 
   ngOnInit() {
@@ -47,7 +51,9 @@ export class AdminRecipeListUnroutedComponent implements OnInit {
 
     if (this.id_user > 0) {
       this.getPageByUser(this.id_user);
-    } else {
+    } else if(this.id_ingredient > 0 ){
+      this.getPageByIngredient(this.id_ingredient);
+    }else {
       this.oRecipeService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField).subscribe({
         next: (data: IRecipePage) => {
           this.oPage = data;
@@ -65,7 +71,24 @@ export class AdminRecipeListUnroutedComponent implements OnInit {
       this.oPaginatorState.rows,
       this.oPaginatorState.page,
       this.orderField,
-      userId // Agrega el ID del usuario como filtro
+      userId 
+    ).subscribe({
+      next: (data: IRecipePage) => {
+        this.oPage = data;
+        this.oPaginatorState.pageCount = data.totalPages;
+      },
+      error: (error: HttpErrorResponse) => {
+        this.status = error;
+      }
+    })
+  }
+
+  getPageByIngredient(ingredientId: number): void {
+    this.oRecipeService.getPageByContentFilter(
+      this.oPaginatorState.rows,
+      this.oPaginatorState.page,
+      this.orderField,
+      ingredientId
     ).subscribe({
       next: (data: IRecipePage) => {
         this.oPage = data;

@@ -1,0 +1,130 @@
+
+.prueba{
+    display: flex;
+    justify-content: center;
+ }
+ 
+ .wrapper {
+    width: 620px;
+    border-radius: 10px;
+    padding: 20px 20px 20px 20px;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+  }
+
+  .wrapper .profile {
+    margin-top: 2.2em;
+    position: relative;
+  }
+  .wrapper .profile:after {
+    width: 100%;
+    height: 1px;
+    content: " ";
+    display: block;
+    margin-top: 1.3em;
+  }
+
+
+  .wrapper .profile .thumbnail {
+    height: 350px;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1.5em;
+    border-radius: 10%;
+    box-shadow: 0 13px 26px rgba(0, 0, 0, 0.2), 0 3px 6px rgba(0, 0, 0, 0.2);
+  }
+  .wrapper .profile .name {
+    color: #2D354A;
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+  }
+  .wrapper .profile .title {
+    color: #7C8097;
+    font-size: 0.75em;
+    font-weight: 300;
+    text-align: center;
+    padding-top: 0.5em;
+    padding-bottom: 0.7em;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .wrapper .profile .description {
+    color: #080911;
+    font-size: 14px;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 1.3em;
+  }
+
+  .list{
+    color: #080911;
+    font-size: 14px;
+    font-weight: 300;
+    margin-bottom: 1.3em;
+  }
+  .wrapper .profile .btn {
+    width: 130px;
+    height: 42px;
+    outline: none;
+    border: none;
+    display: block;
+    cursor: pointer;
+    font-weight: 300;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 70px;
+    box-shadow: 0 13px 26px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.16);
+  }
+  .wrapper .social-icons {
+    display: flex;
+    margin-top: 1.2em;
+    justify-content: space-evenly;
+  }
+  .wrapper .social-icons .icon {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .wrapper .social-icons .icon a {
+    color: #fff;
+    width: 60px;
+    height: 60px;
+    font-size: 28px;
+    line-height: 60px;
+    text-align: center;
+    border-radius: 30px;
+    box-shadow: 0 13px 26px rgba(0, 0, 0, 0.2), 0 3px 6px rgba(0, 0, 0, 0.2);
+  }
+  .wrapper .social-icons .icon:nth-of-type(1) a {
+    background: linear-gradient(to bottom right, #C90A6D, #FF48A0);
+  }
+  .wrapper .social-icons .icon:nth-of-type(2) a {
+    background: linear-gradient(to bottom right, #5E5AEC, #3F9EFC);
+  }
+  .wrapper .social-icons .icon:nth-of-type(3) a {
+    background: linear-gradient(to bottom right, #6452E9, #639FF9);
+  }
+  .wrapper .social-icons .icon h4 {
+    color: #080911;
+    font-size: 1em;
+    margin-top: 1.3em;
+    margin-bottom: 0.2em;
+  }
+  .wrapper .social-icons .icon p {
+    color: #666B7D;
+    font-size: 12px;
+  }
+  
+  .concept {
+    position: absolute;
+    bottom: 25px;
+    color: #AAB0C4;
+    font-size: 0.9em;
+    font-weight: 400;
+  }
+  .concept a {
+    color: #19ac56;
+    text-decoration: none;
+  }

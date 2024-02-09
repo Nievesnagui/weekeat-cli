@@ -47,6 +47,13 @@ export class RecipeService {
     return this.oHttpClient.get<IRecipePage>(this.sUrl + "?size=" + size + "&page=" + page+ "&id_user=" + userId);
   }
 
+  getPageByContentFilter(size: number | undefined, page: number | undefined, orderField: string, id_ingredient: number): Observable<IRecipePage> {
+    let sUrl_filter: string;
+    if (!size) size = 10;
+    if (!page) page = 0;
+    return this.oHttpClient.get<IRecipePage>(this.sUrl + "/byContentFilter" + "?size=" + size + "&page=" + page + "&sort=" + orderField + "&id_ingredient=" + id_ingredient);
+}
+
   removeOne(id: number | undefined): Observable<number> {
     if (id) {
       return this.oHttpClient.delete<number>(this.sUrl + "/" + id);
