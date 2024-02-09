@@ -39,7 +39,7 @@
             <td>{{ u.id }}</td>
             <td>{{ u.name }}</td>
             <td>
-              <a *ngIf="u.ingredients > 0" class="tag is-link">{{ u.ingredients }}</a>
+              <a *ngIf="u.ingredients > 0" class="tag is-link" [routerLink]="['/admin','ingredient','list','byType',u.id]">{{ u.ingredients }}</a>
               <span *ngIf="u.ingredients === 0" class="tag is-light">0</span>
             </td>
             <td>

@@ -30,6 +30,12 @@ export class IngredientService {
         return this.oHttpClient.get<IIngredientPage>(this.sUrl + "?size=" + size + "&page=" + page + "&sort=" + orderField);
     }
 
+    getPageByType(size: number | undefined, page: number | undefined, orderField: string, id_type: number){
+        let sUrl_filter: string;
+        if (!size) size = 10;
+        if (!page) page = 0;
+        return this.oHttpClient.get<IIngredientPage>(this.sUrl + "?size=" + size + "&page=" + page + "&sort=" + orderField + "&id_type=" + id_type);
+    }
     getPageByContentFilter(size: number | undefined, page: number | undefined, orderField: string, id_recipe: number): Observable<IIngredientPage> {
         let sUrl_filter: string;
         if (!size) size = 10;
