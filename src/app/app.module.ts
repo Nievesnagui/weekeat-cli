@@ -81,6 +81,7 @@ import { WeeklyScheduleFormUnroutedComponent } from './components/weekly/weekly-
 import { DragDropModule } from 'primeng/dragdrop';
 import { PanelModule } from 'primeng/panel';
 import { SplitterModule } from 'primeng/splitter';
+import { FavouriteService } from './service/favourite.service';
 
 @NgModule({
   declarations: [
@@ -193,6 +194,7 @@ import { SplitterModule } from 'primeng/splitter';
     ConfirmationService,
     DialogService,
     ContentService,
+    FavouriteService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
 
   ],

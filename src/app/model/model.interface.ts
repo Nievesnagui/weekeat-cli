@@ -47,9 +47,9 @@ export interface IUser{
     phone: string;
     password: string;
     profile_picture: string; //imagen
-    favs: number ;
-    weeks: number;
-    recipes: number ;
+    favs: Array<IFavRecipe>;
+    weeks: Array<IWeekly>;
+    recipes: Array<IRecipe>;
     role:number;
 }
 

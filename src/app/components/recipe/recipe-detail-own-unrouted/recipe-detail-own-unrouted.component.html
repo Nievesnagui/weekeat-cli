@@ -4,9 +4,7 @@
       <div class="prueba">
         <div class="wrapper m-6">
           <div class="top-icons">
-            <i class="fas fa-long-arrow-alt-left"></i>
-            <i class="fas fa-ellipsis-v"></i>
-            <i class="far fa-heart"></i>
+
           </div>
 
           <div class="profile m-6">
@@ -15,7 +13,7 @@
               class="thumbnail">
             <!--Poner cuando la imagen no sea null la del propio usuario-->
             <img *ngIf="oRecipe.recipe_image != null" [src]="oRecipe.recipe_image" class="thumbnail">
-            <div class="check"><i class="fas fa-check"></i></div>
+            
             <h3 class="name">{{oRecipe.name}}</h3>
             <p class="title">{{oRecipe.id_user!.name}}</p>
 

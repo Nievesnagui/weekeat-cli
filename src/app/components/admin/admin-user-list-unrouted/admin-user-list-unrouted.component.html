@@ -53,18 +53,18 @@
               <span *ngIf="u.role == 1" class="tag is-info">User</span>
             </td>
             <td>
-              <a *ngIf="u.recipes > 0" class="tag is-link" [routerLink]="['/admin','recipe','list','own',u.id]">{{ u.recipes }}</a>
-              <span *ngIf="u.recipes === 0" class="tag is-light">0</span>
+              <a *ngIf="u.recipes.length > 0" class="tag is-link" [routerLink]="['/admin','recipe','list','own',u.id]">{{ u.recipes }}</a>
+              <span *ngIf="u.recipes.length === 0" class="tag is-light">0</span>
             </td>
             <td>
-              <a *ngIf="u.weeks > 0" class="tag is-link">{{ u.weeks }}</a>
-              <span *ngIf="u.weeks === 0" class="tag is-light">0</span>
+              <a *ngIf="u.weeks.length > 0" class="tag is-link">{{ u.weeks }}</a>
+              <span *ngIf="u.weeks.length === 0" class="tag is-light">0</span>
             </td>
             <td>
               <div class="buttons">
                 <button class="button is-primary" [routerLink]="['/admin','user','detail',u.id]">View</button>
                 <button class="button is-warning" [routerLink]="['/admin','user','edit',u.id]">Edit</button>
-                <button *ngIf="u.recipes === 0" class="button is-danger" (click)="doRemove(u)">Remove</button>
+                <button *ngIf="u.recipes.length === 0" class="button is-danger" (click)="doRemove(u)">Remove</button>
               </div>
             </td>
           </tr>

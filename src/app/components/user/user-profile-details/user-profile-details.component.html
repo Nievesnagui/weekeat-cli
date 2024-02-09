@@ -1,9 +1,7 @@
 <div class="prueba" *ngIf="oSessionUser | async as oSessionUser" >
   <div class="wrapper m-6">
     <div class="top-icons">
-      <i class="fas fa-long-arrow-alt-left"></i>
-      <i class="fas fa-ellipsis-v"></i>
-      <i class="far fa-heart"></i>
+    
     </div>
 
     <div class="profile m-6">
@@ -14,7 +12,6 @@
         <img *ngIf="oSessionUser.profile_picture != null"
         [src]="oSessionUser.profile_picture"
         class="thumbnail">
-      <div class="check"><i class="fas fa-check"></i></div>
       <h3 class="name">{{oSessionUser.name}} {{oSessionUser.surname}}</h3>
       <p class="title" *ngIf="!oSessionUser.role">Admin</p>
       <p class="title" *ngIf="oSessionUser.role">User</p>
@@ -28,20 +25,17 @@
     <!--Poner que te lleve a su semanario y a ver todas sus recetas y sus favs-->
     <div class="social-icons mx-2">
       <div class="icon m-4">
-        <a href="/"><i class="fab fa-dribbble"></i></a>
         <h4 routerLink="/recipe/list/own">{{oSessionUser.recipes}}</h4>
         <p>Recipes
         </p>
       </div>
 
       <div class="icon m-4">
-        <a href="#"><i class="fab fa-behance"></i></a>
         <h4>{{oSessionUser.favs}}</h4>
         <p>Favs</p>
       </div>
 
       <div class="icon m-4">
-        <a href="#"><i class="fab fa-twitter"></i></a>
         <h4>{{oSessionUser.weeks}}</h4>
         <p>Semanario</p>
       </div>

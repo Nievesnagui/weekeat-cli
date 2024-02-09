@@ -52,12 +52,12 @@
               <span *ngIf="u.role == 1" class="tag is-info">User</span>
             </td>
             <td>
-              <a *ngIf="u.recipes > 0" class="tag is-link">{{ u.recipes }}</a>
-              <span *ngIf="u.recipes === 0" class="tag is-light">0</span>
+              <a *ngIf="u.recipes.length > 0" class="tag is-link">{{ u.recipes }}</a>
+              <span *ngIf="u.recipes.length === 0" class="tag is-light">0</span>
             </td>
             <td>
-              <a *ngIf="u.weeks > 0" class="tag is-link">{{ u.weeks }}</a>
-              <span *ngIf="u.weeks === 0" class="tag is-light">0</span>
+              <a *ngIf="u.weeks.length > 0" class="tag is-link">{{ u.weeks }}</a>
+              <span *ngIf="u.weeks.length === 0" class="tag is-light">0</span>
             </td>
             <td>
               <div class="buttons">

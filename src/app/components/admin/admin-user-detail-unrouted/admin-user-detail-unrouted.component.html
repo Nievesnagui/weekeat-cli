@@ -63,15 +63,15 @@
               <tr>
                 <th>recipes</th>
                 <td>
-                  <a *ngIf="oUser.recipes > 0" class="tag is-link">{{ oUser.recipes }}</a>
-                  <span *ngIf="oUser.recipes === 0" class="tag is-light">0</span>
+                  <a *ngIf="oUser.recipes.length > 0" class="tag is-link">{{ oUser.recipes }}</a>
+                  <span *ngIf="oUser.recipes.length === 0" class="tag is-light">0</span>
                 </td>
               </tr>
               <tr>
                 <th>weekly</th>
                 <td>
-                  <a *ngIf="oUser.weeks > 0" class="tag is-link">{{ oUser.weeks }}</a>
-                  <span *ngIf="oUser.weeks === 0" class="tag is-light">0</span>
+                  <a *ngIf="oUser.weeks.length > 0" class="tag is-link">{{ oUser.weeks }}</a>
+                  <span *ngIf="oUser.weeks.length === 0" class="tag is-light">0</span>
                 </td>
               </tr>
             </tbody>
