@@ -82,6 +82,7 @@ import { DragDropModule } from 'primeng/dragdrop';
 import { PanelModule } from 'primeng/panel';
 import { SplitterModule } from 'primeng/splitter';
 import { FavouriteService } from './service/favourite.service';
+import { ScheduleService } from './service/schedule.service';
 
 @NgModule({
   declarations: [
@@ -195,6 +196,7 @@ import { FavouriteService } from './service/favourite.service';
     DialogService,
     ContentService,
     FavouriteService,
+    ScheduleService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
 
   ],
