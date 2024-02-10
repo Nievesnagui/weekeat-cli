@@ -1892,7 +1892,7 @@ div.icon-text {
   .table th {
     color: #363636; }
     .table th:not([align]) {
-      text-align: left; }
+      text-align: center; }
   .table tr.is-selected {
     background-color: #86B971;
     color: #fff; }
@@ -1904,7 +1904,7 @@ div.icon-text {
       border-color: #fff;
       color: currentColor; }
   .table thead {
-    background-color: transparent; }
+    background-color: #86B971; }
     .table thead td,
     .table thead th {
       border-width: 0 0 2px;
@@ -7882,3 +7882,7 @@ html, body {
   height: 100%;
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.fixed-cell {
+  width: 10em;
+  height: 8em; }

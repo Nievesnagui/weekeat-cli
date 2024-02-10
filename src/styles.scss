@@ -26,6 +26,9 @@ $body-background-color: $beige-lighter;
 $control-border-width: 2px;
 $input-border-color: transparent;
 $input-shadow: $beige-lighter;
+$table-head-background-color: $primary;
+$table-cell-text-align: center;
+
 
 // Import only what you need from Bulma
 @import "../node_modules/bulma/sass/utilities/_all.sass";
@@ -48,3 +51,7 @@ html, body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+.fixed-cell {
+  width: 10em;
+  height: 8em;
+}
