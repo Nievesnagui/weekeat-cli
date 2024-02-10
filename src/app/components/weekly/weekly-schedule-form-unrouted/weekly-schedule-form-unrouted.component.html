@@ -1,5 +1,4 @@
-
-<p-splitter [style]="{ height: '500px'}" [panelSizes]="[25, 75]" >
+<p-splitter [style]="{ height: '500px'}" [panelSizes]="[15, 75]">
 
     <ng-template pTemplate>
         <div style="overflow-y: auto;">
@@ -11,7 +10,7 @@
                         <div class="card">
                             <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
                                 <p-panel header="{{product.name}}">
-                                    Imagen
+                                    <img src="{{product.recipe_image}}" alt="">
                                 </p-panel>
                             </div>
                         </div>
@@ -25,7 +24,7 @@
     <ng-template pTemplate>
 
         <div class="table-container">
-            <table class="table is-bordered">
+            <table class="table is-bordered m-4">
                 <thead>
                     <tr>
                         <th></th>
@@ -40,204 +39,176 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <th >Lunch</th>
-                        <td class="fixed-cell" pDroppable (onDrop)="drop()">
-                            <ul class="list-none flex flex-column gap-2 p-0 m-0"
-                                *ngIf="availableProducts && availableProducts.length > 0">
-                                <li *ngFor="let product of selectedProducts" class="p-2 border-round shadow-1">
-                                    <div class="card">
-                                        <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
-                                            <p-panel header="{{product.name}}">
-                                                Imagen
-                                            </p-panel>
-                                        </div>
+                        <th>Lunch</th>
+                        <td class="fixed-cell" pDroppable (onDrop)="drop(1)">
+                            <ul class="list-none flex flex-column gap-2 p-0 m-0">
+                                <div class="card" *ngIf="selectedMondayLunch != null">
+                                    <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
+                                        <p-panel header="{{selectedMondayLunch.name}}">
+                                            <img src="{{selectedMondayLunch.recipe_image}}" alt="">
+                                            <button class="button is-warning" (click)="closePanel(1)">Remove</button>
+                                        </p-panel>
                                     </div>
-                                </li>
+                                </div>
                             </ul>
                         </td>
-                        <td class="fixed-cell" pDroppable (onDrop)="drop()">
-                            <ul class="list-none flex flex-column gap-2 p-0 m-0"
-                                *ngIf="availableProducts && availableProducts.length > 0">
-                                <li *ngFor="let product of selectedProducts" class="p-2 border-round shadow-1">
-                                    <div class="card">
-                                        <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
-                                            <p-panel header="{{product.name}}">
-                                                Imagen
-                                            </p-panel>
-                                        </div>
+                        <td class="fixed-cell" pDroppable (onDrop)="drop(2)">
+                            <ul class="list-none flex flex-column gap-2 p-0 m-0">
+                                <div class="card" *ngIf="selectedTuesdayLunch  != null">
+                                    <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
+                                        <p-panel header="{{selectedTuesdayLunch.name}}">
+                                            <img src="{{selectedTuesdayLunch.recipe_image}}" alt="">
+                                            <button class="button is-warning" (click)="closePanel(2)">Remove</button>
+                                        </p-panel>
                                     </div>
-                                </li>
+                                </div>
                             </ul>
                         </td>
-                        <td class="fixed-cell" pDroppable (onDrop)="drop()">
-                            <ul class="list-none flex flex-column gap-2 p-0 m-0"
-                                *ngIf="availableProducts && availableProducts.length > 0">
-                                <li *ngFor="let product of selectedProducts" class="p-2 border-round shadow-1">
-                                    <div class="card">
-                                        <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
-                                            <p-panel header="{{product.name}}">
-                                                Imagen
-                                            </p-panel>
-                                        </div>
+                        <td class="fixed-cell" pDroppable (onDrop)="drop(3)">
+                            <ul class="list-none flex flex-column gap-2 p-0 m-0">
+                                <div class="card" *ngIf="selectedWednesdayLunch != null">
+                                    <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
+                                        <p-panel header="{{selectedWednesdayLunch.name}}">
+                                            <img src="{{selectedWednesdayLunch.recipe_image}}" alt="">
+                                            <button class="button is-warning" (click)="closePanel(3)">Remove</button>
+                                        </p-panel>
                                     </div>
-                                </li>
+                                </div>
                             </ul>
                         </td>
-                        <td class="fixed-cell" pDroppable (onDrop)="drop()">
-                            <ul class="list-none flex flex-column gap-2 p-0 m-0"
-                                *ngIf="availableProducts && availableProducts.length > 0">
-                                <li *ngFor="let product of selectedProducts" class="p-2 border-round shadow-1">
-                                    <div class="card">
-                                        <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
-                                            <p-panel header="{{product.name}}">
-                                                Imagen
-                                            </p-panel>
-                                        </div>
+                        <td class="fixed-cell" pDroppable (onDrop)="drop(4)">
+                            <ul class="list-none flex flex-column gap-2 p-0 m-0">
+                                <div class="card" *ngIf="selectedThursdayLunch != null">
+                                    <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
+                                        <p-panel header="{{selectedThursdayLunch.name}}">
+                                            <img src="{{selectedThursdayLunch.recipe_image}}" alt="">
+                                            <button class="button is-warning" (click)="closePanel(4)">Remove</button>
+                                        </p-panel>
                                     </div>
-                                </li>
+                                </div>
                             </ul>
                         </td>
-                        <td class="fixed-cell" pDroppable (onDrop)="drop()">
-                            <ul class="list-none flex flex-column gap-2 p-0 m-0"
-                                *ngIf="availableProducts && availableProducts.length > 0">
-                                <li *ngFor="let product of selectedProducts" class="p-2 border-round shadow-1">
-                                    <div class="card">
-                                        <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
-                                            <p-panel header="{{product.name}}">
-                                                Imagen
-                                            </p-panel>
-                                        </div>
+                        <td class="fixed-cell" pDroppable (onDrop)="drop(5)">
+                            <ul class="list-none flex flex-column gap-2 p-0 m-0">
+                                <div class="card" *ngIf="selectedFridayLunch != null">
+                                    <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
+                                        <p-panel header="{{selectedFridayLunch.name}}">
+                                            <img src="{{selectedFridayLunch.recipe_image}}" alt="">
+                                            <button class="button is-warning" (click)="closePanel(5)">Remove</button>
+                                        </p-panel>
                                     </div>
-                                </li>
+                                </div>
                             </ul>
                         </td>
-                        <td class="fixed-cell" pDroppable (onDrop)="drop()">
-                            <ul class="list-none flex flex-column gap-2 p-0 m-0"
-                                *ngIf="availableProducts && availableProducts.length > 0">
-                                <li *ngFor="let product of selectedProducts" class="p-2 border-round shadow-1">
-                                    <div class="card">
-                                        <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
-                                            <p-panel header="{{product.name}}">
-                                                Imagen
-                                            </p-panel>
-                                        </div>
+                        <td class="fixed-cell" pDroppable (onDrop)="drop(6)">
+                            <ul class="list-none flex flex-column gap-2 p-0 m-0">
+                                <div class="card" *ngIf="selectedSaturdayLunch != null">
+                                    <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
+                                        <p-panel header="{{selectedSaturdayLunch.name}}">
+                                            <img src="{{selectedSaturdayLunch.recipe_image}}" alt="">
+                                            <button class="button is-warning" (click)="closePanel(6)">Remove</button>
+                                        </p-panel>
                                     </div>
-                                </li>
+                                </div>
                             </ul>
                         </td>
-                        <td class="fixed-cell" pDroppable (onDrop)="drop()">
-                            <ul class="list-none flex flex-column gap-2 p-0 m-0"
-                                *ngIf="availableProducts && availableProducts.length > 0">
-                                <li *ngFor="let product of selectedProducts" class="p-2 border-round shadow-1">
-                                    <div class="card">
-                                        <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
-                                            <p-panel header="{{product.name}}">
-                                                Imagen
-                                            </p-panel>
-                                        </div>
+                        <td class="fixed-cell" pDroppable (onDrop)="drop(7)">
+                            <ul class="list-none flex flex-column gap-2 p-0 m-0">
+                                <div class="card" *ngIf="selectedSundayLunch != null">
+                                    <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
+                                        <p-panel header="{{selectedSundayLunch.name}}">
+                                            <img src="{{selectedSundayLunch.recipe_image}}" alt="">
+                                            <button class="button is-warning" (click)="closePanel(7)">Remove</button>
+                                        </p-panel>
                                     </div>
-                                </li>
+                                </div>
                             </ul>
                         </td>
                     </tr>
                     <tr>
-                        <th >Dinner</th>
-                        <td class="fixed-cell" pDroppable (onDrop)="drop()">
-                            <ul class="list-none flex flex-column gap-2 p-0 m-0"
-                                *ngIf="availableProducts && availableProducts.length > 0">
-                                <li *ngFor="let product of selectedProducts" class="p-2 border-round shadow-1">
-                                    <div class="card">
-                                        <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
-                                            <p-panel header="{{product.name}}">
-                                                Imagen
-                                            </p-panel>
-                                        </div>
+                        <th>Dinner</th>
+                        <td class="fixed-cell" pDroppable (onDrop)="drop(8)">
+                            <ul class="list-none flex flex-column gap-2 p-0 m-0">
+                                <div class="card" *ngIf="selectedMondayDinner != null">
+                                    <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
+                                        <p-panel header="{{selectedMondayDinner.name}}">
+                                            <img src="{{selectedMondayDinner.recipe_image}}" alt="">
+                                            <button class="button is-warning" (click)="closePanel(8)">Remove</button>
+                                        </p-panel>
                                     </div>
-                                </li>
+                                </div>
                             </ul>
                         </td>
-                        <td class="fixed-cell" pDroppable (onDrop)="drop()">
-                            <ul class="list-none flex flex-column gap-2 p-0 m-0"
-                                *ngIf="availableProducts && availableProducts.length > 0">
-                                <li *ngFor="let product of selectedProducts" class="p-2 border-round shadow-1">
-                                    <div class="card">
-                                        <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
-                                            <p-panel header="{{product.name}}">
-                                                Imagen
-                                            </p-panel>
-                                        </div>
+                        <td class="fixed-cell" pDroppable (onDrop)="drop(9)">
+                            <ul class="list-none flex flex-column gap-2 p-0 m-0">
+                                <div class="card" *ngIf="selectedTuesdayDinner!= null">
+                                    <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
+                                        <p-panel header="{{selectedTuesdayDinner.name}}">
+                                            <img src="{{selectedTuesdayDinner.recipe_image}}" alt="">
+                                            <button class="button is-warning" (click)="closePanel(9)">Remove</button>
+                                        </p-panel>
                                     </div>
-                                </li>
+                                </div>
                             </ul>
                         </td>
-                        <td class="fixed-cell" pDroppable (onDrop)="drop()">
-                            <ul class="list-none flex flex-column gap-2 p-0 m-0"
-                                *ngIf="availableProducts && availableProducts.length > 0">
-                                <li *ngFor="let product of selectedProducts" class="p-2 border-round shadow-1">
-                                    <div class="card">
-                                        <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
-                                            <p-panel header="{{product.name}}">
-                                                Imagen
-                                            </p-panel>
-                                        </div>
+                        <td class="fixed-cell" pDroppable (onDrop)="drop(10)">
+                            <ul class="list-none flex flex-column gap-2 p-0 m-0">
+                                <div class="card" *ngIf="selectedWednesdayDinner!= null">
+                                    <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
+                                        <p-panel header="{{selectedWednesdayDinner.name}}">
+                                            <img src="{{selectedWednesdayDinner.recipe_image}}" alt="">
+                                            <button class="button is-warning" (click)="closePanel(10)">Remove</button>
+                                        </p-panel>
                                     </div>
-                                </li>
+                                </div>
                             </ul>
                         </td>
-                        <td class="fixed-cell" pDroppable (onDrop)="drop()">
-                            <ul class="list-none flex flex-column gap-2 p-0 m-0"
-                                *ngIf="availableProducts && availableProducts.length > 0">
-                                <li *ngFor="let product of selectedProducts" class="p-2 border-round shadow-1">
-                                    <div class="card">
-                                        <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
-                                            <p-panel header="{{product.name}}">
-                                                Imagen
-                                            </p-panel>
-                                        </div>
+                        <td class="fixed-cell" pDroppable (onDrop)="drop(11)">
+                            <ul class="list-none flex flex-column gap-2 p-0 m-0">
+                                <div class="card" *ngIf="selectedThursdayDinner!= null">
+                                    <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
+                                        <p-panel header="{{selectedThursdayDinner.name}}">
+                                            <img src="{{selectedThursdayDinner.recipe_image}}" alt="">
+                                            <button class="button is-warning" (click)="closePanel(11)">Remove</button>
+                                        </p-panel>
                                     </div>
-                                </li>
+                                </div>
                             </ul>
                         </td>
-                        <td class="fixed-cell" pDroppable (onDrop)="drop()">
-                            <ul class="list-none flex flex-column gap-2 p-0 m-0"
-                                *ngIf="availableProducts && availableProducts.length > 0">
-                                <li *ngFor="let product of selectedProducts" class="p-2 border-round shadow-1">
-                                    <div class="card">
-                                        <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
-                                            <p-panel header="{{product.name}}">
-                                                Imagen
-                                            </p-panel>
-                                        </div>
+                        <td class="fixed-cell" pDroppable (onDrop)="drop(12)">
+                            <ul class="list-none flex flex-column gap-2 p-0 m-0">
+                                <div class="card" *ngIf="selectedFridayDinner!= null">
+                                    <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
+                                        <p-panel header="{{selectedFridayDinner.name}}">
+                                            <img src="{{selectedFridayDinner.recipe_image}}" alt="">
+                                            <button class="button is-warning" (click)="closePanel(12)">Remove</button>
+                                        </p-panel>
                                     </div>
-                                </li>
+                                </div>
                             </ul>
                         </td>
-                        <td class="fixed-cell" pDroppable (onDrop)="drop()">
-                            <ul class="list-none flex flex-column gap-2 p-0 m-0"
-                                *ngIf="availableProducts && availableProducts.length > 0">
-                                <li *ngFor="let product of selectedProducts" class="p-2 border-round shadow-1">
-                                    <div class="card">
-                                        <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
-                                            <p-panel header="{{product.name}}">
-                                                Imagen
-                                            </p-panel>
-                                        </div>
+                        <td class="fixed-cell" pDroppable (onDrop)="drop(13)">
+                            <ul class="list-none flex flex-column gap-2 p-0 m-0">
+                                <div class="card" *ngIf="selectedSaturdayDinner!= null">
+                                    <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
+                                        <p-panel header="{{selectedSaturdayDinner.name}}">
+                                            <img src="{{selectedSaturdayDinner.recipe_image}}" alt="">
+                                            <button class="button is-warning" (click)="closePanel(13)">Remove</button>
+                                        </p-panel>
                                     </div>
-                                </li>
+                                </div>
                             </ul>
                         </td>
-                        <td class="fixed-cell" pDroppable (onDrop)="drop()">
-                            <ul class="list-none flex flex-column gap-2 p-0 m-0"
-                                *ngIf="availableProducts && availableProducts.length > 0">
-                                <li *ngFor="let product of selectedProducts" class="p-2 border-round shadow-1">
-                                    <div class="card">
-                                        <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
-                                            <p-panel header="{{product.name}}">
-                                                Imagen
-                                            </p-panel>
-                                        </div>
+                        <td class="fixed-cell" pDroppable (onDrop)="drop(14)">
+                            <ul class="list-none flex flex-column gap-2 p-0 m-0">
+                                <div class="card" *ngIf="selectedSundayDinner!= null">
+                                    <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
+                                        <p-panel header="{{selectedSundayDinner.name}}">
+                                            <img src="{{selectedSundayDinner.recipe_image}}" alt="">
+                                            <button class="button is-warning" (click)="closePanel(14)">Remove</button>
+                                        </p-panel>
                                     </div>
-                                </li>
+                                </div>
                             </ul>
                         </td>
                     </tr>
