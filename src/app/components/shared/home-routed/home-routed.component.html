@@ -1,11 +1,81 @@
 <div>
   <div class="columns is-vcentered m-4">
-    <div class="column has-background-primary m-4 is-8">
-      <p class="bd-notification">Info y cosas para que se registre el usuario</p>
+    <div class="column m-4 is-8">
+      <div class="has-background-primary " *ngIf="!strUserName">
+        <p class="bd-notification">Info y cosas para que se registre el usuario</p>
+      </div>
+
+
+      <div class="table-container">
+        <table class="table is-bordered" *ngIf="strUserName">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Monday</th>
+              <th>Tuesday</th>
+              <th>Wednesday</th>
+              <th>Thursday</th>
+              <th>Friday</th>
+              <th>Saturday</th>
+              <th>Sunday</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Lunch</th>
+              <td class="fixed-cell">
+
+              </td>
+              <td class="fixed-cell">
+
+              </td>
+              <td class="fixed-cell">
+
+              </td>
+              <td class="fixed-cell">
+
+              </td>
+              <td class="fixed-cell">
+
+              </td>
+              <td class="fixed-cell">
+
+              </td>
+              <td class="fixed-cell">
+
+              </td>
+            </tr>
+            <tr>
+              <th>Dinner</th>
+              <td class="fixed-cell">
+
+              </td>
+              <td class="fixed-cell">
+
+              </td>
+              <td class="fixed-cell">
+
+              </td>
+              <td class="fixed-cell">
+
+              </td>
+              <td class="fixed-cell">
+
+              </td>
+              <td class="fixed-cell">
+
+              </td>
+              <td class="fixed-cell">
+
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
     </div>
     <div class="column ">
-      <p-carousel [value]="oPage?.content ?? []" orientation="vertical" verticalViewPortHeight="360px"
-        >
+      <p-carousel [value]="oPage?.content ?? []" orientation="vertical" verticalViewPortHeight="360px">
         <ng-template let-recipe pTemplate="item">
           <div class="product-item">
             <div class="product-item-content">

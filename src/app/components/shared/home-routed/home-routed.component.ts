@@ -2,8 +2,10 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { PaginatorState } from 'primeng/paginator';
 import { Subject } from 'rxjs';
-import { IRecipe, IRecipePage } from 'src/app/model/model.interface';
+import { IRecipe, IRecipePage, IUser } from 'src/app/model/model.interface';
 import { RecipeService } from 'src/app/service/recipe.service';
+import { SessionService } from 'src/app/service/session.service';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-home-routed',
@@ -18,6 +20,8 @@ export class HomeRoutedComponent implements OnInit {
   oPage: IRecipePage | undefined;
   orderField: string = "id";
   orderDirection: string = "asc";
+  oSessionUser: IUser | null = null;
+  strUserName: string = "";
 
   oRecipe: IRecipe | null = null;
   status: HttpErrorResponse | null = null;
@@ -25,7 +29,19 @@ export class HomeRoutedComponent implements OnInit {
 
   constructor(
     private oRecipeService: RecipeService,
-  ) { }
+    private oSessionService: SessionService,
+    private oUserService: UserService
+  ) {
+    this.strUserName = oSessionService.getUsername();
+    this.oUserService.getByUsername(this.oSessionService.getUsername()).subscribe({
+      next: (oUser: IUser) => {
+        this.oSessionUser = oUser;
+      },
+      error: (error: HttpErrorResponse) => {
+        console.log(error);
+      }
+    });
+   }
 
   ngOnInit() {
     this.getPage();

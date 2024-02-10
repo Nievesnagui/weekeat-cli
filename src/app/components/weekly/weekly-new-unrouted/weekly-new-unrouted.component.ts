@@ -21,7 +21,7 @@ export class WeeklyNewUnroutedComponent implements OnInit {
   es = CALENDAR_ES;
 
   weeklyForm!: FormGroup;
-  oWeekly: IWeekly = { init_date: new Date(Date.now()), end_date: new Date(Date.now()+ 7 * 24 * 60 * 60 * 1000),id_user: {} } as IWeekly;
+  oWeekly: IWeekly = { init_date: new Date(Date.now()),id_user: {} } as IWeekly;
   status: HttpErrorResponse | null = null;
 
   strUserName: string = "";
@@ -50,8 +50,7 @@ export class WeeklyNewUnroutedComponent implements OnInit {
           id_user: this.oFormBuilder.group({
             id: this.userId,
           }),
-          init_date: [new Date(oWeekly.init_date), [Validators.required]],
-          end_date: [new Date(oWeekly.end_date), [Validators.required]]
+          init_date: [new Date(oWeekly.init_date), [Validators.required]]
         })
         console.log(this.userId);
       },
@@ -88,7 +87,6 @@ export class WeeklyNewUnroutedComponent implements OnInit {
     let idRecipe: number = 0;
     if (this.weeklyForm.valid) {
       this.weeklyForm.value.init_date = this.formatDate(this.weeklyForm.value.init_date);
-    this.weeklyForm.value.end_date = this.formatDate(this.weeklyForm.value.end_date);
 
       if (this.operation == 'NEW') {
         this.oWeeklyService.newOne(this.weeklyForm.value).subscribe({

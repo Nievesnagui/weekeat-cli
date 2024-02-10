@@ -89,7 +89,6 @@ export interface IWeekly {
     id: number;
     id_user: IUser;
     init_date: Date;
-    end_date: Date;
     schedules: number;
 }
 
