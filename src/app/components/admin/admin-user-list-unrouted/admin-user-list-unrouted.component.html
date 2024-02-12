@@ -35,7 +35,7 @@
             <th (click)="doOrder('phone')">Phone</th>
             <th>Role</th>
             <th>Recipes</th>
-            <th>Weekly</th>
+            <th>Weeklies</th>
             <th>Utilities</th>
 
           </tr>
@@ -52,13 +52,13 @@
               <span *ngIf="u.role == 0" class="tag is-primary">Admin</span>
               <span *ngIf="u.role == 1" class="tag is-info">User</span>
             </td>
-            <td>
-              <a *ngIf="u.recipes.length > 0" class="tag is-link" [routerLink]="['/admin','recipe','list','own',u.id]">{{ u.recipes }}</a>
-              <span *ngIf="u.recipes.length === 0" class="tag is-light">0</span>
+            <td> 
+             <span *ngIf="u.recipes"><a  class="tag is-link" [routerLink]="['/admin','recipe','list','own',u.id]">{{ u.recipes }}</a></span> 
+              <span *ngIf="!u.recipes" class="tag is-light">0</span>
             </td>
             <td>
-              <a *ngIf="u.weeks.length > 0" class="tag is-link">{{ u.weeks }}</a>
-              <span *ngIf="u.weeks.length === 0" class="tag is-light">0</span>
+              <a *ngIf="u.weeks" class="tag is-link">{{ u.weeks }}</a>
+              <span *ngIf="!u.weeks" class="tag is-light">0</span>
             </td>
             <td>
               <div class="buttons">

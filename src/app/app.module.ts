@@ -83,6 +83,8 @@ import { PanelModule } from 'primeng/panel';
 import { SplitterModule } from 'primeng/splitter';
 import { FavouriteService } from './service/favourite.service';
 import { ScheduleService } from './service/schedule.service';
+import { WeeklyListOwnRoutedComponent } from './components/weekly/weekly-list-own-routed/weekly-list-own-routed.component';
+import { WeeklyListOwnUnroutedComponent } from './components/weekly/weekly-list-own-unrouted/weekly-list-own-unrouted.component';
 
 @NgModule({
   declarations: [
@@ -127,6 +129,8 @@ import { ScheduleService } from './service/schedule.service';
     //Weekly
     WeeklyNewRoutedComponent,
     WeeklyNewUnroutedComponent,
+    WeeklyListOwnRoutedComponent,
+    WeeklyListOwnUnroutedComponent,
 
     //Admin Utilities
             //User

@@ -63,15 +63,15 @@
               <tr>
                 <th>recipes</th>
                 <td>
-                  <a *ngIf="oUser.recipes.length > 0" class="tag is-link">{{ oUser.recipes }}</a>
-                  <span *ngIf="oUser.recipes.length === 0" class="tag is-light">0</span>
+                  <a *ngIf="oUser.recipes" class="tag is-link" [routerLink]="['/admin','recipe','list','own',oUser.id]">{{ oUser.recipes }}</a>
+                  <span *ngIf="!oUser.recipes" class="tag is-light">0</span>
                 </td>
               </tr>
               <tr>
                 <th>weekly</th>
                 <td>
-                  <a *ngIf="oUser.weeks.length > 0" class="tag is-link">{{ oUser.weeks }}</a>
-                  <span *ngIf="oUser.weeks.length === 0" class="tag is-light">0</span>
+                  <a *ngIf="oUser.weeks" class="tag is-link">{{ oUser.weeks }}</a>
+                  <span *ngIf="!oUser.weeks" class="tag is-light">0</span>
                 </td>
               </tr>
             </tbody>

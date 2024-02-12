@@ -67,13 +67,7 @@ export class RecipeListOwnUnroutedComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getPageByUser(this.id_filter);
-    if (this.id > 0) {
-      this.getUser();
-    }
-    if (this.id_recipe > 0) {
-      this.getRecipe();
-    }
+
   }
 
   getPageByUser(userId: number): void {
@@ -100,10 +94,8 @@ export class RecipeListOwnUnroutedComponent implements OnInit {
 
   getRecipeImageUrl(recipeImage: string | null | undefined): string {
     if (recipeImage) {
-      // Si hay una imagen en la base de datos, devuelve la URL de esa imagen
       return `${recipeImage}`;
     } else {
-      // Si no hay imagen en la base de datos, devuelve la URL predeterminada
       return 'https://images.unsplash.com/photo-1586511925558-a4c6376fe65f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=60';
     }
   }
@@ -111,7 +103,6 @@ export class RecipeListOwnUnroutedComponent implements OnInit {
   getUser(): void {
     this.oUserService.getOne(this.id).subscribe({
       next: (data: IUser) => {
-        console.log(this.id);
         this.oUser = data;
       },
       error: (error: HttpErrorResponse) => {

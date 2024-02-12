@@ -30,8 +30,8 @@
       <tr>
         <th>ingredients</th>
         <td>
-          <a *ngIf="oType.ingredients > 0" class="tag is-link">{{ oType.ingredients }}</a>
-          <span *ngIf="oType.ingredients === 0" class="tag is-light">0</span>
+          <a *ngIf="oType.ingredients" class="tag is-link" [routerLink]="['/admin','ingredient','list','byType',oType.id]">{{ oType.ingredients }}</a>
+          <span *ngIf="!oType.ingredients" class="tag is-light">0</span>
         </td>
       </tr>
     </tbody>

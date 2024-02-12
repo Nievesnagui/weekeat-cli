@@ -1,0 +1,71 @@
+<div class="columns is-multiline mt-4 ml-2">
+  <div class="column" *ngFor="let weekly of oPage?.content">
+    <div class="card-hover m-3">
+      <div class="card-hover__content">
+        <p>{{ weekly.id }}</p>
+        <p>{{ weekly.init_date }}</p>
+        <ng-container *ngIf="oSchedules.length === 0">
+          {{ getWeeklySchedules(weekly.id) }}
+        </ng-container>
+
+        <div class="table-container">
+          <table class="table is-bordered m-4">
+            <thead>
+              <tr>
+                <th></th>
+                <th *ngFor="let day of ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']">
+                  {{ day }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Lunch</th>
+
+
+                <td *ngFor="let day of ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']">
+                  <ng-container *ngFor="let schedule of oSchedules">
+                    <div *ngIf="schedule.day === day && schedule.type === 'Lunch'" class="fixed-cell">
+                      <ul class="list-none flex flex-column gap-2 p-0 m-0">
+                        <div class="card">
+                          <div class="w-15rem">
+                            <p-panel header="{{ day }} Lunch Recipe">
+                              <!--<img src="{{ schedule.id_recipe.recipe_image }}" alt="">-->
+                            </p-panel>
+                          </div>
+                        </div>
+                      </ul>
+                    </div>
+                  </ng-container>
+                </td>
+
+
+              </tr>
+
+              <tr>
+                <th>Dinner</th>
+                <td *ngFor="let day of ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']">
+                  <ng-container *ngFor="let schedule of oSchedules">
+                    <div *ngIf="schedule.day === day && schedule.type === 'Dinner'" class="fixed-cell">
+                      <ul class="list-none flex flex-column gap-2 p-0 m-0">
+                        <div class="card">
+                          <div class="w-15rem">
+                            <p-panel header="{{ day }} Dinner Recipe">
+                              <!--<img src="{{ schedule.id_recipe.recipe_image }}" alt="">-->
+                            </p-panel>
+                          </div>
+                        </div>
+                      </ul>
+                    </div>
+                  </ng-container>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

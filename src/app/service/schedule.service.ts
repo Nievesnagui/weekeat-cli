@@ -29,6 +29,10 @@ export class ScheduleService {
         return this.oHttpClient.get<ISchedulePage>(this.sUrl + '?size=' + size + '&page=' + page + '&sort=' + orderField + '&id_weekly=' + id_weekly);
     }
 
+    getPageByWeeklyArr(id_weekly: number): Observable<ISchedulePage>{
+        return this.oHttpClient.get<ISchedulePage>(this.sUrl + '?size=' + 15 + '&page=' + 0 + '&sort=' + "id" + '&id_weekly=' + id_weekly);
+    }
+
     removeOne(id: number | undefined): Observable<number> {
         if (id) {
             return this.oHttpClient.delete<number>(this.sUrl + "/" + id);
