@@ -1,98 +1,117 @@
-<div>
-  <div class="columns is-vcentered m-4">
-    <div class="column m-4 is-8">
-      <div class="has-background-primary " *ngIf="!strUserName">
-        <p class="bd-notification">Info y cosas para que se registre el usuario</p>
+<div class="columns is-centered m-4">
+
+  <div class="table-container">
+    <table class="table is-bordered" *ngIf="strUserName">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Monday</th>
+          <th>Tuesday</th>
+          <th>Wednesday</th>
+          <th>Thursday</th>
+          <th>Friday</th>
+          <th>Saturday</th>
+          <th>Sunday</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Lunch</th>
+          <td class="fixed-cell">
+
+          </td>
+          <td class="fixed-cell">
+
+          </td>
+          <td class="fixed-cell">
+
+          </td>
+          <td class="fixed-cell">
+
+          </td>
+          <td class="fixed-cell">
+
+          </td>
+          <td class="fixed-cell">
+
+          </td>
+          <td class="fixed-cell">
+
+          </td>
+        </tr>
+        <tr>
+          <th>Dinner</th>
+          <td class="fixed-cell">
+
+          </td>
+          <td class="fixed-cell">
+
+          </td>
+          <td class="fixed-cell">
+
+          </td>
+          <td class="fixed-cell">
+
+          </td>
+          <td class="fixed-cell">
+
+          </td>
+          <td class="fixed-cell">
+
+          </td>
+          <td class="fixed-cell">
+
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
+<div *ngIf="strUserName" class="columns is-vcentered m-4 is-centered ">
+  <p-carousel [value]="oPage?.content ?? []" orientation="vertical">
+    <ng-template let-recipe pTemplate="item">
+      <div class="product-item">
+        <div class="product-item-content">
+          <div class="mb-3" style="height: 60px; ">
+            <img
+              [src]="recipe.recipe_image ? recipe.recipe_image : 'https://images.unsplash.com/photo-1586511925558-a4c6376fe65f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=60'"
+              [alt]="recipe.name" class="" />
+          </div>
+          <div>
+            <h4 class="mb-1">{{ recipe.name }}</h4>
+            <h6 class="mt-0 mb-3">{{ recipe.description }}</h6>
+            <!-- Otros detalles de la receta si es necesario -->
+          </div>
+        </div>
       </div>
+    </ng-template>
+  </p-carousel>
+</div>
 
 
-      <div class="table-container">
-        <table class="table is-bordered" *ngIf="strUserName">
-          <thead>
-            <tr>
-              <th></th>
-              <th>Monday</th>
-              <th>Tuesday</th>
-              <th>Wednesday</th>
-              <th>Thursday</th>
-              <th>Friday</th>
-              <th>Saturday</th>
-              <th>Sunday</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th>Lunch</th>
-              <td class="fixed-cell">
-
-              </td>
-              <td class="fixed-cell">
-
-              </td>
-              <td class="fixed-cell">
-
-              </td>
-              <td class="fixed-cell">
-
-              </td>
-              <td class="fixed-cell">
-
-              </td>
-              <td class="fixed-cell">
-
-              </td>
-              <td class="fixed-cell">
-
-              </td>
-            </tr>
-            <tr>
-              <th>Dinner</th>
-              <td class="fixed-cell">
-
-              </td>
-              <td class="fixed-cell">
-
-              </td>
-              <td class="fixed-cell">
-
-              </td>
-              <td class="fixed-cell">
-
-              </td>
-              <td class="fixed-cell">
-
-              </td>
-              <td class="fixed-cell">
-
-              </td>
-              <td class="fixed-cell">
-
-              </td>
-            </tr>
-
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div class="column ">
-      <p-carousel [value]="oPage?.content ?? []" orientation="vertical" verticalViewPortHeight="360px">
-        <ng-template let-recipe pTemplate="item">
-          <div class="product-item">
-            <div class="product-item-content">
-              <div class="mb-3" style="height: 60px; ">
-                <img
-                  [src]="recipe.recipe_image ? recipe.recipe_image : 'https://images.unsplash.com/photo-1586511925558-a4c6376fe65f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=60'"
-                  [alt]="recipe.name" class="" />
-              </div>
-              <div>
-                <h4 class="mb-1">{{ recipe.name }}</h4>
-                <h6 class="mt-0 mb-3">{{ recipe.description }}</h6>
-                <!-- Otros detalles de la receta si es necesario -->
-              </div>
+<div class="columns is-vcentered m-4" *ngIf="!strUserName">
+  <div class="has-background-primary column  m-4 is-8">
+    <p class="bd-notification">Info y cosas para que se registre el usuario</p>
+  </div>
+  <div class="column ">
+    <p-carousel [value]="oPage?.content ?? []" orientation="vertical" verticalViewPortHeight="360px">
+      <ng-template let-recipe pTemplate="item">
+        <div class="product-item">
+          <div class="product-item-content">
+            <div class="mb-3" style="height: 60px; ">
+              <img
+                [src]="recipe.recipe_image ? recipe.recipe_image : 'https://images.unsplash.com/photo-1586511925558-a4c6376fe65f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=60'"
+                [alt]="recipe.name" class="" />
+            </div>
+            <div>
+              <h4 class="mb-1">{{ recipe.name }}</h4>
+              <h6 class="mt-0 mb-3">{{ recipe.description }}</h6>
+              <!-- Otros detalles de la receta si es necesario -->
             </div>
           </div>
-        </ng-template>
-      </p-carousel>
-    </div>
+        </div>
+      </ng-template>
+    </p-carousel>
   </div>
 </div>

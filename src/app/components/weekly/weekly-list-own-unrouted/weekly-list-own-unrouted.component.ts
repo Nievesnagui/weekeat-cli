@@ -53,7 +53,8 @@ export class WeeklyListOwnUnroutedComponent implements OnInit {
   oSchedules: ISchedule[] = [];
   oRecipes: IRecipe[] = [];
 
-
+  showConfirmationModal = false;
+  oWeeklyToRemove: IWeekly | null = null;
 
   constructor(
     private oWeeklyService: WeeklyService,
@@ -93,6 +94,7 @@ export class WeeklyListOwnUnroutedComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getOne();
     /* this.getPageByUser(this.id_filter);
      console.log(this.id_filter);
      console.log(this.id);
@@ -107,6 +109,18 @@ export class WeeklyListOwnUnroutedComponent implements OnInit {
        this.getWeekly();
      }*/
   }
+
+  getOne(): void {
+    this.oWeeklyService.getOne(this.id).subscribe({
+      next: (data: IWeekly) => {
+        this.oWeekly = data;
+       },
+      error: (error: HttpErrorResponse) => {
+        this.status = error;
+      }
+    })
+  }
+
 
   getUser(): void {
     this.oUserService.getOne(this.id).subscribe({
@@ -152,4 +166,40 @@ export class WeeklyListOwnUnroutedComponent implements OnInit {
       }
     })
   }
+
+  doRemove(u: IWeekly) {
+    this.oWeeklyToRemove = u;
+    console.log('Weekly to remove:', this.oWeeklyToRemove);
+
+    if (this.oWeeklyToRemove?.id !== undefined) {
+      // Mostrar el modal de confirmación
+      this.showConfirmationModal = true;
+    } else {
+      console.error('Weekly ID is undefined or null');
+    }
+  }
+
+  confirmRemove() {
+    // Lógica de eliminación aquí
+    console.log('Removing weekly');
+    this.oWeeklyService.removeOne(this.oWeeklyToRemove?.id).subscribe({
+      next: () => {
+        this.getOne();
+
+      },
+      error: (error: HttpErrorResponse) => {
+        this.status = error;
+      }
+    });
+
+    // Cerrar el modal de confirmación después de confirmar
+    this.showConfirmationModal = false;
+  }
+
+  cancelRemove() {
+    // Cancelar la eliminación y cerrar el modal de confirmación
+    console.log('Weekly not removed');
+    this.showConfirmationModal = false;
+  }
+
 }

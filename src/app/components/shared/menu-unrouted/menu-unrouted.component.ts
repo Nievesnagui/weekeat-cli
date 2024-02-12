@@ -63,4 +63,15 @@ export class MenuUnroutedComponent implements OnInit {
   toggleNavbar() {
     this.isNavbarActive = !this.isNavbarActive;
   }
+
+  isDropdownActive1: boolean = false;
+  isDropdownActive2: boolean = false;
+  toggleDropdown1() {
+    this.isDropdownActive1 = !this.isDropdownActive1;
+  }
+  
+  closeDropdown1() {
+    this.isDropdownActive1 = false;
+  }
+  
 }

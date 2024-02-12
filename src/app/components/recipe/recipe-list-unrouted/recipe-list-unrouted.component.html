@@ -21,4 +21,9 @@
         alt="">
     </div>
   </div>
-</div>
+
+</div>  
+<div class="column is-narrow">
+    <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
+      [totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+  </div>

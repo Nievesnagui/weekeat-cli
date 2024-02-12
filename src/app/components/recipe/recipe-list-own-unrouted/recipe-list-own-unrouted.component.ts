@@ -53,7 +53,7 @@ export class RecipeListOwnUnroutedComponent implements OnInit {
 
   oRecipe: IRecipe | null = null;
   status: HttpErrorResponse | null = null;
-  oPaginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
+  oPaginatorState: PaginatorState = { first: 0, rows: 8, page: 0, pageCount: 0 };
 
   constructor(
     private oRecipeService: RecipeService,
@@ -99,6 +99,12 @@ export class RecipeListOwnUnroutedComponent implements OnInit {
       return 'https://images.unsplash.com/photo-1586511925558-a4c6376fe65f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=60';
     }
   }
+  onPageChang(event: PaginatorState) {
+    this.oPaginatorState.rows = event.rows;
+    this.oPaginatorState.page = event.page;
+    this.getPageByUser(this.id_filter);
+  }
+
 
   getUser(): void {
     this.oUserService.getOne(this.id).subscribe({

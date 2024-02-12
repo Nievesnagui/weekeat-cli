@@ -14,7 +14,7 @@
 
     <div id="navbarBasicExample" class="navbar-menu" [ngClass]="{ 'is-active': isNavbarActive }">
         <div class="navbar-start">
-            <a class="navbar-item nav-link" routerLink="" href="#">
+            <a class="navbar-item nav-link" routerLink="" href="#" (click)="toggleNavbar()">
                 Home
             </a>
 
@@ -24,16 +24,16 @@
                 </a>
 
                 <div class="navbar-dropdown">
-                    <a class="navbar-item" routerLink="admin/user/list">
+                    <a class="navbar-item" routerLink="admin/user/list" (click)="toggleNavbar()">
                         Users
                     </a>
-                    <a class="navbar-item" routerLink="admin/ingredient/list">
+                    <a class="navbar-item" routerLink="admin/ingredient/list" (click)="toggleNavbar()">
                         Ingredients
                     </a>
-                    <a class="navbar-item" routerLink="admin/type/list">
+                    <a class="navbar-item" routerLink="admin/type/list" (click)="toggleNavbar()">
                         Types
                     </a>
-                    <a class="navbar-item" routerLink="admin/recipe/list">
+                    <a class="navbar-item" routerLink="admin/recipe/list" (click)="toggleNavbar()">
                         Recipes
                     </a>
                 </div>
@@ -45,16 +45,16 @@
                 </a>
 
                 <div class="navbar-dropdown">
-                    <a class="navbar-item" routerLink="/recipe/list">
+                    <a class="navbar-item" routerLink="/recipe/list" (click)="toggleNavbar()" >
                         All Recipes
                     </a>
-                    <a class="navbar-item" routerLink="/recipe/list/own">
+                    <a class="navbar-item" routerLink="/recipe/list/own" (click)="toggleNavbar()">
                         Your Recipes
                     </a>
-                    <a class="navbar-item">
+                    <a class="navbar-item" (click)="toggleNavbar()">
                         Favourite Recipes
                     </a>
-                    <a class="navbar-item" routerLink="/recipe/new">
+                    <a class="navbar-item" routerLink="/recipe/new" (click)="toggleNavbar()">
                         Create Recipe
                     </a>
                 </div>
@@ -66,10 +66,10 @@
                 </a>
 
                 <div class="navbar-dropdown">
-                    <a class="navbar-item" routerLink="/weekly/new">
+                    <a class="navbar-item" routerLink="/weekly/new" (click)="toggleNavbar()">
                         Create
                     </a>
-                    <a class="navbar-item" routerLink="/weekly/list/own">
+                    <a class="navbar-item" routerLink="/weekly/list/own" (click)="toggleNavbar()">
                         See All
                     </a>
                 </div>
@@ -80,7 +80,7 @@
 
         <div class="navbar-end">
             <div class="navbar-item">
-                <a class="navbar-item" routerLink="/user/myprofile" *ngIf="strUserName">
+                <a class="navbar-item" routerLink="/user/myprofile" *ngIf="strUserName" (click)="toggleNavbar()">
                     Profile
                 </a>
                 <div class="buttons">

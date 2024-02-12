@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { ConfirmEventType, ConfirmationService } from 'primeng/api';
 import { PaginatorState } from 'primeng/paginator';
-import { Subject } from 'rxjs';
+import { Subject, debounceTime, of, switchMap } from 'rxjs';
 import { IUser, IUserPage } from 'src/app/model/model.interface';
 import { UserService } from 'src/app/service/user.service';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -41,7 +41,39 @@ export class AdminUserListUnroutedComponent implements OnInit {
       }
     });
   }
-
+  search(filterValue: string): void {
+    if (filterValue && filterValue.length >= 3) {
+      this.oUserService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, filterValue)
+        .pipe(
+          debounceTime(500),
+          switchMap((data: IUserPage) => {
+            return of(data);
+          })
+        )
+        .subscribe(
+          (data: IUserPage) => {
+            this.oPage = data;
+          },
+          (error: any) => {
+            // Handle error
+            console.error(error);
+          }
+        );
+    } else {
+      this.oUserService.getPage(this.oPaginatorState.rows, this.oPaginatorState.first, 'id', 'asc')
+        .subscribe(
+          (data: IUserPage) => {
+            this.oPage = data;
+          },
+          (error: any) => {
+            console.error(error);
+          }
+        );
+    }
+  }
+  getValue(event: any): string {
+    return event.target.value;
+  }
   getPage(): void {
     this.oUserService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField).subscribe({
       next: (data: IUserPage) => {

@@ -25,7 +25,7 @@ export class RecipeListUnroutedComponent implements OnInit {
 
   oRecipe: IRecipe | null = null;
   status: HttpErrorResponse | null = null;
-  oPaginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
+  oPaginatorState: PaginatorState = { first: 0, rows: 8, page: 0, pageCount: 0 };
 
   strUserName: string = "";
   oSessionUser: IUser = {} as IUser;
@@ -132,6 +132,13 @@ export class RecipeListUnroutedComponent implements OnInit {
       }
     })
   }
+
+  onPageChang(event: PaginatorState) {
+    this.oPaginatorState.rows = event.rows;
+    this.oPaginatorState.page = event.page;
+    this.getPage();
+  }
+
 
   getValue(event: any): string {
     return event.target.value;

@@ -1,5 +1,5 @@
-<div class="columns is-multiline mt-4 ml-2">
-  <div class="column" *ngFor="let weekly of oPage?.content">
+<div class="columns is-centered is-multiline mt-4 ml-2">
+  <div class="column card" *ngFor="let weekly of oPage?.content">
     <div class="card-hover m-3">
       <div class="card-hover__content">
         <p>{{ weekly.id }}</p>
@@ -9,7 +9,7 @@
         </ng-container>
 
         <div class="table-container">
-          <table class="table is-bordered m-4">
+          <table class="table is-bordered m-4 ">
             <thead>
               <tr>
                 <th></th>
@@ -20,11 +20,9 @@
             <tbody>
               <tr>
                 <th>Lunch</th>
-
-
                 <td *ngFor="let day of ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']">
                   <ng-container *ngFor="let schedule of oSchedules">
-                    <div *ngIf="schedule.day === day && schedule.type === 'Lunch'" class="fixed-cell">
+                    <div *ngIf="schedule.day === day && schedule.type === 'Lunch' && schedule.id_weekly.id === weekly.id" class="fixed-cell">
                       <ul class="list-none flex flex-column gap-2 p-0 m-0">
                         <div class="card">
                           <div class="w-15rem">
@@ -62,10 +60,28 @@
 
             </tbody>
           </table>
-
+          <div class="buttons is-centered">
+            <button class="button btn m-2 is-warning">Edit</button>
+            <button class="button btn m-2 is-danger" (click)="doRemove(weekly)">Delete</button>
+          </div>
         </div>
 
       </div>
     </div>
   </div>
+</div>
+
+
+<div class="modal" [class.is-active]="showConfirmationModal">
+  <div class="modal-background" (click)="cancelRemove()"></div>
+  <div class="modal-content">
+    <div class="box">
+      <p>Are you sure you want to remove this weekly?</p>
+      <div class="buttons">
+        <button class="button is-danger" (click)="confirmRemove()" [routerLink]="['/weekly','list','own']">Yes</button>
+        <button class="button" (click)="cancelRemove()">No</button>
+      </div>
+    </div>
+  </div>
+  <button class="modal-close is-large" aria-label="close" (click)="cancelRemove()"></button>
 </div>
