@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { API_URL } from "../environment/environment";
 import { HttpClient } from "@angular/common/http";
-import { ISchedule, ISchedulePage } from "../model/model.interface";
+import { ISchedule, ISchedulePage, ISchedulePagePrueba } from "../model/model.interface";
 import { Observable } from "rxjs";
 
 
@@ -23,14 +23,14 @@ export class ScheduleService {
         return this.oHttpClient.get<ISchedulePage>(this.sUrl + '?size=' + size + '&page=' + page + '&sort=' + orderField);
     }
 
-    getPageByWeekly(size: number | undefined, page: number | undefined, orderField: string, id_weekly: number): Observable<ISchedulePage>{
+    getPageByWeekly(size: number | undefined, page: number | undefined, orderField: string, id_weekly: number): Observable<ISchedulePagePrueba>{
         if (!size) size = 10;
         if (!page) page = 0;
-        return this.oHttpClient.get<ISchedulePage>(this.sUrl + '?size=' + size + '&page=' + page + '&sort=' + orderField + '&id_weekly=' + id_weekly);
+        return this.oHttpClient.get<ISchedulePagePrueba>(this.sUrl + '?size=' + size + '&page=' + page + '&sort=' + orderField + '&id_weekly=' + id_weekly);
     }
 
-    getPageByWeeklyArr(id_weekly: number): Observable<ISchedulePage>{
-        return this.oHttpClient.get<ISchedulePage>(this.sUrl + '?size=' + 15 + '&page=' + 0 + '&sort=' + "id" + '&id_weekly=' + id_weekly);
+    getPageByWeeklyArr(id_weekly: number): Observable<ISchedulePagePrueba>{
+        return this.oHttpClient.get<ISchedulePagePrueba>(this.sUrl + '?size=' + 15 + '&page=' + 0 + '&sort=' + "id" + '&id_weekly=' + id_weekly);
     }
 
     removeOne(id: number | undefined): Observable<number> {

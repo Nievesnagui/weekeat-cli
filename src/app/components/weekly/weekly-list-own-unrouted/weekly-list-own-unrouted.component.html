@@ -1,15 +1,14 @@
-<div class="columns is-centered is-multiline mt-4 ml-2">
-  <div class="column card" *ngFor="let weekly of oPage?.content">
-    <div class="card-hover m-3">
-      <div class="card-hover__content">
-        <p>{{ weekly.id }}</p>
-        <p>{{ weekly.init_date }}</p>
+<div class="columns is-multiline is-centered m-4 ">
+  <div  *ngFor="let weekly of oPage?.content">
+    <div class="m-3">
+      <div class="has-background-white p-4">
+        <p>Weekly Id: {{ weekly.id }}</p>
+        <p>Init date: {{ weekly.init_date }}</p>
         <ng-container *ngIf="oSchedules.length === 0">
           {{ getWeeklySchedules(weekly.id) }}
         </ng-container>
-
-        <div class="table-container">
-          <table class="table is-bordered m-4 ">
+        <div class="table-container mt-4" *ngIf="oSchedules.length > 0">
+          <table class="table is-bordered">
             <thead>
               <tr>
                 <th></th>
@@ -20,14 +19,15 @@
             <tbody>
               <tr>
                 <th>Lunch</th>
-                <td *ngFor="let day of ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']">
+                <td class="fixed-cell"
+                  *ngFor="let day of ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']">
                   <ng-container *ngFor="let schedule of oSchedules">
-                    <div *ngIf="schedule.day === day && schedule.type === 'Lunch' && schedule.id_weekly.id === weekly.id" class="fixed-cell">
+                    <div *ngIf="schedule.day === day && schedule.type === 'Lunch' && schedule.weekly.id === weekly.id">
                       <ul class="list-none flex flex-column gap-2 p-0 m-0">
                         <div class="card">
                           <div class="w-15rem">
-                            <p-panel header="{{ day }} Lunch Recipe">
-                              <!--<img src="{{ schedule.id_recipe.recipe_image }}" alt="">-->
+                            <p-panel header="{{ schedule.recipe.name }}">
+                              <img src="{{ schedule.recipe.recipe_image }}" alt="">
                             </p-panel>
                           </div>
                         </div>
@@ -35,20 +35,19 @@
                     </div>
                   </ng-container>
                 </td>
-
-
               </tr>
 
               <tr>
                 <th>Dinner</th>
-                <td *ngFor="let day of ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']">
+                <td class="fixed-cell"
+                  *ngFor="let day of ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']">
                   <ng-container *ngFor="let schedule of oSchedules">
-                    <div *ngIf="schedule.day === day && schedule.type === 'Dinner'" class="fixed-cell">
+                    <div *ngIf="schedule.day === day && schedule.type === 'Dinner' && schedule.weekly.id === weekly.id">
                       <ul class="list-none flex flex-column gap-2 p-0 m-0">
                         <div class="card">
                           <div class="w-15rem">
-                            <p-panel header="{{ day }} Dinner Recipe">
-                              <!--<img src="{{ schedule.id_recipe.recipe_image }}" alt="">-->
+                            <p-panel header="{{ schedule.recipe.name }}">
+                              <img src="{{ schedule.recipe.recipe_image }}" alt="">
                             </p-panel>
                           </div>
                         </div>
@@ -65,7 +64,6 @@
             <button class="button btn m-2 is-danger" (click)="doRemove(weekly)">Delete</button>
           </div>
         </div>
-
       </div>
     </div>
   </div>

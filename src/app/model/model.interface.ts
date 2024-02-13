@@ -81,6 +81,17 @@ export interface ISchedule {
     day: string;
 }
 
+export interface ISchedulePrueba {
+    id: number;
+    recipe: IRecipe;
+    weekly: IWeekly;
+    type: string;
+    day: string;
+}
+
+export interface ISchedulePagePrueba extends IPage<ISchedulePrueba> {
+}
+
 export interface ISchedulePage extends IPage<ISchedule> {
 }
 

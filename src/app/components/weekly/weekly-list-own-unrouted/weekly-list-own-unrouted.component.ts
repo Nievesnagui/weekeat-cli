@@ -2,7 +2,7 @@ import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PaginatorState } from 'primeng/paginator';
-import { IRecipe, ISchedule, ISchedulePage, IUser, IWeekly, IWeeklyPage } from 'src/app/model/model.interface';
+import { IRecipe, ISchedule, ISchedulePage, ISchedulePagePrueba, ISchedulePrueba, IUser, IWeekly, IWeeklyPage } from 'src/app/model/model.interface';
 import { RecipeService } from 'src/app/service/recipe.service';
 import { ScheduleService } from 'src/app/service/schedule.service';
 import { SessionService } from 'src/app/service/session.service';
@@ -50,7 +50,7 @@ export class WeeklyListOwnUnroutedComponent implements OnInit {
   oPage: IWeeklyPage | undefined;
   oWeekly: IWeekly | null = null;
   orderDirection: string = "asc";
-  oSchedules: ISchedule[] = [];
+  oSchedules: ISchedulePrueba[] = [];
   oRecipes: IRecipe[] = [];
 
   showConfirmationModal = false;
@@ -72,13 +72,18 @@ export class WeeklyListOwnUnroutedComponent implements OnInit {
   getWeeklySchedules(weeklyId: number): void {
     this.oScheduleService.getPageByWeeklyArr(weeklyId)
       .subscribe({
-        next: (schedules: ISchedulePage) => {
+        next: (schedules: ISchedulePagePrueba) => {
+          console.log(weeklyId);
           this.oSchedules = schedules.content;
-          console.log(this.oSchedules);
+          console.log(schedules.content);
 
           this.oSchedules.forEach(schedule => {
-            this.oRecipeService.getOne(schedule.id_recipe.id).subscribe({
+            console.log("estoy en el foreach");
+            console.log(schedule.recipe);
+            this.oRecipeService.getOne(schedule.recipe.id).subscribe({
               next: (recipe: IRecipe) => {
+                console.log("estoy en el getone");
+                console.log(recipe);
                 this.oRecipes.push(recipe);
               },
               error: (error: HttpErrorResponse) => {

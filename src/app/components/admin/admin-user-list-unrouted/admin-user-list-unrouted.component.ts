@@ -24,6 +24,7 @@ export class AdminUserListUnroutedComponent implements OnInit {
   oPaginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
   status: HttpErrorResponse | null = null;
   oUserToRemove: IUser | null = null;
+  filterValue: string = "";
 
   constructor(
     private oUserService: UserService,
@@ -41,41 +42,14 @@ export class AdminUserListUnroutedComponent implements OnInit {
       }
     });
   }
-  search(filterValue: string): void {
-    if (filterValue && filterValue.length >= 3) {
-      this.oUserService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, filterValue)
-        .pipe(
-          debounceTime(500),
-          switchMap((data: IUserPage) => {
-            return of(data);
-          })
-        )
-        .subscribe(
-          (data: IUserPage) => {
-            this.oPage = data;
-          },
-          (error: any) => {
-            // Handle error
-            console.error(error);
-          }
-        );
-    } else {
-      this.oUserService.getPage(this.oPaginatorState.rows, this.oPaginatorState.first, 'id', 'asc')
-        .subscribe(
-          (data: IUserPage) => {
-            this.oPage = data;
-          },
-          (error: any) => {
-            console.error(error);
-          }
-        );
-    }
+  search(): void {
+   this.getPage();
   }
   getValue(event: any): string {
     return event.target.value;
   }
   getPage(): void {
-    this.oUserService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField).subscribe({
+    this.oUserService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.filterValue).subscribe({
       next: (data: IUserPage) => {
         this.oPage = data;
         this.oPaginatorState.pageCount = data.totalPages;
