@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { API_URL } from "../environment/environment";
 import { HttpClient } from "@angular/common/http";
-import { ISchedule, ISchedulePage, ISchedulePagePrueba } from "../model/model.interface";
+import { ISchedule, ISchedulePage, ISchedulePagePrueba, ISchedulePrueba } from "../model/model.interface";
 import { Observable } from "rxjs";
 
 
@@ -13,14 +13,14 @@ export class ScheduleService {
         private oHttpClient: HttpClient
     ) { }
 
-    getOne(id: number): Observable<ISchedule> {
-        return this.oHttpClient.get<ISchedule>(this.sUrl + '/' + id);
+    getOne(id: number): Observable<ISchedulePrueba> {
+        return this.oHttpClient.get<ISchedulePrueba>(this.sUrl + '/' + id);
     }
 
-    getPage(size: number | undefined, page: number | undefined, orderField: string): Observable<ISchedulePage> {
+    getPage(size: number | undefined, page: number | undefined, orderField: string): Observable<ISchedulePrueba> {
         if (!size) size = 10;
         if (!page) page = 0;
-        return this.oHttpClient.get<ISchedulePage>(this.sUrl + '?size=' + size + '&page=' + page + '&sort=' + orderField);
+        return this.oHttpClient.get<ISchedulePrueba>(this.sUrl + '?size=' + size + '&page=' + page + '&sort=' + orderField);
     }
 
     getPageByWeekly(size: number | undefined, page: number | undefined, orderField: string, id_weekly: number): Observable<ISchedulePagePrueba>{

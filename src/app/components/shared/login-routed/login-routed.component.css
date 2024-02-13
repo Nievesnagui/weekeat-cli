@@ -12,32 +12,32 @@ body, html {
   }
   
   .form-control {
-    box-shadow: 0 15px 25px #2853188c;
+    box-shadow: 0 0.938em 1.563em #2853188c;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    padding: 25px;
-    border-radius: 8px;
-    max-width: 1400px; 
+    gap: 0.625em;
+    padding: 1.563em;
+    border-radius: 0.5em;
+    max-width: 87.5em; 
     
   }
   
   .title {
-    font-size: 28px;
+    font-size: 1.75em;
     font-weight: 800;
   }
   
   .field {
-    margin-top: 15px;
+    margin-top: 0.938em;
   }
   
   .input {
     outline: none;
-    border-radius: 8px;
-    height: 45px;
-    border: 1.5px solid #ecedec;
+    border-radius: 0.5em;
+    height: 2.813em;
+    border: 0.094em solid #ecedec;
     background: transparent;
-    padding-left: 10px;
+    padding-left: 0.625em;
   }
   
   .label {
@@ -49,19 +49,19 @@ body, html {
   
   .input-field .label.is-focused,
   .input-field .input:valid ~ .label.is-active {
-    top: 5px;
-    left: 5px;
-    font-size: 12px;
+    top: 0.313em;
+    left: 0.313em;
+    font-size: 0.75em;
     background-color: #ffffff;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 0.313em;
+    padding-right: 0.313em;
   }
   
   .submit-btn {
-    margin-top: 30px;
-    height: 55px;
-    border-radius: 11px;
-    font-size: 18px;
+    margin-top: 1.875em;
+    height: 3.438em;
+    border-radius: 0.688em;
+    font-size: 1.125em;
     font-weight: 700;
     transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
   }

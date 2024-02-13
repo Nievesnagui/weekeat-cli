@@ -6,17 +6,17 @@
   /* Estilo para las imágenes dentro del carrusel */
   .product-item-content img {
     width: 100%; /* Ajusta el ancho de la imagen */
-    border-radius: 5px; /* Borde redondeado */
-    filter: blur(2px);
+    border-radius: 0.313em; /* Borde redondeado */
+    filter: blur(0.125em);
   }
   
   /* Estilo para el texto dentro del contenido del ítem del carrusel */
   .product-item-content h4,
   .product-item-content h6 {
    /* Establece la posición absoluta para el texto */
-    bottom: 10px; /* Ajusta la posición vertical del texto según sea necesario */
-    left: 10px; /* Ajusta la posición horizontal del texto según sea necesario */
+    bottom: 0.625em; /* Ajusta la posición vertical del texto según sea necesario */
+    left: 0.625em; /* Ajusta la posición horizontal del texto según sea necesario */
     color: white; /* Color del texto */
-    backdrop-filter: blur(5px); /* Aplica el desenfoque solo detrás del texto */
-    padding: 5px; /* Ajusta el relleno del texto según sea necesario */
+    backdrop-filter: blur(0.313em); /* Aplica el desenfoque solo detrás del texto */
+    padding: 0.313em; /* Ajusta el relleno del texto según sea necesario */
   }

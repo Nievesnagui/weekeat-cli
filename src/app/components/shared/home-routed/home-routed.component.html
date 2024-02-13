@@ -73,7 +73,7 @@
     <ng-template let-recipe pTemplate="item">
       <div class="product-item">
         <div class="product-item-content">
-          <div class="mb-3" style="height: 60px; ">
+          <div class="mb-3" style="height: 3.75em; ">
             <img
               [src]="recipe.recipe_image ? recipe.recipe_image : 'https://images.unsplash.com/photo-1586511925558-a4c6376fe65f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=60'"
               [alt]="recipe.name" class="" />
@@ -95,11 +95,11 @@
     <p class="bd-notification">Info y cosas para que se registre el usuario</p>
   </div>
   <div class="column ">
-    <p-carousel [value]="oPage?.content ?? []" orientation="vertical" verticalViewPortHeight="360px">
+    <p-carousel [value]="oPage?.content ?? []" orientation="vertical" verticalViewPortHeight="22.5em">
       <ng-template let-recipe pTemplate="item">
         <div class="product-item">
           <div class="product-item-content">
-            <div class="mb-3" style="height: 60px; ">
+            <div class="mb-3" style="height: 3.75em; ">
               <img
                 [src]="recipe.recipe_image ? recipe.recipe_image : 'https://images.unsplash.com/photo-1586511925558-a4c6376fe65f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=60'"
                 [alt]="recipe.name" class="" />

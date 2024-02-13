@@ -75,7 +75,7 @@ export class RecipeListOwnUnroutedComponent implements OnInit {
       this.oPaginatorState.rows,
       this.oPaginatorState.page,
       this.orderField,
-      userId // Agrega el ID del usuario como filtro
+      userId 
     ).subscribe({
       next: (data: IRecipePage) => {
         this.oPage = data;

@@ -43,10 +43,11 @@ export class WeeklyListOwnUnroutedComponent implements OnInit {
 
   id_weekly_filter = 0;
   id_filter: number = 0;
+
   oUser: IUser | null = null;
   status: HttpErrorResponse | null = null;
-  oPaginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
-  orderField: string = "id";
+  oPaginatorState: PaginatorState = { first: 0, rows: 2, page: 0, pageCount: 0 };
+  orderField: string = "id_weekly";
   oPage: IWeeklyPage | undefined;
   oWeekly: IWeekly | null = null;
   orderDirection: string = "asc";
@@ -63,27 +64,36 @@ export class WeeklyListOwnUnroutedComponent implements OnInit {
     private oScheduleService: ScheduleService,
     private oRecipeService: RecipeService
   ) {
+    console.log("constructor");
     this.oUserService.getByUsername(this.oSessionService.getUsername()).subscribe(user => {
+      console.log("this.oUserService.getByUsername");
       this.id_filter = user.id;
-      this.getPageByUser(this.id_filter); // Llama a getPage con el ID del usuario
+      console.log(this.id_filter);
+      this.getPageByUser(this.id_filter);
+      console.log("post getpage by user");
+     
+
+      //console.log(this.oSchedules);
+
     });
   }
 
   getWeeklySchedules(weeklyId: number): void {
+    this.oSchedules = [];
     this.oScheduleService.getPageByWeeklyArr(weeklyId)
       .subscribe({
         next: (schedules: ISchedulePagePrueba) => {
           console.log(weeklyId);
           this.oSchedules = schedules.content;
           console.log(schedules.content);
+          console.log("this.oSchedules");
+          console.log(this.oSchedules);
 
+          this.oRecipes = [];
           this.oSchedules.forEach(schedule => {
-            console.log("estoy en el foreach");
-            console.log(schedule.recipe);
+            console.log(schedule);
             this.oRecipeService.getOne(schedule.recipe.id).subscribe({
               next: (recipe: IRecipe) => {
-                console.log("estoy en el getone");
-                console.log(recipe);
                 this.oRecipes.push(recipe);
               },
               error: (error: HttpErrorResponse) => {
@@ -98,8 +108,9 @@ export class WeeklyListOwnUnroutedComponent implements OnInit {
       });
   }
 
+
   ngOnInit() {
-    this.getOne();
+    //this.getOne();
     /* this.getPageByUser(this.id_filter);
      console.log(this.id_filter);
      console.log(this.id);
@@ -119,7 +130,7 @@ export class WeeklyListOwnUnroutedComponent implements OnInit {
     this.oWeeklyService.getOne(this.id).subscribe({
       next: (data: IWeekly) => {
         this.oWeekly = data;
-       },
+      },
       error: (error: HttpErrorResponse) => {
         this.status = error;
       }
@@ -139,6 +150,7 @@ export class WeeklyListOwnUnroutedComponent implements OnInit {
   }
 
   getPageByUser(userId: number): void {
+    console.log("getPageByUser");
     this.oWeeklyService.getPageByUser(
       this.oPaginatorState.rows,
       this.oPaginatorState.page,
@@ -147,9 +159,18 @@ export class WeeklyListOwnUnroutedComponent implements OnInit {
     ).subscribe({
       next: (data: IWeeklyPage) => {
         this.oPage = data;
+
+        this.oPage?.content.forEach(weekly => {
+
+          console.log("Entra");
+          console.log(weekly.id);
+          this.getWeeklySchedules(weekly.id);
+          this.oSchedules.forEach(schedule => weekly.schedules.push(schedule));
+          //No se está rellenando, no entra al bucle
+          console.log(this.oSchedules);
+        });
+        console.log(data);
         this.oPaginatorState.pageCount = data.totalPages;
-
-
       },
       error: (error: HttpErrorResponse) => {
         this.status = error;
@@ -171,6 +192,7 @@ export class WeeklyListOwnUnroutedComponent implements OnInit {
       }
     })
   }
+
 
   doRemove(u: IWeekly) {
     this.oWeeklyToRemove = u;
@@ -206,5 +228,12 @@ export class WeeklyListOwnUnroutedComponent implements OnInit {
     console.log('Weekly not removed');
     this.showConfirmationModal = false;
   }
+
+  onPageChang(event: PaginatorState) {
+    this.oPaginatorState.rows = event.rows;
+    this.oPaginatorState.page = event.page;
+    this.getPageByUser(this.id_filter);
+  }
+
 
 }

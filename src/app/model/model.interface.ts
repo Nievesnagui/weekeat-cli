@@ -66,7 +66,7 @@ export interface IRecipe {
     process: string;
     content: Array<IContent> ;
     favs: Array<IFavRecipe> ;
-    schedules: Array<ISchedule> ;
+    schedules: Array<ISchedulePrueba> ;
 }
 
 export interface IRecipePage extends IPage<IRecipe> {
@@ -100,7 +100,8 @@ export interface IWeekly {
     id: number;
     id_user: IUser;
     init_date: Date;
-    schedules: number;
+    schedulesList: number;
+    schedules: ISchedulePrueba[];
 }
 
 export interface IWeeklyPage extends IPage<IWeekly> {

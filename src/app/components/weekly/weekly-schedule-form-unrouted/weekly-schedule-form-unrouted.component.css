@@ -1,12 +1,12 @@
 .day-height{
-    height: 200px !important;
+    height: 12.5em !important;
 }
 
 :host ::ng-deep .drag-column {
     padding-right: 0.5em;
 }
 :host ::ng-deep .drop-column {
-    border: 1px solid transparent;
+    border: 0.063em solid transparent;
     transition: border-color 0.2s;
 }
 :host ::ng-deep .drop-column.p-draggable-enter {
@@ -17,11 +17,11 @@
     align-items: center;
     padding: 1rem;
     width: 100%;
-    border-bottom: 1px solid var(--surface-d);
+    border-bottom: 0.063em solid var(--surface-d);
 }
 :host ::ng-deep .product-item img {
-    width: 75px;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    width: 4.688em;
+    box-shadow: 0 0.188em 0.375em rgba(0, 0, 0, 0.16), 0 0.188em 0.375em rgba(0, 0, 0, 0.23);
     margin-right: 1rem;
 }
 :host ::ng-deep .product-item .product-list-detail {
@@ -36,7 +36,7 @@
 }
 
 :host ::ng-deep .drop-column {
-    border: 1px solid transparent;
+    border: 0.063em solid transparent;
     transition: border-color 0.2s;
 }
 :host ::ng-deep .drop-column.p-draggable-enter {

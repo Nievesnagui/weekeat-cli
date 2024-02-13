@@ -17,13 +17,13 @@ h5 {
 }
 
 .card-hover {
-  width: 360px;
-  height: 500px;
+  width: 22.5em;
+  height: 31.25em;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 0 32px -10px rgba(0, 0, 0, 0.08);
-  border-radius: 10px;
-  margin-bottom: 20px;
+  box-shadow: 0 0 2em -0.625em rgba(0, 0, 0, 0.08);
+  border-radius: 0.625em;
+  margin-bottom: 1.25em;
 }
 .card-hover:has(.card-hover__link:hover) .card-hover__extra {
   transform: translateY(0);
@@ -33,7 +33,7 @@ h5 {
   background-color: #DEE8C2;
   bottom: 100%;
   transform: translateY(100%);
-  padding: 50px 60px;
+  padding: 3.125em 3.75em;
   transition: all 0.35s cubic-bezier(0.1, 0.72, 0.4, 0.97);
 }
 .card-hover:hover .card-hover__link {
@@ -49,7 +49,7 @@ h5 {
   width: 100%;
   text-align: center;
   background-color: #86B971;
-  padding: 0 60px 50px;
+  padding: 0 3.75em 3.125em;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -61,21 +61,21 @@ h5 {
 .card-hover__content::before, .card-hover__content::after {
   content: "";
   width: 100%;
-  height: 120px;
+  height: 7.5em;
   background-color: inherit;
   position: absolute;
   left: 0;
   z-index: -1;
 }
 .card-hover__content::before {
-  top: -80px;
-  -webkit-clip-path: ellipse(60% 80px at bottom center);
-          clip-path: ellipse(60% 80px at bottom center);
+  top: -5em;
+  -webkit-clip-path: ellipse(60% 5em at bottom center);
+          clip-path: ellipse(60% 5em at bottom center);
 }
 .card-hover__content::after {
-  bottom: -80px;
-  -webkit-clip-path: ellipse(60% 80px at top center);
-          clip-path: ellipse(60% 80px at top center);
+  bottom: -5em;
+  -webkit-clip-path: ellipse(60% 5em at top center);
+          clip-path: ellipse(60% 5em at top center);
 }
 .card-hover__title {
   font-size: 1.5rem;
@@ -94,15 +94,15 @@ h5 {
   transform: translate(-50%, 10%);
   color: #2d7f0b;
   opacity: 0;
-  padding: 10px;
+  padding: 0.625em;
   transition: all 0.35s;
 }
 .card-hover__link:hover svg {
-  transform: translateX(4px);
+  transform: translateX(0.25em);
 }
 .card-hover__link svg {
-  width: 18px;
-  margin-left: 4px;
+  width: 1.125em;
+  margin-left: 0.25em;
   transition: transform 0.3s;
 }
 .card-hover__extra {
@@ -113,7 +113,7 @@ h5 {
   font-size: 1.5rem;
   text-align: center;
   background-color: #86b971;
-  padding: 80px;
+  padding: 5em;
   bottom: 0;
   z-index: 0;
   color: #dee8c2;
