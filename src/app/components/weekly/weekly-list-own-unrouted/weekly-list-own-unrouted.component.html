@@ -1,12 +1,11 @@
 <div class="columns is-multiline is-centered m-4 ">
-  <div *ngFor="let weekly of oPage?.content">
+  <div *ngFor="let weekly of oWeeklyList">
     <div class="m-3">
       <div class="has-background-white p-4">
         <p>Weekly Id: {{ weekly.id }}</p>
         <p>Init date: {{ weekly.init_date }}</p>
-        <p>{{ weekly.schedules.length }}</p>
         <ng-container>
-          <div class="table-container mt-4" *ngIf="weekly.schedules.length > 0">
+          <div class="table-container mt-4" *ngIf="oSchedules.length > 0 ">
             <table class="table is-bordered">
               <thead>
                 <tr>
@@ -20,42 +19,43 @@
                 <tr>
                   <th>Lunch</th>
                   <td class="fixed-cell"
-                  *ngFor="let day of ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']">
-                  <ng-container *ngFor="let schedule of this.oSchedules">
-                    <p>{{ schedule.weekly.id }}</p>
-                    <div *ngIf="schedule.day === day && schedule.type === 'Lunch' && schedule.weekly.id === weekly.id">
-                      <ul class="list-none flex flex-column gap-2 p-0 m-0">
-                        <div class="card">
-                          <div class="w-15rem">
-                            <p-panel header="{{ schedule.recipe.name }}">
-                              <img src="" alt="">
-                            </p-panel>
+                    *ngFor="let day of ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']">
+                    <ng-container *ngFor="let schedule of oSchedules">
+                      <div
+                        *ngIf="schedule.day === day && schedule.type === 'Lunch' && schedule.weekly.id === weekly.id">
+                        <ul class="list-none flex flex-column gap-2 p-0 m-0">
+                          <div class="card">
+                            <div class="w-15rem">
+                              <p-panel header="{{ schedule.recipe.name }}">
+                                <img src="{{ schedule.recipe.recipe_image }}" alt="">
+                              </p-panel>
+                            </div>
                           </div>
-                        </div>
-                      </ul>
-                    </div>
-                  </ng-container>
-                </td>
+                        </ul>
+                      </div>
+                    </ng-container>
+                  </td>
                 </tr>
 
                 <tr>
                   <th>Dinner</th>
                   <td class="fixed-cell"
-                  *ngFor="let day of ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']">
-                  <ng-container *ngFor="let schedule of this.oSchedules">
-                    <div *ngIf="schedule.day === day && schedule.type === 'Dinner' && schedule.weekly.id === weekly.id">
-                      <ul class="list-none flex flex-column gap-2 p-0 m-0">
-                        <div class="card">
-                          <div class="w-15rem">
-                            <p-panel header="prueba">
-                              <img src="" alt="">
-                            </p-panel>
+                    *ngFor="let day of ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']">
+                    <ng-container *ngFor="let schedule of oSchedules">
+                      <div
+                        *ngIf="schedule.day === day && schedule.type === 'Dinner' && schedule.weekly.id === weekly.id">
+                        <ul class="list-none flex flex-column gap-2 p-0 m-0">
+                          <div class="card">
+                            <div class="w-15rem">
+                              <p-panel header="prueba">
+                                <img src="{{ schedule.recipe.recipe_image }}"  alt="">
+                              </p-panel>
+                            </div>
                           </div>
-                        </div>
-                      </ul>
-                    </div>
-                  </ng-container>
-                </td>
+                        </ul>
+                      </div>
+                    </ng-container>
+                  </td>
                 </tr>
 
               </tbody>
@@ -68,11 +68,12 @@
         </ng-container>
       </div>
     </div>
-  </div><div class="column is-narrow">
- <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
-    [totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
-</div>
+  </div>
 
+</div>
+<div class="column is-narrow">
+  <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
+    [totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
 </div>
 
 <div class="modal" [class.is-active]="showConfirmationModal">

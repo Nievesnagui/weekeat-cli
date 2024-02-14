@@ -29,6 +29,12 @@ export class ScheduleService {
         return this.oHttpClient.get<ISchedulePagePrueba>(this.sUrl + '?size=' + size + '&page=' + page + '&sort=' + orderField + '&id_weekly=' + id_weekly);
     }
 
+    getPageByUser(size: number | undefined, page: number | undefined,orderField: string, id_user: number): Observable<ISchedulePagePrueba>{
+        if (!size) size = 10;
+        if (!page) page = 0;
+        return this.oHttpClient.get<ISchedulePagePrueba>(this.sUrl + '/byUser' + '?size=' + size + '&page=' + page + '&sort=' + orderField  +'&id_user=' + id_user);
+    }
+
     getPageByWeeklyArr(id_weekly: number): Observable<ISchedulePagePrueba>{
         return this.oHttpClient.get<ISchedulePagePrueba>(this.sUrl + '?size=' + 15 + '&page=' + 0 + '&sort=' + "id" + '&id_weekly=' + id_weekly);
     }

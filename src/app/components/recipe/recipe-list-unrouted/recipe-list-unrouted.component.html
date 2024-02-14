@@ -1,4 +1,8 @@
-<div class="columns is-multiline">
+<div class="column is-narrow">
+    <input class="input" type="text" [(ngModel)]="filterValue" (keyup)="search()" id="name" placeholder="Search" />
+   
+  <div class="columns is-multiline">
+  
   <div class="column mt-4" *ngFor="let t of oPage?.content">
     <div class="card-hover m-3">
       <div class="card-hover__content">

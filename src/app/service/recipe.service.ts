@@ -32,12 +32,16 @@ export class RecipeService {
     return this.oHttpClient.get<IRecipe>(this.sUrl + "/byName/" + name);
   }
 
-  getPage(size: number | undefined, page: number | undefined, orderField: string): Observable<IRecipePage> {
+  getPage(size: number | undefined, page: number | undefined, orderField: string, strFilter?: string): Observable<IRecipePage> {
     let sUrl_filter: string;
     if (!size) size = 10;
     if (!page) page = 0;
- 
-    return this.oHttpClient.get<IRecipePage>(this.sUrl + "?size=" + size + "&page=" + page);
+    if (strFilter && strFilter.trim().length > 0) {
+      sUrl_filter = `&filter=${strFilter}`;
+  } else {
+      sUrl_filter = "";
+  }
+    return this.oHttpClient.get<IRecipePage>(this.sUrl + "?size=" + size + "&page=" + page + sUrl_filter);
   }
   getPageByUser(size: number | undefined, page: number | undefined, orderField: string, userId:number|undefined): Observable<IRecipePage> {
     let sUrl_filter: string;

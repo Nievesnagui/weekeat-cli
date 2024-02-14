@@ -101,7 +101,6 @@ export interface IWeekly {
     id_user: IUser;
     init_date: Date;
     schedulesList: number;
-    schedules: ISchedulePrueba[];
 }
 
 export interface IWeeklyPage extends IPage<IWeekly> {

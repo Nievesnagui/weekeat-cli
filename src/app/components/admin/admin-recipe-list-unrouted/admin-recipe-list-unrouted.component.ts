@@ -24,6 +24,7 @@ export class AdminRecipeListUnroutedComponent implements OnInit {
   oRecipeToRemove: IRecipe | null = null;
   id_user: number = 0;
   id_ingredient: number = 0;
+  filterValue: string = "";
 
 
   constructor(
@@ -54,7 +55,7 @@ export class AdminRecipeListUnroutedComponent implements OnInit {
     } else if(this.id_ingredient > 0 ){
       this.getPageByIngredient(this.id_ingredient);
     }else {
-      this.oRecipeService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField).subscribe({
+      this.oRecipeService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.filterValue).subscribe({
         next: (data: IRecipePage) => {
           this.oPage = data;
           this.oPaginatorState.pageCount = data.totalPages;
@@ -65,7 +66,9 @@ export class AdminRecipeListUnroutedComponent implements OnInit {
       })
     }
   }
-
+  search(): void {
+    this.getPage();
+   }
   getPageByUser(userId: number): void {
     this.oRecipeService.getPageByUser(
       this.oPaginatorState.rows,

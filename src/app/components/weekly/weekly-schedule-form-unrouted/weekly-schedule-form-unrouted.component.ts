@@ -223,8 +223,7 @@ export class WeeklyScheduleFormUnroutedComponent implements OnInit {
               id: this.id_weekly,
               id_user: this.weekly.id_user,
               init_date: this.weekly.init_date,
-              schedulesList: this.weekly.schedulesList,
-              schedules: []
+              schedulesList: this.weekly.schedulesList
             }
             const schedule: ISchedule = {
               id: 0,

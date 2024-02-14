@@ -34,7 +34,7 @@ export class RecipeListUnroutedComponent implements OnInit {
   id_recipe: number = 0;
 
   recipe!: IRecipe;
-
+  filterValue: string = "";
 
   constructor(
     private oRecipeService: RecipeService,
@@ -64,7 +64,9 @@ export class RecipeListUnroutedComponent implements OnInit {
       }
     });
   }
-
+  search(): void {
+    this.getPage();
+   }
   toggleFavorite(id_recipe: number): void {
     if (this.isFavorite) {
       // Si ya es favorito, eliminarlo de los favoritos
@@ -122,7 +124,7 @@ export class RecipeListUnroutedComponent implements OnInit {
 
 
   getPage(): void {
-    this.oRecipeService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField).subscribe({
+    this.oRecipeService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.filterValue).subscribe({
       next: (data: IRecipePage) => {
         this.oPage = data;
         this.oPaginatorState.pageCount = data.totalPages;

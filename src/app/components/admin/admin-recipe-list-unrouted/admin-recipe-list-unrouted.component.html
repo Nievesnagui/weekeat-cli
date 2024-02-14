@@ -14,7 +14,7 @@
       <h4>Showing {{ oPage?.numberOfElements }} of total {{ oPage?.totalElements }} recipes.</h4>
     </div>
     <div class="column is-narrow">
-      <!--Aqui tengo el pagination de primeng hasta que lo cambie por el de bulma-->
+    <!-- <input class="input" type="text" [(ngModel)]="filterValue" (keyup)="search()" id="name" placeholder="Search" />--> 
       <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
         [totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
     </div>

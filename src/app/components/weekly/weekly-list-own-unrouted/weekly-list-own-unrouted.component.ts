@@ -46,10 +46,11 @@ export class WeeklyListOwnUnroutedComponent implements OnInit {
 
   oUser: IUser | null = null;
   status: HttpErrorResponse | null = null;
-  oPaginatorState: PaginatorState = { first: 0, rows: 2, page: 0, pageCount: 0 };
-  orderField: string = "id_weekly";
-  oPage: IWeeklyPage | undefined;
+  oPaginatorState: PaginatorState = { first: 0, rows: 28, page: 0, pageCount: 0 };
+  oPage: ISchedulePagePrueba | undefined;
   oWeekly: IWeekly | null = null;
+  oWeeklyList: IWeekly[] = [];
+  orderField: string = "id_weekly";
   orderDirection: string = "asc";
   oSchedules: ISchedulePrueba[] = [];
   oRecipes: IRecipe[] = [];
@@ -71,9 +72,6 @@ export class WeeklyListOwnUnroutedComponent implements OnInit {
       console.log(this.id_filter);
       this.getPageByUser(this.id_filter);
       console.log("post getpage by user");
-     
-
-      //console.log(this.oSchedules);
 
     });
   }
@@ -151,31 +149,29 @@ export class WeeklyListOwnUnroutedComponent implements OnInit {
 
   getPageByUser(userId: number): void {
     console.log("getPageByUser");
-    this.oWeeklyService.getPageByUser(
+    this.oScheduleService.getPageByUser(
       this.oPaginatorState.rows,
       this.oPaginatorState.page,
       this.orderField,
-      userId
-    ).subscribe({
-      next: (data: IWeeklyPage) => {
-        this.oPage = data;
+      userId).subscribe({
+        next: (data: ISchedulePagePrueba) => {
 
-        this.oPage?.content.forEach(weekly => {
+          data.content.forEach(s => {
+            this.oSchedules.push(s);
+            if (!this.oWeeklyList.some(w => w.id === s.weekly.id)) {
+              this.oWeeklyList.push(s.weekly);
+            }
+          });
+          console.log(this.oWeeklyList);
+          
+          this.oPage = data;
 
-          console.log("Entra");
-          console.log(weekly.id);
-          this.getWeeklySchedules(weekly.id);
-          this.oSchedules.forEach(schedule => weekly.schedules.push(schedule));
-          //No se está rellenando, no entra al bucle
-          console.log(this.oSchedules);
-        });
-        console.log(data);
-        this.oPaginatorState.pageCount = data.totalPages;
-      },
-      error: (error: HttpErrorResponse) => {
-        this.status = error;
-      }
-    })
+          this.oPaginatorState.pageCount = data.totalPages;
+        },
+        error: (error: HttpErrorResponse) => {
+          this.status = error;
+        }
+      })
   }
 
   getValue(event: any): string {
