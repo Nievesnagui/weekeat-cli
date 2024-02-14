@@ -76,6 +76,7 @@ export class RecipeListUnroutedComponent implements OnInit {
     } else {
       this.oRecipeService.getOne(id_recipe).subscribe((recipe: IRecipe) => {
         this.recipe = recipe;
+
         const id_recipe: IRecipe = {
           id: recipe.id,
           id_user: null,
@@ -103,12 +104,12 @@ export class RecipeListUnroutedComponent implements OnInit {
           role: this.oSessionUser.role,
         }
 
-
         const favRecipe: IFavRecipe = {
           id: 0,
           id_recipe: id_recipe,
           id_user: id_user
         };
+        
         this.oFavouriteService.newOne(favRecipe).subscribe({
           next: (data: IFavRecipe) => {
             // Aquí asigna el resultado a una variable local en lugar de a oFavouriteService

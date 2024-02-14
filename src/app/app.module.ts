@@ -85,6 +85,8 @@ import { FavouriteService } from './service/favourite.service';
 import { ScheduleService } from './service/schedule.service';
 import { WeeklyListOwnRoutedComponent } from './components/weekly/weekly-list-own-routed/weekly-list-own-routed.component';
 import { WeeklyListOwnUnroutedComponent } from './components/weekly/weekly-list-own-unrouted/weekly-list-own-unrouted.component';
+import { RecipeListFavsRoutedComponent } from './components/recipe/recipe-list-favs-routed/recipe-list-favs-routed.component';
+import { RecipeListFavsUnroutedComponent } from './components/recipe/recipe-list-favs-unrouted/recipe-list-favs-unrouted.component';
 
 @NgModule({
   declarations: [
@@ -108,6 +110,10 @@ import { WeeklyListOwnUnroutedComponent } from './components/weekly/weekly-list-
     RecipeNewRoutedComponent,
     RecipeFormUnroutedComponent,
     RecipeEditRoutedComponent,
+
+    //Favs
+    RecipeListFavsRoutedComponent,
+    RecipeListFavsUnroutedComponent,
 
     //Content
     RecipeContentFormUnroutedComponent,

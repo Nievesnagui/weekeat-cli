@@ -158,6 +158,15 @@ export interface IFavRecipe {
 export interface IIFavRecipePage extends IPage<IFavRecipe> {
 }
 
+export interface IFavRecipePrueba {
+    id: number;
+    user: IUser;
+    recipe: IRecipe;
+}
+
+export interface IIFavRecipePagePrueba extends IPage<IFavRecipePrueba> {
+}
+
 //Otras cosas
 export type formOperation = 'EDIT' | 'NEW';
 

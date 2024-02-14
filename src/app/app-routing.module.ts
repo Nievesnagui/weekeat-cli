@@ -33,6 +33,7 @@ import { RecipeContentNewRoutedComponent } from './components/recipe/recipe-cont
 import { RecipeContentRemoveRoutedComponent } from './components/recipe/recipe-content-remove-routed/recipe-content-remove-routed.component';
 import { WeeklyScheduleNewRoutedComponent } from './components/weekly/weekly-schedule-new-routed/weekly-schedule-new-routed.component';
 import { WeeklyListOwnRoutedComponent } from './components/weekly/weekly-list-own-routed/weekly-list-own-routed.component';
+import { RecipeListFavsRoutedComponent } from './components/recipe/recipe-list-favs-routed/recipe-list-favs-routed.component';
 
 const routes: Routes = [
   { path: '', component: HomeRoutedComponent },
@@ -48,6 +49,9 @@ const routes: Routes = [
   { path: 'recipe/:id', component: RecipeDetailRoutedComponent },
   { path: 'recipe/list/own', component: RecipeListOwnRoutedComponent },
   { path: 'recipe/edit/:id', component: RecipeEditRoutedComponent },
+
+  //Favs
+  { path: 'recipe/list/favs', component: RecipeListFavsRoutedComponent },
 
   //Content
   { path: 'recipe/content/new/:id', component: RecipeContentNewRoutedComponent },
