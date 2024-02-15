@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
-import { IFavRecipe, IRecipe, IRecipePage, IUser } from 'src/app/model/model.interface';
+import { IFavRecipe, IFavRecipePrueba, IIFavRecipePagePrueba, IRecipe, IRecipePage, IUser } from 'src/app/model/model.interface';
 import { RecipeService } from 'src/app/service/recipe.service';
 import { PaginatorState } from 'primeng/paginator';
 import { FavouriteService } from 'src/app/service/favourite.service';
@@ -17,15 +17,47 @@ import { Router } from '@angular/router';
 export class RecipeListUnroutedComponent implements OnInit {
 
   @Input() forceReload: Subject<boolean> = new Subject<boolean>();
+
+  @Input()
+  set id(value: number) {
+    if (value) {
+      this.id_filter = value;
+    } else {
+      this.id_filter = 0;
+    }
+    this.getPage(this.id_filter);
+  }
+  get id(): number {
+    return this.id_filter;
+  }
+
+  @Input()
+  set id_fav(value: number) {
+    if (value) {
+      this.id_fav_filter = value;
+      this.getFav();
+    } else {
+      this.id_fav_filter = 0;
+    }
+    this.getPage(this.id_filter);
+  }
+
+  id_fav_filter: number = 0;
+  id_filter: number = 0;
+
   isFavorite: boolean = false;
+  oPageFavs: IIFavRecipePagePrueba | undefined;
 
   oPage: IRecipePage | undefined;
   orderField: string = "id";
   orderDirection: string = "asc";
+  favProducts: IRecipe[] = [];
 
   oRecipe: IRecipe | null = null;
   status: HttpErrorResponse | null = null;
   oPaginatorState: PaginatorState = { first: 0, rows: 8, page: 0, pageCount: 0 };
+  oPaginatorStateFav: PaginatorState = { first: 0, rows: 20, page: 0, pageCount: 0 };
+  oFavourite: IFavRecipePrueba | null = null;
 
   strUserName: string = "";
   oSessionUser: IUser = {} as IUser;
@@ -42,10 +74,18 @@ export class RecipeListUnroutedComponent implements OnInit {
     private oUserService: UserService,
     private oRouter: Router,
     private oFavouriteService: FavouriteService
-  ) { }
+  ) {
+    this.oUserService.getByUsername(this.oSessionService.getUsername()).subscribe(user => {
+      this.id_filter = user.id;
+      this.getPage(this.id_filter);
+    });
+
+  }
 
   ngOnInit() {
-    this.getPage();
+    console.log("init");
+    console.log(this.id_filter);
+    this.getPage(this.id_filter);
     this.strUserName = this.oSessionService.getUsername();
     this.oUserService.getByUsername(this.oSessionService.getUsername()).subscribe({
       next: (oUser: IUser) => {
@@ -59,18 +99,19 @@ export class RecipeListUnroutedComponent implements OnInit {
     this.forceReload.subscribe({
       next: (v) => {
         if (v) {
-          this.getPage();
+          this.getPage(this.id_filter);
         }
       }
     });
   }
   search(): void {
-    this.getPage();
-   }
+    this.getPage(this.id_filter);
+  }
+
   toggleFavorite(id_recipe: number): void {
     if (this.isFavorite) {
       // Si ya es favorito, eliminarlo de los favoritos
-     this.oFavouriteService.removeOne(this.id_recipe).subscribe(() => {
+      this.oFavouriteService.removeOne(this.id_recipe).subscribe(() => {
         this.isFavorite = false;
       });
     } else {
@@ -109,7 +150,7 @@ export class RecipeListUnroutedComponent implements OnInit {
           id_recipe: id_recipe,
           id_user: id_user
         };
-        
+
         this.oFavouriteService.newOne(favRecipe).subscribe({
           next: (data: IFavRecipe) => {
             // Aquí asigna el resultado a una variable local en lugar de a oFavouriteService
@@ -123,12 +164,21 @@ export class RecipeListUnroutedComponent implements OnInit {
     }
   }
 
+  /*deleteFavorite(id_recipe: number): void {
+ 
+      // Si ya es favorito, eliminarlo de los favoritos
+      this.oFavouriteService.removeOne(this.id_recipe).subscribe(() => {
+        this.isFavorite = false;
+      });
+    }
+  }*/
 
-  getPage(): void {
-    this.oRecipeService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.filterValue).subscribe({
-      next: (data: IRecipePage) => {
-        this.oPage = data;
-        this.oPaginatorState.pageCount = data.totalPages;
+
+
+  getFav(): void {
+    this.oFavouriteService.getOne(this.id_fav_filter).subscribe({
+      next: (data: IFavRecipePrueba) => {
+        this.oFavourite = data;
       },
       error: (error: HttpErrorResponse) => {
         this.status = error;
@@ -136,10 +186,49 @@ export class RecipeListUnroutedComponent implements OnInit {
     })
   }
 
+  getPage(userId: number): void {
+
+    console.log('userId: ' + userId);
+    this.oFavouriteService.getPageByUser(this.oPaginatorStateFav.rows, this.oPaginatorStateFav.page, userId).subscribe({
+      next: (data: IIFavRecipePagePrueba) => {
+        this.oPageFavs = data;
+        this.oPaginatorState.pageCount = data.totalPages;
+        this.favProducts = data.content.map(favRecipe => ({
+          id: favRecipe.recipe.id,
+          name: favRecipe.recipe.name,
+          description: favRecipe.recipe.description,
+          recipe_image: favRecipe.recipe.recipe_image,
+          // Asignar los valores restantes como se desee o como se obtengan
+          id_user: null, // Por ejemplo, si no está disponible en IFavRecipePrueba
+          process: favRecipe.recipe.process,
+          content: [], // Por ejemplo, si no está disponible en IFavRecipePrueba
+          favs: [], // Por ejemplo, si no está disponible en IFavRecipePrueba
+          schedules: [], // Por ejemplo, si no está disponible en IFavRecipePrueba
+          isFavorite: false
+        }));
+        console.log(this.favProducts);
+        this.oRecipeService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.filterValue).subscribe({
+          next: (data: IRecipePage) => {
+            this.oPage = data;
+            this.oPaginatorState.pageCount = data.totalPages;
+          },
+          error: (error: HttpErrorResponse) => {
+            this.status = error;
+          }
+        });
+
+      },
+      error: (error: HttpErrorResponse) => {
+        this.status = error;
+      }
+    });
+
+  }
+
   onPageChang(event: PaginatorState) {
     this.oPaginatorState.rows = event.rows;
     this.oPaginatorState.page = event.page;
-    this.getPage();
+    this.getPage(this.id_filter);
   }
 
 

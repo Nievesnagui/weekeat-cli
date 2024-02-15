@@ -1,12 +1,13 @@
 <div class="column is-narrow">
-    <input class="input" type="text" [(ngModel)]="filterValue" (keyup)="search()" id="name" placeholder="Search" />
-   
-  <div class="columns is-multiline">
-  
-  <div class="column mt-4" *ngFor="let t of oPage?.content">
+  <input class="input" type="text" [(ngModel)]="filterValue" (keyup)="search()" id="name" placeholder="Search" />
+</div>
+<div class="columns is-multiline">
+  <div class="column mt-4 " *ngFor="let t of oPage?.content">
     <div class="card-hover m-3">
       <div class="card-hover__content">
-        <i (click)="toggleFavorite(t.id)" class="fa-solid fa-star" [ngClass]="{'favorite': isFavorite}"></i>
+        <i (click)="toggleFavorite(t.id)" class="fa-solid fa-star" *ngIf="!this.favProducts.includes(t)">No fav</i>
+        {{this.favProducts.includes(t)}}
+        <i (click)="toggleFavorite(t.id)" class="fa-solid fa-star has-text-white"  *ngIf="this.favProducts.includes(t)">Fav</i>
         <h3 class="card-hover__title">
           {{ t.name }}
         </h3>
@@ -25,9 +26,9 @@
         alt="">
     </div>
   </div>
+</div>
 
-</div>  
 <div class="column is-narrow">
-    <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
-      [totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
-  </div>
+  <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
+    [totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+</div>

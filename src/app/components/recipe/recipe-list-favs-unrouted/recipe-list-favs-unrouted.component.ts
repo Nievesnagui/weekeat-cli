@@ -41,6 +41,7 @@ export class RecipeListFavsUnroutedComponent implements OnInit {
     }
     this.getPage(this.id_filter);
   }
+  
   id_fav_filter: number = 0;
   id_filter: number = 0;
   oPage: IIFavRecipePagePrueba | undefined;

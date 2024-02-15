@@ -120,6 +120,7 @@ export class WeeklyScheduleFormUnroutedComponent implements OnInit {
           content: [], // Por ejemplo, si no está disponible en IFavRecipePrueba
           favs: [], // Por ejemplo, si no está disponible en IFavRecipePrueba
           schedules: [], // Por ejemplo, si no está disponible en IFavRecipePrueba
+          isFavorite: false
         }));
       },
       error: (error: HttpErrorResponse) => {

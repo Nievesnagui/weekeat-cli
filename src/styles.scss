@@ -55,3 +55,13 @@ html, body {
   width: 10em;
   height: 8em;
 }
+
+.navbar-dropdown{
+  display: none;
+}
+
+.has-dropdown:hover{
+  .navbar-dropdown{
+    display: block;
+  }
+}
