@@ -80,7 +80,7 @@ export class RecipeListUnroutedComponent implements OnInit {
       this.getPage(this.id_filter);
     });
 
-  }
+  }//
 
   ngOnInit() {
     console.log("init");
