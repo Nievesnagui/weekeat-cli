@@ -70,9 +70,9 @@ export class RecipeListUnroutedComponent implements OnInit {
   toggleFavorite(id_recipe: number): void {
     if (this.isFavorite) {
       // Si ya es favorito, eliminarlo de los favoritos
-     /* this.oFavouriteService.removeOne(this.id_recipe).subscribe(() => {
+     this.oFavouriteService.removeOne(this.id_recipe).subscribe(() => {
         this.isFavorite = false;
-      });*/
+      });
     } else {
       this.oRecipeService.getOne(id_recipe).subscribe((recipe: IRecipe) => {
         this.recipe = recipe;

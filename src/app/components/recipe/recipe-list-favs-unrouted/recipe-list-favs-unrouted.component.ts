@@ -69,7 +69,6 @@ export class RecipeListFavsUnroutedComponent implements OnInit {
   ) {
     this.oUserService.getByUsername(this.oSessionService.getUsername()).subscribe(user => {
       this.id_filter = user.id;
-      console.log(this.id_filter);
       this.getPage(this.id_filter); // Llama a getPage con el ID del usuario
     });
    }
@@ -85,7 +84,6 @@ export class RecipeListFavsUnroutedComponent implements OnInit {
     this.oFavouriteService.getPageByUser(this.oPaginatorState.rows, this.oPaginatorState.page, userId).subscribe({
       next: (data: IIFavRecipePagePrueba) => {
         this.oPage = data;
-        console.log(data);
         this.oPaginatorState.pageCount = data.totalPages;
       },
       error: (error: HttpErrorResponse) => {
