@@ -1,9 +1,14 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IRecipe, ISchedule, IWeekly } from 'src/app/model/model.interface';
+import { PaginatorState } from 'primeng/paginator';
+import { Subject } from 'rxjs';
+import { IFavRecipePrueba, IIFavRecipePagePrueba, IRecipe, ISchedule, IUser, IWeekly } from 'src/app/model/model.interface';
+import { FavouriteService } from 'src/app/service/favourite.service';
 import { RecipeService } from 'src/app/service/recipe.service';
 import { ScheduleService } from 'src/app/service/schedule.service';
+import { SessionService } from 'src/app/service/session.service';
+import { UserService } from 'src/app/service/user.service';
 import { WeeklyService } from 'src/app/service/weekly.service';
 
 @Component({
@@ -13,9 +18,42 @@ import { WeeklyService } from 'src/app/service/weekly.service';
 })
 export class WeeklyScheduleFormUnroutedComponent implements OnInit {
 
+  @Input() forceReload: Subject<boolean> = new Subject<boolean>();
+
+  @Input()
+  set id(value: number) {
+    if (value) {
+      this.id_filter = value;
+    } else {
+      this.id_filter = 0;
+    }
+    this.loadRecipes(this.id_filter);
+  }
+  get id(): number {
+    return this.id_filter;
+  }
+
+  @Input()
+  set id_fav(value: number) {
+    if (value) {
+      this.id_fav_filter = value;
+      this.getFav();
+    } else {
+      this.id_fav_filter = 0;
+    }
+    this.loadRecipes(this.id_filter);
+  }
+
+  oPaginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
+  oFavourite: IFavRecipePrueba | null = null;
   availableProducts: IRecipe[] = [];
   status: HttpErrorResponse | null = null;
   oSchedule: ISchedule = {id_weekly: {}, id_recipe: {}} as ISchedule;
+
+  strUserName: string = "";
+  oSessionUser: IUser = {} as IUser;
+  userId: number = 0;
+  oPage: IIFavRecipePagePrueba | undefined;
 
   selectedMondayLunch: IRecipe | undefined | null;
   selectedMondayDinner: IRecipe | undefined | null;
@@ -34,29 +72,61 @@ export class WeeklyScheduleFormUnroutedComponent implements OnInit {
 
 
   draggedProduct: IRecipe | undefined | null;
-
+  id_fav_filter: number = 0;
+  id_filter: number = 0;
   id_weekly: number = 0;
-
+  id_recipe: number = 0;
+  recipe!: IRecipe;
+  filterValue: string = "";
   weekly!: IWeekly;
 
   constructor(
     private oRecipeService: RecipeService,
     private oWeeklyService: WeeklyService,
+    private oFavouriteService: FavouriteService,
+    private oSessionService: SessionService,
+    private oUserService: UserService,
     private oRouter: Router,
     private oScheduleService: ScheduleService,
     private route: ActivatedRoute
   ) {
+    this.oUserService.getByUsername(this.oSessionService.getUsername()).subscribe(user => {
+      this.id_filter = user.id;
+      this.loadRecipes(this.id_filter); // Llama a loadRecipes con el ID del usuario
+    });
   }
 
   ngOnInit() {
-    this.loadRecipes();
+    this.loadRecipes(this.id_filter);
     this.route.paramMap.subscribe(params => {
       this.id_weekly = +(params.get('id') || 0);
     })
   }
 
-  loadRecipes() {
-    this.oRecipeService.getAllRecipes().subscribe({
+  loadRecipes(userId: number): void {
+
+    this.oFavouriteService.getPageByUser(this.oPaginatorState.rows, this.oPaginatorState.page, userId).subscribe({
+      next: (data: IIFavRecipePagePrueba) => {
+        this.oPage = data;
+        this.oPaginatorState.pageCount = data.totalPages;
+        this.availableProducts = data.content.map(favRecipe => ({
+          id: favRecipe.recipe.id,
+          name: favRecipe.recipe.name,
+          description: favRecipe.recipe.description,
+          recipe_image: favRecipe.recipe.recipe_image,
+          // Asignar los valores restantes como se desee o como se obtengan
+          id_user: null, // Por ejemplo, si no está disponible en IFavRecipePrueba
+          process: favRecipe.recipe.process,
+          content: [], // Por ejemplo, si no está disponible en IFavRecipePrueba
+          favs: [], // Por ejemplo, si no está disponible en IFavRecipePrueba
+          schedules: [], // Por ejemplo, si no está disponible en IFavRecipePrueba
+        }));
+      },
+      error: (error: HttpErrorResponse) => {
+        this.status = error;
+      }
+    })
+  /*  this.oRecipeService.getAllRecipes().subscribe({
       next: (response: any) => {
         // Verificar si la respuesta contiene una propiedad 'content' que es un array
         if (response && response.content && Array.isArray(response.content)) {
@@ -69,8 +139,21 @@ export class WeeklyScheduleFormUnroutedComponent implements OnInit {
       error: (error: any) => {
         console.error('Error al obtener las recetas:', error);
       }
-    });
+    });*/
   }
+
+
+  getFav(): void {
+    this.oFavouriteService.getOne(this.id_fav_filter).subscribe({
+      next: (data: IFavRecipePrueba) => {
+        this.oFavourite = data;
+      },
+      error: (error: HttpErrorResponse) => {
+        this.status = error;
+      }
+    })
+  }
+
 
   dragStart(product: IRecipe) {
     this.draggedProduct = product;
