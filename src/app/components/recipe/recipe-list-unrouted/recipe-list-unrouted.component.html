@@ -5,10 +5,9 @@
   <div class="column mt-4 " *ngFor="let t of oPage?.content">
     <div class="card-hover m-3">
       <div class="card-hover__content">
-        <i (click)="toggleFavorite(t.id)" class="fa-solid fa-star" *ngIf="!this.favProducts.includes(t)">No fav</i>
-        {{this.favProducts.includes(t)}}
-        <i (click)="toggleFavorite(t.id)" class="fa-solid fa-star has-text-white"  *ngIf="this.favProducts.includes(t)">Fav</i>
-        <h3 class="card-hover__title">
+        <i (click)="toggleFavorite(t.id)" class="fa-solid fa-star" *ngIf="!isRecipeFavorite(t.id)"></i>
+        <i (click)="toggleFavorite(t.id)" class="fa-solid fa-star has-text-white" *ngIf="isRecipeFavorite(t.id)"></i>
+            <h3 class="card-hover__title">
           {{ t.name }}
         </h3>
         <a [routerLink]="['/recipe', t.id]" class="card-hover__link">

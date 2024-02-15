@@ -41,9 +41,6 @@ export class RecipeFormUnroutedComponent implements OnInit {
     private oMediaService: MediaService,
   ) {
 
-
-
-
   }
 
   initializeForm(oRecipe: IRecipe) {

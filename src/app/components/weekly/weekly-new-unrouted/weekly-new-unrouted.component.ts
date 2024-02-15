@@ -114,7 +114,7 @@ export class WeeklyNewUnroutedComponent implements OnInit {
             this.oWeekly = data;
             this.initializeForm(this.oWeekly);
 
-            //this.oRouter.navigate(['/weekly', 'schedule', 'new', data.id]);
+            this.oRouter.navigate(['/weekly', 'schedule', 'edit', data.id]);
 
           },
           error: (error: HttpErrorResponse) => {

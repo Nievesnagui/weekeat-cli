@@ -32,6 +32,10 @@ export class FavouriteService {
         return this.oHttpClient.get<IIFavRecipePagePrueba>(this.sUrl  + '?size=' + size + '&page=' + page +'&id_user=' + id_user);
     }
 
+    getByUserAndRecipe(id_user: number, id_recipe: number): Observable<IIFavRecipePagePrueba>{
+        return this.oHttpClient.get<IIFavRecipePagePrueba>(this.sUrl  + '?page=' + 0 +'&id_user=' + id_user+'&id_recipe=' + id_recipe);
+    }
+
     removeOne(id: number | undefined): Observable<number> {
         if (id) {
             return this.oHttpClient.delete<number>(this.sUrl + "/" + id);

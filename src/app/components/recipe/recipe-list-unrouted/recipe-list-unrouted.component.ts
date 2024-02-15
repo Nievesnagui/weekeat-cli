@@ -109,59 +109,87 @@ export class RecipeListUnroutedComponent implements OnInit {
   }
 
   toggleFavorite(id_recipe: number): void {
-    if (this.isFavorite) {
-      // Si ya es favorito, eliminarlo de los favoritos
-      this.oFavouriteService.removeOne(this.id_recipe).subscribe(() => {
-        this.isFavorite = false;
-      });
-    } else {
-      this.oRecipeService.getOne(id_recipe).subscribe((recipe: IRecipe) => {
-        this.recipe = recipe;
 
-        const id_recipe: IRecipe = {
-          id: recipe.id,
-          id_user: null,
-          name: recipe.name,
-          description: recipe.description,
-          recipe_image: recipe.recipe_image,
-          process: recipe.process,
-          content: [],
-          favs: [],
-          schedules: [],
-        };
 
-        const id_user: IUser = {
-          id: this.oSessionUser.id,
-          username: this.oSessionUser.username,
-          name: this.oSessionUser.name,
-          surname: this.oSessionUser.surname,
-          email: this.oSessionUser.email,
-          phone: this.oSessionUser.phone,
-          profile_picture: this.oSessionUser.profile_picture,
-          password: this.oSessionUser.password,
-          favs: [],
-          weeks: [],
-          recipes: [],
-          role: this.oSessionUser.role,
+    this.oFavouriteService.getByUserAndRecipe(this.oSessionUser.id, id_recipe).subscribe({
+      next: (fav: IIFavRecipePagePrueba) => {
+
+        if (!fav.empty) {
+          // Si ya es favorito, eliminarlo de los favoritos
+          const recipeIndex = this.favProducts.findIndex(recipe => recipe.id === fav.content[0].recipe.id);
+          if (recipeIndex !== -1) {
+            this.favProducts.splice(recipeIndex, 1);
+          }
+          this.oFavouriteService.removeOne(fav.content[0].id).subscribe({
+            next: () => {
+              this.getFav();
+            },
+            error: (error: HttpErrorResponse) => {
+              this.status = error;
+            }
+          });
+
+        } else {
+          this.oRecipeService.getOne(id_recipe).subscribe((recipe: IRecipe) => {
+            this.recipe = recipe;
+
+            const id_recipe: IRecipe = {
+              id: recipe.id,
+              id_user: null,
+              name: recipe.name,
+              description: recipe.description,
+              recipe_image: recipe.recipe_image,
+              process: recipe.process,
+              content: [],
+              favs: [],
+              schedules: [],
+            };
+
+            const id_user: IUser = {
+              id: this.oSessionUser.id,
+              username: this.oSessionUser.username,
+              name: this.oSessionUser.name,
+              surname: this.oSessionUser.surname,
+              email: this.oSessionUser.email,
+              phone: this.oSessionUser.phone,
+              profile_picture: this.oSessionUser.profile_picture,
+              password: this.oSessionUser.password,
+              favs: [],
+              weeks: [],
+              recipes: [],
+              role: this.oSessionUser.role,
+            }
+
+            const favRecipe: IFavRecipe = {
+              id: 0,
+              id_recipe: id_recipe,
+              id_user: id_user
+            };
+
+            this.oFavouriteService.newOne(favRecipe).subscribe({
+              next: (data: IFavRecipe) => {
+                const favRecipeResult = data;
+              },
+              error: (error: HttpErrorResponse) => {
+                this.status = error;
+              }
+            })
+
+            this.favProducts.push(id_recipe);
+
+          });
         }
 
-        const favRecipe: IFavRecipe = {
-          id: 0,
-          id_recipe: id_recipe,
-          id_user: id_user
-        };
 
-        this.oFavouriteService.newOne(favRecipe).subscribe({
-          next: (data: IFavRecipe) => {
-            // Aquí asigna el resultado a una variable local en lugar de a oFavouriteService
-            const favRecipeResult = data;
-          },
-          error: (error: HttpErrorResponse) => {
-            this.status = error;
-          }
-        })
-      });
-    }
+      },
+      error: (error: HttpErrorResponse) => {
+        console.log(error);
+      }
+    });
+
+    this.getPage(this.id_filter);
+
+
   }
 
   /*deleteFavorite(id_recipe: number): void {
@@ -244,6 +272,10 @@ export class RecipeListUnroutedComponent implements OnInit {
       // Si no hay imagen en la base de datos, devuelve la URL predeterminada
       return 'https://images.unsplash.com/photo-1586511925558-a4c6376fe65f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=60';
     }
+  }
+
+  isRecipeFavorite(recipeId: number): boolean {
+    return this.favProducts.some(recipe => recipe.id === recipeId);
   }
 
 }

@@ -3,7 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PaginatorState } from 'primeng/paginator';
 import { Subject } from 'rxjs';
-import { IFavRecipePrueba, IIFavRecipePagePrueba, IRecipe, ISchedule, IUser, IWeekly } from 'src/app/model/model.interface';
+import { IFavRecipePrueba, IIFavRecipePagePrueba, IRecipe, ISchedule, IUser, IWeekly, formOperation } from 'src/app/model/model.interface';
 import { FavouriteService } from 'src/app/service/favourite.service';
 import { RecipeService } from 'src/app/service/recipe.service';
 import { ScheduleService } from 'src/app/service/schedule.service';
@@ -19,6 +19,8 @@ import { WeeklyService } from 'src/app/service/weekly.service';
 export class WeeklyScheduleFormUnroutedComponent implements OnInit {
 
   @Input() forceReload: Subject<boolean> = new Subject<boolean>();
+  @Input() operation: formOperation = 'NEW';
+
 
   @Input()
   set id(value: number) {
@@ -49,6 +51,7 @@ export class WeeklyScheduleFormUnroutedComponent implements OnInit {
   availableProducts: IRecipe[] = [];
   status: HttpErrorResponse | null = null;
   oSchedule: ISchedule = {id_weekly: {}, id_recipe: {}} as ISchedule;
+  oWeekly: IWeekly = { id_user: {} } as IWeekly;
 
   strUserName: string = "";
   oSessionUser: IUser = {} as IUser;
@@ -100,7 +103,17 @@ export class WeeklyScheduleFormUnroutedComponent implements OnInit {
     this.loadRecipes(this.id_filter);
     this.route.paramMap.subscribe(params => {
       this.id_weekly = +(params.get('id') || 0);
-    })
+    });
+    if(this.operation == 'EDIT') {
+      this.oWeeklyService.getOne(this.id_weekly).subscribe({
+        next: (data: IWeekly) => {
+        this.oWeekly = data;
+        },
+        error: (error: HttpErrorResponse) => {
+          this.status = error;
+        }
+      })
+    }
   }
 
   loadRecipes(userId: number): void {
