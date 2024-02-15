@@ -87,6 +87,8 @@ import { WeeklyListOwnRoutedComponent } from './components/weekly/weekly-list-ow
 import { WeeklyListOwnUnroutedComponent } from './components/weekly/weekly-list-own-unrouted/weekly-list-own-unrouted.component';
 import { RecipeListFavsRoutedComponent } from './components/recipe/recipe-list-favs-routed/recipe-list-favs-routed.component';
 import { RecipeListFavsUnroutedComponent } from './components/recipe/recipe-list-favs-unrouted/recipe-list-favs-unrouted.component';
+import { WeeklyScheduleEditRoutedComponent } from './components/weekly/weekly-schedule-edit-routed/weekly-schedule-edit-routed.component';
+import { WeeklyEditRoutedComponent } from './components/weekly/weekly-edit-routed/weekly-edit-routed.component';
 
 @NgModule({
   declarations: [
@@ -131,12 +133,15 @@ import { RecipeListFavsUnroutedComponent } from './components/recipe/recipe-list
     //Schedule
     WeeklyScheduleNewRoutedComponent,
     WeeklyScheduleFormUnroutedComponent,
+    WeeklyScheduleEditRoutedComponent,
 
     //Weekly
     WeeklyNewRoutedComponent,
     WeeklyNewUnroutedComponent,
     WeeklyListOwnRoutedComponent,
     WeeklyListOwnUnroutedComponent,
+    WeeklyEditRoutedComponent,
+  
 
     //Admin Utilities
             //User

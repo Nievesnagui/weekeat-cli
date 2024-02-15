@@ -30,13 +30,12 @@
         <div class="field is-grouped is-grouped-centered mt-5">
           <div class="control">
             <!--Añadir que mande al tipo al crearlo-->
-            <button class="button is-primary" type="submit" >
+            <button class="button m-1 is-link" *ngIf="operation=='EDIT'" type="button" (click)="edit()">
+              Edit
+             </button>
+            <button class="button m-1 is-primary" type="submit" >
              Choose your recipes
-            </button>
-            <button class="button is-warning" type="button" *ngIf="operation=='EDIT'" (click)="quit()">
-              Quit recipes
-            </button>
-            
+            </button>            
           </div>
         </div>
 

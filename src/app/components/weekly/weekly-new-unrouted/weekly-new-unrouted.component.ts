@@ -21,7 +21,7 @@ export class WeeklyNewUnroutedComponent implements OnInit {
   es = CALENDAR_ES;
 
   weeklyForm!: FormGroup;
-  oWeekly: IWeekly = { init_date: new Date(Date.now()),id_user: {} } as IWeekly;
+  oWeekly: IWeekly = { init_date: new Date(Date.now()), id_user: {} } as IWeekly;
   status: HttpErrorResponse | null = null;
 
   strUserName: string = "";
@@ -52,7 +52,6 @@ export class WeeklyNewUnroutedComponent implements OnInit {
           }),
           init_date: [new Date(oWeekly.init_date), [Validators.required]]
         })
-        console.log(this.userId);
       },
       error: (error: HttpErrorResponse) => {
         console.log(error);
@@ -80,9 +79,17 @@ export class WeeklyNewUnroutedComponent implements OnInit {
   public hasError = (controlName: string, errorName: string) => {
     return this.weeklyForm.controls[controlName].hasError(errorName);
   }
+
   formatDate(date: Date): string {
-    return date.toISOString().split('T')[0];
+    // Obtenemos la fecha en formato local (en la zona horaria del navegador)
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+  
+    // Formamos la cadena de fecha en el formato requerido (YYYY-MM-DD)
+    return `${year}-${month}-${day}`;
   }
+  
   onSubmit() {
     let idRecipe: number = 0;
     if (this.weeklyForm.valid) {
@@ -107,7 +114,7 @@ export class WeeklyNewUnroutedComponent implements OnInit {
             this.oWeekly = data;
             this.initializeForm(this.oWeekly);
 
-            this.oRouter.navigate(['/weekly', 'schedule', 'new', data.id]);
+            //this.oRouter.navigate(['/weekly', 'schedule', 'new', data.id]);
 
           },
           error: (error: HttpErrorResponse) => {
@@ -118,17 +125,23 @@ export class WeeklyNewUnroutedComponent implements OnInit {
     }
   }
 
-  quit() {
-    this.oWeeklyService.updateOne(this.weeklyForm.value).subscribe({
-      next: (data: IWeekly) => {
-        this.oWeekly = data;
-        this.initializeForm(this.oWeekly);
-       // this.oRouter.navigate(['/recipe', 'content', 'remove', data.id]);
-      },
-      error: (error: HttpErrorResponse) => {
-        this.status = error;
-      }
-    });
+  edit() {
+    if (this.weeklyForm.valid) {
+      this.weeklyForm.value.init_date = this.formatDate(this.weeklyForm.value.init_date);
+
+      this.oWeeklyService.updateOne(this.weeklyForm.value).subscribe({
+        next: (data: IWeekly) => {
+          this.oWeekly = data;
+          this.initializeForm(this.oWeekly);
+          this.oRouter.navigate(['/weekly', 'list', 'own']);
+        },
+        error: (error: HttpErrorResponse) => {
+          this.status = error;
+        }
+      });
+    }else {
+      console.error('El formulario no es válido. No se puede realizar la actualización.');
+    }
   }
 
 

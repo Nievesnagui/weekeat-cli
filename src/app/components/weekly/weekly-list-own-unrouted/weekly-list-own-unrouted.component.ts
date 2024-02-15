@@ -65,14 +65,9 @@ export class WeeklyListOwnUnroutedComponent implements OnInit {
     private oScheduleService: ScheduleService,
     private oRecipeService: RecipeService
   ) {
-    console.log("constructor");
     this.oUserService.getByUsername(this.oSessionService.getUsername()).subscribe(user => {
-      console.log("this.oUserService.getByUsername");
       this.id_filter = user.id;
-      console.log(this.id_filter);
       this.getPageByUser(this.id_filter);
-      console.log("post getpage by user");
-
     });
   }
 
@@ -81,15 +76,10 @@ export class WeeklyListOwnUnroutedComponent implements OnInit {
     this.oScheduleService.getPageByWeeklyArr(weeklyId)
       .subscribe({
         next: (schedules: ISchedulePagePrueba) => {
-          console.log(weeklyId);
           this.oSchedules = schedules.content;
-          console.log(schedules.content);
-          console.log("this.oSchedules");
-          console.log(this.oSchedules);
 
           this.oRecipes = [];
           this.oSchedules.forEach(schedule => {
-            console.log(schedule);
             this.oRecipeService.getOne(schedule.recipe.id).subscribe({
               next: (recipe: IRecipe) => {
                 this.oRecipes.push(recipe);
@@ -108,20 +98,6 @@ export class WeeklyListOwnUnroutedComponent implements OnInit {
 
 
   ngOnInit() {
-    //this.getOne();
-    /* this.getPageByUser(this.id_filter);
-     console.log(this.id_filter);
-     console.log(this.id);
-     if (this.id > 0) {
-       console.log("nginit con iduser >0");
- 
-       this.getUser();
-     }
-     if (this.id_weekly > 0) {
-       console.log(" nginit con idweekly >0");
- 
-       this.getWeekly();
-     }*/
   }
 
   getOne(): void {
@@ -148,7 +124,6 @@ export class WeeklyListOwnUnroutedComponent implements OnInit {
   }
 
   getPageByUser(userId: number): void {
-    console.log("getPageByUser");
     this.oScheduleService.getPageByUser(
       this.oPaginatorState.rows,
       this.oPaginatorState.page,
@@ -162,7 +137,6 @@ export class WeeklyListOwnUnroutedComponent implements OnInit {
               this.oWeeklyList.push(s.weekly);
             }
           });
-          console.log(this.oWeeklyList);
           
           this.oPage = data;
 
@@ -192,7 +166,6 @@ export class WeeklyListOwnUnroutedComponent implements OnInit {
 
   doRemove(u: IWeekly) {
     this.oWeeklyToRemove = u;
-    console.log('Weekly to remove:', this.oWeeklyToRemove);
 
     if (this.oWeeklyToRemove?.id !== undefined) {
       // Mostrar el modal de confirmación
@@ -204,7 +177,6 @@ export class WeeklyListOwnUnroutedComponent implements OnInit {
 
   confirmRemove() {
     // Lógica de eliminación aquí
-    console.log('Removing weekly');
     this.oWeeklyService.removeOne(this.oWeeklyToRemove?.id).subscribe({
       next: () => {
         this.getOne();
@@ -221,7 +193,6 @@ export class WeeklyListOwnUnroutedComponent implements OnInit {
 
   cancelRemove() {
     // Cancelar la eliminación y cerrar el modal de confirmación
-    console.log('Weekly not removed');
     this.showConfirmationModal = false;
   }
 

@@ -61,7 +61,7 @@
               </tbody>
             </table>
             <div class="buttons is-centered">
-              <button class="button btn m-2 is-warning">Edit</button>
+              <button class="button btn m-2 is-warning" [routerLink]="['/weekly','edit',weekly.id]">Edit</button>
               <button class="button btn m-2 is-danger" (click)="doRemove(weekly)">Delete</button>
             </div>
           </div>

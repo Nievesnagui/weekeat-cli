@@ -3,7 +3,7 @@
     <ng-template pTemplate>
         <div style="overflow-y: auto;">
             <div class="p-2 border-1 surface-border border-round w-15rem h-10rem ">
-                <ul class="list-none flex flex-column gap-2 p-0 m-0">
+                <ul class="list-none flex flex-column gap-2 p-0 m-0" *ngIf="availableProducts">
                     <li *ngFor="let product of availableProducts" class="p-2 border-round shadow-1" pDraggable
                         (onDragStart)="dragStart(product)" (onDragEnd)="dragEnd()">
 
@@ -17,6 +17,7 @@
 
                     </li>
                 </ul>
+                <p *ngIf="!availableProducts">You don't have any recipe in favourites! Go take a look and choose some favourites!</p>
             </div>
         </div>
     </ng-template>
