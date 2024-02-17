@@ -2,14 +2,15 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PaginatorState } from 'primeng/paginator';
-import { Subject } from 'rxjs';
-import { IFavRecipePrueba, IIFavRecipePagePrueba, IRecipe, ISchedule, IUser, IWeekly, formOperation } from 'src/app/model/model.interface';
+import { Observable, Subject, Subscriber, lastValueFrom } from 'rxjs';
+import { IFavRecipePrueba, IIFavRecipePagePrueba, IRecipe, ISchedule, ISchedulePagePrueba, ISchedulePrueba, IUser, IWeekly, formOperation } from 'src/app/model/model.interface';
 import { FavouriteService } from 'src/app/service/favourite.service';
 import { RecipeService } from 'src/app/service/recipe.service';
 import { ScheduleService } from 'src/app/service/schedule.service';
 import { SessionService } from 'src/app/service/session.service';
 import { UserService } from 'src/app/service/user.service';
 import { WeeklyService } from 'src/app/service/weekly.service';
+
 
 @Component({
   selector: 'app-weekly-schedule-form-unrouted',
@@ -50,7 +51,7 @@ export class WeeklyScheduleFormUnroutedComponent implements OnInit {
   oFavourite: IFavRecipePrueba | null = null;
   availableProducts: IRecipe[] = [];
   status: HttpErrorResponse | null = null;
-  oSchedule: ISchedule = {id_weekly: {}, id_recipe: {}} as ISchedule;
+  oSchedule: ISchedule = { id_weekly: {}, id_recipe: {} } as ISchedule;
   oWeekly: IWeekly = { id_user: {} } as IWeekly;
 
   strUserName: string = "";
@@ -82,6 +83,11 @@ export class WeeklyScheduleFormUnroutedComponent implements OnInit {
   recipe!: IRecipe;
   filterValue: string = "";
   weekly!: IWeekly;
+  oSchedules: ISchedulePrueba[] = [];
+  oSchedules$: Observable<any> | undefined;
+
+  oRecipes: IRecipe[] = [];
+
 
   constructor(
     private oRecipeService: RecipeService,
@@ -94,20 +100,25 @@ export class WeeklyScheduleFormUnroutedComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.oUserService.getByUsername(this.oSessionService.getUsername()).subscribe(user => {
+
       this.id_filter = user.id;
-      this.loadRecipes(this.id_filter); // Llama a loadRecipes con el ID del usuario
+      this.loadRecipes(this.id_filter);
+      this.getWeeklySchedules();
+
     });
   }
+
+
 
   ngOnInit() {
     this.loadRecipes(this.id_filter);
     this.route.paramMap.subscribe(params => {
       this.id_weekly = +(params.get('id') || 0);
     });
-    if(this.operation == 'EDIT') {
+    if (this.operation == 'EDIT') {
       this.oWeeklyService.getOne(this.id_weekly).subscribe({
         next: (data: IWeekly) => {
-        this.oWeekly = data;
+          this.oWeekly = data;
         },
         error: (error: HttpErrorResponse) => {
           this.status = error;
@@ -116,8 +127,45 @@ export class WeeklyScheduleFormUnroutedComponent implements OnInit {
     }
   }
 
-  loadRecipes(userId: number): void {
+  getWeeklySchedules() {
+    this.oWeeklyService.getOne(this.id_weekly).subscribe({
+      next: (data: IWeekly) => {
+        this.weekly = data;
+        this.fetchSchedulesByWeeklyId(this.weekly.id);
+      },
+      error: (error: HttpErrorResponse) => {
+        this.status = error;
+      }
+    });
 
+  }
+
+  fetchSchedulesByWeeklyId(weeklyId: number) {
+    this.oScheduleService.getArrayByWeekly(weeklyId).subscribe({
+      next: (schedules: ISchedulePrueba[]) => {
+        this.oSchedules = schedules;
+        this.processSchedules(this.oSchedules);
+      },
+      error: (error: HttpErrorResponse) => {
+        this.status = error;
+      }
+    });
+
+  }
+
+  processSchedules(schedules: ISchedulePrueba[]) {
+    schedules.forEach(schedule => {
+      const exists = this.oSchedules.some(existingSchedule => existingSchedule.id === schedule.id);
+      // Si no existe, agregarlo
+      if (!exists) {
+        this.oSchedules.push(schedule);
+      }
+      this.setSelectedSchedule(schedule);
+    });
+
+  }
+
+  loadRecipes(userId: number): void {
     this.oFavouriteService.getPageByUser(this.oPaginatorState.rows, this.oPaginatorState.page, userId).subscribe({
       next: (data: IIFavRecipePagePrueba) => {
         this.oPage = data;
@@ -127,12 +175,11 @@ export class WeeklyScheduleFormUnroutedComponent implements OnInit {
           name: favRecipe.recipe.name,
           description: favRecipe.recipe.description,
           recipe_image: favRecipe.recipe.recipe_image,
-          // Asignar los valores restantes como se desee o como se obtengan
-          id_user: null, // Por ejemplo, si no está disponible en IFavRecipePrueba
+          id_user: null,
           process: favRecipe.recipe.process,
-          content: [], // Por ejemplo, si no está disponible en IFavRecipePrueba
-          favs: [], // Por ejemplo, si no está disponible en IFavRecipePrueba
-          schedules: [], // Por ejemplo, si no está disponible en IFavRecipePrueba
+          content: [],
+          favs: [],
+          schedules: [],
           isFavorite: false
         }));
       },
@@ -140,20 +187,6 @@ export class WeeklyScheduleFormUnroutedComponent implements OnInit {
         this.status = error;
       }
     })
-  /*  this.oRecipeService.getAllRecipes().subscribe({
-      next: (response: any) => {
-        // Verificar si la respuesta contiene una propiedad 'content' que es un array
-        if (response && response.content && Array.isArray(response.content)) {
-          // Asignar el array de recetas a availableProducts
-          this.availableProducts = response.content;
-        } else {
-          console.error('La respuesta del servicio no contiene un array de recetas válido:', response);
-        }
-      },
-      error: (error: any) => {
-        console.error('Error al obtener las recetas:', error);
-      }
-    });*/
   }
 
 
@@ -168,6 +201,63 @@ export class WeeklyScheduleFormUnroutedComponent implements OnInit {
     })
   }
 
+  setSelectedSchedule(schedule: ISchedulePrueba): void {
+
+    if (schedule.type === 'Lunch') {
+      switch (schedule.day) {
+        case 'Monday':
+          this.selectedMondayLunch = schedule.recipe;
+          break;
+        case 'Tuesday':
+          this.selectedTuesdayLunch = schedule.recipe;
+          break;
+        case 'Wednesday':
+          this.selectedWednesdayLunch = schedule.recipe;
+          break;
+        case 'Thursday':
+          this.selectedThursdayLunch = schedule.recipe;
+          break;
+        case 'Friday':
+          this.selectedFridayLunch = schedule.recipe;
+          break;
+        case 'Saturday':
+          this.selectedSaturdayLunch = schedule.recipe;
+          break;
+        case 'Sunday':
+          this.selectedSundayLunch = schedule.recipe;
+          break;
+        default:
+          break;
+      }
+    } else {
+      switch (schedule.day) {
+        case 'Monday':
+          this.selectedMondayDinner = schedule.recipe;
+          break;
+        case 'Tuesday':
+          this.selectedTuesdayDinner = schedule.recipe;
+          break;
+        case 'Wednesday':
+          this.selectedWednesdayDinner = schedule.recipe;
+          break;
+        case 'Thursday':
+          this.selectedThursdayDinner = schedule.recipe;
+          break;
+        case 'Friday':
+          this.selectedFridayDinner = schedule.recipe;
+          break;
+        case 'Saturday':
+          this.selectedSaturdayDinner = schedule.recipe;
+          break;
+        case 'Sunday':
+          this.selectedSundayDinner = schedule.recipe;
+          break;
+        default:
+          break;
+      }
+    }
+  }
+
 
   dragStart(product: IRecipe) {
     this.draggedProduct = product;
@@ -175,9 +265,7 @@ export class WeeklyScheduleFormUnroutedComponent implements OnInit {
 
   drop(id: number) {
     if (this.draggedProduct) {
-      // this.selectedProducts.push(this.draggedProduct);
-      //Lo siguiente simplemente elimina de la lista al arrastrar
-      // this.availableProducts = this.availableProducts.filter(product => product.id !== this.draggedProduct!.id);
+
       switch (id) {
         case 1:
           this.selectedMondayLunch = this.draggedProduct;
@@ -227,50 +315,104 @@ export class WeeklyScheduleFormUnroutedComponent implements OnInit {
       this.draggedProduct = null;
     }
   }
-  closePanel(id: number) {
-    // Aquí puedes establecer la lógica para cerrar el panel, por ejemplo, establecer selectedMondayLunch a null
 
+  removeOne(id_recipe: number, type: string, day: string) {
+    this.isExisting(this.id_weekly, id_recipe, type, day).then(isExisting => {
+      if (isExisting) {
+        this.oScheduleService.getOneByWeeklyAndRecipe(this.id_weekly, id_recipe, type, day).subscribe(data => {
+          this.oScheduleService.removeOne(data.id).subscribe({
+            next: () => { }
+          });
+        });
+
+      }
+    });
+  }
+
+  closePanel(id: number) {
     switch (id) {
       case 1:
+        if (this.selectedMondayLunch) {
+          this.removeOne(this.selectedMondayLunch?.id, 'Lunch', 'Monday');
+        }
         this.selectedMondayLunch = null;
         break;
       case 2:
+        if (this.selectedTuesdayLunch) {
+          this.removeOne(this.selectedTuesdayLunch?.id, 'Lunch', 'Tuesday');
+        }
         this.selectedTuesdayLunch = null;
         break;
       case 3:
+        if (this.selectedWednesdayLunch) {
+          this.removeOne(this.selectedWednesdayLunch?.id, 'Lunch', 'Wednesday');
+        }
         this.selectedWednesdayLunch = null;
         break;
       case 4:
+        if (this.selectedThursdayLunch) {
+          this.removeOne(this.selectedThursdayLunch?.id, 'Lunch', 'Thursday');
+        }
         this.selectedThursdayLunch = null;
         break;
       case 5:
+        if (this.selectedFridayLunch) {
+          this.removeOne(this.selectedFridayLunch?.id, 'Lunch', 'Friday');
+        }
         this.selectedFridayLunch = null;
         break;
       case 6:
+        if (this.selectedSaturdayLunch) {
+          this.removeOne(this.selectedSaturdayLunch?.id, 'Lunch', 'Saturday');
+        }
         this.selectedSaturdayLunch = null;
         break;
       case 7:
+        if (this.selectedSundayLunch) {
+          this.removeOne(this.selectedSundayLunch?.id, 'Lunch', 'Sunday');
+        }
         this.selectedSundayLunch = null;
         break;
       case 8:
+        if (this.selectedMondayDinner) {
+          this.removeOne(this.selectedMondayDinner?.id, 'Dinner', 'Monday');
+        }
         this.selectedMondayDinner = null;
         break;
       case 9:
+        if (this.selectedTuesdayDinner) {
+          this.removeOne(this.selectedTuesdayDinner?.id, 'Dinner', 'Tuesday');
+        }
         this.selectedTuesdayDinner = null;
         break;
       case 10:
+        if (this.selectedWednesdayDinner) {
+          this.removeOne(this.selectedWednesdayDinner?.id, 'Dinner', 'Wednesday');
+        }
         this.selectedWednesdayDinner = null;
         break;
       case 11:
+        if (this.selectedThursdayDinner) {
+          this.removeOne(this.selectedThursdayDinner?.id, 'Dinner', 'Thursday');
+        }
         this.selectedThursdayDinner = null;
         break;
       case 12:
+        if (this.selectedFridayDinner) {
+          this.removeOne(this.selectedFridayDinner?.id, 'Dinner', 'Friday');
+        }
         this.selectedFridayDinner = null;
         break;
       case 13:
+        if (this.selectedSaturdayDinner) {
+          this.removeOne(this.selectedSaturdayDinner?.id, 'Dinner', 'Saturday');
+        }
         this.selectedSaturdayDinner = null;
         break;
       case 14:
+        if (this.selectedSundayDinner) {
+          this.removeOne(this.selectedSundayDinner?.id, 'Dinner', 'Sunday');
+        }
         this.selectedSundayDinner = null;
         break;
       default:
@@ -281,10 +423,22 @@ export class WeeklyScheduleFormUnroutedComponent implements OnInit {
   dragEnd() {
     this.draggedProduct = null;
   }
-  
+
+  async isExisting(id_weekly: number, id_recipe: number, type: string, day: string): Promise<boolean> {
+    if (id_recipe === undefined || id_recipe <= 0) {
+      return false;
+    } else {
+      try {
+        const data: ISchedulePrueba | undefined = await this.oScheduleService.getOneByWeeklyAndRecipe(id_weekly, id_recipe, type, day).toPromise();
+        return !!data && !!data.id && data.id > 0;
+      } catch (error) {
+        return false;
+      }
+    }
+  }
+
 
   onSubmit() {
-    
     const scheduleList: any = {};
     this.oWeeklyService.getOne(this.id_weekly).subscribe((weekly: IWeekly) => {
       this.weekly = weekly;
@@ -297,87 +451,100 @@ export class WeeklyScheduleFormUnroutedComponent implements OnInit {
         Saturday: { lunch: this.selectedSaturdayLunch, dinner: this.selectedSaturdayDinner },
         Sunday: { lunch: this.selectedSundayLunch, dinner: this.selectedSundayDinner }
       };
-    
       for (const day in dayMappings) {
+
         if (Object.prototype.hasOwnProperty.call(dayMappings, day)) {
           // Obtener las recetas seleccionadas para el almuerzo y la cena de este día
           const { lunch, dinner } = dayMappings[day];
 
+
           if (lunch) {
-            const id_recipe: IRecipe = { 
-              id: lunch.id,
-              id_user: null,
-              name: lunch.name,
-              description: lunch.description,
-              recipe_image: lunch.recipe_image,
-              process: lunch.process,
-              content: [],
-              favs: [],
-              schedules: [],
-            };
+            this.isExisting(this.id_weekly, lunch.id, 'Lunch', day).then(isExisting => {
+              if (!isExisting) {
+                const id_recipe: IRecipe = {
+                  id: lunch.id,
+                  id_user: null,
+                  name: lunch.name,
+                  description: lunch.description,
+                  recipe_image: lunch.recipe_image,
+                  process: lunch.process,
+                  content: [],
+                  favs: [],
+                  schedules: [],
+                };
 
-            const weekly: IWeekly = {
-              id: this.id_weekly,
-              id_user: this.weekly.id_user,
-              init_date: this.weekly.init_date,
-              schedulesList: this.weekly.schedulesList
-            }
-            const schedule: ISchedule = {
-              id: 0,
-              id_recipe: id_recipe,
-              id_weekly: weekly,
-              type: 'Lunch',
-              day: day
-            }
-            console.log(schedule);
+                const weekly: IWeekly = {
+                  id: this.id_weekly,
+                  id_user: this.weekly.id_user,
+                  init_date: this.weekly.init_date,
+                  schedulesList: this.weekly.schedulesList
+                }
+                const schedule: ISchedule = {
+                  id: 0,
+                  id_recipe: id_recipe,
+                  id_weekly: weekly,
+                  type: 'Lunch',
+                  day: day
+                }
 
-            this.oScheduleService.newOne(schedule).subscribe({
-              next: (data: ISchedule) => {
-                this.oSchedule = data;
-              },
-              error: (error: HttpErrorResponse) => {
-                this.status = error;
-              }
-            });
-          } 
-          
-          if(dinner) {
-            const id_recipe: IRecipe = { 
-              id: dinner.id,
-              id_user: null,
-              name: dinner.name,
-              description: dinner.description,
-              recipe_image: dinner.recipe_image,
-              process: dinner.process,
-              content: [],
-              favs: [],
-              schedules: [],
-            };
-            const schedule: ISchedule = {
-              id: 0,
-              id_recipe: id_recipe,
-              id_weekly: this.weekly,
-              type: 'Dinner',
-              day: day
-            }
-            console.log(schedule);
 
-            this.oScheduleService.newOne(schedule).subscribe({
-              next: (data: ISchedule) => {
-                this.oSchedule = data;
-              },
-              error: (error: HttpErrorResponse) => {
-                this.status = error;
+                this.oScheduleService.newOne(schedule).subscribe({
+                  next: (data: ISchedule) => {
+                    this.oSchedule = data;
+                  },
+                  error: (error: HttpErrorResponse) => {
+                    this.status = error;
+                  }
+                });
               }
             });
           }
-          
+
+          if (dinner) {
+            this.isExisting(this.id_weekly, dinner.id, 'Dinner', day).then(isExisting => {
+              if (!isExisting) {
+                const id_recipe: IRecipe = {
+                  id: dinner.id,
+                  id_user: null,
+                  name: dinner.name,
+                  description: dinner.description,
+                  recipe_image: dinner.recipe_image,
+                  process: dinner.process,
+                  content: [],
+                  favs: [],
+                  schedules: [],
+                };
+                const schedule: ISchedule = {
+                  id: 0,
+                  id_recipe: id_recipe,
+                  id_weekly: this.weekly,
+                  type: 'Dinner',
+                  day: day
+                }
+
+
+                this.oScheduleService.newOne(schedule).subscribe({
+                  next: (data: ISchedule) => {
+                    this.oSchedule = data;
+                  },
+                  error: (error: HttpErrorResponse) => {
+                    this.status = error;
+                  }
+                });
+
+
+              }
+            });
+
+          }
+
           // Agregar las recetas al objeto schedule
           scheduleList[day] = { lunch, dinner };
 
         }
+
       }
-    
+
       this.oRouter.navigate(['/']);
 
     });

@@ -7892,3 +7892,6 @@ html, body {
 
 .has-dropdown:hover .navbar-dropdown {
   display: block; }
+
+p-panel {
+  box-shadow: none !important; }

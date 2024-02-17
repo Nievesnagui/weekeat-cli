@@ -38,17 +38,17 @@
         </thead>
         <tbody>
           <tr *ngFor="let u of oPage?.content" class="is-vcentered">
-            <td>{{ u.id }}</td>
-            <td>{{ u.name }}</td>
-            <td>{{ u.description }}</td>
-            <td>{{ u.id_user!.username }}</td>
+            <td class="has-text-centered">{{ u.id }}</td>
+            <td class="has-text-centered">{{ u.name }}</td>
+            <td class="has-text-centered">{{ u.description }}</td>
+            <td class="has-text-centered">{{ u.id_user!.username }}</td>
 
             
-            <td>
-              <div class="buttons">
+            <td class="has-text-centered">
+              <div class="buttons is-centered">
                 <button class="button is-primary" [routerLink]="['/admin','recipe','detail',u.id]">View</button>
                 <button class="button is-warning" [routerLink]="['/admin','recipe','edit',u.id]">Edit</button>
-                <button  class="button is-danger" (click)="doRemove(u)">Remove</button>
+                <button  class="button is-danger" *ngIf="u.schedules.length === 0 " (click)="doRemove(u)">Remove</button>
               </div>
             </td>
           </tr>

@@ -6,7 +6,7 @@
         <p>Init date: {{ weekly.init_date }}</p>
         <ng-container>
           <div class="table-container mt-4" *ngIf="oSchedules.length > 0 ">
-            <table class="table is-bordered">
+            <table class="table is-bordered is-centered ">
               <thead>
                 <tr>
                   <th></th>
@@ -16,9 +16,9 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th>Lunch</th>
-                  <td class="fixed-cell"
+                <tr >
+                  <th class="has-text-centered is-vcentered">Lunch</th>
+                  <td class="fixed-cell has-text-centered is-vcentered"
                     *ngFor="let day of ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']">
                     <ng-container *ngFor="let schedule of oSchedules">
                       <div
@@ -38,8 +38,8 @@
                 </tr>
 
                 <tr>
-                  <th>Dinner</th>
-                  <td class="fixed-cell"
+                  <th class="has-text-centered is-vcentered">Dinner</th>
+                  <td class="fixed-cell has-text-centered is-vcentered"
                     *ngFor="let day of ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']">
                     <ng-container *ngFor="let schedule of oSchedules">
                       <div

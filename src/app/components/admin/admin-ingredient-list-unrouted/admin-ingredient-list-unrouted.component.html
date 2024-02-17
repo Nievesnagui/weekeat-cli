@@ -25,8 +25,8 @@
 
     <div class="table-container">
       <table class="table is-fullwidth">
-        <thead>
-          <tr>
+        <thead >
+          <tr class="is-vcentered">
             <th (click)="doOrder('id')">ID</th>
             <th (click)="doOrder('name')">Name</th>
             <th >Type</th>
@@ -35,17 +35,17 @@
 
           </tr>
         </thead>
-        <tbody>
+        <tbody >
           <tr *ngFor="let u of oPage?.content" class="is-vcentered">
-            <td>{{ u.id }}</td>
-            <td>{{ u.name }}</td>
-            <td>{{ u.id_type!.name }}</td>
-            <td>
+            <td class="has-text-centered">{{ u.id }}</td>
+            <td class="has-text-centered">{{ u.name }}</td>
+            <td class="has-text-centered">{{ u.id_type!.name }}</td>
+            <td class="has-text-centered">
               <a *ngIf="u.content! > 0" class="tag is-link" [routerLink]="['/admin','recipe','list','byIngredient',u.id]">{{ u.content }}</a>
               <span *ngIf="u.content === 0" class="tag is-light">0</span>
             </td>
-            <td>
-              <div class="buttons">
+            <td class="has-text-centered">
+              <div class="buttons is-centered">
                 <button class="button is-primary" [routerLink]="['/admin','ingredient','detail',u.id]">View</button>
                 <button class="button is-warning" [routerLink]="['/admin','ingredient','edit',u.id]">Edit</button>
                 <button *ngIf="u.content === 0" class="button is-danger" (click)="doRemove(u)">Remove</button>

@@ -42,26 +42,26 @@
         </thead>
         <tbody>
           <tr *ngFor="let u of oPage?.content" class="is-vcentered">
-            <td>{{ u.id }}</td>
-            <td>{{ u.name }}</td>
-            <td>{{ u.surname }}</td>
-            <td>{{ u.email }}</td>
-            <td>{{ u.username }}</td>
-            <td>{{ u.phone }}</td>
-            <td>
+            <td class="has-text-centered">{{ u.id }}</td>
+            <td class="has-text-centered">{{ u.name }}</td>
+            <td class="has-text-centered">{{ u.surname }}</td>
+            <td class="has-text-centered">{{ u.email }}</td>
+            <td class="has-text-centered">{{ u.username }}</td>
+            <td class="has-text-centered">{{ u.phone }}</td>
+            <td class="has-text-centered">
               <span *ngIf="u.role == 0" class="tag is-primary">Admin</span>
               <span *ngIf="u.role == 1" class="tag is-info">User</span>
             </td>
-            <td> 
+            <td class="has-text-centered"> 
              <span *ngIf="u.recipes"><a  class="tag is-link" [routerLink]="['/admin','recipe','list','own',u.id]">{{ u.recipes }}</a></span> 
               <span *ngIf="!u.recipes" class="tag is-light">0</span>
             </td>
-            <td>
+            <td class="has-text-centered">
               <a *ngIf="u.weeks" class="tag is-link">{{ u.weeks }}</a>
               <span *ngIf="!u.weeks" class="tag is-light">0</span>
             </td>
-            <td>
-              <div class="buttons">
+            <td class="has-text-centered">
+              <div class="buttons is-centered">
                 <button class="button is-primary" [routerLink]="['/admin','user','detail',u.id]">View</button>
                 <button class="button is-warning" [routerLink]="['/admin','user','edit',u.id]">Edit</button>
                 <button *ngIf="u.recipes.length === 0" class="button is-danger" (click)="doRemove(u)">Remove</button>

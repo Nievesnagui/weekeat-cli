@@ -19,24 +19,24 @@
       <p class="description">Username: {{oSessionUser.username}}</p>
       <p class="description">Mail: {{oSessionUser.email}}</p>
       <p class="description">Phone: {{oSessionUser.phone}}</p>
-      <button type="button" routerLink="/" class="btn my-6">Semanario Actual</button>
+      <button type="button" routerLink="/" class="btn p-1 my-6">Semanario Actual</button>
+      
     </div>
 
     <!--Poner que te lleve a su semanario y a ver todas sus recetas y sus favs-->
     <div class="social-icons mx-2">
       <div class="icon m-4">
-        <h4 routerLink="/recipe/list/own">{{oSessionUser.recipes}}</h4>
-        <p>Recipes
-        </p>
+        <button  type="button" routerLink="/recipe/list/own" class="boton p-2 my-3">{{oSessionUser.recipes}}</button>
+        <p>Recipes</p>
       </div>
 
       <div class="icon m-4">
-        <h4>{{oSessionUser.favs}}</h4>
+        <button  type="button" routerLink="/recipe/list/own" class="boton p-2 my-3">{{oSessionUser.favs}}</button>
         <p>Favs</p>
       </div>
 
       <div class="icon m-4">
-        <h4>{{oSessionUser.weeks}}</h4>
+        <button  type="button" routerLink="/recipe/list/own" class="boton p-2 my-3">{{oSessionUser.weeks}}</button>
         <p>Semanario</p>
       </div>
     </div>
