@@ -7893,8 +7893,5 @@ html, body {
 .has-dropdown:hover .navbar-dropdown {
   display: block; }
 
-p-panel {
-  box-shadow: none !important; }
-
 .is-divider {
   background-color: #9aad92; }

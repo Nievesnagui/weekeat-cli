@@ -97,6 +97,7 @@ export class AdminUserListUnroutedComponent implements OnInit {
     if (this.oUserToRemove?.id !== undefined) {
       // Mostrar el modal de confirmación
       this.showConfirmationModal = true;
+      
     } else {
       console.error('User ID is undefined or null');
     }
@@ -112,7 +113,6 @@ export class AdminUserListUnroutedComponent implements OnInit {
         this.status = error;
       }
     });
-  
     // Cerrar el modal de confirmación después de confirmar
     this.showConfirmationModal = false;
   }

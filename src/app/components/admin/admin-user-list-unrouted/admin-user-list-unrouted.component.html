@@ -64,7 +64,7 @@
               <div class="buttons is-centered">
                 <button class="button is-primary" [routerLink]="['/admin','user','detail',u.id]">View</button>
                 <button class="button is-warning" [routerLink]="['/admin','user','edit',u.id]">Edit</button>
-                <button *ngIf="u.recipes.length === 0" class="button is-danger" (click)="doRemove(u)">Remove</button>
+                <button *ngIf="!u.recipes" class="button is-danger" (click)="doRemove(u)">Remove</button>
               </div>
             </td>
           </tr>

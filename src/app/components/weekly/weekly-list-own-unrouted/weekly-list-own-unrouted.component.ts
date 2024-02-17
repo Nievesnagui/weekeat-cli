@@ -96,7 +96,6 @@ export class WeeklyListOwnUnroutedComponent implements OnInit {
       });
   }
 
-
   ngOnInit() {
   }
 
