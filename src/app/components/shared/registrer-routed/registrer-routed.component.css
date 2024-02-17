@@ -1,25 +1,71 @@
+body, html {
+  height: 100%;
+  margin: 0;
+}
 
-  .custom-container {
-    display: flex;
-    justify-content: center;
-  }
+.container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.form-control {
+  box-shadow: 0 0.938em 1.563em #2853188c;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625em;
+  padding: 1.563em;
+  border-radius: 0.5em;
+  width: 25.5em; 
   
-  .form-control {
-    box-shadow: 0 0.938em 1.563em hsla(141, 56%, 40%, 0.452);
-    padding: 1.563em;
-  }
-  
-  .input {
-    height: 2.813em;
-    border: 0.094em solid #ecedec;
-  }
-  
-  .submit-btn {
-    margin-top: 0.938em;
-    height: 3.438em;
-    border-radius: 0.688em;
-    font-size: 1.125em;
-    font-weight: 700;
-    transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
-  }
-  
+}
+
+.title {
+  font-size: 1.75em;
+  font-weight: 800;
+}
+
+.field {
+  margin-top: 0.938em;
+}
+
+.input {
+  outline: none;
+  border-radius: 0.5em;
+  height: 2.813em;
+  border: 0.094em solid #ecedec;
+  background-color: #d2ddd2;
+  padding-left: 0.625em;
+}
+
+.label {
+  color: #ccc;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.input-field .label.is-focused,
+.input-field .input:valid ~ .label.is-active {
+  top: 0.313em;
+  left: 0.313em;
+  font-size: 0.75em;
+  background-color: #ffffff;
+  padding-left: 0.313em;
+  padding-right: 0.313em;
+}
+
+.submit-btn {
+  margin-top: 1.875em;
+  height: 3.438em;
+  border-radius: 0.688em;
+  font-size: 1.125em;
+  font-weight: 700;
+  transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
+}
+
+.submit-btn:hover {
+  box-shadow: 0px 0px 0px 2px #ffffff, 0px 0px 0px 4px #0000003a;
+}

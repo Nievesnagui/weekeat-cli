@@ -73,15 +73,17 @@
     <ng-template let-recipe pTemplate="item">
       <div class="product-item">
         <div class="product-item-content">
-          <div class="mb-3" style="height: 3.75em; ">
+          <div class="mb-3 product-item-content-picture">
             <img
               [src]="recipe.recipe_image ? recipe.recipe_image : 'https://images.unsplash.com/photo-1586511925558-a4c6376fe65f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=60'"
               [alt]="recipe.name" class="" />
           </div>
           <div>
-            <h4 class="mb-1">{{ recipe.name }}</h4>
-            <h6 class="mt-0 mb-3">{{ recipe.description }}</h6>
-            <!-- Otros detalles de la receta si es necesario -->
+            <h4 class="title">{{ recipe.name }}</h4>
+            <h6 class="subtitle">{{ recipe.description }}</h6>
+            <a [routerLink]="['/recipe', 'list']" class="btn">
+              See more!
+            </a>
           </div>
         </div>
       </div>
@@ -91,23 +93,33 @@
 
 
 <div class="columns is-vcentered m-4" *ngIf="!strUserName">
-  <div class="has-background-primary column  m-4 is-8">
-    <p class="bd-notification">Info y cosas para que se registre el usuario</p>
+  <div class="has-background-grey-dark column  m-4 is-8">
+    <p class="m-5 has-text-grey-light subtitle">Would you like to have a weekly meal plan but always forget the recipes and dislike using
+      paper? Are you not creative enough to find varied recipes for the entire week? Do you dislike having to think
+      about what to eat today?</p>
+    <p class="m-5 has-text-grey-light subtitle">WeekEat is for you!</p>
+    <p class="m-5 has-text-grey-light subtitle">Create your weekly plans with your favorite recipes that you'll find in the app, both yours and from other users!
+    </p>
+    <p class="m-5 has-text-grey-light subtitle">Discover an easy and fun way to organize your meals!</p>
   </div>
   <div class="column ">
-    <p-carousel [value]="oPage?.content ?? []" orientation="vertical" verticalViewPortHeight="22.5em">
+    <p-carousel [value]="oPage?.content ?? []" orientation="vertical">
       <ng-template let-recipe pTemplate="item">
         <div class="product-item">
           <div class="product-item-content">
-            <div class="mb-3" style="height: 3.75em; ">
+            <div class="mb-3 product-item-content-picture">
               <img
                 [src]="recipe.recipe_image ? recipe.recipe_image : 'https://images.unsplash.com/photo-1586511925558-a4c6376fe65f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=60'"
                 [alt]="recipe.name" class="" />
             </div>
             <div>
-              <h4 class="mb-1">{{ recipe.name }}</h4>
-              <h6 class="mt-0 mb-3">{{ recipe.description }}</h6>
-              <!-- Otros detalles de la receta si es necesario -->
+              <div>
+                <h4 class="title">{{ recipe.name }}</h4>
+                <h6 class="subtitle">{{ recipe.description }}</h6>
+                <a [routerLink]="['/login']" class="btn">
+                  See more!
+                </a>
+              </div>
             </div>
           </div>
         </div>
