@@ -19,6 +19,10 @@ export class WeeklyService {
         return this.oHttpClient.get<IWeekly>(this.sUrl + "/" + id);
     }
 
+    getOneBetweenDates(start: string, end: string, id_user: number): Observable<IWeekly> {
+        return this.oHttpClient.get<IWeekly>(this.sUrl + "/betweenDates" + "?start=" + start + "&end=" + end + "&id_user=" + id_user);
+    }
+
     getPage(size: number | undefined, page: number | undefined, orderField: string): Observable<IWeeklyPage> {
         let sUrl_filter: string;
         if (!size) size = 10;
@@ -29,7 +33,7 @@ export class WeeklyService {
 
     getPageByUser(size: number | undefined, page: number | undefined, orderField: string, userId:number|undefined): Observable<IWeeklyPage> {
         let sUrl_filter: string;
-        if (!size) size = 10;
+        size = 2;
         if (!page) page = 0;
         return this.oHttpClient.get<IWeeklyPage>(this.sUrl + "?size=" + size + "&page=" + page + "&sort=" + orderField+ "&id_user=" + userId);
     }

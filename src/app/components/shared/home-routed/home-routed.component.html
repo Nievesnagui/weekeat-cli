@@ -5,62 +5,51 @@
       <thead>
         <tr>
           <th></th>
-          <th>Monday</th>
-          <th>Tuesday</th>
-          <th>Wednesday</th>
-          <th>Thursday</th>
-          <th>Friday</th>
-          <th>Saturday</th>
-          <th>Sunday</th>
+          <th
+            *ngFor="let day of ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']">
+            {{ day }}</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th class="is-vcentered">Lunch</th>
-          <td class="fixed-cell is-vcentered">
-
-          </td>
-          <td class="fixed-cell is-vcentered">
-
-          </td>
-          <td class="fixed-cell is-vcentered">
-
-          </td>
-          <td class="fixed-cell is-vcentered">
-
-          </td>
-          <td class="fixed-cell is-vcentered">
-
-          </td>
-          <td class="fixed-cell is-vcentered">
-
-          </td>
-          <td class="fixed-cell is-vcentered">
-
+        <tr >
+          <th class="has-text-centered is-vcentered">Lunch</th>
+          <td class="fixed-cell has-text-centered is-vcentered"
+            *ngFor="let day of ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']">
+            <ng-container *ngFor="let schedule of oSchedules">
+              <div
+                *ngIf="schedule.day === day && schedule.type === 'Lunch'">
+                <ul class="list-none flex flex-column gap-2 p-0 m-0">
+                  <div class="card">
+                    <div class="w-15rem">
+                      <p-panel header="{{ schedule.recipe.name }}">
+                        <img src="{{ schedule.recipe.recipe_image }}" alt="">
+                      </p-panel>
+                    </div>
+                  </div>
+                </ul>
+              </div>
+            </ng-container>
           </td>
         </tr>
+
         <tr>
-          <th class="is-vcentered">Dinner</th>
-          <td class="fixed-cell is-vcentered">
-
-          </td>
-          <td class="fixed-cell is-vcentered">
-
-          </td>
-          <td class="fixed-cell is-vcentered">
-
-          </td>
-          <td class="fixed-cell is-vcentered">
-
-          </td>
-          <td class="fixed-cell is-vcentered">
-
-          </td>
-          <td class="fixed-cell is-vcentered">
-
-          </td>
-          <td class="fixed-cell is-vcentered">
-
+          <th class="has-text-centered is-vcentered">Dinner</th>
+          <td class="fixed-cell has-text-centered is-vcentered"
+            *ngFor="let day of ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']">
+            <ng-container *ngFor="let schedule of oSchedules">
+              <div
+                *ngIf="schedule.day === day && schedule.type === 'Dinner'">
+                <ul class="list-none flex flex-column gap-2 p-0 m-0">
+                  <div class="card">
+                    <div class="w-15rem">
+                      <p-panel header="{{ schedule.recipe.name }}">
+                        <img src="{{ schedule.recipe.recipe_image }}"  alt="">
+                      </p-panel>
+                    </div>
+                  </div>
+                </ul>
+              </div>
+            </ng-container>
           </td>
         </tr>
 

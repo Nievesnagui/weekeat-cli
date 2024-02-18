@@ -49,9 +49,10 @@ export class WeeklyListOwnUnroutedComponent implements OnInit {
   status: HttpErrorResponse | null = null;
   oPaginatorState: PaginatorState = { first: 0, rows: 28, page: 0, pageCount: 0 };
   oPage: ISchedulePagePrueba | undefined;
+  oWeekPage: IWeeklyPage | undefined;
   oWeekly: IWeekly | null = null;
   oWeeklyList: IWeekly[] = [];
-  orderField: string = "id_weekly";
+  orderField: string = "id";
   orderDirection: string = "asc";
   oSchedules: ISchedulePrueba[] = [];
   oRecipes: IRecipe[] = [];
@@ -70,33 +71,55 @@ export class WeeklyListOwnUnroutedComponent implements OnInit {
   ) {
     this.oUserService.getByUsername(this.oSessionService.getUsername()).subscribe(user => {
       this.id_filter = user.id;
-      this.getPageByUser(this.id_filter);
+      this.getPageByUser(user.id);
     });
   }
 
   getWeeklySchedules(weeklyId: number): void {
-    this.oSchedules = [];
-    this.oScheduleService.getPageByWeeklyArr(weeklyId)
-      .subscribe({
-        next: (schedules: ISchedulePagePrueba) => {
-          this.oSchedules = schedules.content;
+    
+   /* this.oScheduleService.getPageByWeeklyArr(weeklyId)
+    .subscribe({
+      next: (schedules: ISchedulePagePrueba) => {
+      
 
-          this.oRecipes = [];
-          this.oSchedules.forEach(schedule => {
-            this.oRecipeService.getOne(schedule.recipe.id).subscribe({
-              next: (recipe: IRecipe) => {
-                this.oRecipes.push(recipe);
-              },
-              error: (error: HttpErrorResponse) => {
-                console.error(error);
-              }
-            });
+        this.oRecipes = [];
+        schedules.content.forEach(schedule => {
+          this.oRecipeService.getOne(schedule.recipe.id).subscribe({
+            next: (recipe: IRecipe) => {
+              this.oRecipes.push(recipe);
+            },
+            error: (error: HttpErrorResponse) => {
+              console.error(error);
+            }
           });
-        },
-        error: (error: HttpErrorResponse) => {
-          console.error(error);
-        }
-      });
+        });
+      },
+      error: (error: HttpErrorResponse) => {
+        console.error(error);
+      }
+    });*/
+     this.oSchedules = [];
+     this.oScheduleService.getPageByWeeklyArr(weeklyId)
+       .subscribe({
+         next: (schedules: ISchedulePagePrueba) => {
+           this.oSchedules = schedules.content;
+ 
+           this.oRecipes = [];
+           this.oSchedules.forEach(schedule => {
+             this.oRecipeService.getOne(schedule.recipe.id).subscribe({
+               next: (recipe: IRecipe) => {
+                 this.oRecipes.push(recipe);
+               },
+               error: (error: HttpErrorResponse) => {
+                 console.error(error);
+               }
+             });
+           });
+         },
+         error: (error: HttpErrorResponse) => {
+           console.error(error);
+         }
+       });
   }
 
   ngOnInit() {
@@ -126,6 +149,29 @@ export class WeeklyListOwnUnroutedComponent implements OnInit {
   }
 
   getPageByUser(userId: number): void {
+   /*  this.oSchedules = [];
+    this.oWeeklyList = [];
+
+    this.oWeeklyService.getPageByUser(
+      this.oPaginatorState.rows,
+      this.oPaginatorState.page,
+      this.orderField,
+      userId).subscribe({
+        next: (data: IWeeklyPage) => {
+          this.oWeekPage = data;
+          this.oPaginatorState.pageCount = data.totalPages;
+
+          data.content.forEach(s => {
+            this.getWeeklySchedules(s.id);
+          });
+          
+         console.log(data.content);
+        },
+        error: (error: HttpErrorResponse) => {
+          this.status = error;
+        }
+      })*/
+
     this.oSchedules = [];
     this.oWeeklyList= [];
     
@@ -175,7 +221,7 @@ export class WeeklyListOwnUnroutedComponent implements OnInit {
     if (this.oWeeklyToRemove?.id !== undefined) {
       // Mostrar el modal de confirmación
       this.showConfirmationModal = true;
-      
+
     } else {
       console.error('Weekly ID is undefined or null');
     }
