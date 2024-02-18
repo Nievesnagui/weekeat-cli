@@ -22,7 +22,9 @@
           <div class="control">
             <input class="input" formControlName="name" [placeholder]="" >
           </div>
-          <p class="help is-danger" *ngIf="hasError('name', 'required')">Required</p>
+          <span class="help is-danger" *ngIf="hasError('name', 'required')">Required</span>
+          <span class="help is-danger" *ngIf="hasError('name', 'minlength')">More length is required</span>
+          <span class="help is-danger" *ngIf="hasError('name', 'maxlength')">Limit exceed</span>
         </div>
 
         <div class="field">
@@ -38,7 +40,9 @@
           <div class="control">
             <input class="input" formControlName="description" [placeholder]="" >
           </div>
-          <p class="help is-danger" *ngIf="hasError('description', 'required')">Required</p>
+          <span class="help is-danger" *ngIf="hasError('description', 'required')">Required</span>
+          <span class="help is-danger" *ngIf="hasError('description', 'minlength')">More length is required</span>
+          <span class="help is-danger" *ngIf="hasError('description', 'maxlength')">Limit exceed</span>
         </div>
         
         <div class="field">
@@ -46,19 +50,21 @@
           <div class="control">
             <textarea class="textarea" formControlName="process" placeholder="" rows="10"></textarea>
           </div>
-          <p class="help is-danger" *ngIf="hasError('process', 'required')">Required</p>
+          <span class="help is-danger" *ngIf="hasError('process', 'required')">Required</span>
+          <span class="help is-danger" *ngIf="hasError('process', 'minlength')">More length is required</span>
+          <span class="help is-danger" *ngIf="hasError('process', 'maxlength')">Limit exceed</span>
         </div>
         
         <div class="field is-grouped is-grouped-centered mt-5">
           <div class="control">
             <!--Añadir que mande al tipo al crearlo-->
-            <button class="button m-1 is-link" *ngIf="operation=='EDIT'" type="button" (click)="edit()">
+            <button class="button m-1 is-link" *ngIf="operation=='EDIT'"  [disabled]="!recipeForm.valid"  type="button" (click)="edit()">
               Edit
              </button>
-            <button class="button m-1 is-primary" type="submit" >
+            <button class="button m-1 is-primary" type="submit"  [disabled]="!recipeForm.valid" >
              Add Ingredients
             </button>
-            <button class="button m-1 is-warning" type="button" *ngIf="operation=='EDIT'" (click)="quit()">
+            <button class="button m-1 is-warning" type="button"  [disabled]="!recipeForm.valid"  *ngIf="operation=='EDIT'" (click)="quit()">
               Quit ingredients
             </button>
             
