@@ -5,7 +5,7 @@
  }
  
  .wrapper {
-    width: 38.75em;
+    width: 50.75em;
     border-radius: 0.625em;
     padding: 1.25em 1.25em 1.25em 1.25em;
     box-shadow: 0 0.5em 2.5em rgba(0, 0, 0, 0.2);
@@ -22,6 +22,8 @@
     content: " ";
     display: block;
     margin-top: 1.3em;
+    background: #E9EFF6;
+
   }
 
 

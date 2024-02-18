@@ -1,50 +1,32 @@
-<div *ngIf="status == null" class="card">
-  <div class="card-content">
-    <div class="content">
-      <div class="prueba">
-        <div class="wrapper m-6">
-          <div class="top-icons">
 
-          </div>
 
-          <div class="profile m-6">
-            <img *ngIf="oRecipe.recipe_image === null"
-              src="https://images.ecestaticos.com/JN07Vdy4YqEbbl2JtMkUg3lG7Fk=/438x12:2121x1274/1200x899/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2Faea%2F9ee%2F335%2Faea9ee33581d1061b7a1c9fea6fa1226.jpg"
-              class="thumbnail">
-            <!--Poner cuando la imagen no sea null la del propio usuario-->
-            <img *ngIf="oRecipe.recipe_image != null" [src]="oRecipe.recipe_image" class="thumbnail">
-            
-            <h3 class="name">{{oRecipe.name}}</h3>
-            <p class="title">{{oRecipe.id_user!.name}}</p>
+<div class="content">
+  <div class="prueba">
+    <div class="wrapper m-6">
+      <div class="top-icons">
+      </div>
 
-            <p class="description">{{oRecipe.description}}</p>
-            <p class="list">Ingredients:</p>
-            <ul class="list">
-              <li *ngFor="let ingredient of oIngredients">
-                {{ ingredient.name  }}
-              </li>
-            </ul>
-            <p class="description">{{oRecipe.process}}</p>
-            <button class="button btn my-6 is-warning" *ngIf="strUserName === oRecipe.id_user!.username " [routerLink]="['/recipe','edit',oRecipe.id]">Edit</button>
-            <button class="button btn my-6 is-danger" *ngIf="strUserName === oRecipe.id_user!.username " (click)="doRemove(oRecipe)">Delete</button>
-        
-          </div>
+      <div class="profile m-6">
+        <img *ngIf="oRecipe.recipe_image === null"
+          src="https://images.ecestaticos.com/JN07Vdy4YqEbbl2JtMkUg3lG7Fk=/438x12:2121x1274/1200x899/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2Faea%2F9ee%2F335%2Faea9ee33581d1061b7a1c9fea6fa1226.jpg"
+          class="thumbnail">
+        <!--Poner cuando la imagen no sea null la del propio usuario-->
+        <img *ngIf="oRecipe.recipe_image != null" [src]="oRecipe.recipe_image" class="thumbnail">
+       
+        <h3 class="name">{{oRecipe.name}}</h3>
+        <p class="title">{{oRecipe.id_user!.name}}</p>
 
-        </div>
+        <p class="description">{{oRecipe.description}}</p>
+        <p class="list">Ingredients:</p>
+        <ul class="list">
+          <li *ngFor="let ingredient of oIngredients">
+            {{ ingredient.name  }}
+          </li>
+        </ul>
+        <p class="description">{{oRecipe.process}}</p>
 
       </div>
+
     </div>
-  </div>
-  <div class="modal" [class.is-active]="showConfirmationModal">
-    <div class="modal-background" (click)="cancelRemove()"></div>
-    <div class="modal-content">
-      <div class="box">
-        <p>Are you sure you want to remove this recipe?</p>
-        <div class="buttons">
-          <button class="button is-danger" (click)="confirmRemove()" routerLink="/recipe/list/own">Yes</button>
-          <button class="button" (click)="cancelRemove()">No</button>
-        </div>
-      </div>
-    </div>
-    <button class="modal-close is-large" aria-label="close" (click)="cancelRemove()"></button>
+
   </div>
