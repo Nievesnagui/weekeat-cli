@@ -22,13 +22,15 @@
           <div class="control">
             <input class="input" formControlName="name" [placeholder]="" >
           </div>
-          <p class="help is-danger" *ngIf="hasError('name', 'required')">Required</p>
+          <span class="help is-danger" *ngIf="hasError('name', 'required')">Required</span>
+          <span class="help is-danger" *ngIf="hasError('name', 'minlength')">More length is required</span>
+          <span class="help is-danger" *ngIf="hasError('name', 'maxlength')">Limit exceed</span>
         </div>
 
         <div class="field is-grouped is-grouped-centered mt-5">
           <div class="control">
             <!--Añadir que mande al tipo al crearlo-->
-            <button class="button is-primary" type="submit" >
+            <button class="button is-primary" [disabled]="!typeForm.valid" type="submit" >
              Save
             </button>
           </div>

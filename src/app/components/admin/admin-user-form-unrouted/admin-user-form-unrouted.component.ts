@@ -34,7 +34,7 @@ export class AdminUserFormUnroutedComponent implements OnInit {
       surname: [oUser.surname, [Validators.required, Validators.minLength(3), Validators.maxLength(255)]],
       profile_picture: [oUser.profile_picture],
       email: [oUser.email, [Validators.required, Validators.email]],
-      phone: [oUser.phone, [Validators.required]],
+      phone: [oUser.phone, [Validators.required, Validators.pattern(/^[\d\-]+$/)]],
       role: [oUser.role, [Validators.required]],
     });
   }

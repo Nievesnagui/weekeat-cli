@@ -22,7 +22,9 @@
           <div class="control">
             <input class="input" formControlName="username" [placeholder]="">
           </div>
-          <p class="help is-danger" *ngIf="hasError('username', 'required')">Required</p>
+          <span class="help is-danger" *ngIf="hasError('username', 'required')">Required</span>
+          <span class="help is-danger" *ngIf="hasError('username', 'minlength')">More length is required</span>
+          <span class="help is-danger" *ngIf="hasError('username', 'maxlength')">Limit exceed</span>
         </div>
 
         <div class="field">
@@ -30,7 +32,9 @@
           <div class="control">
             <input class="input" formControlName="name" [placeholder]="">
           </div>
-          <p class="help is-danger" *ngIf="hasError('name', 'required')">Required</p>
+          <span class="help is-danger" *ngIf="hasError('name', 'required')">Required</span>
+          <span class="help is-danger" *ngIf="hasError('name', 'minlength')">More length is required</span>
+          <span class="help is-danger" *ngIf="hasError('name', 'maxlength')">Limit exceed</span>
         </div>
 
         <div class="field">
@@ -38,7 +42,9 @@
           <div class="control">
             <input class="input" formControlName="surname" [placeholder]="">
           </div>
-          <p class="help is-danger" *ngIf="hasError('surname', 'required')">Required</p>
+          <span class="help is-danger" *ngIf="hasError('surname', 'required')">Required</span>
+          <span class="help is-danger" *ngIf="hasError('surname', 'minlength')">More length is required</span>
+          <span class="help is-danger" *ngIf="hasError('surname', 'maxlength')">Limit exceed</span>
         </div>
 
         <div class="field">
@@ -46,7 +52,8 @@
           <div class="control">
             <input class="input" formControlName="email" [placeholder]="">
           </div>
-          <p class="help is-danger" *ngIf="hasError('email', 'required')">Required</p>
+          <span class="help is-danger" *ngIf="hasError('email', 'required')">Required</span>
+          <span class="help is-danger" *ngIf="hasError('email', 'email')">Email is not valid</span>
         </div>
 
         <div class="field">
@@ -54,13 +61,14 @@
           <div class="control">
             <input class="input" formControlName="phone" [placeholder]="">
           </div>
-          <p class="help is-danger" *ngIf="hasError('phone', 'required')">Required</p>
+          <span class="help is-danger" *ngIf="hasError('phone', 'required')">Required</span>
+          <span class="help is-danger" *ngIf="hasError('phone', 'pattern')">Characters not accepted</span>
         </div>
 
         <div class="field">
           <label class="label">Profile Picture</label>
           <div class="control">
-          <input class="input" type="file" (change)="onFileSelected($event)" accept="profile_picture/*">
+            <input class="input" type="file" (change)="onFileSelected($event)" accept="profile_picture/*">
           </div>
         </div>
 
@@ -82,7 +90,7 @@
         <div class="field is-grouped is-grouped-centered mt-5">
           <div class="control">
             <!--Añadir que mande al usuario al crearlos-->
-            <button class="button is-primary" type="submit">
+            <button class="button is-primary" [disabled]="!userForm.valid" type="submit">
               Save
             </button>
           </div>

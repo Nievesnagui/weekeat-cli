@@ -17,7 +17,7 @@
 
                     </li>
                 </ul>
-                <p *ngIf="!availableProducts">You don't have any recipe in favourites! Go take a look and choose some favourites!</p>
+                <p *ngIf="availableProducts.length <= 0">You don't have any recipe in favourites! Go take a look and choose some favourites!</p>
             </div>
         </div>
     </ng-template>
