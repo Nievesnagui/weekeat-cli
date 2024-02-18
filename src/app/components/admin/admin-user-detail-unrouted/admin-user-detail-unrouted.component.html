@@ -1,79 +1,41 @@
-<div class="columns is-centered my-3">
-  <div class="column is-half">
-    <div *ngIf="status !== null" class="card">
-      <div class="card-content">
-        <div class="content">
-          <p class="notification is-danger">
-            {{ status!.error.message }} - {{ status!.message }}
-          </p>
-        </div>
-      </div>
+<div class="prueba">
+  <div class="wrapper m-6">
+    <div class="top-icons">
+
     </div>
 
-    <div *ngIf="status == null" class="card">
-      <div class="card-content">
-        <div class="content">
-          <table class="table is-striped is-hoverable is-fullwidth">
-            <tbody>
-              <tr>
-                <th>Property</th>
-                <th>Value</th>
-              </tr>
-              <tr>
-                <th>id</th>
-                <td>{{ oUser.id }}</td>
-              </tr>
-              <tr>
-                <th>profile picture</th>
-                <td>
-                  <img *ngIf="oUser.profile_picture === null"
-                    src="https://images.ecestaticos.com/JN07Vdy4YqEbbl2JtMkUg3lG7Fk=/438x12:2121x1274/1200x899/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2Faea%2F9ee%2F335%2Faea9ee33581d1061b7a1c9fea6fa1226.jpg"
-                    class="thumbnail">
-                  <!--Poner cuando la imagen no sea null la del propio usuario-->
-                  <img *ngIf="oUser.profile_picture != null" [src]="oUser.profile_picture" class="thumbnail">
-                </td>
-              </tr>
-              <tr>
-                <th>name</th>
-                <td>{{ oUser.name }}</td>
-              </tr>
-              <tr>
-                <th>surname</th>
-                <td>{{ oUser.surname }}</td>
-              </tr>
-              <tr>
-                <th>email</th>
-                <td>{{ oUser.email }}</td>
-              </tr>
-              <tr>
-                <th>username</th>
-                <td>{{ oUser.username }}</td>
-              </tr>
-              <tr>
-                <th>phone</th>
-                <td>{{ oUser.phone }}</td>
-              </tr>
-              <tr>
-                <th>role</th>
-                <td>
-                  <span *ngIf="oUser.role == 0" class="tag is-primary">Admin</span>
-                  <span *ngIf="oUser.role == 1" class="tag is-info">User</span>
-                </td>
-              </tr>
-              <tr>
-                <th>recipes</th>
-                <td>
-                  <a *ngIf="oUser.recipes" class="tag is-link" [routerLink]="['/admin','recipe','list','own',oUser.id]">{{ oUser.recipes }}</a>
-                  <span *ngIf="!oUser.recipes" class="tag is-light">0</span>
-                </td>
-              </tr>
-              <tr>
-                <th>weekly</th>
-                <td>
-                  <a *ngIf="oUser.weeks" class="tag is-link">{{ oUser.weeks }}</a>
-                  <span *ngIf="!oUser.weeks" class="tag is-light">0</span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+    <div class="profile m-6">
+      <img *ngIf="oUser.profile_picture === null"
+        src="https://images.ecestaticos.com/JN07Vdy4YqEbbl2JtMkUg3lG7Fk=/438x12:2121x1274/1200x899/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2Faea%2F9ee%2F335%2Faea9ee33581d1061b7a1c9fea6fa1226.jpg"
+        class="thumbnail">
+      <img *ngIf="oUser.profile_picture != null" [src]="oUser.profile_picture" class="thumbnail">
+      <h3 class="name">{{oUser.name}} {{oUser.surname}}</h3>
+      <p class="title" *ngIf="!oUser.role">Admin</p>
+      <p class="title" *ngIf="oUser.role">User</p>
+
+      <p class="description">Username: {{oUser.username}}</p>
+      <p class="description">Mail: {{oUser.email}}</p>
+      <p class="description">Phone: {{oUser.phone}}</p>
+
+    </div>
+
+    <div class="social-icons mx-2">
+      <div class="icon m-4">
+        <button type="button" [routerLink]="['/admin','recipe','list','own',oUser.id]"
+          class="boton p-2 my-3">{{oUser.recipes}}</button>
+        <p>Recipes</p>
+      </div>
+
+      <div class="icon m-4">
+        <p>{{oUser.favs}}</p>
+        <p>Favs</p>
+      </div>
+
+      <div class="icon m-4">
+        <p>{{oUser.weeks}}</p>
+        <p>Weeklies</p>
+      </div>
+    </div>
+  </div>
+
+</div>

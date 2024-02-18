@@ -1,39 +1,26 @@
-<div class="columns is-centered my-3">
-  <div class="column is-half">
-    <div *ngIf="status !== null" class="card">
-      <div class="card-content">
-        <div class="content">
-          <p class="notification is-danger">
-            {{ status!.error.message }} - {{ status!.message }}
-          </p>
-        </div>
-      </div>
+
+
+
+<div class="prueba">
+  <div class="wrapper m-6">
+    <div class="top-icons">
+
     </div>
 
-    <div *ngIf="status == null" class="card">
-      <div class="card-content">
-        <div class="content">
-          <table class="table is-striped is-hoverable is-fullwidth">
-            <tbody>
-              <tr>
-                <th>Property</th>
-                <th>Value</th>
-              </tr>
-      <tr>
-        <th>id</th>
-        <td>{{ oType.id }}</td>
-      </tr>
-      <tr>
-        <th>name</th>
-        <td>{{ oType.name }}</td>
-      </tr>
-      <tr>
-        <th>ingredients</th>
-        <td>
-          <a *ngIf="oType.ingredients" class="tag is-link" [routerLink]="['/admin','ingredient','list','byType',oType.id]">{{ oType.ingredients }}</a>
-          <span *ngIf="!oType.ingredients" class="tag is-light">0</span>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+    <div class="profile m-6">
+    
+      <h3 class="name">{{oType.name}}</h3>
+      <p class="description" >ID: {{oType.id}}</p>
+    </div>
+
+    <div class="social-icons mx-2">
+      <div class="icon m-4">
+        <button type="button" [routerLink]="['/admin','ingredient','list','byType',oType.id]"
+          class="boton p-2 my-3">{{oType.ingredients}}</button>
+        <p>Ingredients</p>
+      </div>
+
+    </div>
+  </div>
+
 </div>
