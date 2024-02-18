@@ -544,8 +544,7 @@ export class WeeklyScheduleFormUnroutedComponent implements OnInit {
         }
 
       }
-
-      this.oRouter.navigate(['/']);
+      this.oRouter.navigate(['/weekly/list/own']);
 
     });
 

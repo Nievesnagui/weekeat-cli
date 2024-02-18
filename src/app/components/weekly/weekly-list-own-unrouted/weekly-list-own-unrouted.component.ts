@@ -1,6 +1,7 @@
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { PaginatorState } from 'primeng/paginator';
 import { IRecipe, ISchedule, ISchedulePage, ISchedulePagePrueba, ISchedulePrueba, IUser, IWeekly, IWeeklyPage } from 'src/app/model/model.interface';
 import { RecipeService } from 'src/app/service/recipe.service';
@@ -63,7 +64,9 @@ export class WeeklyListOwnUnroutedComponent implements OnInit {
     private oUserService: UserService,
     private oSessionService: SessionService,
     private oScheduleService: ScheduleService,
-    private oRecipeService: RecipeService
+    private oRecipeService: RecipeService,
+    private oRouter: Router,
+
   ) {
     this.oUserService.getByUsername(this.oSessionService.getUsername()).subscribe(user => {
       this.id_filter = user.id;
@@ -123,6 +126,9 @@ export class WeeklyListOwnUnroutedComponent implements OnInit {
   }
 
   getPageByUser(userId: number): void {
+    this.oSchedules = [];
+    this.oWeeklyList= [];
+    
     this.oScheduleService.getPageByUser(
       this.oPaginatorState.rows,
       this.oPaginatorState.page,
@@ -169,6 +175,7 @@ export class WeeklyListOwnUnroutedComponent implements OnInit {
     if (this.oWeeklyToRemove?.id !== undefined) {
       // Mostrar el modal de confirmación
       this.showConfirmationModal = true;
+      
     } else {
       console.error('Weekly ID is undefined or null');
     }
@@ -176,18 +183,21 @@ export class WeeklyListOwnUnroutedComponent implements OnInit {
 
   confirmRemove() {
     // Lógica de eliminación aquí
+
     this.oWeeklyService.removeOne(this.oWeeklyToRemove?.id).subscribe({
       next: () => {
-        this.getOne();
-
+        //this.getOne();
+        this.getPageByUser(this.id_filter);
       },
       error: (error: HttpErrorResponse) => {
         this.status = error;
       }
     });
 
+
     // Cerrar el modal de confirmación después de confirmar
     this.showConfirmationModal = false;
+
   }
 
   cancelRemove() {
