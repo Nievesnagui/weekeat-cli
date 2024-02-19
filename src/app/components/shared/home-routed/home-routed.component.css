@@ -65,3 +65,7 @@
     border-radius: 4.375em;
     background: #435c39;
   }
+
+  img {
+    border-radius: 0.4em;
+}

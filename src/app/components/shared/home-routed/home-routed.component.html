@@ -22,7 +22,10 @@
                   <div class="card">
                     <div class="w-15rem">
                       <p-panel header="{{ schedule.recipe.name }}">
-                        <img src="{{ schedule.recipe.recipe_image }}" alt="">
+                        <img src="{{ schedule.recipe.recipe_image }}" alt="{{schedule.recipe.name}}">
+                        <a [routerLink]="['/recipe', schedule.recipe.id]" class="card-hover__link">
+                          <span>Details </span><i class="fa-solid fa-arrow-right"></i>
+                        </a>
                       </p-panel>
                     </div>
                   </div>
@@ -43,7 +46,10 @@
                   <div class="card">
                     <div class="w-15rem">
                       <p-panel header="{{ schedule.recipe.name }}">
-                        <img src="{{ schedule.recipe.recipe_image }}"  alt="">
+                        <img src="{{ schedule.recipe.recipe_image }}"  alt="{{schedule.recipe.name}}">
+                        <a [routerLink]="['/recipe', schedule.recipe.id]" class="card-hover__link">
+                          <span>Details </span><i class="fa-solid fa-arrow-right"></i>
+                        </a>
                       </p-panel>
                     </div>
                   </div>
