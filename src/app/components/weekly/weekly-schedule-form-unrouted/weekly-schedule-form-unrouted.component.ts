@@ -47,7 +47,7 @@ export class WeeklyScheduleFormUnroutedComponent implements OnInit {
     this.loadRecipes(this.id_filter);
   }
 
-  oPaginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
+  oPaginatorState: PaginatorState = { first: 0, rows: 100, page: 0, pageCount: 0 };
   oFavourite: IFavRecipePrueba | null = null;
   availableProducts: IRecipe[] = [];
   status: HttpErrorResponse | null = null;
