@@ -7,6 +7,7 @@ import { RecipeService } from 'src/app/service/recipe.service';
 import { ScheduleService } from 'src/app/service/schedule.service';
 import { SessionService } from 'src/app/service/session.service';
 import { UserService } from 'src/app/service/user.service';
+import { WeeklyPrintService } from 'src/app/service/weekly-print.service';
 import { WeeklyService } from 'src/app/service/weekly.service';
 
 @Component({
@@ -38,6 +39,7 @@ export class HomeRoutedComponent implements OnInit {
     private oUserService: UserService,
     private oWeeklyService: WeeklyService,
     private oScheduleService: ScheduleService,
+    private oWeeklyPrinterService: WeeklyPrintService,
 
   ) {
     this.strUserName = oSessionService.getUsername();
@@ -111,6 +113,8 @@ export class HomeRoutedComponent implements OnInit {
     return this.formatDate(inicioSemana);
   }
 
-
+  onPrintWeekly = (id_weekly: number) => {
+    this.oWeeklyPrinterService.printWeekly(id_weekly);
+  }
 
 }

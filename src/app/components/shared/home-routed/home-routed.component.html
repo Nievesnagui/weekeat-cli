@@ -5,24 +5,22 @@
       <thead>
         <tr>
           <th></th>
-          <th
-            *ngFor="let day of ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']">
+          <th *ngFor="let day of ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']">
             {{ day }}</th>
         </tr>
       </thead>
       <tbody>
-        <tr >
+        <tr>
           <th class="has-text-centered is-vcentered">Lunch</th>
           <td class="fixed-cell has-text-centered is-vcentered"
             *ngFor="let day of ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']">
             <ng-container *ngFor="let schedule of oSchedules">
-              <div
-                *ngIf="schedule.day === day && schedule.type === 'Lunch'">
+              <div *ngIf="schedule.day === day && schedule.type === 'Lunch'">
                 <ul class="list-none flex flex-column gap-2 p-0 m-0">
                   <div class="card">
                     <div class="w-15rem">
                       <p-panel header="{{ schedule.recipe.name }}">
-                        <img src="{{ schedule.recipe.recipe_image }}" alt="{{schedule.recipe.name}}">
+                        <img src="{{ schedule.recipe.recipe_image }}" alt="">
                         <a [routerLink]="['/recipe', schedule.recipe.id]" class="card-hover__link">
                           <span>Details </span><i class="fa-solid fa-arrow-right"></i>
                         </a>
@@ -40,13 +38,12 @@
           <td class="fixed-cell has-text-centered is-vcentered"
             *ngFor="let day of ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']">
             <ng-container *ngFor="let schedule of oSchedules">
-              <div
-                *ngIf="schedule.day === day && schedule.type === 'Dinner'">
+              <div *ngIf="schedule.day === day && schedule.type === 'Dinner'">
                 <ul class="list-none flex flex-column gap-2 p-0 m-0">
                   <div class="card">
                     <div class="w-15rem">
                       <p-panel header="{{ schedule.recipe.name }}">
-                        <img src="{{ schedule.recipe.recipe_image }}"  alt="{{schedule.recipe.name}}">
+                        <img src="{{ schedule.recipe.recipe_image }}" alt="">
                         <a [routerLink]="['/recipe', schedule.recipe.id]" class="card-hover__link">
                           <span>Details </span><i class="fa-solid fa-arrow-right"></i>
                         </a>
@@ -60,6 +57,7 @@
         </tr>
 
       </tbody>
+    <button class="nav-link button is-primary m-2 has-background-grey-dark" (click)="onPrintWeekly(oSchedules[0].weekly.id)">Print Weekly</button>
     </table>
   </div>
 </div>
@@ -89,11 +87,13 @@
 
 <div class="columns is-vcentered m-4" *ngIf="!strUserName">
   <div class="has-background-grey-dark column  m-4 is-8">
-    <p class="m-5 has-text-grey-light subtitle">Would you like to have a weekly meal plan but always forget the recipes and dislike using
+    <p class="m-5 has-text-grey-light subtitle">Would you like to have a weekly meal plan but always forget the recipes
+      and dislike using
       paper? Are you not creative enough to find varied recipes for the entire week? Do you dislike having to think
       about what to eat today?</p>
     <p class="m-5 has-text-grey-light subtitle">WeekEat is for you!</p>
-    <p class="m-5 has-text-grey-light subtitle">Create your weekly plans with your favorite recipes that you'll find in the app, both yours and from other users!
+    <p class="m-5 has-text-grey-light subtitle">Create your weekly plans with your favorite recipes that you'll find in
+      the app, both yours and from other users!
     </p>
     <p class="m-5 has-text-grey-light subtitle">Discover an easy and fun way to organize your meals!</p>
   </div>
