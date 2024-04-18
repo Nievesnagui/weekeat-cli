@@ -45,9 +45,13 @@
             <td class="has-text-centered">{{ u.id }}</td>
             <td class="has-text-centered">{{ u.name }}</td>
             <td class="has-text-centered">{{ u.surname }}</td>
-            <td class="has-text-centered">{{ u.email }}</td>
+            <td class="has-text-centered">
+              <a href="mailto:{{ u.email }}">{{ u.email }}</a>
+            </td>
             <td class="has-text-centered">{{ u.username }}</td>
-            <td class="has-text-centered">{{ u.phone }}</td>
+            <td class="has-text-centered">
+              <a href="tel:{{ u.phone }}">{{ u.phone }}</a>
+            </td>
             <td class="has-text-centered">
               <span *ngIf="u.role == 0" class="tag is-primary">Admin</span>
               <span *ngIf="u.role == 1" class="tag is-info">User</span>
