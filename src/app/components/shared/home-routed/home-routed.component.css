@@ -1,71 +1,105 @@
 /* Estilo para el contenido de cada ítem del carrusel */
 .product-item-content {
-    position: relative; /* Establece la posición relativa para el contenido */
+  position: relative;
+  /* Establece la posición relativa para el contenido */
+}
+
+/* Estilo para las imágenes dentro del carrusel */
+.product-item-content img {
+  width: 100%;
+  /* Ajusta el ancho de la imagen */
+  border-radius: 0.313em;
+  /* Borde redondeado */
+}
+
+/* Estilo para el texto dentro del contenido del ítem del carrusel */
+
+.product-item-content h6 {
+  position: absolute;
+  border-radius: 0.313em;
+  background-color: #455a3c70;
+  bottom: 7em;
+  /* Ajusta la posición vertical del texto según sea necesario */
+  left: 0.625em;
+  /* Ajusta la posición horizontal del texto según sea necesario */
+  color: white;
+  /* Color del texto */
+  padding: 0.313em;
+  /* Ajusta el relleno del texto según sea necesario */
+  z-index: 1;
+  /* Asegura que el texto esté sobre la imagen */
+  backdrop-filter: blur(0.313em);
+  /* Aplica el desenfoque solo detrás del texto */
+  -webkit-backdrop-filter: blur(0.313em);
+  /* Para compatibilidad con navegadores basados en WebKit */
+  clip-path: inset(0);
+  /* Recorta el área desenfocada al tamaño del texto */
+}
+
+.product-item-content a {
+  bottom: 8.625em;
+  /* Ajusta la posición vertical del texto según sea necesario */
+  left: 3.625em;
+  position: absolute;
+  z-index: 2;
+  /* Asegura que el enlace esté por encima del texto */
+  color: white;
+  /* Color del enlace */
+  text-decoration: none;
+  /* Quita la decoración de subrayado */
+  font-size: 0.875em;
+  /* Tamaño de fuente del enlace */
+}
+
+.product-item-content h4 {
+  position: absolute;
+  background-color: #455a3c70;
+  left: 0.625em;
+  /* Ajusta la posición horizontal del texto según sea necesario */
+  color: #EFF0EB;
+  padding: 0.313em;
+  /* Ajusta el relleno del texto según sea necesario */
+  z-index: 1;
+  /* Asegura que el texto esté sobre la imagen */
+  border-radius: 0.313em;
+  backdrop-filter: blur(0.313em);
+  /* Aplica el desenfoque solo detrás del texto */
+  -webkit-backdrop-filter: blur(0.313em);
+  /* Para compatibilidad con navegadores basados en WebKit */
+  clip-path: inset(0);
+  /* Recorta el área desenfocada al tamaño del texto */
+}
+
+.product-item-content-picture {
+  height: 3.75em;
+}
+
+.btn {
+  color: #fff;
+  height: 1.8em;
+  width: 5.125em;
+  text-align: center;
+  outline: none;
+  border: none;
+  display: block;
+  cursor: pointer;
+  font-weight: 300;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 4.375em;
+  background: #435c39;
+}
+
+img {
+  border-radius: 0.4em;
+}
+
+@media print {
+  body * {
+    display: none;
   }
   
-  /* Estilo para las imágenes dentro del carrusel */
-  .product-item-content img {
-    width: 100%; /* Ajusta el ancho de la imagen */
-    border-radius: 0.313em; /* Borde redondeado */
+  .printable-content {
+    display: block !important;
   }
-  
-  /* Estilo para el texto dentro del contenido del ítem del carrusel */
-
-  .product-item-content h6 {
-    position: absolute;
-    border-radius: 0.313em;
-    background-color: #455a3c70;
-    bottom: 7em; /* Ajusta la posición vertical del texto según sea necesario */
-    left: 0.625em; /* Ajusta la posición horizontal del texto según sea necesario */
-    color: white; /* Color del texto */
-    padding: 0.313em; /* Ajusta el relleno del texto según sea necesario */
-    z-index: 1; /* Asegura que el texto esté sobre la imagen */
-    backdrop-filter: blur(0.313em); /* Aplica el desenfoque solo detrás del texto */
-    -webkit-backdrop-filter: blur(0.313em); /* Para compatibilidad con navegadores basados en WebKit */
-    clip-path: inset(0); /* Recorta el área desenfocada al tamaño del texto */
-  }
-
-  .product-item-content a{
-    bottom: 8.625em; /* Ajusta la posición vertical del texto según sea necesario */
-    left: 3.625em;
-    position: absolute;
-    z-index: 2; /* Asegura que el enlace esté por encima del texto */
-    color: white; /* Color del enlace */
-    text-decoration: none; /* Quita la decoración de subrayado */
-    font-size: 0.875em; /* Tamaño de fuente del enlace */
-  }
-  .product-item-content h4{
-    position: absolute;
-    background-color: #455a3c70;
-    left: 0.625em; /* Ajusta la posición horizontal del texto según sea necesario */
-    color: #EFF0EB;
-    padding: 0.313em; /* Ajusta el relleno del texto según sea necesario */
-    z-index: 1; /* Asegura que el texto esté sobre la imagen */
-    border-radius: 0.313em;
-    backdrop-filter: blur(0.313em); /* Aplica el desenfoque solo detrás del texto */
-    -webkit-backdrop-filter: blur(0.313em); /* Para compatibilidad con navegadores basados en WebKit */
-    clip-path: inset(0); /* Recorta el área desenfocada al tamaño del texto */
-  }
-  .product-item-content-picture {
-    height: 3.75em; 
-  }
-
-  .btn {
-    color: #fff;
-    height: 1.8em;
-    width: 5.125em;
-    text-align: center;
-    outline: none;
-    border: none;
-    display: block;
-    cursor: pointer;
-    font-weight: 300;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 4.375em;
-    background: #435c39;
-  }
-
-  img {
-    border-radius: 0.4em;
 }

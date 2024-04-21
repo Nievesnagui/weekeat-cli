@@ -1,7 +1,7 @@
 <div class="columns is-centered m-4">
 
   <div class="table-container">
-    <table class="table is-bordered" *ngIf="strUserName && oSchedules">
+    <table class="table is-bordered " *ngIf="strUserName && oSchedules" #tableToPrint>
       <thead>
         <tr>
           <th></th>
@@ -21,7 +21,7 @@
                     <div class="w-15rem">
                       <p-panel header="{{ schedule.recipe.name }}">
                         <img src="{{ schedule.recipe.recipe_image }}" alt="">
-                        <a [routerLink]="['/recipe', schedule.recipe.id]" class="card-hover__link">
+                        <a [routerLink]="['/recipe', schedule.recipe.id]" class="card-hover__link to-ignore">
                           <span>Details </span><i class="fa-solid fa-arrow-right"></i>
                         </a>
                       </p-panel>
@@ -44,7 +44,7 @@
                     <div class="w-15rem">
                       <p-panel header="{{ schedule.recipe.name }}">
                         <img src="{{ schedule.recipe.recipe_image }}" alt="">
-                        <a [routerLink]="['/recipe', schedule.recipe.id]" class="card-hover__link">
+                        <a [routerLink]="['/recipe', schedule.recipe.id]" class="card-hover__link to-ignore">
                           <span>Details </span><i class="fa-solid fa-arrow-right"></i>
                         </a>
                       </p-panel>
@@ -57,8 +57,14 @@
         </tr>
 
       </tbody>
-    <button class="nav-link button is-primary m-2 has-background-grey-dark" (click)="onPrintWeekly(oSchedules[0].weekly.id)">Print Weekly</button>
+
     </table>
+    <div class="has-text-centered">
+      <button class="nav-link button is-primary m-2 has-background-grey-dark to-ignore" (click)="printTable()">Print
+        Weekly</button>
+      <button class="nav-link button is-primary m-2 has-background-grey to-ignore" (click)="printRecipes()">Print
+        Recipes</button>
+    </div>
   </div>
 </div>
 <div *ngIf="strUserName" class="columns is-vcentered m-4 is-centered ">

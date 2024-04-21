@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { PaginatorState } from 'primeng/paginator';
 import { Subject } from 'rxjs';
 import { IRecipe, IRecipePage, ISchedulePrueba, IUser, IWeekly } from 'src/app/model/model.interface';
@@ -19,6 +19,7 @@ export class HomeRoutedComponent implements OnInit {
 
   @Input() forceReload: Subject<boolean> = new Subject<boolean>();
 
+  @ViewChild('tableToPrint') tableToPrint!: ElementRef;
 
   oPage: IRecipePage | undefined;
   orderField: string = "id";
@@ -66,8 +67,6 @@ export class HomeRoutedComponent implements OnInit {
 
   ngOnInit() {
     this.getPage();
-
-
   }
 
   getPage(): void {
@@ -113,8 +112,96 @@ export class HomeRoutedComponent implements OnInit {
     return this.formatDate(inicioSemana);
   }
 
-  onPrintWeekly = (id_weekly: number) => {
-    this.oWeeklyPrinterService.printWeekly(id_weekly);
+  printRecipes() {
+
+    console.log("En proceso");
+
+  }
+
+  printTable() {
+
+    let newWindow: Window | null = null;
+
+    const table = this.tableToPrint.nativeElement.cloneNode(true);
+    const elementsToHide = table.querySelectorAll('.to-ignore');
+    elementsToHide.forEach((element: HTMLElement) => {
+      element.style.display = 'none';
+    });
+    newWindow = window.open('', '_blank', 'height=600,width=800,title=Weekly');
+    if (newWindow) {
+      const footerElements = newWindow.document.querySelectorAll('footer, footer *');
+
+      footerElements.forEach((element: Element) => {
+        (element as HTMLElement).style.display = 'none';
+      });
+
+      newWindow!.document.body.appendChild(table);
+      newWindow!.document.head.innerHTML = `
+      <title>WeekEat - My Weekly</title>
+      <style>
+        
+        .product-item-content h6 {
+          position: absolute;
+          border-radius: 0.313em;
+          background-color: #455a3c70;
+          bottom: 7em;
+          left: 0.625em;
+          color: white;
+          padding: 0.313em;
+          z-index: 1;
+          backdrop-filter: blur(0.313em);
+          -webkit-backdrop-filter: blur(0.313em);
+          clip-path: inset(0);
+        }
+
+        .product-item-content a {
+          bottom: 8.625em;
+          left: 3.625em;
+          position: absolute;
+          z-index: 2;
+          color: white;
+          text-decoration: none;
+          font-size: 0.875em;
+        }
+
+        .product-item-content h4 {
+          position: absolute;
+          background-color: #455a3c70;
+          left: 0.625em;
+          color: #EFF0EB;
+          padding: 0.313em;
+          z-index: 1;
+          border-radius: 0.313em;
+          backdrop-filter: blur(0.313em);
+          -webkit-backdrop-filter: blur(0.313em);
+          clip-path: inset(0);
+        }
+
+        .product-item-content-picture {
+          height: 3.75em;
+        }
+
+        img {
+          border-radius: 0.4em;
+          width: 100px;
+          height: 100px;
+        }
+        @page {
+          size: auto;   /* Tamaño de página automático */
+          margin: 0mm;  /* Margen cero */
+        }
+        
+        @media print {
+          .page-break {
+            display: none;  /* Ocultar el pie de página */
+          }
+        }
+      </style>
+    `;
+      newWindow?.print();
+    } else {
+      console.error('No se pudo abrir la nueva ventana.');
+    }
   }
 
 }
