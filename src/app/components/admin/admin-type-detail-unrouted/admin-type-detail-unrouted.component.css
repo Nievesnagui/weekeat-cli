@@ -26,7 +26,10 @@
     background: #E9EFF6;
   }
 
-
+  .boton:hover{
+    background: #759e65dc;
+  }
+  
   .wrapper .profile .thumbnail {
     width: 7.75em;
     height: 7.75em;

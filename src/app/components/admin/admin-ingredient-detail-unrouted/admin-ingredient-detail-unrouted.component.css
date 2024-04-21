@@ -26,7 +26,10 @@
     background: #E9EFF6;
   }
 
-
+  .boton:hover{
+    background: #759e65dc;
+  }
+  
   .wrapper .profile .thumbnail {
     height: 10.875em;
     display: flex;

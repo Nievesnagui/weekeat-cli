@@ -89,8 +89,11 @@
 
         <div class="field is-grouped is-grouped-centered mt-5">
           <div class="control">
+            <button class="button is-danger m-2" [routerLink]="['/admin','user','list']" >
+              Cancel
+            </button>
             <!--Añadir que mande al usuario al crearlos-->
-            <button class="button is-primary" [disabled]="!userForm.valid" type="submit">
+            <button class="button is-primary m-2" [disabled]="!userForm.valid" type="submit">
               Save
             </button>
           </div>

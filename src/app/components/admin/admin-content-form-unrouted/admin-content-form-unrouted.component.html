@@ -31,7 +31,10 @@
   <form (ngSubmit)="onSubmit()" class="mt-2">
     <div class="columns is-centered is-vcentered">
       <div class="column is-narrow">
-        <button class="button is-primary" type="submit">Submit</button>
+        <button class="button is-danger m-2" [routerLink]="['/admin','recipe','list']" >
+          Cancel
+        </button>
+        <button class="button is-primary m-2" type="submit">Submit</button>
       </div>
     </div>
   </form>
