@@ -7,15 +7,17 @@ declare let jsPDF: any;
 @Injectable({
   providedIn: 'root'
 })
-export class WeeklyPrintService {
+export class RecipesPrintService {
 
   constructor(
     private oWeeklyService: WeeklyService,
     private oScheduleService: ScheduleService,
   ) { }
 
-  printWeekly = (id_weekly: number, oSchedulesToPrint: ISchedulePrueba[]): void => {
-    var doc = new jsPDF('landscape');
+  sp = (n: number): string => n.toLocaleString('es', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+  printSchedules = (oSchedulesToPrint: ISchedulePrueba[]): void => {
+    var doc = new jsPDF();
     doc.setFont('Arial');
     doc.setFontSize(12);
     doc = this.header(doc);
@@ -52,38 +54,38 @@ export class WeeklyPrintService {
   
     doc.setFontType('bold');
     doc.setFontSize(14);
-    doc.text(baseX, baseY, 'Day', { align: 'center' });
+    doc.text(baseX, baseY, '?', { align: 'center' });
+    var linea = 55;
+    var printedRecipeIds: number[] = [];
   
-    // Dibujar los días de la semana
-    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-    let currentX = baseX + cellWidth;
-    for (let i = 0; i < days.length; i++) {
-      doc.text(currentX, baseY, days[i], { align: 'center' });
-      doc.setDrawColor(indigoPastel);
-      doc.rect(currentX - cellWidth / 2, baseY + 5, cellWidth, cellHeight);
-      currentX += cellWidth;
-    }
-  
-    // Dibujar el contenido de la tabla
-    const mealTypes = ['Lunch', 'Dinner'];
-    let currentY = baseY + cellHeight;
-    for (let i = 0; i < mealTypes.length; i++) {
-      doc.text(baseX, currentY, mealTypes[i], { align: 'center' });
-      currentX = baseX + cellWidth;
-      for (let j = 0; j < days.length; j++) {
-        const schedule = oSchedulesToPrint.find(schedule => schedule.day === days[j] && schedule.type === mealTypes[i]);
-        if (schedule) {
-          doc.text(currentX, currentY, schedule.recipe.name, { align: 'center' });
+    for (let i = 0; i < oSchedulesToPrint.length; i++) {
+      const currentSchedule = oSchedulesToPrint[i];
+      // Verificar si el ID de la receta ya se ha impreso
+      if (!printedRecipeIds.includes(currentSchedule.recipe.id)) {
+        printedRecipeIds.push(currentSchedule.recipe.id); // Agregar el ID de la receta al array de IDs impresos
+        this.lineaFactura(doc, currentSchedule, linea);
+        linea = linea + 7;
+        if (i>0 && i<oSchedulesToPrint.length) {
+          doc.addPage();
+          doc = this.header(doc);
+          linea = 155;
+          doc.setFontSize(12)
         }
-        currentX += cellWidth;
-      }
-      currentY += cellHeight;
+    }
     }
   
     return doc;
   }
   
-  
+  private lineaFactura(doc: any, oSchedule: ISchedulePrueba, linea: number): void {
+    doc.setFontSize(12)
+    doc.text(oSchedule.recipe.name, 20, linea)
+    doc.setFontSize(8);
+    linea=10;
+    doc.text(oSchedule.recipe.process, 210, linea, 'center' );
+    // doc.text(oSchedule.recipe.description, 160, linea, 'right');
+    // doc.text(oSchedule.recipe.process, 194, linea, 'right');
+  }
 
   private footer(doc: any): any {
 

@@ -89,7 +89,7 @@ import { RecipeListFavsRoutedComponent } from './components/recipe/recipe-list-f
 import { RecipeListFavsUnroutedComponent } from './components/recipe/recipe-list-favs-unrouted/recipe-list-favs-unrouted.component';
 import { WeeklyScheduleEditRoutedComponent } from './components/weekly/weekly-schedule-edit-routed/weekly-schedule-edit-routed.component';
 import { WeeklyEditRoutedComponent } from './components/weekly/weekly-edit-routed/weekly-edit-routed.component';
-import { WeeklyPrintService } from './service/weekly-print.service';
+import { RecipesPrintService } from './service/recipes-print.service';
 
 @NgModule({
   declarations: [
@@ -214,7 +214,7 @@ import { WeeklyPrintService } from './service/weekly-print.service';
     FavouriteService,
     ScheduleService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    WeeklyPrintService,
+    RecipesPrintService,
   ],
   bootstrap: [AppComponent]
 })

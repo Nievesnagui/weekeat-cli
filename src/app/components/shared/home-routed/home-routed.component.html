@@ -59,7 +59,7 @@
       </tbody>
 
     </table>
-    <div class="has-text-centered">
+    <div class="has-text-centered" *ngIf="strUserName && oSchedules">
       <button class="nav-link button is-primary m-2 has-background-grey-dark to-ignore" (click)="printTable()">Print
         Weekly</button>
       <button class="nav-link button is-primary m-2 has-background-grey to-ignore" (click)="printRecipes()">Print
