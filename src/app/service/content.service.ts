@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { API_URL } from "../environment/environment";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { IContent, IContentPage, IContentPruebaPage, IIngredient } from "../model/model.interface";
+import { IContent, IContentPage, IContentPrueba, IContentPruebaPage, IIngredient } from "../model/model.interface";
 
 
 @Injectable()
@@ -15,6 +15,10 @@ export class ContentService {
 
     getOne(id: number): Observable<IContent> {
         return this.oHttpClient.get<IContent>(this.sUrl + '/' + id);
+    }
+
+    getOneForPrinting(id: number): Observable<IContentPrueba> {
+        return this.oHttpClient.get<IContentPrueba>(this.sUrl + '/' + id);
     }
 
     getByName(name: string): Observable<IContent> {
