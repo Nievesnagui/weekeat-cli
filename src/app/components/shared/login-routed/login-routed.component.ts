@@ -54,18 +54,4 @@ export class LoginRoutedComponent implements OnInit {
   onReset() {
     this.loginForm.reset();
   }
-
-  loginAdmin() {
-    this.loginForm.setValue({
-      username: 'administrador',
-      password: 'weekeat'
-    })
-  }
-
-  loginUser() {
-    this.loginForm.setValue({
-      username: 'usuario',
-      password: 'weekeat'
-    })
-  }
 }
