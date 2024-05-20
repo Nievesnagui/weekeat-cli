@@ -29,8 +29,6 @@ export class RecipesPrintService {
         )
       )
     ).subscribe(ingredientLists => {
-      // ingredientLists es una matriz de matrices de ingredientes
-      // Aplanar ingredientLists a una matriz plana de ingredientes
       const allIngredients = ([] as any[]).concat(...ingredientLists);
       const uniqueIngredients = new Set<string>(Array.from(new Set(allIngredients.map(ingredient => ingredient.ingredient.name))));
 

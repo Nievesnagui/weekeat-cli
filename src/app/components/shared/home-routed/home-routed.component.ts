@@ -140,9 +140,9 @@ export class HomeRoutedComponent implements OnInit {
           .body{
           }
            .table {
-            position: absolute;
-   top: 50%;
-   margin-top: -300px;
+              position: absolute;
+              top: 50%;
+              margin-top: -300px;
              border-collapse: collapse;
              width: 100%;
            }
