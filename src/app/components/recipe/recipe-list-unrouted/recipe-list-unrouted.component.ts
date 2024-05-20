@@ -83,8 +83,6 @@ export class RecipeListUnroutedComponent implements OnInit {
   }//
 
   ngOnInit() {
-    console.log("init");
-    console.log(this.id_filter);
     this.getPage(this.id_filter);
     this.strUserName = this.oSessionService.getUsername();
     this.oUserService.getByUsername(this.oSessionService.getUsername()).subscribe({
@@ -215,8 +213,6 @@ export class RecipeListUnroutedComponent implements OnInit {
   }
 
   getPage(userId: number): void {
-
-    console.log('userId: ' + userId);
     this.oFavouriteService.getPageByUser(this.oPaginatorStateFav.rows, this.oPaginatorStateFav.page, userId).subscribe({
       next: (data: IIFavRecipePagePrueba) => {
         this.oPageFavs = data;
@@ -234,7 +230,6 @@ export class RecipeListUnroutedComponent implements OnInit {
           schedules: [], // Por ejemplo, si no está disponible en IFavRecipePrueba
           isFavorite: false
         }));
-        console.log(this.favProducts);
         this.oRecipeService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.filterValue).subscribe({
           next: (data: IRecipePage) => {
             this.oPage = data;

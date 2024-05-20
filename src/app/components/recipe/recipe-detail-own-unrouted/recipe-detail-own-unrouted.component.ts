@@ -78,8 +78,6 @@ export class RecipeDetailOwnUnroutedComponent implements OnInit {
   showConfirmationModal = false;
   doRemove(u: IRecipe) {
     this.oRecipeToRemove = u;
-    console.log('Recipe to remove:', this.oRecipeToRemove);
-
     if (this.oRecipeToRemove?.id !== undefined) {
       // Mostrar el modal de confirmación
       this.showConfirmationModal = true;
@@ -90,7 +88,6 @@ export class RecipeDetailOwnUnroutedComponent implements OnInit {
 
   confirmRemove() {
     // Lógica de eliminación aquí
-    console.log('Removing recipe');
     this.oRecipeService.removeOne(this.oRecipeToRemove?.id).subscribe({
       next: () => {
         this.getOne();
