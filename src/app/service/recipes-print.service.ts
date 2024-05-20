@@ -2,13 +2,12 @@ import { Injectable } from '@angular/core';
 import { ISchedulePrueba } from '../model/model.interface';
 import { ContentService } from './content.service';
 import { forkJoin } from 'rxjs';
-declare let jsPDF: any;
+import jsPDF from 'jspdf'; 
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecipesPrintService {
-
   constructor(
     private oContentService: ContentService
   ) { }
@@ -48,11 +47,11 @@ export class RecipesPrintService {
   private header(doc: any): any {
 
     this.setBaseColor(doc);
-    doc.setFontType('bold');
+    doc.setFont('Helvetica');
     doc.setFontSize(20);
     doc.text('My Grocery List', 70, 15);
     doc.line(10, 25, 200, 25);
-    doc.setFontType('normal');
+    doc.setFont('Helvetica');
 
     return doc;
   }
