@@ -137,8 +137,6 @@ export class HomeRoutedComponent implements OnInit {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Weekly</title>
         <style>
-          .body{
-          }
            .table {
               position: absolute;
               top: 50%;
@@ -253,7 +251,7 @@ export class HomeRoutedComponent implements OnInit {
       </body>
       </html>
     `);
-
+    //newWindow.document. = 'portrait';
     newWindow.document.close();
     newWindow.print();
   } else {

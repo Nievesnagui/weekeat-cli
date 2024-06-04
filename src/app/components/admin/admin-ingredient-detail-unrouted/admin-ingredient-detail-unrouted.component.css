@@ -124,3 +124,23 @@
     color: #19ac56;
     text-decoration: none;
   }
+  .back-button {
+    display: flex;
+    align-items: center;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  .back-button i {
+    margin-right: 8px;
+  }
+  
+  .back-button:hover {
+    background-color: #e9c0c0;
+  }

@@ -138,3 +138,29 @@ h5 {
   transform: scale(1.2);
   transition: 0.35s 0.35s transform cubic-bezier(0.1, 0.72, 0.4, 0.97);
 }
+
+.tooltip {
+  position: relative;
+  cursor: pointer;
+}
+
+.tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 125%; /* Mueve el tooltip por encima del elemento */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+  z-index: 1000;
+}
+
+.tooltip:hover::after {
+  opacity: 1;
+}

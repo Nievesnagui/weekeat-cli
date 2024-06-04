@@ -5,8 +5,8 @@
   <div class="column mt-4 " *ngFor="let t of oPage?.content">
     <div class="card-hover m-3">
       <div class="card-hover__content">
-        <i (click)="toggleFavorite(t.id)" class="fa-solid fa-star" *ngIf="!isRecipeFavorite(t.id)"></i>
-        <i (click)="toggleFavorite(t.id)" class="fa-solid fa-star has-text-white" *ngIf="isRecipeFavorite(t.id)"></i>
+        <i (click)="toggleFavorite(t.id)" class="fa-solid fa-star" *ngIf="!isRecipeFavorite(t.id)" data-tooltip="I like it!"></i>
+        <i (click)="toggleFavorite(t.id)" class="fa-solid fa-star has-text-white" *ngIf="isRecipeFavorite(t.id)" data-tooltip="I don't like it"></i>
             <h3 class="card-hover__title">
           {{ t.name }}
         </h3>
@@ -22,7 +22,7 @@
       </div>
       <img
         [src]="t.recipe_image ? getRecipeImageUrl(t.recipe_image) : 'https://images.unsplash.com/photo-1586511925558-a4c6376fe65f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=60'"
-        alt="">
+        alt="t.recipe_image ? t.name : 'Generic recipe image'">
     </div>
   </div>
 </div>

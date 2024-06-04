@@ -3,12 +3,15 @@
     <div class="top-icons">
 
     </div>
-
+    <button class="back-button" [routerLink]="['/admin','user','list']">
+      <i class="fas fa-arrow-left"></i> Back
+    </button>
+    
     <div class="profile m-6">
       <img *ngIf="oUser.profile_picture === null"
         src="https://images.ecestaticos.com/JN07Vdy4YqEbbl2JtMkUg3lG7Fk=/438x12:2121x1274/1200x899/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2Faea%2F9ee%2F335%2Faea9ee33581d1061b7a1c9fea6fa1226.jpg"
-        class="thumbnail">
-      <img *ngIf="oUser.profile_picture != null" [src]="oUser.profile_picture" class="thumbnail">
+        class="thumbnail" alt="Generic image">
+      <img *ngIf="oUser.profile_picture != null" [src]="oUser.profile_picture" alt="{{oUser.name}}" class="thumbnail">
       <h3 class="name">{{oUser.name}} {{oUser.surname}}</h3>
       <p class="title" *ngIf="!oUser.role">Admin</p>
       <p class="title" *ngIf="oUser.role">User</p>

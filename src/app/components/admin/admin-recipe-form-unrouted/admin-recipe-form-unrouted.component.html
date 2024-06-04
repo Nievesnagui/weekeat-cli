@@ -9,7 +9,9 @@
   <div class="column  container is-three-quarters card has-background-light">
     <div class="columns is-centered my-3">
       <form *ngIf="recipeForm" [formGroup]="recipeForm" (ngSubmit)="onSubmit()" class="column is-half">
-
+        <button class="back-button m-2" [routerLink]="['/admin','recipe','list']">
+          <i class="fas fa-arrow-left"></i> Back
+        </button>
         <div class="field" *ngIf="operation=='EDIT'">
           <label class="label">Id</label>
           <div class="control">

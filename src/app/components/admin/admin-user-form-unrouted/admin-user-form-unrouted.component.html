@@ -7,6 +7,9 @@
 </div>
 <div *ngIf="status == null">
   <div class="column container is-three-quarters card has-background-light">
+    <button class="back-button" [routerLink]="['/admin','user','list']">
+      <i class="fas fa-arrow-left"></i> Back
+    </button>
     <div class="columns is-centered my-3">
       <form *ngIf="userForm" [formGroup]="userForm" (ngSubmit)="onSubmit()" class="column is-half">
 

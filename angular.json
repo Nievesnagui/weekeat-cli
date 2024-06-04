@@ -41,7 +41,7 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
+                  "maximumWarning": "5mb",
                   "maximumError": "10mb"
                 },
                 {
@@ -95,7 +95,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/bulma.css"
+              "src/bulma.css",
+              "node_modules/bulma-tooltip/dist/css/bulma-tooltip.min.css"
             ],
             "scripts": []
           }

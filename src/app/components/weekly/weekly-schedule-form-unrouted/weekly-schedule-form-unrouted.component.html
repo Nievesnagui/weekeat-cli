@@ -10,7 +10,7 @@
                         <div class="card">
                             <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
                                 <p-panel header="{{product.name}}">
-                                    <img src="{{product.recipe_image}}" alt="">
+                                    <img src="{{product.recipe_image}}" alt="{{product.name}}">
                                 </p-panel>
                             </div>
                         </div>
@@ -45,7 +45,7 @@
                                 <div class="card" *ngIf="selectedMondayLunch != null">
                                     <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
                                         <p-panel header="{{selectedMondayLunch.name}}">
-                                            <img src="{{selectedMondayLunch.recipe_image}}" alt="">
+                                            <img src="{{selectedMondayLunch.recipe_image}}" alt="{{selectedMondayLunch.name}}">
                                             <button class="button is-warning" (click)="closePanel(1)">Remove</button>
                                         </p-panel>
                                     </div>
@@ -57,7 +57,7 @@
                                 <div class="card" *ngIf="selectedTuesdayLunch  != null">
                                     <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
                                         <p-panel header="{{selectedTuesdayLunch.name}}">
-                                            <img src="{{selectedTuesdayLunch.recipe_image}}" alt="">
+                                            <img src="{{selectedTuesdayLunch.recipe_image}}" alt="{{selectedTuesdayLunch.name}}">
                                             <button class="button is-warning" (click)="closePanel(2)">Remove</button>
                                         </p-panel>
                                     </div>
@@ -69,7 +69,7 @@
                                 <div class="card" *ngIf="selectedWednesdayLunch != null">
                                     <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
                                         <p-panel header="{{selectedWednesdayLunch.name}}">
-                                            <img src="{{selectedWednesdayLunch.recipe_image}}" alt="">
+                                            <img src="{{selectedWednesdayLunch.recipe_image}}" alt="{{selectedWednesdayLunch.name}}">
                                             <button class="button is-warning" (click)="closePanel(3)">Remove</button>
                                         </p-panel>
                                     </div>
@@ -81,7 +81,7 @@
                                 <div class="card" *ngIf="selectedThursdayLunch != null">
                                     <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
                                         <p-panel header="{{selectedThursdayLunch.name}}">
-                                            <img src="{{selectedThursdayLunch.recipe_image}}" alt="">
+                                            <img src="{{selectedThursdayLunch.recipe_image}}" alt="{{selectedThursdayLunch.name}}">
                                             <button class="button is-warning" (click)="closePanel(4)">Remove</button>
                                         </p-panel>
                                     </div>
@@ -93,7 +93,7 @@
                                 <div class="card" *ngIf="selectedFridayLunch != null">
                                     <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
                                         <p-panel header="{{selectedFridayLunch.name}}">
-                                            <img src="{{selectedFridayLunch.recipe_image}}" alt="">
+                                            <img src="{{selectedFridayLunch.recipe_image}}" alt="{{selectedFridayLunch.name}}">
                                             <button class="button is-warning" (click)="closePanel(5)">Remove</button>
                                         </p-panel>
                                     </div>
@@ -105,7 +105,7 @@
                                 <div class="card" *ngIf="selectedSaturdayLunch != null">
                                     <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
                                         <p-panel header="{{selectedSaturdayLunch.name}}">
-                                            <img src="{{selectedSaturdayLunch.recipe_image}}" alt="">
+                                            <img src="{{selectedSaturdayLunch.recipe_image}}" alt="{{selectedSaturdayLunch.name}}">
                                             <button class="button is-warning" (click)="closePanel(6)">Remove</button>
                                         </p-panel>
                                     </div>
@@ -117,7 +117,7 @@
                                 <div class="card" *ngIf="selectedSundayLunch != null">
                                     <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
                                         <p-panel header="{{selectedSundayLunch.name}}">
-                                            <img src="{{selectedSundayLunch.recipe_image}}" alt="">
+                                            <img src="{{selectedSundayLunch.recipe_image}}" alt="{{selectedSundayLunch.name}}">
                                             <button class="button is-warning" (click)="closePanel(7)">Remove</button>
                                         </p-panel>
                                     </div>
@@ -132,7 +132,7 @@
                                 <div class="card" *ngIf="selectedMondayDinner != null">
                                     <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
                                         <p-panel header="{{selectedMondayDinner.name}}">
-                                            <img src="{{selectedMondayDinner.recipe_image}}" alt="">
+                                            <img src="{{selectedMondayDinner.recipe_image}}" alt="{{selectedMondayDinner.name}}">
                                             <button class="button is-warning" (click)="closePanel(8)">Remove</button>
                                         </p-panel>
                                     </div>
@@ -144,7 +144,7 @@
                                 <div class="card" *ngIf="selectedTuesdayDinner!= null">
                                     <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
                                         <p-panel header="{{selectedTuesdayDinner.name}}">
-                                            <img src="{{selectedTuesdayDinner.recipe_image}}" alt="">
+                                            <img src="{{selectedTuesdayDinner.recipe_image}}" alt="{{selectedTuesdayDinner.name}}">
                                             <button class="button is-warning" (click)="closePanel(9)">Remove</button>
                                         </p-panel>
                                     </div>
@@ -156,7 +156,7 @@
                                 <div class="card" *ngIf="selectedWednesdayDinner!= null">
                                     <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
                                         <p-panel header="{{selectedWednesdayDinner.name}}">
-                                            <img src="{{selectedWednesdayDinner.recipe_image}}" alt="">
+                                            <img src="{{selectedWednesdayDinner.recipe_image}}" alt="{{selectedWednesdayDinner.name}}">
                                             <button class="button is-warning" (click)="closePanel(10)">Remove</button>
                                         </p-panel>
                                     </div>
@@ -168,7 +168,7 @@
                                 <div class="card" *ngIf="selectedThursdayDinner!= null">
                                     <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
                                         <p-panel header="{{selectedThursdayDinner.name}}">
-                                            <img src="{{selectedThursdayDinner.recipe_image}}" alt="">
+                                            <img src="{{selectedThursdayDinner.recipe_image}}" alt="{{selectedThursdayDinner.name}}">
                                             <button class="button is-warning" (click)="closePanel(11)">Remove</button>
                                         </p-panel>
                                     </div>
@@ -180,7 +180,7 @@
                                 <div class="card" *ngIf="selectedFridayDinner!= null">
                                     <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
                                         <p-panel header="{{selectedFridayDinner.name}}">
-                                            <img src="{{selectedFridayDinner.recipe_image}}" alt="">
+                                            <img src="{{selectedFridayDinner.recipe_image}}" alt="{{selectedFridayDinner.name}}">
                                             <button class="button is-warning" (click)="closePanel(12)">Remove</button>
                                         </p-panel>
                                     </div>
@@ -192,7 +192,7 @@
                                 <div class="card" *ngIf="selectedSaturdayDinner!= null">
                                     <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
                                         <p-panel header="{{selectedSaturdayDinner.name}}">
-                                            <img src="{{selectedSaturdayDinner.recipe_image}}" alt="">
+                                            <img src="{{selectedSaturdayDinner.recipe_image}}" alt="{{selectedSaturdayDinner.name}}">
                                             <button class="button is-warning" (click)="closePanel(13)">Remove</button>
                                         </p-panel>
                                     </div>
@@ -204,7 +204,7 @@
                                 <div class="card" *ngIf="selectedSundayDinner!= null">
                                     <div pDraggable dragHandle=".p-panel-header" class="w-15rem">
                                         <p-panel header="{{selectedSundayDinner.name}}">
-                                            <img src="{{selectedSundayDinner.recipe_image}}" alt="">
+                                            <img src="{{selectedSundayDinner.recipe_image}}" alt="{{selectedSundayDinner.name}}">
                                             <button class="button is-warning" (click)="closePanel(14)">Remove</button>
                                         </p-panel>
                                     </div>
